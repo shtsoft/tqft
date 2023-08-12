@@ -1,0 +1,2561 @@
+\begin{thm}
+\label{thm:appacsmf}
+Let $\mathbf{C}$, $\mathbf{C}_{\alpha}$ be symmetric monoidal categories and let $\mathbf{C}$ be left\footnote{
+in fact, the category is also a right rigid, since it is braided} rigid. Let $E$ be a tuple $(E_{\mathrm{ob}},E_{\mathrm{mor}},\mathsf{H},\Phi)$ of
+\begin{enumerate}
+\item
+a function
+\begin{align*}
+  E_{\mathrm{ob}}
+  \colon
+  \mathrm{ob}_{\mathbf{C}}
+  &\to
+  \mathrm{ob}_{\mathbf{C}_{\alpha}}
+\end{align*}
+
+\item
+a function $E_{\mathrm{mor}}$ which maps $X \in \mathrm{ob}_{\mathbf{C}}$ to a function
+\begin{align*}
+  E_{\mathrm{mor}}(X)
+  \colon
+  \mathrm{mor}_{\mathbf{C}}(1,X)
+  &\to
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}
+  \left(
+    E_{\mathrm{ob}}(1)
+    ,
+    E_{\mathrm{ob}}(X)
+  \right)
+\end{align*}
+
+\item
+a function $\mathsf{H}$ assigning to each object
+\begin{align*}
+  (X_{1},X_{2})
+  \in
+  \mathrm{ob}_{\mathbf{C} \times \mathbf{C}}
+\end{align*}
+an isomorphism
+\begin{align*}
+  \mathsf{H}(X_{1},X_{2})
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}
+  \left(
+    E_{\mathrm{ob}}(X_{1})
+    \otimes_{\alpha}
+    E_{\mathrm{ob}}(X_{2})
+    ,
+    E_{\mathrm{ob}}(X_{1} \otimes X_{2})
+  \right)
+\end{align*}
+
+\item
+an isomorphism
+\begin{align*}
+  \Phi
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}
+  \left(
+    1_{\alpha}
+    ,
+    E_{\mathrm{ob}}(1)
+  \right)
+\end{align*}
+\end{enumerate}
+In abuse of notation we will simply write $E$ for both $E_{\mathrm{ob}}$ and all $E_{\mathrm{mor}}(X)$. Then the following are equivalent
+\begin{enumerate}
+\item[i)]
+$E$ extends to a symmetric monoidal functor from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$
+
+\item[ii)]
+$E$ satisfies
+\begin{enumerate}
+\item[(AC1)]
+for each $X \in \mathrm{ob}_{\mathbf{C}}$ and left dual object $X^{\prime}$ with evaluation $\mathrm{ev}_{X}$ and coevaluaton $\mathrm{coev}_{X}$ there is a morphism
+\begin{align*}
+  \mathrm{ev}_{E(X)}
+  \in
+  \mathrm{mor}_{\mathrm{C}_{\alpha}}
+  \left(
+    E(X^{\prime})
+    \otimes_{\alpha}
+    E(X)
+    ,
+    1_{\alpha}
+  \right)
+\end{align*}
+which makes $E(X^{\prime})$ a left dual object of $E(X)$ with coevaluation map
+\begin{align*}
+  \mathrm{coev}_{E(X)}
+  &:=
+  \mathsf{H}(X,X^{\prime})^{-1}
+  \circ
+  E(\mathrm{coev}_{X})
+  \circ
+  \Phi
+\end{align*}
+Remember that this means that the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=4.5em]
+  1_{\alpha} E(X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(X))}
+  \ar{d}[swap]{\mathrm{coev}_{E(X)} \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(X)
+  &
+  E(X) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E(X))}
+  \\
+  (E(X) E(X^{\prime})) E(X)
+  \ar{rr}{\mathsf{A}_{\alpha}(E(X),E(X^{\prime}),E(X))}
+  &
+  &
+  E(X) (E(X^{\prime}) E(X))
+  \ar{u}[swap]{\mathrm{id}_{E(X)} \otimes_{\alpha} \mathrm{ev}_{E(X)}}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=4.5em]
+  E(X^{\prime}) 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E(X^{\prime}))}
+  \ar{d}[swap]{\mathrm{id}_{E(X^{\prime})} \otimes_{\alpha} \mathrm{coev}_{E(X)}}
+  &
+  E(X^{\prime})
+  &
+  1_{\alpha} E(X^{\prime})
+  \ar{l}[swap]{\mathsf{L}_{\alpha}(E(X^{\prime}))}
+  \\
+  E(X^{\prime}) (E(X) E(X^{\prime}))
+  \ar{rr}{\mathsf{A}_{\alpha}^{-1}(E(X^{\prime}),E(X),E(X^{\prime}))}
+  &
+  &
+  (E(X^{\prime}) E(X)) E(X^{\prime})
+  \ar{u}[swap]{\mathrm{ev}_{E(X)} \otimes_{\alpha} \mathrm{id}_{E(X^{\prime})}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC2)]
+for all $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$, left dual objects $X_{1}^{\prime}$ of $X_{1}$ and all
+\begin{align*}
+  f
+  \in
+  \mathrm{mor}_{\mathbf{C}}
+  \left(
+    1
+    ,
+    X_{2}
+    \otimes
+    (X_{1}^{\prime} \otimes X_{1})
+  \right)
+\end{align*}
+the following diagram commutes
+\begin{equation*}
+\hspace{1cm}
+\begin{tikzcd}[row sep=3.3em,column sep=7.5em]
+  E(1)
+  \ar{r}{E(\mathsf{R}(X_{2}) \circ (\mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{1}}) \circ f)}
+  \ar{d}[swap]{E(f)}
+  &
+  E(X_{2})
+  &
+  E(X_{2}) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E(X_{2}))}
+  \\
+  E(X_{2} (X_{1}^{\prime} X_{1}))
+  \ar{r}{\mathsf{H}(X_{2},X_{1}^{\prime} X_{1})^{-1}}
+  &
+  E(X_{2}) (E(X_{1}^{\prime} X_{1}))
+  \ar{r}{\mathrm{id}_{E(X_{2})} \otimes_{\alpha} \mathsf{H}(X_{1}^{\prime},X_{1})^{-1}}
+  &
+  E(X_{2}) (E(X_{1}^{\prime}) E(X_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E(X_{2})} \otimes_{\alpha} \mathrm{ev}_{E(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC3)]
+for all
+\begin{align*}
+  f_{1}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(1,X_{1})
+  ,\qquad
+  f_{2}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(1,X_{2})
+\end{align*}
+the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=8em]
+  E(1)
+  \ar{r}{E((f_{1} \otimes f_{2}) \circ \mathsf{L}^{-1}(1))}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(1))}
+  &
+  E(X_{1} X_{2})
+  \\
+  1_{\alpha} E(1)
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  \\
+  E(1) E(1)
+  \ar{r}{E(f_{1}) \otimes_{\alpha} E(f_{2})}
+  &
+  E(X_{1}) E(X_{2})
+  \ar{uu}[swap]{\mathsf{H}(X_{1},X_{2})}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC4)]
+let
+\begin{align*}
+  X_{1}
+  ,
+  \ldots
+  ,
+  X_{n}
+  \in
+  \mathrm{ob}_{\mathbf{C}}
+  ,\qquad
+  n
+  \in
+  \mathbb{N}^{\times}
+\end{align*}
+and let $W$ be the tensor product of $X_{1},\dots,X_{n}$ in this order, with any choice of bracketing. Let $\pi \in S_{n}$ be a permutation and write $W_{\pi}$ for the tensor product of $X_{\pi(1)},\dots,X_{\pi(n)}$ in this order and with any choice of bracketing which may be different from that of $W$. There is an isomorphism
+\begin{align*}
+    \hat{\pi}
+    \colon
+    W
+    &\to
+    W_{\pi}
+\end{align*}
+built from the symmetric braiding $\mathsf{B}$ and the associator $\mathsf{A}$. This isomorphism is unique since though it can possibly be written in many ways, the coherence theorem ensures that these ways are all equal. Furthermore, let $W^{E}$ be the tensor product of $E(X_{1}),\dots,E(X_{n})$ in this order, with the same bracketing as $W$ and likewise for $W_{\pi}^{E}$ and $E(X_{\pi(1)}),\dots,E(X_{\pi(n)})$. We denote the corresponding unique isomorphism by
+\begin{align*}
+  \hat{\pi}_{\alpha}
+  \colon
+  W^{E}
+  &\to
+  W_{\pi}^{E}
+\end{align*}
+Additionally, we write
+\begin{align*}
+  \mathsf{H}^{W}
+  \colon
+  W^{E}
+  &\to
+  E(W)
+\end{align*}
+for the isomorphism obtained by subsequent applicaton of $\mathsf{H}$ (tensored with appropriate identities) and analogously for
+\begin{align*}
+  \mathsf{H}_{\pi}^{W}
+  \colon
+  W_{\pi}^{E}
+  &\to
+  E(W_{\pi})
+\end{align*}
+Then for $f \in \mathrm{mor}_{\mathbf{C}}(1,W)$ the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=large]
+  E(1)
+  \ar{rr}{E(\hat{\pi} \circ f)}
+  \ar{d}[swap]{E(f)}
+  &
+  &
+  E(W_{\pi})
+  \\
+  E(W)
+  \ar{r}{\mathsf{H}^{W -1}}
+  &
+  W^{E}
+  \ar{r}{\hat{\pi}_{\alpha}}
+  &
+  W_{\pi}^{E}
+  \ar{u}[swap]{\mathsf{H}_{\pi}^{W}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC5)]
+for the unit object the equation
+\begin{align*}
+  E(\mathrm{id}_{1})
+  &=
+  \mathrm{id}_{E(1)}
+\end{align*}
+holds and the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=4em]
+  1_{\alpha} E(1)
+  \ar{r}{\mathsf{L}_{\alpha}(E(1))}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  E(1)
+  \\
+  E(1) E(1)
+  \ar{r}{\mathsf{H}(1,1)}
+  &
+  E(1 1)
+  \ar{u}[swap]{E(\mathsf{L}(1))}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=3.3em,column sep=4em]
+  E(1) 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E(1))}
+  \ar{d}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \Phi}
+  &
+  E(1)
+  \\
+  E(1) E(1)
+  \ar{r}{\mathsf{H}(1,1)}
+  &
+  E(1 1)
+  \ar{u}[swap]{E(\mathsf{R}(1))}
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+The extension to a symmetric monoidal functor in i) is unique if $E$ satisfies the conditions in ii).
+\end{enumerate}
+\end{thm}
+\begin{prf}
+The proof is not too difficult but quite tedious as it involves a lot of dealing with the associators, unit laws and braidings and the diagrams in (AC1) - (AC5).
+\\\\
+i) $\Rightarrow$ ii)
+\qquad
+This direction is rather immediate. We denote the symmetric monoidal functor which is an extension of $(E,\mathsf{H},\Phi)$ by $(F,\mathsf{H},\Phi)$ and define the dual pairing to be
+\begin{align*}
+  \mathrm{ev}_{E(X)}
+  &:=
+  \Phi^{-1}
+  \circ
+  F(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}(X^{\prime},X)
+  \colon
+  F(X^{\prime})
+  \otimes_{\alpha}
+  F(X)
+  \to
+  1_{\alpha}
+\end{align*}
+The diagrams in (AC1) are just lemma \ref{lem:mfduals}. We leave the rest out as the other conditions can be checked fairly easily: for (AC2) and (AC3) one uses the functoriality of $F$, (MF2) and the naturality of $\mathsf{H}$; (AC4) follows by the functoriality of $F$ and multiple application of (MF1) and (BF); (AC5) is just functoriality of $F$ and a special case of (MF2).
+\\\\
+ii) $\Rightarrow$ i)
+\qquad
+This part is a rather long story. Set $F_{\mathrm{ob}} := E_{\mathrm{ob}}$. We have to extend $E$ to all morphisms in $\mathbf{C}$. To this end we need a left dual object $X^{\prime}$ for every object $X \in \mathrm{ob}_{\mathbf{C}}$. We know that $\mathbf{C}$ is left rigid, so these dual objects exist and we can suppose that there is a choice function to choose them or that they have been constructed explicitly. Either way, we choose $1^{\prime} = 1$ with
+\begin{align*}
+  \mathrm{coev}_{1}
+  &=
+  \mathsf{L}^{-1}(1)
+  =
+  \mathsf{R}^{-1}(1)
+  \\
+  \mathrm{ev}_{1}
+  &=
+  \mathsf{L}(1)
+  =
+  \mathsf{R}(1)
+\end{align*}
+and for tensor products we take dual objects as given by lemma \ref{LEM:DUALOBTENSOR}. Now for
+\begin{align*}
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+define
+\begin{align*}
+  \tilde{f}_{12}
+  &:=
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  \mathrm{coev}_{X_{1}}
+  \colon
+  1
+  \to
+  X_{2}
+  \otimes
+  X_{1}^{\prime}
+  \\
+  \gamma_{f_{12}}
+  &:=
+  \mathsf{H}(X_{2},X_{1}^{\prime})^{-1}
+  \circ
+  E(\tilde{f}_{12})
+  \circ
+  \Phi
+  \colon
+  1_{\alpha}
+  \to
+  E(X_{2})
+  \otimes
+  E(X_{1}^{\prime})
+\end{align*}
+Then we let $F_{\mathrm{mor}}$ be the function that maps
+\begin{align*}
+  (X_{1},X_{2})
+  \in
+  \mathrm{ob}_{\mathbf{C}}
+  \times
+  \mathrm{ob}_{\mathbf{C}}
+\end{align*}
+to the function
+\begin{align*}
+  F_{\mathrm{mor}}(X_{1},X_{2})
+  \colon
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+  &\to
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}(F_{\mathrm{ob}}(X_{1}),F_{\mathrm{ob}}(X_{2}))
+\end{align*}
+defined by the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  E(X_{1})
+  \ar{r}{F_{\mathrm{mor}}(X_{1},X_{2})(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(X_{1}))}
+  &
+  E(X_{2})
+  \\
+  1_{\alpha} E(X_{1})
+  \ar{d}[swap]{\gamma_{f_{12}} \otimes_{\alpha} \mathrm{id}_{E(X_{1})}}
+  &
+  E(X_{2}) 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E(X_{2}))}
+  \\
+  (E(X_{2}) E(X_{1}^{\prime})) E(X_{1})
+  \ar{r}{\mathsf{A}_{\alpha}(E(X_{2}),E(X_{1}^{\prime}),E(X_{1}))}
+  &
+  E(X_{2}) (E(X_{1}^{\prime}) E(X_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E(X_{2})} \otimes_{\alpha} \mathrm{ev}_{E(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+Again we will write $F$ for both $F_{\mathrm{ob}}$ and all $F_{\mathrm{mor}}(X_{1},X_{2})$.
+\\\\
+We need to check that $F$ actually extends $E$, i.e. that for $g \in \mathrm{mor}_{\mathbf{C}}(1,Y)$ we have
+\begin{align*}
+  F(g)
+  &=
+  E(g)
+\end{align*}
+We know
+\begin{align*}
+  \tilde{g}
+  &=
+  (g \otimes \mathrm{id}_{1})
+  \circ
+  \mathsf{L}^{-1}(1)
+\end{align*}
+thus (AC3) yields
+\begin{align*}
+  E(\tilde{g})
+  &=
+  \mathsf{H}(Y,1)
+  \circ
+  \left(
+    E(g)
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \left(
+    \Phi
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \mathsf{L}_{\alpha}^{-1}(E(1))
+  \\
+  \Rightarrow
+  \qquad
+  \gamma_{g}
+  &=
+  \left(
+    E(g)
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \left(
+    \Phi
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \mathsf{L}_{\alpha}^{-1}(E(1))
+  \circ
+  \Phi
+  \\
+  &=
+  \left(
+    E(g)
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \mathsf{H}(1,1)^{-1}
+  \circ
+  E(\mathsf{L}^{-1}(1))
+  \circ
+  \Phi
+  \\
+  &=
+  \left(
+    E(g)
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \mathrm{coev}_{E(1)}
+\end{align*}
+Note that for the second last equality we used (AC3) with $f_{1} = f_{2} = \mathrm{id}_{1}$ and moreover we used $E(\mathrm{id}_{1}) = \mathrm{id}_{E(1)}$ from (AC5). Hence we have the outer perimeter of the following diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.8em,column sep=6em]
+  E(1)
+  \ar{rr}{F(g)}
+  \ar{rd}{\mathrm{id}_{E(1)}}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(1))}
+  &
+  &
+  E(Y)
+  \\
+  1_{\alpha} E(1)
+  \ar{dd}[swap]{\mathrm{coev}_{E(1)} \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  E(1)
+  \ar{ur}{E(g)}
+  &
+  \\
+  &
+  E(1) 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E(1))}
+  \ar{r}{E(g) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  E(Y) 1_{\alpha}
+  \ar{uu}[swap]{\mathsf{R}_{\alpha}(E(Y))}
+  \\
+  (E(1) E(1)) E(1)
+  \ar{r}{\mathsf{A}_{\alpha}(E(1),E(1),E(1))}
+  \ar{d}[swap]{(E(g) \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  E(1) (E(1) E(1))
+  \ar{u}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathrm{ev}_{E(1)}}
+  \ar{rd}{E(g) \otimes_{\alpha} \mathrm{id}_{E(1) E(1)}}
+  &
+  \\
+  (E(Y) E(1)) E(1)
+  \ar{rr}{\mathsf{A}_{\alpha}(E(Y),E(1),E(1))}
+  &
+  &
+  E(Y) (E(1) E(1))
+  \ar{uu}[swap]{\mathrm{id}_{E(Y)} \otimes_{\alpha} \mathrm{ev}_{E(1)}}
+\end{tikzcd}
+\end{equation*}
+Here the lower left part is the naturality of $\mathsf{A}_{\alpha}$, the lower right part is the functoriality of $\otimes_{\alpha}$ and the upper right part is the naturality of $\mathsf{R}_{\alpha}$. Moreover the first diagram from (AC1) makes the upper left part commute and therefore the upper central part commutes which means that $F(g) = E(g)$.
+\\\\
+Next, we have to verify that $(F,\mathsf{H},\Phi)$ is a symmetric monoidal functor from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$. We verify the properties step by step.
+\begin{enumerate}
+\item[(F1)]
+\begin{align*}
+  \mathrm{F}(\mathrm{id}_{X})
+  &=
+  \mathrm{id}_{F(X)}
+\end{align*}
+follows immediately from (AC1) since
+\begin{align*}
+  \widetilde{\mathrm{id}}_{X}
+  &=
+  \mathrm{coev}_{X}
+\end{align*}
+implying that
+\begin{align*}
+  \gamma_{\mathrm{id}_{X}}
+  &=
+  \mathsf{H}(X,X^{\prime})^{-1}
+  \circ
+  E(\mathrm{coev}_{X})
+  \circ
+  \Phi
+  \\
+  &=
+  \mathrm{coev}_{E(X)}
+\end{align*}
+
+\item[(F2)]
+\begin{align*}
+  F(f_{23} \circ f_{12})
+  &=
+  F(f_{23}) \circ F(f_{12})
+\end{align*}
+for
+\begin{align*}
+  f_{12} \in \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+  ,\qquad
+  f_{23} \in \mathrm{mor}_{\mathbf{C}}(X_{2},X_{3})
+\end{align*}
+needs a rather lengthy calculation. We will do this by making subsequent changes in commuting diagrams to obtain new commuting diagrams using the conditions (AC2) - (AC4), the coherence theorem and the naturality of the associators, the unit laws and the braidings. Additionally the functoriality of the tensor products is used, often without explicitly saying it. To further ease notation we define
+\begin{align*}
+  E_{i}
+  &:=
+  E(X_{i})
+  ,\qquad
+  E_{i}^{\prime}
+  :=
+  E(X_{i}^{\prime})
+  ,\qquad
+  1
+  \leq
+  i
+  \leq
+  4
+\end{align*}
+By definition we have the upper part of the following diagram, where the lower part commutes by the coherence theorem.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=3.2em,column sep=5em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{d}[swap]{\gamma_{f_{12}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  (E_{2} E_{1}^{\prime}) E_{1}
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1})}
+  &
+  &
+  E_{3} (E_{2}^{\prime} E_{2})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{2}}}
+  \\
+  E_{2} (E_{1}^{\prime} E_{1})
+  \ar{d}[swap]{\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  &
+  &
+  (E_{3} E_{2}^{\prime}) E_{2}
+  \ar{u}[swap]{\mathsf{A}_{\alpha}(E_{3},E_{2}^{\prime},E_{2})}
+  \\
+  E_{2} 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E_{2})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{2}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  E_{2}
+  \ar{r}{\mathsf{L}_{\alpha}^{-1}(E_{2})}
+  &
+  1_{\alpha} E_{2}
+  \ar{u}[swap]{\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2}}}
+  \\
+  (1_{\alpha} E_{2}) 1_{\alpha}
+  \ar{rr}{\mathsf{A}_{\alpha}(1_{\alpha},E_{2},1_{\alpha})}
+  &
+  &
+  1_{\alpha} (E_{2} 1_{\alpha})
+  \ar{u}[swap]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{2})}
+\end{tikzcd}
+\end{equation*}
+With the functoriality of $\otimes_{\alpha}$ we can rewrite the outer perimeter as the following outer perimeter and also obtain the lower left part. The lower right part is the naturality of $\mathsf{A}_{\alpha}$.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=4.5em,column sep=7.5em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{d}[swap]{\gamma_{f_{12}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  (E_{2} E_{1}^{\prime}) E_{1}
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1})}
+  &
+  ((E_{3} E_{2}^{\prime}) E_{2}) (E_{1}^{\prime} E_{1})
+  \ar{dd}{\mathrm{id}_{(E_{3} E_{2}^{\prime}) E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  &
+  E_{3} (E_{2}^{\prime} E_{2})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{2}}}
+  \\
+  E_{2} (E_{1}^{\prime} E_{1})
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{2}) \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}}}
+  &
+  &
+  (E_{3} E_{2}^{\prime}) E_{2}
+  \ar{u}[swap]{\mathsf{A}_{\alpha}(E_{3},E_{2}^{\prime},E_{2})}
+  \\
+  (1_{\alpha} E_{2}) (E_{1}^{\prime} E_{1})
+  \ar{uur}[swap,xshift=-6mm,yshift=-4mm]{(\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2}}) \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}}}
+  \ar{d}[swap]{\mathrm{id}_{1_{\alpha} E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  &
+  ((E_{3} E_{2}^{\prime}) E_{2}) 1_{\alpha}
+  \ar{r}{\mathsf{A}_{\alpha}(E_{3} E_{2}^{\prime},E_{2},1_{\alpha})}
+  &
+  (E_{3} E_{2}^{\prime}) (E_{2} 1_{\alpha})
+  \ar{u}[swap]{\mathrm{id}_{E_{3} E_{2}^{\prime}} \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{2})}
+  \\
+  (1_{\alpha} E_{2}) 1_{\alpha}
+  \ar{ur}[swap]{(\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2}}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  \ar{rr}{\mathsf{A}_{\alpha}(1_{\alpha},E_{2},1_{\alpha})}
+  &
+  &
+  1_{\alpha} (E_{2} 1_{\alpha})
+  \ar{u}[swap]{\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2} 1_{\alpha}}}
+\end{tikzcd}
+\end{equation*}
+The coherence theorem allows us to rewrite the upper part as the outer perimeter of the following diagram. The parts on the lower left and right follow from the naturality of $\mathsf{A}_{\alpha}$ and the lower central part is the unique isomorphism guranteed by the coherence theorem. The parts on the upper left and right are the naturality of $\mathsf{L}_{\alpha}$ and $\mathsf{R}_{\alpha}$, respectively, and the triangles next to them commute due to the functoriality of the tensor product.
+\begin{equation*}
+\hspace{-1.8em}
+\begin{tikzcd}[row sep=7em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{rr}{F(f_{23})}
+  &
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{rd}{\mathsf{L}_{\alpha}^{-1}(1_{\alpha}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[description,xshift=-4mm]{\gamma_{f_{12}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  (E_{2} E_{1}^{\prime}) E_{1}
+  \ar{d}[description,xshift=-3mm]{\mathsf{L}_{\alpha}^{-1}(E_{2} E_{1}^{\prime}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  (1_{\alpha} 1_{\alpha}) E_{1}
+  \ar{dd}[description,xshift=3mm]{(\gamma_{f_{23}} \otimes_{\alpha} \gamma_{f_{12}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{dl}[description,xshift=2mm,yshift=4mm]{(\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \gamma_{f_{12}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E_{3} (1_{\alpha} 1_{\alpha})
+  \ar{ur}{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{R}_{\alpha}(1_{\alpha})}
+  &
+  E_{3} (E_{2}^{\prime} E_{2})
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{2}}}
+  \\
+  (1_{\alpha} (E_{2} E_{1}^{\prime})) E_{1}
+  \ar{rd}[description,yshift=-4mm]{(\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2} E_{1}^{\prime}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[description,xshift=-3mm,yshift=4mm]{\mathsf{A}_{\alpha}^{-1}(1_{\alpha},E_{2},E_{1}^{\prime}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} ((E_{2}^{\prime} E_{2}) (E_{1}^{\prime} E_{1}))
+  \ar{u}[description,xshift=-3mm,yshift=-2mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  \ar{r}[xshift=-3mm,yshift=3pt]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{E_{2}^{\prime} E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  &
+  E_{3} ((E_{2}^{\prime} E_{2}) 1_{\alpha})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{2}^{\prime} E_{2})}
+  \ar{ul}[description,xshift=-2mm,yshift=5mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{1_{\alpha}})}
+  \\
+  ((1_{\alpha} E_{2}) E_{1}^{\prime}) E_{1}
+  \ar{rd}[description,xshift=2mm,yshift=-4mm]{((\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2}}) \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[description,xshift=-2mm,yshift=3mm]{\mathsf{A}_{\alpha}(1_{\alpha} E_{2},E_{1}^{\prime},E_{1})}
+  &
+  ((E_{3} E_{2}^{\prime}) (E_{2} E_{1}^{\prime})) E_{1}
+  \ar{ur}{\sim}
+  \ar{d}[description,yshift=5mm]{\mathsf{A}_{\alpha}^{-1}(E_{3} E_{2}^{\prime},E_{2},E_{1}^{\prime}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E_{3} (E_{2}^{\prime} (E_{2} (E_{1}^{\prime} E_{1})))
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{2}^{\prime},E_{2},E_{1}^{\prime} E_{1})}
+  \ar{r}[xshift=-2mm,yshift=3pt]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{E_{2}^{\prime}} \otimes_{\alpha} (\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}))}
+  &
+  E_{3} (E_{2}^{\prime} (E_{2} 1_{\alpha}))
+  \ar{u}[description,xshift=2mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{2}^{\prime},E_{2},1_{\alpha})}
+  \\
+  (1_{\alpha} E_{2}) (E_{1}^{\prime} E_{1})
+  \ar{d}[description,xshift=-1mm,yshift=-2mm]{(\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2}}) \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}}}
+  &
+  (((E_{3} E_{2}^{\prime}) E_{2}) E_{1}^{\prime}) E_{1}
+  \ar{dl}[description,xshift=4mm,yshift=5mm]{\mathsf{A}_{\alpha}((E_{3} E_{2}^{\prime}) E_{2},E_{1}^{\prime},E_{1})}
+  &
+  (E_{3} E_{2}^{\prime}) (E_{2} (E_{1}^{\prime} E_{1}))
+  \ar{u}[description,xshift=2mm]{\mathsf{A}_{\alpha}(E_{3},E_{2}^{\prime},E_{2} (E_{1}^{\prime} E_{1}))}
+  \ar{r}[yshift=3pt]{\mathrm{id}_{E_{3} E_{2}^{\prime}} \otimes_{\alpha} (\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  &
+  (E_{3} E_{2}^{\prime}) (E_{2} 1_{\alpha})
+  \ar{u}[description,xshift=3mm]{\mathsf{A}_{\alpha}(E_{3},E_{2}^{\prime},E_{2} 1_{\alpha})}
+  \\
+  ((E_{3} E_{2}^{\prime}) E_{2}) (E_{1}^{\prime} E_{1})
+  \ar{urr}[swap]{\mathsf{A}_{\alpha}(E_{3} E_{2}^{\prime},E_{2},E_{1}^{\prime} E_{1})}
+  \ar{rrr}{(\mathrm{id}_{E_{3} E_{2}^{\prime}} \otimes_{\alpha} \mathrm{id}_{E_{2}}) \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  &
+  &
+  &
+  ((E_{3} E_{2}^{\prime}) E_{2}) 1_{\alpha}
+  \ar{u}[description,xshift=3mm]{\mathsf{A}_{\alpha}(E_{3} E_{2}^{\prime},E_{2},1_{\alpha})}
+\end{tikzcd}
+\end{equation*}
+Going the upper central way and using the definition of the $\gamma_{f_{ij}}$ we find the outer perimeter of the following diagram where the small inner part is the naturality of $\mathsf{L}_{\alpha}$.
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=3.2em,column sep=6em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{rd}{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(1_{\alpha}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  (1_{\alpha} 1_{\alpha}) E_{1}
+  \ar{d}[swap]{(\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \Phi) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E(1) E_{1}
+  \ar{dl}{\mathsf{L}_{\alpha}^{-1}(E(1)) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E_{3} (1_{\alpha} 1_{\alpha})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{R}_{\alpha}(1_{\alpha})}
+  \\
+  (1_{\alpha} E(1)) E_{1}
+  \ar{d}[swap]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (1_{\alpha} (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  \\
+  (E(1) E(1)) E_{1}
+  \ar{d}[swap]{(E(\tilde{f}_{23}) \otimes_{\alpha} E(\tilde{f}_{12})) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} ((E_{2}^{\prime} E_{2}) (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}})}
+  \\
+  (E(X_{3} X_{2}^{\prime}) E(X_{2} X_{1}^{\prime})) E_{1}
+  \ar{rr}{(\mathsf{H}(X_{3},X_{2}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{2},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  ((E_{3} E_{2}^{\prime}) (E_{2} E_{1}^{\prime})) E_{1}
+  \ar{u}[swap]{\sim}
+\end{tikzcd}
+\end{equation*}
+Now we use (AC3) for the inner part of the above diagram to obtain the upper part of the following diagram. The lower right part follows from the the coherence theorem where we used the notation $\hat{\pi}_{\alpha}$ from (AC4).
+\begin{equation*}
+\hspace{-1.5em}
+\begin{tikzcd}[row sep=4em,column sep=4.5em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  E(1) E_{1}
+  \ar{d}[swap]{E((\tilde{f}_{23} \otimes \tilde{f}_{12}) \circ \mathsf{L}^{-1}(1)) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (1_{\alpha} 1_{\alpha})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{L}_{\alpha}(1_{\alpha})}
+  \\
+  E((X_{3} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})) E_{1}
+  \ar{d}[swap]{\mathsf{H}((X_{3} X_{2}^{\prime})(X_{2} X_{1}^{\prime}))^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (1_{\alpha} (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  \\
+  (E(X_{3} X_{2}^{\prime}) E(X_{2} X_{1}^{\prime})) E_{1}
+  \ar{d}[swap]{(\mathsf{H}(X_{3},X_{2}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{2},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} ((E_{2}^{\prime} E_{2}) (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}})}
+  \\
+  ((E_{3} E_{2}^{\prime}) (E_{2} E_{1}^{\prime})) E_{1}
+  \ar{urr}{\sim}
+  \ar{rr}{\hat{\pi}_{\alpha} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  ((E_{3} E_{1}^{\prime}) (E_{2}^{\prime} E_{2})) E_{1}
+  \ar{u}[swap]{\sim_{2}}
+\end{tikzcd}
+\end{equation*}
+We define
+\begin{align*}
+  \hat{\pi}
+  \colon
+  (X_{3} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})
+  &\to
+  (X_{3} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})
+\end{align*}
+to be the isomorphism corresponding to $\hat{\pi}_{\alpha}$ as in (AC4) and hence obtain the outer perimeter of the following diagram where we also wrote out $\sim_{2}$ with the coherence theorem. The inner small part commutes due to the naturality of $\mathsf{A}_{\alpha}$ and $\mathsf{B}_{\alpha}$. The upper right part is the naturality of $\mathsf{L}_{\alpha}$.
+\begin{equation*}
+\hspace{-2.3em}
+\begin{tikzcd}[row sep=6.5em,column sep=4.8em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{rr}{F(f_{23})}
+  &
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  E(1) E_{1}
+  \ar{d}[description,xshift=2mm]{E(\hat{\pi} \circ (\tilde{f}_{23} \otimes \tilde{f}_{12}) \circ \mathsf{L}^{-1}(1)) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (E_{1}^{\prime} E_{1})
+  \ar{ur}{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  &
+  E_{3} (1_{\alpha} 1_{\alpha})
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{L}_{\alpha}(1_{\alpha})}
+  \\
+  E((X_{3} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})) E_{1}
+  \ar{d}[description,xshift=-2mm]{\mathsf{H}((X_{3} X_{1}^{\prime})(X_{2}^{\prime} X_{2}))^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  &
+  E_{3} (1_{\alpha} (E_{1}^{\prime} E_{1}))
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  \ar{ul}{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{L}_{\alpha}(E_{1}^{\prime} E_{1})}
+  \\
+  (E(X_{3} X_{1}^{\prime}) E(X_{2}^{\prime} X_{2})) E_{1}
+  \ar{d}[description,xshift=3mm,yshift=5mm]{(\mathsf{H}(X_{3},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{2}^{\prime},X_{2})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  ((E_{3} E_{1}^{\prime}) 1_{\alpha}) E_{1}
+  \ar{urr}{\sim_{3}}
+  \ar{d}[description,yshift=3mm]{\mathsf{A}_{\alpha}(E_{3},E_{1}^{\prime},1_{\alpha}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E_{3} ((1_{\alpha} E_{1}^{\prime}) E_{1})
+  \ar{ur}[description,xshift=-5mm,yshift=-4mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{A}_{\alpha}(1_{\alpha},E_{1}^{\prime},E_{1})}
+  &
+  E_{3} ((E_{2}^{\prime} E_{2}) (E_{1}^{\prime} E_{1}))
+  \ar{u}[description,xshift=2mm,yshift=2mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}})}
+  \\
+  ((E_{3} E_{1}^{\prime}) (E_{2}^{\prime} E_{2})) E_{1}
+  \ar{ur}[description,xshift=-1mm,yshift=-4mm]{(\mathrm{id}_{E_{3} E_{1}^{\prime}} \otimes_{\alpha} \mathrm{ev}_{E_{2}}) \otimes_{\alpha} \mathrm{id}_{E_{1}})}
+  \ar{d}[description,xshift=-3mm,yshift=-2mm]{\mathsf{A}_{\alpha}(E_{3},E_{1}^{\prime},E_{2}^{\prime} E_{2}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  (E_{3} (E_{1}^{\prime} (E_{2}^{\prime} E_{2}))) E_{1}
+  \ar{r}[yshift=3pt]{(\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{B}_{\alpha}(E_{1}^{\prime},1_{\alpha})) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  (E_{3} (1_{\alpha} E_{1}^{\prime})) E_{1}
+  \ar{u}[description,yshift=-3mm]{\mathsf{A}_{\alpha}(E_{3},1_{\alpha} E_{1}^{\prime},E_{1})}
+  &
+  E_{3} (((E_{2}^{\prime} E_{2}) E_{1}^{\prime}) E_{1})
+  \ar{u}[description,xshift=1mm,yshift=-3mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{2}^{\prime} E_{2},E_{1}^{\prime},E_{1})}
+  \ar{ul}[description,xshift=-1mm,yshift=4mm]{\mathrm{id}_{E_{3}} \otimes_{\alpha} ((\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}))}
+  \\
+  (E_{3} (E_{1}^{\prime} (E_{2}^{\prime} E_{2}))) E_{1}
+  \ar{ur}[description,xshift=7mm,yshift=4mm]{(\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{E_{1}^{\prime}} \otimes_{\alpha} \mathrm{ev}_{E_{2}})) \otimes_{\alpha} \mathrm{id}_{E_{1}})}
+  \ar{rrr}{(\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{B}_{\alpha}(E_{1}^{\prime},E_{2}^{\prime} E_{2})) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  &
+  (E_{3} ((E_{2}^{\prime} E_{2}) E_{1}^{\prime})) E_{1}
+  \ar{u}[description,xshift=2mm,yshift=-3mm]{\mathsf{A}_{\alpha}(E_{3},(E_{2}^{\prime} E_{2}) E_{1}^{\prime},E_{1})}
+  \ar{ul}[description,xshift=-1mm,yshift=3mm]{(\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime}})) \otimes_{\alpha} \mathrm{id}_{E_{1}})}
+\end{tikzcd}
+\end{equation*}
+\newpage
+With the functoriality of $\otimes_{\alpha}$ we obtain the outer perimeter of the following diagram. Abbreviating
+\begin{align*}
+  \delta
+  &:=
+  \mathsf{R}(X_{3} X_{1}^{\prime})
+  \circ
+  \left(
+    \mathrm{id}_{X_{3} X_{1}^{\prime}}
+    \otimes
+    \mathrm{ev}_{X_{2}}
+  \right)
+  \circ
+  \hat{\pi}
+  \circ
+  \left(
+    \tilde{f}_{23}
+    \otimes
+    \tilde{f}_{12}
+  \right)
+  \circ
+  \mathsf{L}^{-1}(1)
+\end{align*}
+property (AC2) implies that the lower left part commutes. The lower right part is the naturality of $\mathsf{R}_{\alpha}$ and the middle right part commutes because of the coherence theorem.
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=6em,column sep=8em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar[bend right]{rr}{F(f_{23} \circ f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{rd}{\gamma_{f_{23} \circ f_{12}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  E(1) E_{1}
+  \ar{rdd}[xshift=-5mm,yshift=3mm]{E(\delta) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[description,xshift=-8mm,yshift=-3mm]{E(\hat{\pi} \circ (\tilde{f}_{23} \otimes \tilde{f}_{12}) \circ \mathsf{L}^{-1}(1)) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  (E_{3} E_{1}^{\prime}) E_{1}
+  \ar{r}{\mathsf{A}(E_{3},E_{1}^{\prime},E_{1})}
+  \ar{rdd}[description,xshift=3mm,yshift=-5mm]{\mathsf{R}_{\alpha}^{-1}(E_{3} E_{1}^{\prime}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E_{3} (E_{1}^{\prime} E_{1})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  \\
+  E((X_{3} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})) E_{1}
+  \ar{d}[description,xshift=-3mm]{\mathsf{H}((X_{3} X_{1}^{\prime})(X_{2}^{\prime} X_{2}))^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (1_{\alpha} (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{L}_{\alpha}(E_{1}^{\prime} E_{1})}
+  \\
+  (E(X_{3} X_{1}^{\prime}) E(X_{2}^{\prime} X_{2})) E_{1}
+  \ar{d}[description,xshift=-5mm]{(\mathrm{id}_{E(X_{3},X_{1}^{\prime})} \otimes_{\alpha} \mathsf{H}(X_{2}^{\prime},X_{2})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E(X_{3} X_{1}^{\prime}) E_{1}
+  \ar{uu}[description,xshift=-2mm,yshift=-2mm]{\mathsf{H}(X_{3},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{rd}[description,xshift=-5mm,yshift=3mm]{\mathsf{R}_{\alpha}^{-1}(E(X_{3} X_{1}^{\prime})) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  ((E_{3} E_{1}^{\prime}) 1_{\alpha}) E_{1}
+  \ar{u}[swap]{\sim_{3}}
+  \\
+  (E(X_{3} X_{1}^{\prime}) (E_{2}^{\prime} E_{2})) E_{1}
+  \ar{rr}{(\mathrm{id}_{E(X_{3} X_{1}^{\prime})} \otimes_{\alpha} \mathrm{ev}_{E_{2}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  (E(X_{3} X_{1}^{\prime}) 1_{\alpha}) E_{1}
+  \ar{u}[description,xshift=5mm,yshift=-1mm]{(\mathsf{H}(X_{3},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+\end{tikzcd}
+\end{equation*}
+If we can show that
+\begin{align*}
+  \delta
+  &=
+  \widetilde{f_{23} \circ f_{12}}
+  \\
+  &=
+  \left(
+    (f_{23} \circ f_{12})
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  \mathrm{coev}_{X_{1}}
+  \\
+  &=
+  (f_{23} \otimes \mathrm{id}_{X_{1}^{\prime}})
+  \circ
+  (f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}})
+  \circ
+  \mathrm{coev}_{X_{1}}
+\end{align*}
+then the middle left part of the diagram commutes and hence also the central part above. But then the uppermost part commutes, too, and we are done with this step.
+\newpage
+Writing out the $\tilde{f}_{ij}$ and using the naturality of $\mathsf{L}$ for the right part we have the commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=5em]
+  1
+  \ar{r}{\delta}
+  \ar{rd}[description,xshift=4mm]{(f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}}) \circ \mathrm{coev}_{X_{1}}}
+  \ar{d}[swap]{\mathsf{L}^{-1}(1)}
+  &
+  X_{3} X_{1}^{\prime}
+  &
+  (X_{3} X_{1}^{\prime}) 1
+  \ar{l}[swap]{\mathsf{R}(X_{3} X_{1}^{\prime})}
+  \\
+  11
+  \ar{d}[swap]{\mathrm{id}_{1} \otimes ((f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}}) \circ \mathrm{coev}_{X_{1}})}
+  &
+  X_{2} X_{1}^{\prime}
+  \ar{dl}[description,xshift=3mm,yshift=2mm]{\mathsf{L}^{-1}(X_{2} X_{1}^{\prime})}
+  &
+  (X_{3} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})
+  \ar{u}[swap]{\mathrm{id}_{X_{3} X_{1}^{\prime}} \otimes \mathrm{ev}_{X_{2}}}
+  \\
+  1 (X_{2} X_{1}^{\prime})
+  \ar{rr}{((f_{23} \otimes \mathrm{id}_{X_{2}^{\prime}}) \circ \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{2} X_{1}^{\prime}}}
+  &
+  &
+  (X_{3} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})
+  \ar{u}[swap]{\hat{\pi}}
+\end{tikzcd}
+\end{equation*}
+With the coherence theorem and the functoriality of $\otimes$ we can rewrite the right part as the outer perimeter of the following diagram. The uppermost right part is the naturality of $\mathsf{R}$, the lower left and the middle right part are the naturality of $\mathsf{A}$ and the other parts commute because of the functoriality of $\otimes$.
+\begin{equation*}
+\begin{tikzcd}[row sep=6em,column sep=4.5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  1
+  \ar{rrr}{\delta}
+  \ar{d}[description,xshift=-3mm]{\mathrm{coev}_{X_{1}}}
+  &
+  &
+  &
+  X_{3} X_{1}^{\prime}
+  \\
+  X_{1} X_{1}^{\prime}
+  \ar{d}[description,xshift=-3mm]{(f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  &
+  X_{2} X_{1}^{\prime}
+  \ar{urr}[description]{f_{23} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (X_{2} X_{1}^{\prime}) 1
+  \ar{r}[yshift=3pt]{(f_{23} \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes \mathrm{id}_{1}}
+  \ar{l}[swap]{\mathsf{R}(X_{2} X_{1}^{\prime})}
+  &
+  (X_{3} X_{1}^{\prime}) 1
+  \ar{u}[description,xshift=3mm]{\mathsf{R}(X_{3} X_{1}^{\prime})}
+  \\
+  X_{2} X_{1}^{\prime}
+  \ar{d}[description,xshift=-3mm]{\mathsf{L}^{-1}(X_{2} X_{1}^{\prime})}
+  &
+  &
+  (X_{2} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{2} X_{1}^{\prime}} \otimes \mathrm{ev}_{X_{2}}}
+  \ar{r}[yshift=3pt]{(f_{23} \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes \mathrm{id}_{X_{2}^{\prime} X_{2}}}
+  &
+  (X_{3} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{3} X_{1}^{\prime}} \otimes \mathrm{ev}_{X_{2}}}
+  \\
+  1 (X_{2} X_{1}^{\prime})
+  \ar{d}[description,xshift=-3mm]{\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{2} X_{1}^{\prime}}}
+  &
+  &
+  X_{2} (X_{1}^{\prime} (X_{2}^{\prime} X_{2}))
+  \ar{u}[description,xshift=3mm]{\mathsf{A}^{-1}(X_{2},X_{1}^{\prime},X_{2}^{\prime} X_{2})}
+  \ar{r}[yshift=3pt]{f_{23} \otimes (\mathrm{id}_{X_{1}^{\prime}} \otimes \mathrm{id}_{X_{2}^{\prime} X_{2}})}
+  &
+  X_{3} (X_{1}^{\prime} (X_{2}^{\prime} X_{2}))
+  \ar{u}[description,xshift=3mm]{\mathsf{A}^{-1}(X_{3},X_{1}^{\prime},X_{2}^{\prime} X_{2})}
+  \\
+  (X_{2} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})
+  \ar{r}[yshift=3pt]{\mathsf{A}(X_{2},X_{2}^{\prime},X_{2} X_{1}^{\prime})}
+  \ar{d}[description,xshift=-3mm]{(f_{23} \otimes \mathrm{id}_{X_{2}^{\prime}}) \otimes \mathrm{id}_{X_{2} X_{1}^{\prime}}}
+  &
+  X_{2} (X_{2}^{\prime} (X_{2} X_{1}^{\prime}))
+  \ar{r}[yshift=3pt]{\mathrm{id}_{X_{2}} \otimes \mathsf{A}^{-1}(X_{2}^{\prime},X_{2},X_{1}^{\prime})}
+  \ar{rrd}[description,xshift=-4mm]{f_{23} \otimes (\mathrm{id}_{X_{2}^{\prime}} \otimes \mathrm{id}_{X_{2} X_{1}^{\prime}})}
+  &
+  X_{2} ((X_{2}^{\prime} X_{2}) X_{1}^{\prime})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{2}} \otimes \mathsf{B}(X_{2}^{\prime} X_{2},X_{1}^{\prime})}
+  \ar{r}[yshift=3pt]{f_{23} \otimes (\mathrm{id}_{X_{2}^{\prime} X_{2}} \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  &
+  X_{3} ((X_{2}^{\prime} X_{2}) X_{1}^{\prime})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{3}} \otimes \mathsf{B}(X_{2}^{\prime} X_{2},X_{1}^{\prime})}
+  \\
+  (X_{3} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})
+  \ar{rrr}{\mathsf{A}(X_{3},X_{2}^{\prime},X_{2} X_{1}^{\prime})}
+  &
+  &
+  &
+  X_{3} (X_{2}^{\prime} (X_{2} X_{1}^{\prime}))
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{3}} \otimes \mathsf{A}^{-1}(X_{2}^{\prime},X_{2},X_{1}^{\prime})}
+\end{tikzcd}
+\end{equation*}
+Going the left way and inserting two identities we obtain the outer perimeter of the following diagram. The lower middle part on the left and the middle parts on the right are the naturality of $\mathsf{A}$ and $\mathsf{B}$. The upper middle part on the left, the lower part and the upper middle part on the right follow from coherence theorem. The central part follows from the diagram (LD1) governing dual objects for $X_{2}$. Hence the uppermost part commutes which is exactly what we wanted to show.
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=6em,font=\small]
+  1
+  \ar{rrr}{\delta}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}}}
+  &
+  &
+  &
+  X_{3} X_{1}^{\prime}
+  \\
+  X_{1} X_{1}^{\prime}
+  \ar{d}[swap]{f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  &
+  &
+  X_{2} X_{1}^{\prime}
+  \ar{u}[swap]{f_{23} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \\
+  X_{2} X_{1}^{\prime}
+  \ar[bend left=15]{urrr}{\mathrm{id}_{X_{2}} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \ar{rdd}{\mathsf{L}^{-1}(X_{2}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \ar{d}[swap]{\mathsf{L}^{-1}(X_{2} X_{1}^{\prime})}
+  &
+  &
+  X_{2} (X_{1}^{\prime} 1)
+  \ar{r}{\mathsf{A}^{-1}(X_{2},X_{1}^{\prime},1)}
+  &
+  (X_{2} X_{1}^{\prime}) 1
+  \ar{u}[swap]{\mathsf{R}(X_{2} X_{1}^{\prime})}
+  \\
+  1 (X_{2} X_{1}^{\prime})
+  \ar{rd}[description,xshift=-5mm,yshift=3mm]{\mathsf{A}^{-1}(1,X_{2},X_{1}^{\prime})}
+  \ar{d}[description,xshift=-5mm]{\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{2} X_{1}^{\prime}}}
+  &
+  &
+  X_{2} (1 X_{1}^{\prime})
+  \ar{u}[description,xshift=-2mm]{\mathrm{id}_{X_{2}} \otimes \mathsf{B}(1,X_{1}^{\prime})}
+  &
+  (X_{2} X_{1}^{\prime}) (X_{2}^{\prime} X_{2})
+  \ar{u}[description,xshift=6mm]{\mathrm{id}_{X_{2} X_{1}^{\prime}} \otimes \mathrm{ev}_{X_{2}}}
+  \\
+  (X_{2} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})
+  \ar{d}[description,xshift=-5mm]{\mathsf{A}^{-1}(X_{2} X_{2}^{\prime},X_{2},X_{1}^{\prime})}
+  &
+  (1 X_{2}) X_{1}^{\prime}
+  \ar{dl}[description,xshift=3mm,yshift=2mm]{(\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (X_{2} 1) X_{1}^{\prime}
+  \ar{u}[description,xshift=-2mm]{\mathsf{A}(X_{2},1,X_{1}^{\prime})}
+  \ar[out=145,in=185,looseness=1.7]{uuur}[description,xshift=-5mm,yshift=-5mm]{\mathsf{R}(X_{2}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  X_{2} (X_{1}^{\prime} (X_{2}^{\prime} X_{2}))
+  \ar{u}[description,xshift=5mm]{\mathsf{A}^{-1}(X_{2},X_{1}^{\prime},X_{2}^{\prime} X_{2})}
+  \ar{uul}[description,xshift=1mm,yshift=-6mm]{\mathrm{id}_{X_{2}} \otimes (\mathrm{id}_{X_{1}^{\prime}} \otimes \mathrm{ev}_{X_{2}})}
+  \\
+  ((X_{2} X_{2}^{\prime}) X_{2}) X_{1}^{\prime}
+  \ar{rrrd}[xshift=-10mm,yshift=1mm]{\mathsf{A}(X_{2},X_{2}^{\prime},X_{2}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \ar{d}[description,xshift=-5mm]{\mathsf{A}(X_{2} X_{2}^{\prime},X_{2},X_{1}^{\prime})}
+  &
+  &
+  &
+  X_{2} ((X_{2}^{\prime} X_{2}) X_{1}^{\prime})
+  \ar{u}[description,xshift=5mm]{\mathrm{id}_{X_{2}} \otimes \mathsf{B}(X_{2}^{\prime} X_{2},X_{1}^{\prime})}
+  \ar{uul}[description,xshift=1mm,yshift=-6mm]{\mathrm{id}_{X_{2}} \otimes (\mathrm{ev}_{X_{2}} \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  \\
+  (X_{2} X_{2}^{\prime}) (X_{2} X_{1}^{\prime})
+  \ar{d}[description,xshift=-5mm]{\mathsf{A}(X_{2},X_{2}^{\prime},X_{2} X_{1}^{\prime})}
+  &
+  &
+  &
+  (X_{2} (X_{2}^{\prime} X_{2})) X_{1}^{\prime}
+  \ar{u}[description,xshift=5mm,yshift=-1mm]{\mathsf{A}(X_{2},X_{2}^{\prime} X_{2},X_{1}^{\prime})}
+  \ar{uul}[description,xshift=1mm,yshift=-6mm]{(\mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \\
+  X_{2} (X_{2}^{\prime} (X_{2} X_{1}^{\prime}))
+  \ar{rrr}{\mathrm{id}_{X_{2}} \otimes \mathsf{A}^{-1}(X_{2}^{\prime},X_{2},X_{1}^{\prime})}
+  &
+  &
+  &
+  X_{2} ((X_{2}^{\prime} X_{2}) X_{1}^{\prime})
+  \ar{u}[description,xshift=5mm]{\mathsf{A}^{-1}(X_{2},X_{2}^{\prime} X_{2},X_{1}^{\prime})}
+\end{tikzcd}
+\end{equation*}
+\newpage
+
+\item[(NT)]
+for the naturality of $\mathsf{H}$ we have to show that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.6em,column sep=7em]
+  F(X_{1}) F(X_{3})
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[swap]{\mathsf{H}(X_{1},X_{3})}
+  &
+  F(X_{2}) F(X_{4})
+  \ar{d}{\mathsf{H}(X_{2},X_{4})}
+  \\
+  F(X_{1} X_{3})
+  \ar{r}{F(f_{12} \otimes f_{34})}
+  &
+  F(X_{2} X_{4})
+\end{tikzcd}
+\end{equation*}
+This is again a rather long story and we will do this in the same fashion as in the step before. By definition we have
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=4.2em]
+  E_{1} E_{3}
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1}) \otimes_{\alpha} \mathsf{L}_{\alpha}^{-1}(E_{3})}
+  &
+  E_{2} E_{4}
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  (1_{\alpha} E_{1}) (1_{\alpha} E_{3})
+  \ar{d}[description]{(\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\Phi \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  (E(1) E_{1}) (E(1) E_{3})
+  \ar{rd}[description,xshift=-5mm]{(E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (E(\tilde{f}_{34}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  &
+  ((E_{2} E_{1}^{\prime}) E_{1}) ((E_{4} E_{3}^{\prime}) E_{3})
+  \ar{u}[description]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1}) \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{4},E_{3}^{\prime},E_{3})}
+  \\
+  &
+  (E(X_{2} X_{1}^{\prime}) E_{1}) (E(X_{4} X_{3}^{\prime}) E_{3})
+  \ar{ur}[description,xshift=5mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+\end{tikzcd}
+\end{equation*}
+It seems rather obvious that we have to use (AC3), so we need an expression like $E(\tilde{f}_{12}) \otimes_{\alpha} E(\tilde{f}_{34})$. To this end we insert some identities in terms of associators and braidings and use their naturality to obtain the following diagram.
+\begin{equation*}
+\hspace{-2.3em}
+\begin{tikzcd}[row sep=5em,column sep=3em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1}) \otimes_{\alpha} \mathsf{L}_{\alpha}^{-1}(E_{3})}
+  &
+  E_{2} E_{4}
+  &
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{ll}[swap]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  (1_{\alpha} E_{1}) (1_{\alpha} E_{3})
+  \ar{d}[description]{(\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\Phi \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  &
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description,xshift=-3mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  (E(1) E_{1}) (E(1) E_{3})
+  \ar{rd}[description,xshift=3mm,yshift=3mm]{\mathsf{A}_{\alpha}(E(1),E_{1},E(1) E_{3})}
+  \ar{d}[description,yshift=-3mm]{(E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} \mathrm{id}_{E(1) E_{3}}}
+  &
+  &
+  &
+  ((E_{2} E_{1}^{\prime}) E_{1}) ((E_{4} E_{3}^{\prime}) E_{3})
+  \ar{u}[description,xshift=-3mm]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1}) \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{4},E_{3}^{\prime},E_{3})}
+  \\
+  (E(X_{2} X_{1}^{\prime}) E_{1}) (E(1) E_{3})
+  \ar{d}[description,yshift=3mm]{\mathsf{A}_{\alpha}(E(X_{2} X_{1}^{\prime}),E_{1},E(1) E_{3})}
+  &
+  E(1) (E_{1} (E(1) E_{3}))
+  \ar{d}[description,xshift=2mm,yshift=2mm]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{1},E(1),E_{3})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{E_{1} (E(1) E_{3})}}
+  &
+  &
+  (E(X_{2} X_{1}^{\prime}) E_{1}) (E(X_{4} X_{3}^{\prime}) E_{3})
+  \ar{u}[description,xshift=-13mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  E(X_{2} X_{1}^{\prime}) (E_{1} (E(1) E_{3}))
+  \ar{d}[description,yshift=3mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{1},E(1),E_{3})}
+  &
+  E(1) ((E_{1} E(1)) E_{3})
+  \ar{d}[description,xshift=2mm]{\mathrm{id}_{E(1)} \otimes_{\alpha} (\mathsf{B}_{\alpha}(E_{1},E(1)) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{(E_{1} E(1)) E_{3}}}
+  &
+  E(X_{2} X_{1}^{\prime}) (E_{1} (E(X_{4} X_{3}^{\prime}) E_{3}))
+  \ar{ur}[description,yshift=3mm]{\mathsf{A}_{\alpha}^{-1}(E(X_{2} X_{1}^{\prime}),E_{1},E(X_{4} X_{3}^{\prime}) E_{3})}
+  &
+  (E(X_{2} X_{1}^{\prime}) E_{1}) (E(1) E_{3})
+  \ar{u}[description,xshift=-4mm,yshift=-4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime}) E_{1}} \otimes_{\alpha} (E(\tilde{f}_{34}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  E(X_{2} X_{1}^{\prime}) ((E_{1} E(1)) E_{3})
+  \ar{d}[description,xshift=3mm,yshift=4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} (\mathsf{B}_{\alpha}(E_{1},E(1)) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  E(1) ((E(1) E_{1}) E_{3})
+  \ar{d}[description,xshift=2mm]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{A}_{\alpha}(E(1),E_{1},E_{3})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{(E(1) E_{1}) E_{3}}}
+  &
+  E(X_{2} X_{1}^{\prime}) ((E_{1} E(X_{4} X_{3}^{\prime})) E_{3})
+  \ar{u}[description,xshift=-1mm,yshift=2mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{1},E(X_{4} X_{3}^{\prime}),E_{3})}
+  &
+  E(X_{2} X_{1}^{\prime}) (E_{1} (E(1) E_{3}))
+  \ar{u}[description,xshift=-1mm,yshift=4mm]{\mathsf{A}_{\alpha}^{-1}(E(X_{2} X_{1}^{\prime}),E_{1},E(1) E_{3})}
+  \ar{ul}[description,xshift=2mm,yshift=-4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} (\mathrm{id}_{E_{1}} \otimes_{\alpha} (E(\tilde{f}_{34}) \otimes_{\alpha} \mathrm{id}_{E_{3}}))}
+  \\
+  E(X_{2} X_{1}^{\prime}) ((E(1) E_{1}) E_{3})
+  \ar{d}[description,yshift=3mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}(E(1),E_{1},E_{3})}
+  &
+  E(1) (E(1) (E_{1} E_{3}))
+  \ar{d}[description,xshift=2mm]{\mathsf{A}_{\alpha}^{-1}(E(1),E(1), E_{1} E_{3})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{E(1) (E_{1} E_{3})}}
+  &
+  E(X_{2} X_{1}^{\prime}) ((E(X_{4} X_{3}^{\prime}) E_{1}) E_{3})
+  \ar{u}[description,yshift=3mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} (\mathsf{B}_{\alpha}^{-1}(E_{1},E(X_{4} X_{3}^{\prime})) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  E(X_{2} X_{1}^{\prime}) ((E_{1} E(1)) E_{3})
+  \ar{u}[description,xshift=-2mm,yshift=4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{1},E(1),E_{3})}
+  \ar{ul}[description,xshift=2mm,yshift=-4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} ((\mathrm{id}_{E_{1}} \otimes_{\alpha} E(\tilde{f}_{34})) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  E(X_{2} X_{1}^{\prime}) (E(1) (E_{1} E_{3}))
+  \ar{d}[description,yshift=3mm]{\mathsf{A}_{\alpha}^{-1}(E(X_{2} X_{1}^{\prime}),E(1), E_{1} E_{3})}
+  &
+  (E(1) E(1)) (E_{1} E_{3})
+  \ar{dr}[description,xshift=-1mm,yshift=-4mm]{(E(\tilde{f}_{12}) \otimes_{\alpha} E(\tilde{f}_{34})) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{(E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  E(X_{2} X_{1}^{\prime}) (E(X_{4} X_{3}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description,xshift=-1mm,yshift=1mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E(X_{4} X_{3}^{\prime}),E_{1},E_{3})}
+  &
+  E(X_{2} X_{1}^{\prime}) ((E(1) E_{1}) E_{3})
+  \ar{u}[description,xshift=-5mm,yshift=4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} (\mathsf{B}_{\alpha}^{-1}(E_{1},E(1)) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \ar{ul}[description,xshift=2mm,yshift=-4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} ((E(\tilde{f}_{34}) \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  (E(X_{2} X_{1}^{\prime}) E(1)) (E_{1} E_{3})
+  \ar[bend right]{rrr}{\mathsf{A}_{\alpha}(E(X_{2} X_{1}^{\prime}),E(1), E_{1} E_{3})}
+  \ar{rr}[swap]{(\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} E(\tilde{f}_{34})) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E(X_{2} X_{1}^{\prime}) E(X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description,yshift=3mm]{\mathsf{A}_{\alpha}(E(X_{2} X_{1}^{\prime}),E(X_{4} X_{3}^{\prime}), E_{1} E_{3})}
+  &
+  E(X_{2} X_{1}^{\prime}) (E(1) (E_{1} E_{3}))
+  \ar{u}[description,xshift=-2mm,yshift=3mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E(1),E_{1},E_{3})}
+  \ar{ul}[description,xshift=2mm,yshift=-4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} (E(\tilde{f}_{34}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}})}
+\end{tikzcd}
+\end{equation*}
+Going the inner way and using the naturality of $\mathsf{A}_{\alpha}$ and $\mathsf{B}_{\alpha}$ we obtain
+\begin{equation*}
+\hspace{-2.7em}
+\begin{tikzcd}[row sep=6em,column sep=3.7em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathrm{id}_{E_{1}} \otimes_{\alpha} \mathsf{L}_{\alpha}^{-1}(E_{3})}
+  &
+  E_{2} E_{4}
+  &
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{ll}[swap]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  E_{1} (1_{\alpha} E_{3})
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha} E_{3}}}
+  &
+  &
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description,xshift=-3mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  (1_{\alpha} E_{1}) (1_{\alpha} E_{3})
+  \ar{rd}[description,xshift=3mm,yshift=3mm]{\mathsf{A}_{\alpha}(1_{\alpha},E_{1},1_{\alpha} E_{3})}
+  \ar{d}[description,yshift=-3mm]{(\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\Phi \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  &
+  &
+  ((E_{2} E_{1}^{\prime}) E_{1}) ((E_{4} E_{3}^{\prime}) E_{3})
+  \ar{u}[description,xshift=-3mm]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1}) \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{4},E_{3}^{\prime},E_{3})}
+  \\
+  E(1) (E_{1} (E(1) E_{3}))
+  \ar{d}[description,yshift=3mm]{\mathsf{A}_{\alpha}(E(1),E_{1},E(1) E_{3})}
+  &
+  1_{\alpha} (E_{1} (1_{\alpha} E_{3}))
+  \ar{d}[description,xshift=2mm,yshift=2mm]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{1},1_{\alpha},E_{3})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{\Phi \otimes_{\alpha} (\mathrm{id}_{E_{1}} \otimes_{\alpha} (\Phi \otimes_{\alpha} \mathrm{id}_{E_{3}}))}
+  &
+  (E_{2} E_{1}^{\prime}) (E_{1} ((E_{4} E_{3}^{\prime}) E_{3}))
+  \ar[bend left=25]{ur}[description]{\mathsf{A}_{\alpha}^{-1}(E_{2} E_{1}^{\prime},E_{1},(E_{4} E_{3}^{\prime}) E_{3})}
+  &
+  (E(X_{2} X_{1}^{\prime}) E_{1}) (E(X_{4} X_{3}^{\prime}) E_{3})
+  \ar{u}[description,xshift=-11mm,yshift=-5mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  E(1) ((E_{1} E(1)) E_{3})
+  \ar{d}[description,yshift=3mm]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{1},E(1),E_{3})}
+  &
+  1_{\alpha} ((E_{1} 1_{\alpha}) E_{3})
+  \ar{d}[description,xshift=5mm,yshift=5mm]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} (\mathsf{B}_{\alpha}(E_{1},1_{\alpha}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \ar{dl}[description,xshift=-2mm,yshift=-5mm]{\Phi \otimes_{\alpha} ((\mathrm{id}_{E_{1}} \otimes_{\alpha} \Phi) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  (E_{2} E_{1}^{\prime}) ((E_{1} (E_{4} E_{3}^{\prime})) E_{3})
+  \ar{u}[description,xshift=-1mm,yshift=3mm]{\mathrm{id}_{E_{2} E_{1}^{\prime}} \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{1},E_{4} E_{3}^{\prime},E_{3})}
+  &
+  E(X_{2} X_{1}^{\prime}) (E_{1} (E(X_{4} X_{3}^{\prime}) E_{3}))
+  \ar{u}[description,xshift=-2mm,yshift=4mm]{\mathsf{A}_{\alpha}^{-1}(E(X_{2} X_{1}^{\prime}),E_{1},E(X_{4} X_{3}^{\prime}) E_{3})}
+  \ar{ul}[description,xshift=3mm,yshift=-4mm]{\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} (\mathrm{id}_{E_{1}} \otimes_{\alpha} (\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{3}}))}
+  \\
+  E(1) ((E(1) E_{1}) E_{3})
+  \ar{d}[description,xshift=3mm,yshift=4mm]{\mathrm{id}_{E(1)} \otimes_{\alpha} (\mathsf{B}_{\alpha}(E_{1},E(1)) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  1_{\alpha} ((1_{\alpha} E_{1}) E_{3})
+  \ar{d}[description,xshift=2mm,yshift=1mm]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{A}_{\alpha}(1_{\alpha},E_{1},E_{3})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{\Phi \otimes_{\alpha} ((\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  (E_{2} E_{1}^{\prime}) (((E_{1} E_{4}) E_{3}^{\prime}) E_{3})
+  \ar{u}[description,xshift=-2mm]{\mathrm{id}_{E_{2} E_{1}^{\prime}} \otimes_{\alpha} (\mathsf{B}_{\alpha}^{-1}(E_{1},E_{4} E_{3}^{\prime}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  E(X_{2} X_{1}^{\prime}) ((E_{1} E(X_{4} X_{3}^{\prime})) E_{3})
+  \ar{u}[description,xshift=-1mm,yshift=5mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{1},E(X_{4} X_{3}^{\prime}),E_{3})}
+  \ar{ul}[description,xshift=5mm,yshift=-6mm]{\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} ((\mathrm{id}_{E_{1}} \otimes_{\alpha} \mathsf{H}(X_{4},X_{3}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  E(1) (E(1) (E_{1} E_{3}))
+  \ar{d}[description,yshift=3mm]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{A}_{\alpha}(E(1),E_{1},E_{3})}
+  &
+  1_{\alpha} (1_{\alpha} (E_{1} E_{3}))
+  \ar{d}[description,xshift=2mm,yshift=1mm]{\mathsf{A}_{\alpha}^{-1}(1_{\alpha},1_{\alpha},E_{1} E_{3})}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{\Phi \otimes_{\alpha} (\Phi \otimes_{\alpha} (\mathrm{id}_{E_{1}} \otimes_{\alpha} \mathrm{id}_{E_{3}}))}
+  &
+  (E_{2} E_{1}^{\prime}) ((E_{4} E_{3}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description,xshift=-2mm,yshift=1mm]{\mathrm{id}_{E_{2} E_{1}^{\prime}} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E_{4} E_{3}^{\prime},E_{1},E_{3})}
+  &
+  E(X_{2} X_{1}^{\prime}) ((E(X_{4} X_{3}^{\prime}) E_{1}) E_{3})
+  \ar{u}[description,xshift=-6mm,yshift=6.5mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} (\mathsf{B}_{\alpha}^{-1}(E_{1},E(X_{4} X_{3}^{\prime})) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \ar{ul}[description,xshift=5mm,yshift=-6mm]{\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} ((\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  \\
+  (E(1) E(1)) (E_{1} E_{3})
+  \ar{d}[description,yshift=3mm]{\mathsf{A}_{\alpha}^{-1}(E(1),E(1), E_{1} E_{3})}
+  &
+  (1_{\alpha} 1_{\alpha}) (E_{1} E_{3})
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{(\Phi \otimes_{\alpha} \Phi) \otimes_{\alpha} (\mathrm{id}_{E_{1}} \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  ((E_{2} E_{1}^{\prime}) (E_{4} E_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description,xshift=-1mm,yshift=3mm]{\mathsf{A}_{\alpha}(E_{2} E_{1}^{\prime},E_{4} E_{3}^{\prime}, E_{1} E_{3})}
+  &
+  E(X_{2} X_{1}^{\prime}) (E(X_{4} X_{3}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description,xshift=-5mm,yshift=4mm]{\mathrm{id}_{E(X_{2} X_{1}^{\prime})} \otimes_{\alpha} \mathsf{A}_{\alpha}^{-1}(E(X_{4} X_{3}^{\prime}),E_{1},E_{3})}
+  \ar{ul}[description,xshift=2mm,yshift=-4mm]{\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} (\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}})}
+  \\
+  (E(X_{2} X_{1}^{\prime}) E(X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{rrr}{(E(\tilde{f}_{12}) \otimes_{\alpha} E(\tilde{f}_{34})) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  (E(X_{2} X_{1}^{\prime}) E(X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description,xshift=-2mm,yshift=3mm]{\mathsf{A}_{\alpha}(E(X_{2} X_{1}^{\prime}),E(X_{4} X_{3}^{\prime}), E_{1} E_{3})}
+  \ar{ul}[description,xshift=-2mm,yshift=-3mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{4},X_{3}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+\end{tikzcd}
+\end{equation*}
+We again go the inner way and use the coherence theorem to obtain the outer perimeter of the following diagram. The left part is the naturality of $\mathsf{L}_{\alpha}$ and the lower part commutes because of (AC3).
+\begin{equation*}
+\begin{tikzcd}[row sep=7em,column sep=6em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{rr}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1} E_{3})}
+  &
+  &
+  E_{2} E_{4}
+  \\
+  1_{\alpha} (E_{1} E_{3})
+  \ar{rd}[description]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{d}[description,xshift=-5mm]{\mathsf{L}_{\alpha}^{-1}(1_{\alpha}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{u}[description,xshift=3mm]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  (1_{\alpha} 1_{\alpha}) (E_{1} E_{3})
+  \ar{d}[description,xshift=-3mm]{(\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \Phi) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  E(1) (E_{1} E_{3})
+  \ar{d}[description,yshift=-4mm]{E((\tilde{f}_{12} \otimes \tilde{f}_{34}) \circ \mathsf{L}^{-1}(1)) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{dl}[description,xshift=5mm,yshift=6mm]{\mathsf{L}_{\alpha}^{-1}(E(1)) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  (1_{\alpha} E(1)) (E_{1} E_{3})
+  \ar{d}[description,xshift=-3mm]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  E((X_{2} X_{1}^{\prime}) (X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{rd}[description,xshift=-8mm,yshift=5mm]{\mathsf{H}(X_{2} X_{1}^{\prime},X_{4} X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  ((E_{2} E_{1}^{\prime}) (E_{4} E_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[swap]{\sim}
+  \\
+  (E(1) E(1)) (E_{1} E_{3})
+  \ar{rr}{(E(\tilde{f}_{12}) \otimes_{\alpha} E(\tilde{f}_{34})) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E(X_{2} X_{1}^{\prime}) E(X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description,yshift=-3mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{4},X_{3}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+\end{tikzcd}
+\end{equation*}
+\newpage
+We need a connection between $\widetilde{f_{12} \otimes f_{34}}$ and $\tilde{f}_{12} \otimes \tilde{f}_{34}$. Recalling the definition of $\mathrm{coev}_{X_{1} X_{3}}$ from lemma \ref{LEM:DUALOBTENSOR} we have the outer perimeter of the following diagram. The triangle on the left commutes by definition and $\tilde{\pi}$ is defined to make the central part commute. The other parts commute due the naturality of $\mathsf{A}$ and $\mathsf{B}$.
+\begin{equation*}
+\begin{tikzcd}[row sep=7em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  1
+  \ar{rrr}{\widetilde{f_{12} \otimes f_{34}}}
+  \ar{d}{\mathsf{L}^{-1}(1)}
+  &
+  &
+  &
+  (X_{2} X_{4}) (X_{3}^{\prime} X_{1}^{\prime})
+  \\
+  1 1
+  \ar{r}{\tilde{f}_{12} \otimes \tilde{f}_{34}}
+  \ar{d}[description,yshift=4mm]{\mathrm{coev}_{X_{1}} \otimes \mathrm{coev}_{X_{3}}}
+  &
+  (X_{2} X_{1}^{\prime}) (X_{4} X_{3}^{\prime})
+  \ar{urr}{\tilde{\pi}^{-1}}
+  \ar{d}[description,yshift=1mm]{\mathsf{A}(X_{2},X_{1}^{\prime},X_{4} X_{3}^{\prime})}
+  &
+  X_{2} (X_{4} (X_{3}^{\prime} X_{1}^{\prime}))
+  \ar{ur}[description,xshift=-3mm,yshift=-3mm]{\mathsf{A}^{-1}(X_{2},X_{4},X_{3}^{\prime} X_{1}^{\prime})}
+  &
+  (X_{1} X_{3}) (X_{3}^{\prime} X_{1}^{\prime})
+  \ar{u}[description,xshift=2mm,yshift=3mm]{(f_{12} \otimes f_{34}) \otimes \mathrm{id}_{X_{3}^{\prime} X_{1}^{\prime}}}
+  \\
+  (X_{1} X_{1}^{\prime}) (X_{3} X_{3}^{\prime})
+  \ar{ur}[description,xshift=-2mm,yshift=-5mm]{(f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes (f_{34} \otimes \mathrm{id}_{X_{3}^{\prime}})}
+  \ar{d}[description,yshift=3mm]{\mathsf{A}(X_{1},X_{1}^{\prime},X_{3} X_{3}^{\prime})}
+  &
+  X_{2} (X_{1}^{\prime} (X_{4} X_{3}^{\prime}))
+  \ar{r}[yshift=3pt]{\mathrm{id}_{X_{2}} \otimes \mathsf{B}(X_{1}^{\prime},X_{4} X_{3}^{\prime})}
+  &
+  X_{2} ((X_{4} X_{3}^{\prime}) X_{1}^{\prime})
+  \ar{u}[description,yshift=-3mm]{\mathrm{id}_{X_{2}} \otimes \mathsf{A}(X_{4},X_{3}^{\prime},X_{1}^{\prime})}
+  &
+  X_{1} (X_{3} (X_{3}^{\prime} X_{1}^{\prime}))
+  \ar{u}[description]{\mathsf{A}^{-1}(X_{1},X_{3},X_{3}^{\prime} X_{1}^{\prime})}
+  \ar{ul}[description,xshift=-2mm,yshift=5mm]{f_{12} \otimes (f_{34} \otimes \mathrm{id}_{X_{3}^{\prime} X_{1}^{\prime}})}
+  \\
+  X_{1} (X_{1}^{\prime} (X_{3} X_{3}^{\prime}))
+  \ar{ur}[description,yshift=-4mm]{f_{12} \otimes (\mathrm{id}_{X_{1}^{\prime}} \otimes (f_{34} \otimes \mathrm{id}_{X_{3}^{\prime}}))}
+  \ar{rrr}{\mathrm{id}_{X_{1}} \otimes \mathsf{B}(X_{1}^{\prime},X_{3} X_{3}^{\prime})}
+  &
+  &
+  &
+  X_{1} ((X_{3} X_{3}^{\prime}) X_{1}^{\prime})
+  \ar{u}[description,yshift=3mm]{\mathrm{id}_{X_{1}} \otimes \mathsf{A}(X_{3},X_{3}^{\prime},X_{1}^{\prime})}
+  \ar{ul}[description,yshift=-3mm]{f_{12} \otimes ((f_{34} \otimes \mathrm{id}_{X_{3}^{\prime}}) \otimes \mathrm{id}_{X_{1}^{\prime}})}
+\end{tikzcd}
+\end{equation*}
+Hence from the inner way of the diagram before we have the outer way of the following diagram. Letting $\tilde{\pi}_{\alpha}$ be the isomorphism corresponding to $\tilde{\pi}$ as in (AC4) we find that the lower part commutes.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=4em,column sep=2em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{rr}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1} E_{3})}
+  &
+  &
+  E_{2} E_{4}
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  1_{\alpha} (E_{1} E_{3})
+  \ar{d}[description]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  (E(X_{2} X_{4}) E(X_{3}^{\prime} X_{1}^{\prime})) (E_{1} E_{3})
+  \ar{r}[xshift=2mm,yshift=3pt]{(\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  ((E_{2} E_{4}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{rd}{\tilde{\pi}_{\alpha}}
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description,xshift=-4mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  E(1) (E_{1} E_{3})
+  \ar{r}[yshift=3pt]{E(\widetilde{f_{12} \otimes f_{34}}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{d}[description]{E(\tilde{\pi} \circ \widetilde{f_{12} \otimes f_{34}}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  E((X_{2} X_{4}) (X_{3}^{\prime} X_{1}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description]{\mathsf{H}(X_{2} X_{4},X_{3}^{\prime} X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  ((E_{2} E_{1}^{\prime}) (E_{4} E_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[swap]{\sim}
+  \\
+  E((X_{2} X_{1}^{\prime}) (X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{rrr}{\mathsf{H}(X_{2} X_{1}^{\prime},X_{4} X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  (E(X_{2} X_{1}^{\prime}) E(X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description,xshift=-6mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{4},X_{3}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+\end{tikzcd}
+\end{equation*}
+\newpage
+We go the upper way and use the coherence theorem to obtain the outer perimeter of the following diagram. The part on the left is the naturality of $\mathsf{L}_{\alpha}$ and the other parts follow from the naturality of $\mathsf{A}_{\alpha}$, $\mathsf{B}_{\alpha}$.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=5em,column sep=4.2em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{rrr}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{H}(X_{1},X_{3})}
+  &
+  &
+  &
+  E_{2} E_{4}
+  \\
+  E(X_{1} X_{3})
+  \ar{d}[description]{\mathsf{H}(X_{1},X_{3})^{-1}}
+  \ar{rd}[description]{\mathsf{L}_{\alpha}^{-1}(E(X_{1} X_{3}))}
+  &
+  &
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{u}[description]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  E_{1} E_{3}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1} E_{3})}
+  &
+  1_{\alpha} E(X_{1} X_{3})
+  \ar{dl}[description,xshift=3mm,yshift=2mm]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  &
+  ((E_{2} 1_{\alpha}) E_{4}) 1_{\alpha}
+  \ar{ur}[description,xshift=-1mm,yshift=4mm]{\mathsf{A}_{\alpha}(E_{2} 1_{\alpha},E_{4},1_{\alpha})}
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description,xshift=-2mm,yshift=-4mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  1_{\alpha} (E_{1} E_{3})
+  \ar{d}[description]{\gamma_{f_{12} \otimes f_{34}} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E_{2} (1_{\alpha} E_{4})) 1_{\alpha}
+  \ar{u}[description,yshift=-3mm]{\mathsf{A}_{\alpha}^{-1}(E_{2},E_{1}^{\prime} E_{1},E_{4}) \otimes_{\alpha} \mathrm{id}_{E_{3}^{\prime} E_{3}}}
+  &
+  ((E_{2} (E_{1}^{\prime} E_{1})) E_{4}) (E_{3}^{\prime} E_{3})
+  \ar{u}[description,xshift=3.5mm,yshift=-3mm]{\mathsf{A}_{\alpha}(E_{2} (1_{\alpha}),E_{4},1_{\alpha})}
+  \ar{ul}[description,yshift=4mm]{((\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} \mathrm{id}_{E_{4}}) \otimes_{\alpha} \mathrm{ev}_{E_{3}}}
+  \\
+  (E(X_{2} X_{4}) E(X_{3}^{\prime} X_{1}^{\prime})) (E_{1} E_{3})
+  \ar{d}[description,xshift=6mm]{(\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E_{2} (E_{4} 1_{\alpha})) 1_{\alpha}
+  \ar{u}[description,yshift=-3mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathsf{B}_{\alpha}(E_{4},1_{\alpha})) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  (E_{2} ((E_{1}^{\prime} E_{1}) E_{4})) (E_{3}^{\prime} E_{3})
+  \ar{u}[description,xshift=1mm,yshift=-2mm]{\mathsf{A}_{\alpha}^{-1}(E_{2},E_{1}^{\prime} E_{1},E_{4}) \otimes_{\alpha} \mathrm{id}_{E_{3}^{\prime} E_{3}}}
+  \ar{ul}[description,yshift=4mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} (\mathrm{ev}_{E_{1}} \otimes_{\alpha} \mathrm{id}_{E_{4}})) \otimes_{\alpha} \mathrm{ev}_{E_{3}}}
+  \\
+  ((E_{2} E_{4}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{d}[swap]{\sim_{2}}
+  &
+  (E_{2} E_{4}) (1_{\alpha} 1_{\alpha})
+  \ar{r}[yshift=3pt]{\mathsf{A}_{\alpha}^{-1}(E_{2} E_{4},1_{\alpha},1_{\alpha})}
+  &
+  ((E_{2} E_{4}) 1_{\alpha}) 1_{\alpha}
+  \ar{u}[description,yshift=-3mm]{\mathsf{A}_{\alpha}(E_{2},E_{4},1_{\alpha}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  (E_{2} (E_{4} (E_{1}^{\prime} E_{1}))) (E_{3}^{\prime} E_{3})
+  \ar{u}[description,xshift=2mm,yshift=-2mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathsf{B}_{\alpha}(E_{4},E_{1}^{\prime} E_{1})) \otimes_{\alpha} \mathrm{id}_{E_{3}^{\prime} E_{3}}}
+  \ar{ul}[description,yshift=4mm]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})) \otimes_{\alpha} \mathrm{ev}_{E_{3}}}
+  \\
+  (E_{2} E_{4}) ((E_{1}^{\prime} E_{1}) (E_{3}^{\prime} E_{3}))
+  \ar{ur}[description]{\mathrm{id}_{E_{2} E_{4}} \otimes_{\alpha} (\mathrm{ev}_{E_{1}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \ar{rrr}{\mathsf{A}_{\alpha}^{-1}(E_{2} E_{4},E_{1}^{\prime} E_{1},E_{3}^{\prime} E_{3})}
+  &
+  &
+  &
+  ((E_{2} E_{4}) (E_{1}^{\prime} E_{1})) (E_{3}^{\prime} E_{3})
+  \ar{u}[description,xshift=1mm,yshift=-2mm]{\mathsf{A}_{\alpha}(E_{2},E_{4},E_{1}^{\prime} E_{1}) \otimes_{\alpha} \mathrm{id}_{E_{3}^{\prime} E_{3}}}
+  \ar{ul}[description,yshift=4mm]{(\mathrm{id}_{E_{2} E_{4}}) \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} \mathrm{ev}_{E_{3}}}
+\end{tikzcd}
+\end{equation*}
+\newpage
+Going the inner way and using the coherence theorem and the functoriality of the tensor product we find the outer way of the following diagram. Here $i_{\alpha}^{(e)}$ is the unique isomorphism built from the associator and braiding as in lemma \ref{LEM:DUALOBTENSOR} and hence the right part commutes. The lower left part is the naturality of $\mathsf{A}_{\alpha}$
+\begin{equation*}
+\hspace{-2.5em}
+\begin{tikzcd}[row sep=5.3em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{rr}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{H}(X_{1},X_{3})}
+  &
+  &
+  E_{2} E_{4}
+  \\
+  E(X_{1} X_{3})
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E(X_{1} X_{3}))}
+  &
+  &
+  (E_{2} E_{4}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(E_{2} E_{4})}
+  \\
+  1_{\alpha} E(X_{1} X_{3})
+  \ar{d}[description]{\gamma_{f_{12} \otimes f_{34}} \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  &
+  &
+  (E_{2} E_{4}) (1_{\alpha} 1_{\alpha})
+  \ar{u}[description]{\mathrm{id}_{E_{2} E_{4}} \otimes_{\alpha} \mathsf{R}_{\alpha}(1_{\alpha})}
+  \\
+  (E(X_{2} X_{4}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{r}[yshift=4pt]{\mathsf{A}_{\alpha}(E(X_{2} X_{4}),E(X_{3}^{\prime} X_{1}^{\prime}),E(X_{1} X_{3}))}
+  \ar{d}[description,xshift=7mm]{(\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  &
+  E(X_{2} X_{4}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar{rd}[description,xshift=-18mm,yshift=2mm]{\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} (\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1})}
+  &
+  (E_{2} E_{4}) ((E_{1}^{\prime} E_{1}) (E_{3}^{\prime} E_{3}))
+  \ar{u}[description]{\mathrm{id}_{E_{2} E_{4}} \otimes_{\alpha} (\mathrm{ev}_{E_{1}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  ((E_{2} E_{4}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{rr}{\mathsf{A}_{\alpha}(E_{2} E_{4},E_{3}^{\prime} E_{1}^{\prime}, E_{1} E_{3})}
+  &
+  &
+  (E_{2} E_{4}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description]{\mathrm{id}_{E_{2} E_{4}} \otimes_{\alpha} i_{\alpha}^{(e)}}
+  \ar[bend left=60]{uuu}{\mathrm{id}_{E_{2} E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+\end{tikzcd}
+\end{equation*}
+The inner way of the above diagram is the outer way of the following diagram. The middle right part is the functoriality of $\otimes_{\alpha}$ and the upper right part is the naturality of $\mathsf{R}_{\alpha}$.
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=4.5em,column sep=5.3em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{H}(X_{1},X_{3})}
+  &
+  E_{2} E_{4}
+  &
+  (E_{2} E_{4}) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E_{2} E_{4})}
+  \\
+  E(X_{1} X_{3})
+  \ar{r}{F(f_{12} \otimes f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E(X_{1} X_{3})}
+  &
+  E(X_{2} X_{4})
+  \ar{u}[description]{\mathsf{H}(X_{2},X_{4})^{-1}}
+  &
+  (E_{2} E_{4}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description,yshift=-2mm]{\mathrm{id}_{E_{2} E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+  \\
+  1_{\alpha} E(X_{1} X_{3})
+  \ar{d}[description]{\gamma_{f_{12} \otimes f_{34}} \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  &
+  E(X_{2} X_{4}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(E(X_{2} X_{4}))}
+  \ar{uur}[description,xshift=-6mm,yshift=-4mm]{\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  E(X_{2} X_{4}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description]{\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} \mathrm{id}_{E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3})}}
+  \ar{l}[swap,yshift=1pt]{\mathrm{id}_{E(X_{2} X_{4})} \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+  \\
+  (E(X_{2} X_{4}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{rr}{\mathsf{A}_{\alpha}(E(X_{2} X_{4}),E(X_{3}^{\prime} X_{1}^{\prime}), E(X_{1} X_{3}))}
+  &
+  &
+  E(X_{2} X_{4}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar[bend left=10]{ul}[description,xshift=-8mm,yshift=4mm]{\mathrm{id}_{E(X_{2} X_{4})} \otimes_{\alpha} e_{E(X_{1} X_{3})}}
+  \ar{u}[description,xshift=5mm,yshift=-2mm]{\mathrm{id}_{E(X_{2} X_{4})} \otimes_{\alpha} (\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1})}
+\end{tikzcd}
+\end{equation*}
+To finish this step we have to show that the lower left part commutes. To this end we use that the evaluation map is unique for a dual object with fixed coevaluation, which follows from the proof of lemma \ref{lem:dualunique}. If we can show that
+\begin{align*}
+  e_{E(X_{1} X_{3})}
+  &:=
+  \mathrm{ev}_{E_{1} E_{3}}
+  \circ
+  \left(
+    \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}
+    \otimes_{\alpha}
+    \mathsf{H}(X_{1},X_{3})^{-1}
+  \right)
+\end{align*}
+is an evaluation map for $\mathrm{coev}_{E(X_{1} X_{3})}$ as given in (AC1) then we are done with this part since then we have
+\begin{align*}
+  e_{E(X_{1} X_{3})}
+  &=
+  \mathrm{ev}_{E(X_{1} X_{3})}
+\end{align*}
+and then the lower part commutes. We have
+\begin{align*}
+  \mathrm{coev}_{E(X_{1} X_{3})}
+  &=
+  \mathsf{H}(X_{1} X_{3},X_{3}^{\prime} X_{1}^{\prime})^{-1}
+  \circ
+  E(\mathrm{coev}_{X_{1} X_{3}})
+  \circ
+  \Phi
+\end{align*}
+and recalling the definition of $\mathrm{coev}_{X_{1} X_{3}}$ from lemma \ref{LEM:DUALOBTENSOR} we use (AC4) to obtain the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=5em]
+  E(1)
+  \ar{rrd}[description]{E(\mathrm{coev}_{X_{1} X_{3}})}
+  \ar{d}[description]{E((\mathrm{coev}_{X_{1}} \otimes \mathrm{coev}_{X_{3}}) \circ \mathsf{L}^{-1}(1))}
+  &
+  1_{\alpha}
+  \ar{r}{\mathrm{coev}_{E(X_{1} X_{3})}}
+  \ar{l}[swap]{\Phi}
+  &
+  E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})
+  \\
+  E((X_{1} X_{1}^{\prime}) (X_{3} X_{3}^{\prime}))
+  \ar{d}[description]{\mathsf{H}(X_{1} X_{1}^{\prime},X_{3} X_{3}^{\prime})^{-1}}
+  &
+  &
+  E((X_{1} X_{3}) (X_{3}^{\prime} X_{1}^{\prime}))
+  \ar{u}[description]{\mathsf{H}(X_{1} X_{3},X_{3}^{\prime} X_{1}^{\prime})^{-1}}
+  \\
+  E(X_{1} X_{1}^{\prime}) E(X_{3} X_{3}^{\prime})
+  \ar{d}[description]{\mathsf{H}(X_{1},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{3},X_{3}^{\prime})^{-1}}
+  &
+  &
+  E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})
+  \ar{u}[description]{\mathsf{H}(X_{1} X_{3},X_{3}^{\prime} X_{1}^{\prime})}
+  \ar[bend right=70]{uu}[description,xshift=4mm,yshift=6mm]{\mathrm{id}_{E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})}}
+  \\
+  (E_{1} E_{1}^{\prime}) (E_{3} E_{3}^{\prime})
+  \ar{rr}{i_{\alpha}^{(c)}}
+  &
+  &
+  (E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})
+  \ar{u}[description]{\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})}
+\end{tikzcd}
+\end{equation*}
+where $i_{\alpha}^{(c)}$ is the unique isomorphism corresponding to $i^{(c)}$ from lemma \ref{LEM:DUALOBTENSOR}. With (AC3) we find the outer way of the following diagram. The upper left part is the naturality of $\mathsf{L}_{\alpha}$, the lower right part commutes by definition and the central part by lemma \ref{LEM:DUALOBTENSOR}.
+\begin{equation*}
+\begin{tikzcd}[row sep=4.5em,column sep=7em]
+  1_{\alpha}
+  \ar{rr}{\mathrm{coev}_{E(X_{1} X_{3})}}
+  \ar{rrd}[xshift=2mm,yshift=-2mm]{\mathrm{coev}_{E_{1} E_{3}}}
+  \ar{rdd}{\mathsf{L}_{\alpha}^{-1}(1_{\alpha})}
+  \ar{d}[swap]{\Phi}
+  &
+  &
+  E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})
+  \\
+  E(1)
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(1))}
+  &
+  &
+  (E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})
+  \ar{u}[swap]{\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})}
+  \\
+  1_{\alpha} E(1)
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  1_{\alpha} 1_{\alpha}
+  \ar{r}{\mathrm{coev}_{E_{1}} \otimes_{\alpha} \mathrm{coev}_{E_{3}}}
+  \ar{dl}[swap]{\Phi \otimes_{\alpha} \Phi}
+  \ar{l}[swap]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \Phi}
+  &
+  (E_{1} E_{1}^{\prime}) (E_{3} E_{3}^{\prime})
+  \ar{u}[swap]{i_{\alpha}^{(c)}}
+  \\
+  E(1) E(1)
+  \ar{rr}{E(\mathrm{coev}_{X_{1}}) \otimes_{\alpha} E(\mathrm{coev}_{X_{3}})}
+  &
+  &
+  E(X_{1} X_{1}^{\prime}) E(X_{3} X_{3}^{\prime})
+  \ar{u}[swap]{\mathsf{H}(X_{1},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{3},X_{3}^{\prime})^{-1}}
+\end{tikzcd}
+\end{equation*}
+Thus we have
+\begin{align*}
+  \mathrm{coev}_{E(X_{1} X_{3})}
+  &=
+  \left(
+    \mathsf{H}(X_{1},X_{3})
+    \otimes_{\alpha}
+    \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})
+  \right)
+  \circ
+  \mathrm{coev}_{E_{1} E_{3}}
+\end{align*}
+We have the following commuting diagram, where the right part and the lower left part commute because of the naturality of $\mathsf{A}_{\alpha}$ and the upper left part follows from the functoriality of $\otimes_{\alpha}$.
+\begin{equation*}
+\begin{tikzcd}[row sep=6.5em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{rr}{(\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})) \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  \ar{d}[description]{\mathrm{id}_{(E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  &
+  &
+  (E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{d}[description,xshift=2mm,yshift=4mm]{\mathsf{A}_{\alpha}(E(X_{1} X_{3}),E(X_{3}^{\prime} X_{1}^{\prime}),E(X_{1} X_{3}))}
+  \ar{dl}[description,xshift=-1mm,yshift=-4mm]{(\mathrm{id}_{E(X_{1} X_{3})} \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  \\
+  ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{r}[yshift=3pt]{(\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathrm{id}_{E_{3}^{\prime} E_{1}^{\prime}}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{d}[description]{\mathsf{A}_{\alpha}(E_{1} E_{3},E_{3}^{\prime} E_{1}^{\prime},E_{1} E_{3})}
+  &
+  (E(X_{1} X_{3}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{rd}[description,xshift=1mm,yshift=-4mm]{\mathsf{A}_{\alpha}(E(X_{1} X_{3}),E_{3}^{\prime} E_{1}^{\prime},E_{1} E_{3})}
+  &
+  E(X_{1} X_{3}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar{d}[description,xshift=-3mm,yshift=5mm]{\mathrm{id}_{E(X_{1} X_{3})} \otimes_{\alpha} (\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1})}
+  \\
+  (E_{1} E_{3}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{rr}{\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathrm{id}_{(E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3})}}
+  &
+  &
+  E(X_{1} X_{3}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+\end{tikzcd}
+\end{equation*}
+The outer way is the lower left part of the following diagram whose outer perimeter commutes by what we have seen in the diagram before.
+\begin{equation*}
+\hspace{-1.1em}
+\begin{tikzcd}[row sep=5.5em,column sep=5.5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  1_{\alpha} E(X_{1} X_{3})
+  \ar{rr}{\mathrm{coev}_{E(X_{1} X_{3})} \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  \ar[bend left=15]{rd}[description,xshift=5mm]{\mathrm{coev}_{E_{1} E_{3}} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  \ar{d}[description]{\mathrm{coev}_{E_{1} E_{3}} \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  &
+  &
+  (E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{d}[description]{\mathsf{A}_{\alpha}(E(X_{1} X_{3}),E(X_{3}^{\prime} X_{1}^{\prime}),E(X_{1} X_{3}))}
+  \\
+  ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{r}[yshift=3pt]{\mathrm{id}_{(E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  \ar{d}[description]{(\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})) \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  &
+  ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{d}[description]{\mathsf{A}_{\alpha}(E_{1} E_{3},E_{3}^{\prime} E_{1}^{\prime},E_{1} E_{3})}
+  &
+  E(X_{1} X_{3}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar{d}[description]{\mathrm{id}_{E(X_{1} X_{3})} \otimes_{\alpha} e_{E(X_{1} X_{3})}}
+  \\
+  (E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{d}[description]{\mathsf{A}_{\alpha}(E(X_{1} X_{3}),E(X_{3}^{\prime} X_{1}^{\prime}),E(X_{1} X_{3}))}
+  &
+  (E_{1} E_{3}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{r}[yshift=1pt]{\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+  \ar{rd}[description,xshift=-6mm]{\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathrm{id}_{(E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3})}}
+  &
+  E(X_{1} X_{3}) 1_{\alpha}
+  \\
+  E(X_{1} X_{3}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar{rr}{\mathrm{id}_{E(X_{1} X_{3})} \otimes_{\alpha} (\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1})}
+  &
+  &
+  E(X_{1} X_{3}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description]{\mathrm{id}_{E(X_{1} X_{3})} \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+\end{tikzcd}
+\end{equation*}
+The upper right part yields the outer way of the following diagram. The lower left part commutes due to lemma \ref{LEM:DUALOBTENSOR} and the upper left and the lower right part are the naturality of $\mathsf{L}_{\alpha}$ and $\mathsf{R}_{\alpha}$.
+\begin{equation*}
+\hspace{-0.5em}
+\begin{tikzcd}[row sep=5em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  1_{\alpha} E(X_{1} X_{3})
+  \ar{rrr}{\mathrm{coev}_{E(X_{1} X_{3})} \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  \ar{rd}[description,xshift=3mm,yshift=-2mm]{\mathsf{L}_{\alpha}(E(X_{1} X_{3})}
+  \ar{d}[description]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}}
+  &
+  &
+  &
+  (E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{d}[description]{\mathsf{A}_{\alpha}(E(X_{1} X_{3}),E(X_{3}^{\prime} X_{1}^{\prime}),E(X_{1} X_{3}))}
+  \\
+  1_{\alpha} (E_{1} E_{3})
+  \ar{d}[description,yshift=-2mm]{\mathrm{coev}_{E_{1} E_{3}} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{rd}[description,yshift=2mm]{\mathsf{L}_{\alpha}(E_{1} E_{3})}
+  &
+  E(X_{1} X_{3})
+  \ar{rd}[description,yshift=2mm]{\mathrm{id}_{E(X_{1} X_{3})}}
+  \ar{d}[description,yshift=-1mm]{\mathsf{H}(X_{1},X_{3})^{-1}}
+  &
+  &
+  E(X_{1} X_{3}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar{d}[description]{\mathrm{id}_{E(X_{1} X_{3})} \otimes_{\alpha} e_{E(X_{1} X_{3})}}
+  \\
+  ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{d}[description]{\mathsf{A}_{\alpha}(E_{1} E_{3},E_{3}^{\prime} E_{1}^{\prime},E_{1} E_{3})}
+  &
+  E_{1} E_{3}
+  \ar{r}{\mathsf{H}(X_{1},X_{3})}
+  \ar{rrd}[description]{\mathsf{R}_{\alpha}^{-1}(E_{1} E_{3})}
+  &
+  E(X_{1} X_{3})
+  \ar{r}{\mathsf{R}_{\alpha}^{-1}(E(X_{1} X_{3})}
+  &
+  E(X_{1} X_{3}) 1_{\alpha}
+  \\
+  (E_{1} E_{3}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{rrr}{\mathrm{id}_{E_{1} E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  (E_{1} E_{3}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+\end{tikzcd}
+\end{equation*}
+The upper right part is precisely the first diagram from (AC1). The second diagram follows in the same fashion using that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=6.5em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E(X_{3}^{\prime} X_{1}^{\prime}) ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime}))
+  \ar{rr}{\mathrm{id}_{E(X_{3}^{\prime} X_{1}^{\prime})} \otimes_{\alpha} (\mathsf{H}(X_{1},X_{3}) \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime}))}
+  \ar{d}[description]{\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{(E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime})}}
+  &
+  &
+  E(X_{3}^{\prime} X_{1}^{\prime}) (E(X_{1} X_{3}) E(X_{3}^{\prime} X_{1}^{\prime}))
+  \ar{d}[description,xshift=2mm,yshift=3mm]{\mathsf{A}_{\alpha}^{-1}(E(X_{3}^{\prime} X_{1}^{\prime}),E(X_{1} X_{3}),E(X_{3}^{\prime} X_{1}^{\prime}))}
+  \ar{dl}[description,xshift=-2mm,yshift=-4mm]{\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} (\mathsf{H}(X_{1},X_{3})^{-1} \otimes_{\alpha} \mathrm{id}_{E(X_{1}^{\prime} X_{3}^{\prime})})}
+  \\
+  (E_{3}^{\prime} E_{1}^{\prime}) ((E_{1} E_{3}) (E_{3}^{\prime} E_{1}^{\prime}))
+  \ar{r}[yshift=3pt]{\mathrm{id}_{E_{3}^{\prime} E_{1}^{\prime}} \otimes_{\alpha} (\mathrm{id}_{E_{1} E_{3}} \otimes_{\alpha} \mathsf{H}(X_{1}^{\prime},X_{3}^{\prime}))}
+  \ar{d}[description]{\mathsf{A}_{\alpha}^{-1}(E_{3}^{\prime} E_{1}^{\prime},E_{1} E_{3},E_{3}^{\prime} E_{1}^{\prime})}
+  &
+  (E_{3}^{\prime} E_{1}^{\prime}) ((E_{1} E_{3}) E(X_{1}^{\prime} X_{3}^{\prime}))
+  \ar{rd}[description,xshift=1mm,yshift=-4mm]{\mathsf{A}_{\alpha}^{-1}(E(X_{1} X_{3}),E_{3}^{\prime} E_{1}^{\prime},E_{1} E_{3})}
+  &
+  (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3})) E(X_{3}^{\prime} X_{1}^{\prime})
+  \ar{d}[description,xshift=-3mm,yshift=5mm]{(\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1}) \otimes_{\alpha} \mathrm{id}_{E(X_{3}^{\prime} X_{1}^{\prime})}}
+  \\
+  ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3})) (E_{3}^{\prime} E_{1}^{\prime})
+  \ar{rr}{\mathrm{id}_{(E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3})} \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})}
+  &
+  &
+  ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3})) E(X_{3}^{\prime} X_{1}^{\prime})
+\end{tikzcd}
+\end{equation*}
+
+\item[(ISO)]
+$\Phi$ already is an isomorphism so there is nothing to do here
+
+\item[(MF1),(BF)]
+using the notation from (AC4) we claim that
+\begin{align*}
+  F(\hat{\pi})
+  &=
+  \mathsf{H}_{\pi}^{W}
+  \circ
+  \hat{\pi}_{\alpha}
+  \circ
+  \mathsf{H}^{W -1}
+\end{align*}
+which immediately implies the compatibility with both the associators and the braiding.
+\newpage
+From the definition of $F$ we have the upper way of the following diagram. The lower part follows from applying (AC4) to $\mathrm{coev}_{W}$ and
+\begin{align*}
+  \hat{\pi} \otimes \mathrm{id}_{W^{\prime}}
+  \colon
+  W
+  \otimes
+  W^{\prime}
+  &\to
+  W_{\pi}
+  \otimes
+  W^{\prime}
+\end{align*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=4em]
+  E(W)
+  \ar{r}{F(\hat{\pi})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(W))}
+  &
+  E(W_{\pi})
+  &
+  E(W_{\pi}) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E(W_{\pi}))}
+  \\
+  1_{\alpha} E(W)
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  E(W_{\pi}) (E(W^{\prime}) E(W))
+  \ar{u}[swap]{\mathrm{id}_{E(W_{\pi})} \otimes_{\alpha} \mathrm{ev}_{E(W)}}
+  \\
+  E(1) E(W)
+  \ar{rrd}[description]{E((\hat{\pi} \otimes \mathrm{id}_{W^{\prime}}) \circ \mathrm{coev}_{W}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  \ar{d}[swap]{E(\mathrm{coev}_{W}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  (E(W_{\pi}) E(W^{\prime})) E(W)
+  \ar{u}[swap]{\mathsf{A}_{\alpha}(E(W_{\pi}),E(W^{\prime}),E(W))}
+  \\
+  E(W W^{\prime}) E(W)
+  \ar{d}[swap]{\mathsf{H}(W,W^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  E(W_{\pi} W^{\prime}) E(W)
+  \ar{u}[swap]{\mathsf{H}(W_{\pi},W^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  \\
+  (E(W) E(W^{\prime})) E(W)
+  \ar{d}[swap]{(\mathsf{H}^{W -1} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime})}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  (E(W_{\pi}) E(W^{\prime})) E(W)
+  \ar{u}[swap]{\mathsf{H}(W_{\pi},W^{\prime}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  \\
+  (W^{E} E(W^{\prime})) E(W)
+  \ar{rr}{(\hat{\pi}_{\alpha} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime})}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  (W_{\pi}^{E} E(W^{\prime})) E(W)
+  \ar{u}[swap]{(\mathsf{H}_{\pi}^{W} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime})}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+\end{tikzcd}
+\end{equation*}
+Going the outer way we obtain the outer perimeter of the following diagram. The lower right part follows from the naturality of $\mathsf{A}_{\alpha}$, the middle right part from the functoriality of the tensor product and the upper part from the naturality of $\mathsf{R}_{\alpha}$.
+\begin{equation*}
+\hspace{-2.2em}
+\begin{tikzcd}[row sep=5.3em,column sep=3.1em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E(W)
+  \ar{rr}{F(\hat{\pi})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E(W))}
+  &
+  &
+  E(W_{\pi})
+  &
+  &
+  E(W_{\pi}) 1_{\alpha}
+  \ar{ll}[swap]{\mathsf{R}_{\alpha}(E(W_{\pi}))}
+  \\
+  1_{\alpha} E(W)
+  \ar{d}[description]{\Phi \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  W_{\pi}^{E}
+  \ar{ur}{\mathsf{H}_{\pi}^{W}}
+  &
+  W^{E} 1_{\alpha}
+  \ar{r}{\hat{\pi}_{\alpha} \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  W_{\pi}^{E} 1_{\alpha}
+  \ar{ur}[description,yshift=2mm]{\mathsf{H}_{\pi}^{W} \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  &
+  E(W_{\pi}) (E(W^{\prime}) E(W))
+  \ar{u}[description,yshift=-3mm]{\mathrm{id}_{E(W_{\pi})} \otimes_{\alpha} \mathrm{ev}_{E(W)}}
+  \\
+  E(1) E(W)
+  \ar{d}[description]{E(\mathrm{coev}_{W}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  W^{E}
+  \ar{u}{\hat{\pi}_{\alpha}}
+  &
+  E(W) 1_{\alpha}
+  \ar{u}[description]{\mathsf{H}^{W -1} \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  \ar{dl}[description,xshift=-3mm,yshift=-3mm]{\mathsf{R}_{\alpha}(E(W))}
+  &
+  W_{\pi}^{E} (E(W^{\prime}) E(W))
+  \ar{ur}[description,yshift=3mm]{\mathsf{H}_{\pi}^{W} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime}) E(W)}}
+  &
+  (E(W_{\pi}) E(W^{\prime})) E(W)
+  \ar{u}[description,xshift=-2mm,yshift=-4mm]{\mathsf{A}_{\alpha}(E(W_{\pi}),E(W^{\prime}),E(W))}
+  \\
+  E(W W^{\prime}) E(W)
+  \ar{d}[description,yshift=3mm]{\mathsf{H}(W,W^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  E(W)
+  \ar{u}{\mathsf{H}^{W -1}}
+  &
+  E(W) (E(W^{\prime}) E(W))
+  \ar{u}[description,yshift=-1mm]{\mathrm{id}_{E(W)} \otimes_{\alpha} \mathrm{ev}_{E(W)}}
+  \ar{r}[xshift=-2mm,yshift=4pt]{\mathsf{H}^{W -1} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime}) E(W)}}
+  &
+  W^{E} (E(W^{\prime}) E(W))
+  \ar{u}[description]{\hat{\pi}_{\alpha} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime}) E(W)}}
+  &
+  (W_{\pi}^{E} E(W^{\prime})) E(W)
+  \ar{u}[description,xshift=-3mm]{(\mathsf{H}_{\pi}^{W} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime})}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  \\
+  (E(W) E(W^{\prime})) E(W)
+  \ar{urr}[description]{\mathsf{A}_{\alpha}(W(E),E(W^{\prime}),E(W))}
+  \ar{rrrr}{(\mathsf{H}^{W -1} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime})}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  &
+  &
+  (W^{E} E(W^{\prime})) E(W)
+  \ar{u}[description,xshift=-3mm]{(\hat{\pi}_{\alpha} \otimes_{\alpha} \mathrm{id}_{E(W^{\prime})}) \otimes_{\alpha} \mathrm{id}_{E(W)}}
+\end{tikzcd}
+\end{equation*}
+Going the left way and using the definition of $\mathrm{coev}_{E(W)}$ we obtain the following diagram. The left part commutes due to the first diagram from (AC1) and hence we are done with this step.
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=3em]
+  E(W)
+  \ar{r}{F(\hat{\pi})}
+  \ar{rrdd}{\mathrm{id}_{E(W)}}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(W))}
+  &
+  E(W_{\pi})
+  &
+  W_{\pi}^{E}
+  \ar{l}[swap]{\mathsf{H}_{\pi}^{W}}
+  \\
+  1_{\alpha} E(W)
+  \ar{d}[swap]{\mathrm{coev}_{E(W)} \otimes_{\alpha} \mathrm{id}_{E(W)}}
+  &
+  &
+  W^{E}
+  \ar{u}[swap]{\hat{\pi}_{\alpha}}
+  \\
+  (E(W) E(W^{\prime})) E(W)
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E(W),E(W^{\prime}),E(W))}
+  &
+  &
+  E(W)
+  \ar{u}[swap]{\mathsf{H}^{W -1}}
+  \\
+  E(W) (E(W^{\prime}) E(W))
+  \ar{rr}{\mathrm{id}_{E(W)} \otimes_{\alpha} \mathrm{ev}_{E(W)}}
+  &
+  &
+  E(W) 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E(W))}
+\end{tikzcd}
+\end{equation*}
+
+\item[(MF2)]
+we have to show that the following two diagrams commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=6em]
+  1_{\alpha} E(X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(X))}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(X)
+  \\
+  E(1) E(X)
+  \ar{r}{\mathsf{H}(1,X)}
+  &
+  E(1 X)
+  \ar{u}[swap]{F(\mathsf{L}(X))}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=6em]
+  E(X) 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E(X))}
+  \ar{d}[swap]{\mathrm{id}_{E(X)} \otimes_{\alpha} \Phi}
+  &
+  E(X)
+  \\
+  E(X) E(1)
+  \ar{r}{\mathsf{H}(X,1)}
+  &
+  E(X 1)
+  \ar{u}[swap]{F(\mathsf{R}(X))}
+\end{tikzcd}
+\end{equation*}
+and clearly want to use (AC5). Tensoring the first diagram from there with $E(X)$ on the right we obtain the upper part of the following diagram. The lower part follows from the last step.
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=6em]
+  (1_{\alpha} E(1)) E(X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(1)) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \ar{d}[swap]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(1) E(X)
+  \\
+  (E(1) E(1)) E(X)
+  \ar{r}{\mathsf{H}(1,1) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E(1),E(1),E(X))}
+  &
+  E(1 1) E(X)
+  \ar{u}[swap]{F(\mathsf{L}(1)) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \\
+  E(1) (E(1) E(X))
+  \ar{d}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{H}(1,X)}
+  &
+  E((1 1) X)
+  \ar{u}[swap]{\mathsf{H}^{-1}(1 1,X)}
+  \\
+  E(1) E(1 X)
+  \ar{r}{\mathsf{H}(1,1 X)}
+  &
+  E(1 (1 X))
+  \ar{u}[swap]{F(\mathsf{A}^{-1}(1,1,X))}
+\end{tikzcd}
+\end{equation*}
+\newpage
+Going the outer way we obtain the following diagram. Here the left and right upper inner part are the naturality of $\mathsf{A}_{\alpha}$ and $\mathsf{H}$, respectively. The upper part follows from the coherence theorem and the lower right part follows from the functoriality of $F$ and the coherence theorem.
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=7em]
+  (1_{\alpha} E(1)) E(X)
+  \ar{rr}{\mathsf{L}_{\alpha}(E(1)) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \ar{d}[swap]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  &
+  E(1) E(X)
+  \\
+  (E(1) E(1)) E(X)
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E(1),E(1),E(X))}
+  &
+  1_{\alpha} (E(1) E(X))
+  \ar{ur}[description,xshift=-2mm]{\mathsf{L}_{\alpha}(E(1) E(X))}
+  \ar{dl}[description]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1) E(X)}}
+  \ar{ul}[description]{\mathsf{A}_{\alpha}^{-1}(1_{\alpha},E(1),E(X))}
+  &
+  E(1 1) E(X)
+  \ar{u}[swap]{F(\mathsf{L}(1)) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \\
+  E(1) (E(1) E(X))
+  \ar{d}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{H}(1,X)}
+  &
+  E(1 X)
+  \ar{uur}[description]{\mathsf{H}^{-1}(1,X)}
+  &
+  E((1 1) X)
+  \ar{u}[swap]{\mathsf{H}^{-1}(1 1,X)}
+  \ar{l}[swap]{F(\mathsf{L}(1) \otimes \mathrm{id}_{X})}
+  \\
+  E(1) E(1 X)
+  \ar{rr}{\mathsf{H}(1,1 X)}
+  &
+  &
+  E(1 (1 X))
+  \ar{u}[swap]{F(\mathsf{A}^{-1}(1,1,X))}
+  \ar{ul}[description]{F(\mathrm{id}_{1} \otimes \mathsf{L}(X))}
+\end{tikzcd}
+\end{equation*}
+We go the lower central way and obtain the outer way of the following diagram. The upper and the central part are the naturality of $\mathsf{L}_{\alpha}$, the left parts follow from the functoriality of $\otimes_{\alpha}$ and the lower right part commutes because of the naturality of $\mathsf{H}$.
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=5em]
+  1_{\alpha} (E(1) E(X))
+  \ar{rrr}{\mathsf{L}_{\alpha}(E(1) E(X))}
+  \ar{dr}[description]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{H}(1,X)}
+  \ar{dd}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1) E(X)}}
+  &
+  &
+  &
+  E(1) E(X)
+  \ar{dl}[description]{\mathsf{H}(1,X)}
+  \\
+  &
+  1_{\alpha} E(1 X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(1 X))}
+  \ar{dd}[description]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} F(\mathsf{L}(X))}
+  \ar{dddl}[description]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1 X)}}
+  &
+  E(1 X)
+  \ar{d}[description]{F(\mathsf{L}(X))}
+  &
+  \\
+  E(1) (E(1) E(X))
+  \ar{dd}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{H}(1,X)}
+  &
+  &
+  E(X)
+  &
+  E(1 X)
+  \ar{uu}[swap]{\mathsf{H}^{-1}(1,X)}
+  \ar{ul}[description]{\mathrm{id}_{E(1 X)}}
+  \\
+  &
+  1_{\alpha} E(X)
+  \ar{ur}[description]{\mathsf{L}_{\alpha}(E(X))}
+  \ar{r}{\Phi \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(1) E(X)
+  \ar{ur}[description]{\mathsf{H}(1,X)}
+  &
+  \\
+  E(1) E(1 X)
+  \ar{urr}[description]{\mathrm{id}_{E(1)} \otimes_{\alpha} F(\mathsf{L}(X))}
+  \ar{rrr}{\mathsf{H}(1,1 X)}
+  &
+  &
+  &
+  E(1 (1 X))
+  \ar{uu}[swap]{F(\mathrm{id}_{1} \otimes \mathsf{L}(X))}
+\end{tikzcd}
+\end{equation*}
+But the middle right part is just the first diagram needed to prove this step. The second one can be treated analogously.
+\end{enumerate}
+\newpage
+The uniqueness of the extension is easy to see. Let $(G,\mathsf{H},\Phi)$ be another symmetric monoidal functor extending $E$. Since
+\begin{align*}
+  G_{\mathrm{ob}}
+  &=
+  E_{\mathrm{ob}}
+  =
+  F_{\mathrm{ob}}
+\end{align*}
+we only have to check that all $G_{(X_{1},X_{2})}$ and $F_{(X_{1},X_{2})}$ coincide. So let
+\begin{align*}
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+From the functoriality of $G$ and since $G$ extends $E$ we know
+\begin{align*}
+  E(\tilde{f}_{12})
+  &=
+  G(\tilde{f}_{12})
+  \\
+  &=
+  G
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  G(\mathrm{coev}_{X_{1}})
+  \\
+  &=
+  G
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  E(\mathrm{coev}_{X_{1}})
+\end{align*}
+so that the outer way of the following diagram commutes. The lower part, the right parts and the upper right part commute because of the naturality of $\mathsf{H}$, $\mathsf{A}_{\alpha}$, $\mathsf{R}_{\alpha}$ and the funtoriality of the tensor product. The lower left part commutes by definition and the central left part is the first diagram of (AC1). Hence the upper left part commutes which means that $F(f_{12}) = G(f_{12})$.
+\begin{equation*}
+\begin{tikzcd}[row sep=6em,column sep=5.5em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{rd}[description]{\mathrm{id}_{E_{1}}}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  &
+  &
+  E_{2} 1_{\alpha}
+  \ar{ll}[swap]{\mathsf{R}_{\alpha}(E_{2})}
+  \\
+  1_{\alpha} E_{1}
+  \ar{ddrr}[description]{\mathrm{coev}_{E_{1}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E_{1}
+  \ar{u}[description]{G(f_{12})}
+  &
+  E_{1} 1_{\alpha}
+  \ar{ur}[description]{G(f_{12}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E_{1})}
+  &
+  E_{2} (E_{1}^{\prime} E_{1})
+  \ar{u}[swap]{\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  \\
+  E(1) E_{1}
+  \ar{d}[swap]{E(\mathrm{coev}_{X_{1}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{1} (E_{1}^{\prime} E_{1})
+  \ar{u}[description,yshift=3mm]{\mathrm{id}_{E_{1}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  \ar{ur}[description,xshift=-1mm,yshift=-3mm]{G(f_{12}) \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}}}
+  &
+  (E_{2} E_{1}^{\prime}) E_{1}
+  \ar{u}[swap]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1})}
+  \\
+  E(X_{1} X_{1}^{\prime}) E_{1}
+  \ar{rr}{\mathsf{H}(X_{1},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar[bend right]{rrr}{G(f_{12} \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  (E_{1} E_{1}^{\prime}) E_{1}
+  \ar{u}[description,yshift=3mm]{\mathsf{A}_{\alpha}(E_{1},E_{1}^{\prime},E_{1})}
+  \ar{ur}[description,yshift=-4mm]{(G(f_{12}) \otimes_{\alpha} G(\mathrm{id}_{X_{1}^{\prime}})) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  E(X_{2} X_{1}^{\prime}) E_{1}
+  \ar{u}[swap]{\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+\end{tikzcd}
+\end{equation*}
+This finishes the proof.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}

@@ -1,0 +1,1139 @@
+%\nocite{797789bc}
+%\nocite{f215dbd0}
+%\nocite{4dc38f27}
+%\nocite{c7f15065}
+%\nocite{00000001}
+%%%
+We now want to discuss some basics about bundles, particularly principal bundles, vector bundles and how they are related. We do not give proofs or good intuition here and refer to standard textbooks like \cite{f215dbd0} or \cite{797789bc} in general and \cite{c7f15065} for vector bundles. For a good overview of principal bundles we further recommend \cite{4dc38f27}.
+\\\\
+We first recall some basics of fiber bundles. For $F$ a topological space a triple $(E,B,\pi)$ consisting of topological spaces $E$ and $B$ and a continuous map $\pi \colon E \to B$ is a \textbf{fiber bundle (over $B$) with fiber $F$} if for every $b \in B$ there is an open neighbourhood $U \subset B$ of $b$ and a homeomorphism
+\begin{align*}
+  h
+  \colon
+  U
+  \times
+  F
+  &\to
+  \pi^{-1}(U)
+\end{align*}
+such that
+\begin{align*}
+  \pi
+  \left(
+    h(u,f)
+  \right)
+  &=
+  u
+  \qquad
+  \text{for all }
+  u
+  \in
+  U
+  \text{ and } 
+  f
+  \in
+  F
+\end{align*}
+Here $E$ is called the \textbf{total space}, $B$ is called the \textbf{base space} and $\pi$ is called the \textbf{projection}. Moreover, the latter condition in the definition is called \textbf{local triviality} - one also says the bundle is \textbf{locally trivial}\footnote{not all authors require fiber bundles to be locally trivial but in practice most fiber bundles have this property} - and $h$ is a \textbf{local trivialization (around $b$)}, sometimes denoted as a pair $(h,U)$. Note that restricting $h$ to $\lbrace b \rbrace \times F$ yields a homeomorphism
+\begin{align*}
+  h
+  \vert
+  (\lbrace b \rbrace \times F)
+  \colon
+  \lbrace b \rbrace \times F
+  &\to
+  \pi^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+\end{align*}
+Hence $\pi^{-1}(\lbrace b \rbrace)$ is homeomorphic to $F$ for every $x \in B$ and $\pi^{-1}(\lbrace b \rbrace)$ is often called the \textbf{fiber over $b$} and the fibers over the points in the base space are also simply called the fibers of the bundle. If we require $F$ to be non-empty this in particular implies that $\pi$ is surjective. We often write $\xi$ or $\zeta$ for a fiber bundle and then always implicitly mean
+\begin{align*}
+  \xi
+  &=
+  (E_{\xi},B_{\xi},\pi_{\xi})
+  ,\qquad
+  \zeta
+  =
+  (E_{\zeta},B_{\zeta},\pi_{\zeta})
+\end{align*}
+For a fiber bundle $\xi$ with fiber $F$ a set of local trivializations whose domains cover the base space,
+\begin{align*}
+  \mathcal{A}
+  &=
+  \lbrace
+    (h_{j},U_{j})
+    \colon
+    j
+    \in
+    \mathsf{J}
+  \rbrace
+  \quad
+  \text{with}
+  \quad
+  \bigcup_{j \in \mathsf{J}}
+  U_{j}
+  =
+  B_{\xi}
+\end{align*}
+is sometimes called an \textbf{atlas} of $\xi$. Let $G$ be a topological group and let the fiber $F$ be a left $G$-space, i.e. there is a left action
+\begin{align*}
+  \mathrm{a}_{F}
+  \colon
+  G
+  \times
+  F
+  &\to
+  F
+  ,\qquad
+  (g,f)
+  \mapsto
+  \mathrm{a}_{F}(g,f)
+  =:
+  gf
+\end{align*}
+on the fiber $F$ which we assume to be faithful\footnote{this means that for each $G \ni g \neq e$ there is an $f \in F$ such that $gf \neq f$ and can be assumed without loss of generality here as we can always pass to a faithful action of a quotient group}. Then a \textbf{$G$-atlas} is an atlas such that for any two local trivializations $(h_{1},U_{1})$ and $(h_{2},U_{2})$ in that atlas with $U_{1} \cap U_{2} \neq \emptyset$ the homeomorphism\footnote{note that this homeomorphism restricts to a homeomorphism on $\lbrace u \rbrace \times F$ for each $u \in U_{1} \cap U_{2}$}
+\begin{align*}
+  h_{1}^{-1}
+  \circ
+  h_{2}
+  \vert
+  \left(
+    (U_{1} \cap U_{2})
+    \times
+    F
+  \right)
+  \colon
+  (U_{1} \cap U_{2})
+  \times
+  F
+  &\to
+  (U_{1} \cap U_{2})
+  \times
+  F
+\end{align*}
+is given by
+\begin{align*}
+  (u,f)
+  &\mapsto
+  \left(
+    u
+    ,
+    g_{12}(u)
+    f
+  \right)
+\end{align*}
+for some (then unique\footnote{the uniqueness is guaranteed by the faithfulness of the action}) continuous map
+\begin{align*}
+  g_{12}
+  \colon
+  U_{1} \cap U_{2}
+  &\to
+  G
+\end{align*}
+called the \textbf{transition function (from $(h_{1},U_{1})$ to $(h_{2},U_{2})$)}. The transition functions of a $G$-atlas satisfy the following conditions
+\begin{equation*}
+\begin{aligned}
+  &
+  g_{ii}(u)
+  =
+  e
+  \qquad
+  &\text{for }&
+  u
+  \in
+  U_{i}
+  \\
+  &
+  g_{ij}(u)
+  =
+  g_{ji}(u)^{-1}
+  \qquad
+  &\text{for }&
+  u
+  \in
+  U_{i}
+  \cap
+  U_{j}
+  \neq
+  \emptyset
+  \\
+  &
+  g_{ij}(u)
+  g_{jk}(u)
+  =
+  g_{ik}(u)
+  \qquad
+  &\text{for }&
+  u
+  \in
+  U_{i}
+  \cap
+  U_{j}
+  \cap
+  U_{k}
+  \neq
+  \emptyset
+\end{aligned}
+\end{equation*}
+The former two conditions are implied by the latter which often goes by the name \textbf{cocycle condition}. Given a $G$-atlas one can reconstruct the bundle - only up to isomorphism, of course - from the transition functions by taking the disjoint union of the domains of the local trivializations and identifying points connected by transition maps but we do not go into further detail here and refer the reader to standard textbooks, or \cite{00000001} for a nice description in a categorical context, instead. Two $G$-atlases $\mathcal{A}_{1},\mathcal{A}_{2}$ are defined to be equivalent if their union $\mathcal{A}_{1} \cup \mathcal{A}_{2}$ is a $G$-atlas. The union of all atlases in an equivalence class is called a \textbf{maximal $G$-atlas}. A pair $(\xi,\mathcal{G})$ consisting of a fiber bundle $\xi$ and an equivalence class of $G$-atlases $\mathcal{G}$ (or equivalently a maximal $G$-atlas) is a \textbf{fiber bundle with structure group $G$} or \textbf{$G$-bundle} and $\mathcal{G}$ is also called \textbf{$G$-structure}.
+\\
+Note that in the above definitions we could also use $C^{r}$-manifolds\footnote{see below if you don't know what manifolds are}, $r \in \mathbb{N} \cup \lbrace \infty \rbrace$, instead of merely topological spaces and require that all the involved maps are $C^{r}$ instead of merely continuous. The resulting fiber bundles are then called \textbf{$C^{r}$-fiber bundles} or sometimes \textbf{smooth fiber bundles} in the case $r = \infty$. We will stick to topological spaces in the following but we want to emphasize that one could always make these replacements.
+\\
+For two bundles $\xi_{1},\xi_{2}$ with fibers $F_{1},F_{2}$ a \textbf{(fiber) bundle map} from $\xi_{1}$ to $\xi_{2}$ is a pair
+\begin{align*}
+  (f_{12}^{E},f_{12}^{B})
+  \colon
+  \xi_{1}
+  &\to
+  \xi_{2}
+\end{align*}
+of continuous maps
+\begin{align*}
+  f_{12}^{E}
+  \colon
+  E_{\xi_{1}}
+  &\to
+  E_{\xi_{2}}
+  ,\qquad
+  f_{12}^{B}
+  \colon
+  B_{\xi_{1}}
+  \to
+  B_{\xi_{2}}
+\end{align*}
+such that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=4em]
+  E_{\xi_{1}}
+  \ar{r}{f_{12}^{E}}
+  \ar{d}[swap]{\pi_{\xi_{1}}}
+  &
+  E_{\xi_{2}}
+  \ar{d}{\pi_{\xi_{2}}}
+  \\
+  B_{\xi_{1}}
+  \ar{r}{f_{12}^{B}}
+  &
+  B_{\xi_{2}}
+\end{tikzcd}
+\end{equation*}
+The latter condition implies that a bundle map takes fibers into fibers, i.e. for all $b \in B_{\xi_{1}}$ we have
+\begin{align*}
+  f_{12}^{E}
+  \left(
+    \pi_{\xi_{1}}^{-1}
+    \left(
+      \lbrace b \rbrace
+    \right)
+  \right)
+  &\subset
+  \pi_{\xi_{2}}^{-1}
+  \left(
+    \lbrace f_{12}^{B}(b) \rbrace
+  \right)
+\end{align*}
+Note that if $F_{1}$ is non-empty (which, of course, implies that $F_{2}$ is not empty either) then $\pi_{\xi_{1}}$ is surjective and thus $f_{12}^{B}$ is uniquely determined by $f_{12}^{E}$. The composition of two bundle maps is given by componentwise composition, that is, given another bundle $\xi_{3}$ with fiber $F_{3}$ and a bundle map
+\begin{align*}
+  (f_{23}^{E},f_{23}^{B})
+  \colon
+  \xi_{2}
+  &\to
+  \xi_{3}
+\end{align*}
+the composition of $(f_{12}^{E},f_{12}^{B})$ and $(f_{23}^{E},f_{23}^{B})$ is the bundle map
+\begin{align*}
+  (f_{23}^{E},f_{23}^{B})
+  \circ
+  (f_{12}^{E},f_{12}^{B})
+  &:=
+  \left(
+    f_{23}^{E}\circ f_{12}^{E}
+    ,
+    f_{23}^{B} \circ f_{12}^{B}
+  \right)
+  \colon
+  \xi_{1}
+  \to
+  \xi_{3}
+\end{align*}
+We can illustrate this by patching commutative diagrams together to obtain the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=4em]
+  E_{\xi_{1}}
+  \ar{r}{f_{12}^{E}}
+  \ar{d}[swap]{\pi_{\xi_{1}}}
+  &
+  E_{\xi_{2}}
+  \ar{r}{f_{23}^{E}}
+  \ar{d}[swap]{\pi_{\xi_{2}}}
+  &
+  E_{\xi_{3}}
+  \ar{d}{\pi_{\xi_{3}}}
+  \\
+  B_{\xi_{1}}
+  \ar{r}{f_{12}^{B}}
+  &
+  B_{\xi_{2}}
+  \ar{r}{f_{23}^{B}}
+  &
+  B_{\xi_{3}}
+\end{tikzcd}
+\end{equation*}
+The identity of this composition for a bundle $\xi$ is given by
+\begin{align*}
+  \mathrm{id}_{\xi}
+  &:=
+  \left(
+    \mathrm{id}_{E_{\xi}}
+    ,
+    \mathrm{id}_{B_{\xi}}
+  \right)
+\end{align*}
+Thus a bundle map is an isomorphism of fiber bundles if there is another bundle map which consists of the componentwise inverses. In the special case $B_{\xi_{1}} = B_{\xi_{2}} =: B$ we define the stricter notion of a \textbf{bundle map over $B$} to be a bundle map such that $f_{12}^{B} = \mathrm{id}_{B}$. Composition, of course, works in the same way for these bundle maps over a fixed base space.
+\\
+The fiber bundles as objects and the bundle maps as morphisms constitute a category we denote $\mathbf{FBund}$. This category can be identified with a full subcategory of the arrow category $\mathbf{Top}_{\to}$ of the category $\mathbf{Top}$ of topological spaces\footnote{or the category $\mathbf{Diff}_{r}$ if we replace topological spaces with $C^{r}$-manifolds}. If we fix some base space $B$ then the fiber bundles over $B$ are the objects of a category $\mathbf{FBund}_{B}$ whose morphisms are the bundle maps over $B$. This category can be identified with a full subcategory of the slice category $\mathbf{Top}/B$ over $B$ of $\mathbf{Top}$. For more on this categorical perspective we refer the reader to \cite{00000001}.
+\\
+The probably simplest example of a fiber bundle over base space $B$ with fiber $F$ is the so-called \textbf{product bundle} $(B \times F,B,\mathrm{pr}_{1})$ where
+\begin{align*}
+  \mathrm{pr}_{1}
+  \colon
+  B \times F
+  &\to
+  B
+  ,\quad
+  (b,f)
+  \mapsto
+  b
+\end{align*}
+is the projection to the first factor. In abuse of notation we often simply write
+\begin{align*}
+  B \times F
+  &\doteq
+  (B \times F,B,\mathrm{pr}_{1})
+\end{align*}
+if context allows it. With this notion at hand we define that a fiber bundle over $B$ with fiber $F$ is \textbf{trivial} if it is isomorphic to the product bundle over $B$ with fiber $F$.
+\\
+A fiber bundle $\xi^{\backprime}$ is a \textbf{subbundle} of a fiber bundle $\xi$ (not necessarily with the same fiber) if
+\begin{align*}
+  E_{\xi^{\backprime}}
+  \subset
+  E_{\xi}
+  ,\qquad
+  B_{\xi^{\backprime}}
+  \subset
+  B_{\xi}
+  \qquad
+  \text{and}
+  \qquad
+  \pi_{\xi^{\backprime}}
+  &=
+  \pi_{\xi}
+  \vert
+  E_{\xi^{\backprime}}
+\end{align*}
+In particular given a bundle $\xi$ and a subspace $A \subset B_{\xi}$ the \textbf{restriction of $\xi$ to $A$} denoted $\xi \vert A$ and defined as
+\begin{align*}
+  \left(
+    \pi_{\xi}^{-1}(A)
+    ,
+    A
+    ,
+    \pi_{\xi}
+    \vert
+    \pi_{\xi}^{-1}(A)
+  \right)
+\end{align*}
+is a subbundle of $\xi$ with the same fiber. Now the local triviality of a fiber bundle $\xi$ with fiber $F$ can be expressed by saying that for every $b \in B_{\xi}$ there exists a neighbourhood $U \subset B_{\xi}$ of $b$ such that the restriction $\xi \vert U$ is trivial.
+\\
+Recall that a \textbf{(global) (cross-)section} of a fiber bundle $\xi$ is a continuous map $s \colon B_{\xi} \to E_{\xi}$ such that
+\begin{align*}
+  \pi_{\xi}
+  \circ
+  s
+  &=
+  \mathrm{id}_{B_{\xi}}
+\end{align*}
+This means that a section chooses exactly one element of each fiber $\pi_{\xi}^{-1}(\lbrace b \rbrace)$, $b \in B_{\xi}$, in a continuous way. Moreover, for $U \subset B_{\xi}$ an open subset of the base space a \textbf{(local) (cross-)section over $U$} is a continuous map $s \colon U \to E_{\xi}$ such that $\pi_{\xi} \circ s$ is the inclusion $i \colon U \to B_{\xi}$. Such a local section thus chooses exactly one element of each fiber $\pi_{\xi}^{-1}(\lbrace u \rbrace)$ for $u \in U$ in a continuous way. The set of local sections over $U$ is denoted $\Gamma_{\xi}(U)$ and in the case $U = E_{\xi}$ of global sections we simply write $\Gamma_{\xi} := \Gamma_{\xi}(B_{\xi})$.
+\\
+Further, for a bundle $\xi$ with fiber $F$, a topological space $B^{\backprime}$ and a continuous map $f \colon B^{\backprime} \to B_{\xi}$ we define the \textbf{pullback (bundle) of $\xi$ along $f$}, denoted $f^{\ast}\xi$, to be the fiber bundle over $B^{\backprime}$ with fiber $F$ whose total space is
+\begin{align*}
+  E^{\backprime}
+  &:=
+  B^{\backprime}
+  \times_{B_{\xi}}
+  E_{\xi}
+  \\
+  &=
+  \left\lbrace
+    (b^{\backprime},e)
+    \in
+    B^{\backprime}
+    \times
+    E_{\xi}
+    \colon
+    f(b^{\backprime})
+    =
+    \pi_{\xi}(e)
+  \right\rbrace
+\end{align*}
+and whose projection is
+\begin{align*}
+  \pi^{\backprime}
+  \colon
+  E^{\backprime}
+  &\to
+  B^{\backprime}
+  ,\qquad
+  (b^{\backprime},e)
+  \mapsto
+  b^{\backprime}
+\end{align*}
+It is not difficult to see that $f^{\ast}\xi$ is indeed a fiber bundle with fiber $F$. Note that this construction in fact is the pullback construction in the category $\mathbf{Top}$, i.e. the following diagram is a pullback diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=4em]
+  E^{\backprime}
+  \ar{r}{f^{E}}
+  \ar{d}[swap]{\pi^{\backprime}}
+  &
+  E_{\xi}
+  \ar{d}{\pi_{\xi}}
+  \\
+  B^{\backprime}
+  \ar{r}{f}
+  &
+  B_{\xi}
+\end{tikzcd}
+\end{equation*}
+where $f^{E}$ is defined by $f^{E}(b^{\backprime},e) := e$. In particular $(f^{E},f)$ is a bundle map. In the case that $B^{\backprime} \subset B_{\xi}$ is a subspace and $f$ is the inclusion it is easy to see that $f^{\ast}\xi$ and $\xi \vert B^{\backprime}$ are isomorphic as fiber bundles over $B^{\backprime}$. Moreover, given another continuous map $g \colon B^{\backprime\backprime} \to B^{\backprime}$ then since patching two pullback diagrams together yields another pullback diagram we see that the bundles $g^{\ast}(f^{\ast}\xi)$ and $(f \circ g)^{\ast}\xi$ are isomorphic as bundles over $B^{\backprime\backprime}$. But we can also pull back bundle maps. Given two fiber bundles $\xi_{1},\xi_{2}$ over the same base space $B := B_{\xi_{1}} = B_{\xi_{2}}$ and a bundle map $(f_{12}^{E},\mathrm{id}_{B})$ from $\xi_{1}$ to $\xi_{2}$ over $B$ then for a continuous map $f \colon B^{\backprime} \to B$ we define
+\begin{align*}
+  f^{\ast}(f_{12}^{E})
+  \colon
+  E_{f^{\ast}\xi_{1}}
+  &\to
+  E_{f^{\ast}\xi_{2}}
+  ,\qquad
+  (b^{\backprime},e_{1})
+  \mapsto
+  (b^{\backprime},f_{12}^{E}(e_{1}))
+\end{align*}
+It is rather clear that this yields a bundle map over $B^{\backprime}$ from $f^{\ast}\xi_{1}$ to $f^{\ast}\xi_{2}$ and furthermore that in fact this defines a functor
+\begin{align*}
+  f^{\ast}
+  \colon
+  \mathbf{FBund}_{B}
+  &\to
+  \mathbf{FBund}_{B^{\backprime}}
+\end{align*}
+Even better, the composition $g^{\ast} \circ f^{\ast}$ of the functors $g^{\ast}$ and $f^{\ast}$ is naturally isomorphic to the functor $(f \circ g)^{\ast}$.
+\\\\
+In the following we are mainly concerned with two specific kinds of fiber bundles, namely vector bundles and principal bundles. We start with the former.
+\\
+The idea of vector bundles is that every fiber has the structure of a vector space. More precisely, for $n \in \mathbb{N}$ a \textbf{real ($n$-dimensional) vector bundle} is a fiber bundle $\zeta$ with fiber $\mathbb{R}^{n}$ such that for every $b \in B_{\zeta}$ the fiber $\pi_{\zeta}^{-1}(\lbrace b \rbrace)$ over $b$ is an $n$-dimensional vector space over $\mathbb{R}$ and such that there are local trivializations around every $b \in B_{\zeta}$ which are linear isomorphisms in each fiber, i.e. if
+\begin{align*}
+  h
+  \colon
+  U
+  \times
+  \mathbb{R}^{n}
+  &\to
+  \pi_{\zeta}^{-1}(U)
+\end{align*}
+is such a local trivialization then
+\begin{align*}
+  h_{u}
+  \colon
+  \mathbb{R}^{n}
+  &\to
+  \pi_{\zeta}^{-1}
+  \left(
+    \lbrace u \rbrace
+  \right)
+  ,\qquad
+  h_{u}(x)
+  :=
+  h(u,x)
+\end{align*}
+is a linear isomorphism for every $u \in U$. If we replace every occurence of $\mathbb{R}$ by $\mathbb{C}$ then we speak of a \textbf{complex $n$-dimensional vector bundle}. In the following we often do not specify whether the vector bundles are real or complex as the definitions are the same in either case but we always mean that either all vector bundles involved are real or all of them are complex. Let thus $K$ be either $\mathbb{R}$ or $\mathbb{C}$. Note that the dimension $n$ is also called the \textbf{rank} of the vector bundle. Vector bundles of rank $1$ are often called \textbf{line bundles}. Further note that each $n$-dimensional vector bundle can be equipped with a $GL(n,K)$-structure where the action of $GL(n,K)$ on $K^{n}$ is the standard action.
+\\
+For two vector bundles $\zeta_{1},\zeta_{2}$ (not necessarily of the same rank) a \textbf{map of vector bundles} or \textbf{vector bundle map} from $\zeta_{1}$ to $\zeta_{2}$ is a bundle map $(f_{12}^{E},f_{12}^{B})$ such that for every $b \in B_{\zeta_{1}}$ the map
+\begin{align*}
+  f_{12}^{E}
+  \vert
+  \pi_{\zeta_{1}}^{-1}
+  \left(
+    \lbrace
+      b
+    \rbrace
+  \right)
+  \colon
+  \pi_{\zeta_{1}}^{-1}
+  \left(
+    \lbrace
+      b
+    \rbrace
+  \right)
+  &\to
+  \pi_{\zeta_{2}}^{-1}
+  \left(
+    \lbrace
+      f_{12}^{B}(b)
+    \rbrace
+  \right)
+\end{align*}
+is linear. Thus one also says that vector bundle maps are fiberwise linear. It is clear that the composition of vector bundle maps is again a vector bundle map and that the identity bundle map is a map of vector bundles. Hence the vector bundles and their maps form a subcategory of $\mathbf{FBund}$ we denote $K\mathbf{VBund}$. Similarly, for a topological space $B$ we have a subcategory of $\mathbf{FBund}_{B}$ of vector bundles over $B$ and vector bundle maps over $B$ we denote $K\mathbf{VBund}_{B}$.
+\\
+For a topological space $B$ and an $n$-dimensional vector space $V$ the product bundle $(B \times V,B,\mathrm{pr}_{1})$ obviously is an $n$-dimensional vector bundle and a vector bundle is called \textbf{trivial} if it is isomorphic as vector bundle to the product bundle $(B \times K^{n},B,\mathrm{pr}_{1})$. Moreover, pullbacks, and in particular restrictions, of vector bundles are again vector bundles and in fact for any continuous map $f \colon B_{1} \to B_{2}$ we have a functor
+\begin{align*}
+  f^{\ast}
+  \colon
+  K\mathbf{VBund}_{B_{2}}
+  &\to
+  K\mathbf{VBund}_{B_{1}}
+\end{align*}
+But one can also make other constructions for vector bundles using the linear structure. An example is the Whitney sum of two vector bundles over the same base space which is constructed by taking the fiberwise direct sum of vector spaces. More precisely, let $\zeta_{1},\zeta_{2}$ be two vector bundles over the same base space $B_{\zeta_{1}} = B_{\zeta_{2}} =: B$ then their \textbf{Whitney sum} $\zeta_{1} \oplus \zeta_{2}$ is the vector bundle over $B$ with total space
+\begin{align*}
+  E_{\zeta_{1}}
+  \oplus
+  E_{\zeta_{2}}
+  &:=
+  E_{\zeta_{1}}
+  \times_{B}
+  E_{\zeta_{2}}
+  \\
+  &=
+  \left\lbrace
+    (e_{1},e_{2})
+    \in
+    E_{\zeta_{1}}
+    \times
+    E_{\zeta_{2}}
+    \colon
+    \pi_{\zeta_{1}}(e_{1})
+    =
+    \pi_{\zeta_{2}}(e_{2})
+  \right\rbrace
+\end{align*}
+and with projection
+\begin{align*}
+  \pi_{\oplus}
+  \colon
+  E_{\zeta_{1}}
+  \oplus
+  E_{\zeta_{2}}
+  &\to
+  B
+  ,\qquad
+  (e_{1},e_{2})
+  \mapsto
+  \pi_{\zeta_{1}}(e_{1})
+  =
+  \pi_{\zeta_{2}}(e_{2})
+\end{align*}
+For $b \in B$ the vector space structure of the fiber over $b$ is that of the direct sum of the fibers over $b$ of $\zeta_{1}$ and $\zeta_{2}$, that is,
+\begin{align*}
+  \pi_{\oplus}^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+  &=
+  \pi_{\zeta_{1}}^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+  \oplus
+  \pi_{\zeta_{2}}^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+\end{align*}
+Thus the Whitney sum is constructed by pulling back $\pi_{\zeta_{1}}$ along $\pi_{\zeta_{2}}$ as in the following pullback diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=4em]
+  E_{\zeta_{1}} \oplus E_{\zeta_{2}}
+  \ar{r}{\mathrm{Pr}_{2}}
+  \ar{rd}{\pi_{\oplus}}
+  \ar{d}[swap]{\mathrm{Pr}_{1}}
+  &
+  E_{\zeta_{2}}
+  \ar{d}{\pi_{\zeta_{2}}}
+  \\
+  E_{\zeta_{1}}
+  \ar{r}{\pi_{\zeta_{1}}}
+  &
+  B
+\end{tikzcd}
+\end{equation*}
+and endowing the pullback bundle fiberwise with the linear structure of the direct sum.
+\\
+Furthermore, vector bundles can be equipped with a bundle metric, also called inner product of bundles, by assigning to every fiber an inner product in a continuous way. More precisely, a \textbf{bundle metric} or \textbf{inner product} on a vector bundle $\zeta$ is a continuous map
+\begin{align*}
+  g
+  \colon
+  E_{\zeta}
+  \oplus
+  E_{\zeta}
+  &\to
+  K
+\end{align*}
+such that for each $b \in B_{\zeta}$ the restriction to the fiber over $b$,
+\begin{align*}
+  g
+  \vert
+  \pi_{\oplus}^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+  \colon
+  \pi_{\zeta}^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+  \times
+  \pi_{\zeta}^{-1}
+  \left(
+    \lbrace b \rbrace
+  \right)
+  &\to
+  K
+\end{align*}
+is an inner product on $\pi_{\zeta}^{-1}(\lbrace b \rbrace)$. One can show that in the case that the base space of a vector bundle is a paracompact Hausdorff space there always is an inner product on this vector bundle. Moreover, note that a vector bundle of rank $n$ equipped with a metric can be given an $O(n)$-structure in the real case and a $U(n)$-structure in the complex case where the corresponding action on $K^{n}$ is the standard action from $GL(n,K)$.
+\\
+Last but not least we want to mention that due to the fiberwise linear structure of $\zeta$ the set $\Gamma_{\zeta}$ of global sections of a vector bundle $\zeta$ can be made into a module over the ring $C(B_{\zeta},K)$ of $K$-valued continuous functions on $B_{\zeta}$ by defining addition and scalar multiplication on $\Gamma_{\zeta}$ pointwise. In particular there always is a section, namely the section choosing the zero vector of every fiber which serves as a neutral element for the addition.
+\\\\
+Next we consider principal bundles which are particularly nice fiber bundles with respect to their structure group. A \textbf{principal $G$-bundle} - or sometimes \textbf{$G$-principal bundle} - is a $G$-bundle with fiber $G$ where the structure group $G$ acts on the fiber $G$ by left multiplication. For a principal bundle $\xi$ we can define a right action of $G$ on the total space $E_{\xi}$ of $\xi$ with the help of the local trivializations.
+\\
+\begin{cst}
+\label{cst:rightactppal}
+Let $\xi$ be a principal $G$-bundle, let $e \in E_{\xi}$, let $b := \pi_{\xi}(e)$ and let $(h_{1},U_{1})$ be a local trivialization around $b$. We can define a right action of $G$ on $U_{1} \times G$ by right multiplication in the second factor, i.e.
+\begin{align*}
+  (U_{1} \times G)
+  \times
+  G
+  &\to
+  U_{1} \times G
+  ,\qquad
+  ((u,h),g)
+  \mapsto
+  (u,h)g
+  =
+  (u,hg)
+\end{align*}
+Now we can use that left and right multiplication in $G$ commute to pull this right action back to $E_{\xi}$. More precisely we define the right action of $g \in G$ on $e$ by
+\begin{align*}
+  eg
+  &:=
+  h_{1}
+  \left(
+    h_{1}^{-1}(e)
+    g
+  \right)
+\end{align*}
+To show that this is independent of the local trivialization let $(h_{2},U_{2})$ be another one and let
+\begin{align*}
+  (b,g_{1})
+  &:=
+  h_{1}^{-1}(e)
+  \qquad
+  \text{and}
+  \qquad
+  (b,g_{2})
+  :=
+  h_{2}^{-1}(e)
+\end{align*}
+Then
+\begin{align*}
+  h_{1}^{-1}
+  \left(
+    h_{2}
+    \left(
+      h_{2}^{-1}(e)
+      g
+    \right)
+  \right)
+  &=
+  h_{1}^{-1}
+  \circ
+  h_{2}
+  \left(
+    b
+    ,
+    g_{2}g
+  \right)
+  \\
+  &=
+  (b,g_{12}(b)g_{2}g)
+  \\
+  &=
+  (b,g_{12}(b)g_{2})
+  g
+  \\
+  &=
+  h_{1}^{-1}
+  \left(
+    h_{2}(b,g_{2})
+  \right)
+  g
+  \\
+  &=
+  h_{1}^{-1}(e)
+  g
+\end{align*}
+Here $g_{12}$ is the transition function from $(h_{1},U_{1})$ to $(h_{2},U_{2})$. Applying $h_{1}$ yields the desired result. Hence we have a well-defined map
+\begin{align*}
+  E_{\xi}
+  \times
+  G
+  &\to
+  E_{\xi}
+  ,\qquad
+  (e,g)
+  \mapsto
+  eg
+\end{align*}
+and it is not too difficult to see that this map is also continuous so that we indeed have a right action on $E_{\xi}$.
+\end{cst}
+Note that the local trivializations of $\xi$ are $G$-equivariant w.r.t. the above right actions. Further note that
+\begin{align*}
+  \pi_{\xi}(eg)
+  &=
+  \pi_{\xi}
+  \left(
+    h_{1}(b,g_{1}g)
+  \right)
+  =
+  b
+\end{align*}
+so that the right action on the total space preserves the fibers. Moreover, it is rather obvious from the construction that $G$ acts freely and transitively on each fiber of $\xi$ so that we have the structure of a so called \textit{$G$-torsor} on each fiber. We refer the reader to \cite{00000001} for more on torsors and how they give rise to an equivalent definition for principal $G$-bundles by a right action on the total space. From the above we can also see that the fibers of $\xi$ are precisely the orbits of the right $G$-action on $E_{\xi}$ and that the orbit space $E_{\xi}/G$ is homeomorphic to the base space $B_{\xi}$. In the following when we speak of the right action on the total space of a principal bundle we always mean the one from construction \ref{cst:rightactppal}.
+\\
+For two principal $G$-bundles $\xi_{1},\xi_{2}$ a \textbf{map of principal $G$-bundles} from $\xi_{1}$ to $\xi_{2}$ is a bundle map $(f_{12}^{E},f_{12}^{B})$ such that $f_{12}^{E}$ is $G$-equivariant with respect to the right $G$-actions on the total spaces. It is clear that the composition of two maps of principal $G$-bundles is again a map of principal $G$-bundles and that the identity bundle map for a principal $G$-bundle is a map of principal $G$-bundles. Thus we again have a subcategory $G\mathbf{PBund}$ of $\mathbf{FBund}$ consisting of principal $G$-bundles and their maps. Similarly, for a topological space $B$ we have a subcategory of $\mathbf{FBund}_{B}$ of principal $G$-bundles over $B$ and maps of principal $G$-bundles over $B$ we denote $G\mathbf{PBund}_{B}$. A special property of maps of principal $G$-bundles over a fixed base space is that they always are isomorphisms. We denote the set of isomorphism classes of princpal $G$-bundles over the base space $B$ by $\mathcal{P}_{G}(B)$.
+\\
+For a topological space $B$ and a topological group $G$ the product bundle $(B \times G,B,\mathrm{pr}_{1})$ obviously is a principal $G$-bundle and a principal $G$-bundle is called \textbf{trivial} if it is isomorphic as principal $G$-bundle to the product bundle. From the fact that principal $G$-bundle maps over a fixed base space are always isomorphisms one can see that a principal $G$-bundle $\xi$ admits a global section if and only if $\xi$ is trivial. Moreover, pullbacks, and in particular restrictions, of principal $G$-bundles are again principal $G$-bundles and in fact for any continuous map $f \colon B_{1} \to B_{2}$ we have a functor
+\begin{align*}
+  f^{\ast}
+  \colon
+  G\mathbf{PBund}_{B_{2}}
+  &\to
+  G\mathbf{PBund}_{B_{1}}
+\end{align*}
+Now one can show the following result
+\\
+\begin{lem}
+\label{lem:pbhomot}
+Let $\xi$ a principal $G$-bundle, $C$ a CW-complex and $f_{1},f_{2} \colon C \to B_{\xi}$ two homotopic functions. Then the pullbacks $f_{1}^{\ast}\xi$ and $f_{2}^{\ast}\xi$ are isomorphic as principal $G$-bundles.
+\end{lem}
+Thus let $\mathrm{Ho}(\mathbf{Top}^{\mathrm{CW}})$ the category with objects CW-complexes and morphisms homotopy classes of maps between CW-complexes, denoted
+\begin{align*}
+  [C_{1},C_{2}]
+  &=
+  \mathrm{mor}_{\mathrm{Ho}(\mathbf{Top}^{\mathrm{CW}})}
+  \left(
+    C_{1}
+    ,
+    C_{2}
+  \right)
+\end{align*}
+for two CW-complexes $C_{1}$ and $C_{2}$. Then lemma \ref{lem:pbhomot} implies that we have a functor
+\begin{align*}
+  \mathcal{P}_{G}
+  \colon
+  \mathrm{Ho}(\mathbf{Top}^{\mathrm{CW}})^{\mathrm{op}}
+  &\to
+  \mathbf{Set}
+\end{align*}
+taking a CW-complex $C$ to the set $\mathcal{P}_{G}(C)$ of isomorphism classes of principal $G$-bundles over $C$ and a homotopy class of maps $[f_{12}] \colon C_{1} \to C_{2}$ to the map
+\begin{align*}
+  \mathcal{P}_{G}(C_{2})
+  &\to
+  \mathcal{P}_{G}(C_{1})
+  ,\qquad
+  [\xi]
+  \mapsto
+  [f_{12}^{\ast}\xi]
+\end{align*}
+A rather important result is the following
+\\
+\begin{thm}
+\label{thm:pgrepr}
+The functor $\mathcal{P}_{G}$ is representable for any topological group $G$.
+\end{thm}
+The representing object is denoted $\textrm{B}G$ and called the \textbf{classifying space (for $G$)}. Remember that theorem \ref{thm:pgrepr} means that the sets $[C,\textrm{B}G]$ and $\mathcal{P}_{G}(C)$ are in natural bijective correspondence for each CW-complex $C$. There also is a universal element of $\mathcal{P}_{G}$ which basically means that there is a so called \textbf{universal bundle}
+\begin{align*}
+  \hat{\xi}_{G}
+  &=
+  \left(
+    \textrm{E}G
+    ,
+    \textrm{B}G
+    ,
+    \hat{\pi}
+  \right)
+\end{align*}
+and the bijection between $[C,\textrm{B}G]$ and $\mathcal{P}_{G}(C)$ is given by
+\begin{align*}
+  [C,\textrm{B}G]
+  &\to
+  \mathcal{P}_{G}(C)
+  ,\qquad
+  [f]
+  \mapsto
+  [f^{\ast}\hat{\xi}_{G}]
+\end{align*}
+for any CW-complex $C$. The classifying space and the universal bundle are unique up to unique isomorphism as always. One can show that the total space $\mathrm{E}G$ of the universal bundle is weakly contractible\footnote{this means that all homotopy groups are trivial but for CW-complexes this is the same as being contractible by Whitehead's theorem} and that this property already characterizes the universal bundle. For a more accurate and detailed account on this, in particular with regard to universality, we refer the reader to \cite{00000001}.
+\\\\
+Next we want to consider the relation between vector bundles and principal bundles. To this end we first discuss associated bundles.
+\\
+Let $G$ be a topological group and let $Y_{1},Y_{2}$ be topological spaces both carrying a right $G$-action then we define their \textbf{$G$-product} to be the orbit space
+\begin{align*}
+  Y_{1} \times_{G} Y_{2}
+  &:=
+  (Y_{1} \times Y_{2})/G
+\end{align*}
+of the componentwise right action
+\begin{align*}
+  (Y_{1} \times Y_{2})
+  \times
+  G
+  &\to
+  Y_{1} \times Y_{2}
+  ,\qquad
+  ((y_{1},y_{2}),g)
+  \mapsto
+  (y_{1}g,y_{2}g)
+\end{align*}
+The notation of the $G$-product is not to be confused with the fibered product but usually context will make clear what is meant. If the right $G$-action on $Y_{2}$ is given by a right $H$-action of another topological group $H$ through a continuous group homomorphism $\chi \colon G \to H$, i.e. the right $G$-action on $Y_{2}$ is given by
+\begin{align*}
+  Y_{2} \times G
+  &\to
+  Y_{2}
+  ,\qquad
+  (y_{2},g)
+  \mapsto
+  y_{2}\chi(g)
+\end{align*}
+then we sometimes write $Y_{1} \times_{G,\chi} Y_{2}$ for the corresponding $G$-product if we want to make $\chi$ explicit. Similarly we may write $Y_{1} \times_{\chi,G} Y_{2}$ if the situation is reversed or simply $Y_{1} \times_{\chi} Y_{2}$ if both actions are induced from $\chi$.
+\\
+If we have a left $G$-space $Y$ instead of a right $G$-space we can convert the left action into a right action by defining
+\begin{align*}
+  Y \times G
+  &\to
+  Y
+  ,\qquad
+  (y,g)
+  \mapsto
+  g^{-1}y
+\end{align*}
+and then we use this right action for the $G$-product. Thus, if for example $Y_{1}$ is a right $G$-space and $Y_{2}$ is a left $G$-space then their $G$-product is the orbit space
+\begin{align*}
+  Y_{1} \times_{G} Y_{2}
+  &:=
+  (Y_{1} \times Y_{2})/G
+\end{align*}
+of the following right action
+\begin{align*}
+  (Y_{1} \times Y_{2})
+  \times
+  G
+  &\to
+  Y_{1} \times Y_{2}
+  ,\qquad
+  ((y_{1},y_{2}),g)
+  \mapsto
+  (y_{1}g,g^{-1}y_{2})
+\end{align*}
+The $G$-product has some nice properties. For example, if $Y$ is a right $G$-space and we consider $G$ as right $G$-space by right multiplication then it is not difficult to see that the maps
+\begin{align*}
+  G \times_{G} Y
+  &\to
+  Y
+  ,\qquad
+  [g,y]
+  \mapsto
+  yg^{-1}
+  \\
+  Y \times_{G} G
+  &\to
+  Y
+  ,\qquad
+  [y,g]
+  \mapsto
+  yg^{-1}
+\end{align*}
+are homeomorphisms. Similarly, if we consider $G$ as left $G$-space by left multiplication then it is not difficult to see that the maps
+\begin{align*}
+  G \times_{G} Y
+  &\to
+  Y
+  ,\qquad
+  [g,y]
+  \mapsto
+  yg
+  \\
+  Y \times_{G} G
+  &\to
+  Y
+  ,\qquad
+  [y,g]
+  \mapsto
+  yg
+\end{align*}
+are homeomorphisms. Moreover, one can show that the $G$-product is weakly associative. Precisely, let $H$ be another topological group and define a \textbf{$(G,H)$-space} to be a topological space $Y$ carrying a left $G$-action and a right $H$-action such that these actions commute, i.e.
+\begin{align*}
+  (gy)h
+  &=
+  g(yh)
+  \qquad
+  \text{for all }
+  g
+  \in
+  G
+  ,
+  h
+  \in
+  H
+  ,
+  y
+  \in
+  Y
+\end{align*}
+Note that if $Y_{1}$ is a right $G$-space then there is a canonical right $H$-action on $Y_{1} \times_{G} Y$ given by
+\begin{align*}
+  (Y_{1} \times_{G} Y)
+  \times
+  H
+  &\to
+  Y_{1} \times_{G} Y
+  ,\qquad
+  ([y_{1},y],h)
+  \mapsto
+  [y_{1},yh]
+\end{align*}
+Similarly if $Y_{2}$ is a left $H$-space then there is a canonical left $G$-action on $Y \times_{H} Y_{2}$. Then one can show that the map
+\begin{align*}
+  (Y_{1} \times_{G} Y)
+  \times_{H}
+  Y_{2}
+  &\to
+  Y_{1}
+  \times_{G}
+  (Y \times_{H} Y_{2})
+  ,\qquad
+  [[y_{1},y],y_{2}]
+  \mapsto
+  [y_{1},[y,y_{2}]]
+\end{align*}
+is a homeomorphism.
+\\
+Now let $\xi$ be a principal $G$-bundle and let $F$ be a left $G$-space. Then we define the \textbf{fiber bundle with fiber $F$ associated with $\xi$}, denoted $\xi[F]$, to have total space $E_{\xi[F]} := E_{\xi} \times_{G} F$, base space $B_{\xi[F]} := B_{\xi}$ and projection
+\begin{align*}
+  \pi_{\xi[F]}
+  \colon
+  E_{\xi} \times_{G} F
+  &\to
+  B_{\xi}
+  ,\qquad
+  [e,f]
+  \mapsto
+  \pi_{\xi}(e)
+\end{align*}
+One can show that this is indeed a fiber bundle with fiber $F$ with the local trivializations coming from those of $\xi$ and moreover that with these local trivializations $\xi[F]$ has structure group $G$ with transition functions the same as the transition functions of $\xi$. Thus in terms of the reconstruction of bundles from transition maps the associated bundle can be obtained by taking the same transition maps and simply change the fiber of the domains of the local trivializations. If the left $G$-action on $F$ is given by a left $H$-action through a continuous homomorphism $\chi \colon G \to H$ then we sometimes denote the corresponding associated bundle by $\xi[F]_{\chi}$ and say that it is \textbf{determined by $\chi$} if we want to make $\chi$ explicit. In the case that $F = H$ we have a canonical left action of $G$ on $H$ given by
+\begin{align*}
+  G \times H
+  &\to
+  H
+  ,\qquad
+  (g,h)
+  \mapsto
+  \chi(g)h
+\end{align*}
+Using the right multiplication of $H$ we have a right action on the total space of the associated bundle as defined above,
+\begin{align*}
+  (E_{\xi}  \times_{G} H)
+  \times
+  H
+  &\to
+  E_{\xi}  \times_{G} H
+  ,\qquad
+  ([e,h_{1}],h_{2})
+  \mapsto
+  [e,h_{1}h_{2}]
+\end{align*}
+and one can show that the associated bundle $\xi[H]_{\chi}$ becomes a principal $H$-bundle with this action. In the following we always mean this construction when we speak of the principal $H$-bundle $\xi[H]_{\chi}$ determined by $\chi$. Another special case is of importance, namely when $F = K^{n}$, $n \in \mathbb{N}$, and $H = GL(n,K)$, i.e. we have a continuous homomorphism $\chi \colon G \to GL(n,K)$. Then the associated bundle $\xi[K^{n}]_{\chi}$ can be given the structure of a vector bundle of rank $n$ by using the vector space structure on $K^{n}$.
+\\
+There also is a special notion of maps between associated bundles. Given two principal $G$-bundles $\xi_{1}$ and $\xi_{2}$ and a map of principal $G$-bundles $(f_{12}^{E},f_{12}^{B})$ from $\xi_{1}$ to $\xi_{2}$ then there is a bundle map $(f_{12}^{E}[F],f_{12}^{B})$ between the associated bundles, called the \textbf{associated bundle map (induced by $(f_{12}^{E},f_{12}^{B})$)}, where
+\begin{align*}
+  f_{12}^{E}[F]
+  \colon
+  E_{\xi_{1}} \times_{G} F
+  &\to
+  E_{\xi_{2}} \times_{G} F
+  ,\qquad
+  [e_{1},f]
+  \mapsto
+  [f_{12}^{E}(e_{1}),f]
+\end{align*}
+Furthermore, taking the associated bundle behaves well with pullbacks and in particular restrictions. More precisely, let $\xi$ be a principal $G$-bundle, let $F$ be a left $G$-space and let $f \colon B^{\backprime} \to B_{\xi}$ be a continuous map. Then there is a bundle isomorphism from $f^{\ast}(\xi[F])$ to $(f^{\ast}\xi)[F]$. If the associated bundles are principal bundles or vector bundles as constructed above, then these isomorphisms are isomorphisms of principal bundles or vector bundles, respectively.
+\\
+Now we can describe the relation between principal bundles and vector bundles. Let $\xi$ be a principal $GL(n,K)$-bundle and let $GL(n,K)$ act on $K^{n}$ from the left in the usual way. We have seen above that we can associate an $n$-dimensional vector bundle $\xi[K^{n}]$ to $\xi$. But we can also go the other way by taking all ordered bases or \textbf{($n$-)frames} of the fibers of an $n$-dimensional vector bundle. Let $\zeta$ an $n$-dimensional vector bundle then we define the \textbf{frame bundle (of $\zeta$)}, denoted $\mathsf{F}(\zeta)$, to have as total space the subspace of the $n$-fold fibered product $E_{\zeta}^{\times_{B_{\zeta}}^{n}}$ of $E_{\zeta}$ consisting of the frames, i.e.
+\begin{align*}
+  E_{\mathsf{F}(\zeta)}
+  &:=
+  \left\lbrace
+    \mathcal{B}
+    =
+    (e_{1},\ldots,e_{n})
+    \in
+    E_{\zeta}^{\times_{B_{\zeta}}^{n}}
+    \colon
+    \mathcal{B}
+    \text{ is a basis of }
+    \pi_{\zeta}^{-1}
+    \left(
+      \pi_{\zeta}(e_{1})
+    \right)
+  \right\rbrace
+\end{align*}
+The projection is given by
+\begin{align*}
+  \pi_{\mathsf{F}(\zeta)}
+  \colon
+  E_{\mathsf{F}(\zeta)}
+  &\to
+  B_{\zeta}
+  ,\qquad
+  (e_{1},\ldots,e_{n})
+  \mapsto
+  \pi_{\zeta}(e_{1})
+\end{align*}
+Note that by the definition of the fibered product we have
+\begin{align*}
+  \pi_{\zeta}(e_{i})
+  &=
+  \pi_{\zeta}(e_{j})
+  \qquad
+  \text{for}
+  \qquad
+  1
+  \leq
+  i,j
+  \leq
+  n
+\end{align*}
+Now the general linear group $GL(n,K)$ acts on the total space from the right by
+\\\\
+\begin{align*}
+  E_{\mathsf{\zeta}}
+  \times
+  GL(n,K)
+  &\to
+  E_{\mathsf{\zeta}}
+  ,\qquad
+  \left(
+    (e_{1},\ldots,e_{n})
+    ,
+    T
+  \right)
+  \mapsto
+  (e_{1},\ldots,e_{n})
+  T
+  =
+  \left(
+    e_{1}^{\backprime}
+    ,
+    \ldots
+    ,
+    e_{n}^{\backprime}
+  \right)
+  \\
+  &
+  \text{where}
+  \qquad
+  e_{j}^{\backprime}
+  :=
+  \sum_{i=1}^{n}
+  T_{ij}
+  e_{i}
+\end{align*}
+This is nothing but a change of basis and it is not difficult to see that this action is free and transitive in each fiber and in fact makes $\mathsf{F}(\zeta)$ into a principal $GL(n,K)$-bundle.
+\\
+Now denote the set of isomorphism classes of vector bundles of rank $n$ over some topological space $B$ by $\mathcal{V}_{n}^{K}(B)$. Then we have the following correspondence
+\\
+\begin{thm}
+\label{thm:prvecbund}
+Let $B$ be a topological space. Then the map
+\begin{align*}
+  \mathcal{P}_{GL(n,K)}(B)
+  &\to
+  \mathcal{V}_{n}^{K}(B)
+  ,\qquad
+  [\xi]
+  \mapsto
+  [\xi[K^{n}]]
+\end{align*}
+is a bijection whose inverse is given by
+\begin{align*}
+  \mathcal{V}_{n}^{K}(B)
+  &\to
+  \mathcal{P}_{GL(n,K)}(B)
+  ,\qquad
+  [\zeta]
+  \mapsto
+  [\mathsf{F}(\zeta)]
+\end{align*}
+\end{thm}
+If the vector bundle $\zeta$ is equipped with a bundle metric, then we have an inner product structure on each fiber and thus can say what an ordered orthonormal basis or \textbf{orthonormal ($n$-)frame} is. Analogously, as above we can then form the \textbf{orthonormal frame bundle (of $\zeta$)}, denoted $\mathsf{OF}(\zeta)$, consisting of the orthonormal frames. Here we have an action of $O(n) \subset GL(n,\mathbb{R}^{n})$ in the real case and an action of $U(n) \subset GL(n,\mathbb{C}^{n})$ in the complex case, hence $\mathsf{OF}(\zeta)$ is a principal $O(n)$-bundle or a principal $U(n)$-bundle, respectively. If the base space $B_{\zeta}$ is a paracompact Hausdorff space, we can always find a bundle metric and one can show that for two different bundle metrics the corresponding orthonormal frame bundles are isomorphic. Thus we have the following result
+\\
+\begin{thm}
+\label{thm:prvecbundorth}
+Let $B$ be a paracompact Hausdorff space. Then the map
+\begin{align*}
+  \mathcal{P}_{O(n)}(B)
+  &\to
+  \mathcal{V}_{n}^{\mathbb{R}}(B)
+  ,\qquad
+  [\xi]
+  \mapsto
+  [\xi[\mathbb{R}^{n}]]
+\end{align*}
+is a bijection whose inverse is given by
+\begin{align*}
+  \mathcal{V}_{n}^{\mathbb{R}}(B)
+  &\to
+  \mathcal{P}_{O(n)}(B)
+  ,\qquad
+  [\zeta]
+  \mapsto
+  [\mathsf{OF}(\zeta)]
+\end{align*}
+Moreover, the map
+\begin{align*}
+  \mathcal{P}_{U(n)}(B)
+  &\to
+  \mathcal{V}_{n}^{\mathbb{C}}(B)
+  ,\qquad
+  [\xi]
+  \mapsto
+  [\xi[\mathbb{C}^{n}]]
+\end{align*}
+is a bijection whose inverse is given by
+\begin{align*}
+  \mathcal{V}_{n}^{\mathbb{C}}(B)
+  &\to
+  \mathcal{P}_{U(n)}(B)
+  ,\qquad
+  [\zeta]
+  \mapsto
+  [\mathsf{OF}(\zeta)]
+\end{align*}
+\end{thm}
+Finally, we briefly want to discuss the so-called change of the structure group of a principal bundle. Let $G,H$ be topological groups and $\chi \colon G \to H$ a continuous homomorphism. Then for a principal $H$-bundle $\xi_{H}$ a \textbf{change of the structure group of $\xi$ (from $H$) to $G$ along $\chi$} is a pair $(\xi_{G},\phi)$ consisting of a principal $G$-bundle $\xi_{G}$ and an isomorphism of principal $H$-bundles
+\begin{align*}
+  \phi
+  \colon
+  \xi_{H}
+  &\to
+  \xi_{G}[H]_{\chi}
+\end{align*}
+from the original principal $H$-bundle $\xi_{H}$ to the principle $H$-bundle associated with $\xi_{G}$ determined by $\chi$. In the case that $G \subset H$ is a subgroup and $\chi$ is the inclusion we also speak of a \textbf{reduction of the structure group of $\xi$ (from $H$) to $G$}. This case can also be described in terms of transition functions, then a reduction of the structure group from $H$ to $G$ basically means that the transition functions can be chosen such that they have values only in $G$ as can easily be seen from the reconstruction of bundles from transition functions.
+\\
+We can also define the change of the structure group for vector bundles. Let $\zeta$ be an $n$-dimensional vector bundle and $\chi \colon G \to GL(n,K)$ a continuous homomorphism, then a \textbf{change of the structure group of $\zeta$ (from $GL(n,K)$) to $G$ along $\chi$} is a change of the structure group of the frame bundle $\mathsf{F}(\zeta)$ from $GL(n,K)$ to $G$ along $\chi$. Again if $\chi$ is the inclusion of a subgroup we also speak of a \textbf{reduction of the structure group of $\zeta$ (from $GL(n,K)$) to $G$}. This case can also be described in terms of transition functions of $\zeta$ which again means that the transition functions can be chosen such that they have values only in $G$. If $\zeta$ carries a bundle metric then we can also use the orthonormal frame bundle $\mathsf{OF}(\zeta)$ and the group $O(n)$ in the real case and $U(n)$ in the complex case instead of $GL(n,K)$ to define the change of the structure group. In fact, reducing the structure group from $GL(n,K)$ to $O(n)$ (or $U(n)$) basically corresponds to choosing a bundle metric.

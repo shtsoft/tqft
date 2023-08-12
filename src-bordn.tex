@@ -1,0 +1,115 @@
+%\nocite{dfcdc48c}
+%%%
+Now we can combine the two preceding subsections to define our final version of the cobordism category which we call $\mathbf{Bord}_{n}$. We will drop the requirement of orientation as standard in this definition as we will consider various structures on the manifolds for this category later. For $n \in \mathbb{N}$ we can thus describe this $(\infty,n)$-category informally as follows
+\begin{enumerate}
+\item[(0)]
+the objects of $\mathbf{Bord}_{n}$ are compact $0$-manifolds
+
+\item[(1)]
+for a pair of objects $S_{1},S_{2}$ in $\mathbf{Bord}_{n}$ a $1$-morphism from $S_{1}$ to $S_{2}$ is a $1$-dimensional $1$-cobordism $M \colon S_{1} \to S_{2}$
+
+\item[(2)]
+for a pair of objects $S_{1},S_{2}$ in $\mathbf{Bord}_{n}$ and a pair of parallel $1$-morphisms $M_{1},M_{2} \colon S_{1} \to S_{2}$ a $2$-morphism from $M_{1}$ to $M_{2}$ is a $2$-dimensional $2$-cobordism with $1$-source $M_{1}$ and $1$-target $M_{2}$
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(n)]
+an $n$-morphism is an $n$-dimensional $n$-cobordism between two parallel $(n-1)$-dimensional $(n-1)$-cobordisms
+
+\item[(n+1)]
+an $(n+1)$-morphism between two parallel $n$-morphisms is a diffeomorphism rel boundary between them
+
+\item[(n+2)]
+an $(n+2)$-morphism is a smooth homotopy between its parallel source and target $(n+1)$-morphism, i.e. between parallel diffeomorphisms rel boundary
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(...)]
+higher morphisms are higher (smooth) homotopies between the lower ones
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(c)]
+composition on the various levels of morphisms is as described for ${_{n}}\mathbf{Cob}_{n}$ and ${_{(\infty,n)}}\mathbf{Cob}_{n}$ in the two preceding subsections
+
+\item[(s)]
+using the disjoint union one can again endow $\mathbf{Bord}_{n}$ with a symmetric monoidal structure
+\end{enumerate}
+This symmetric monoidal $(\infty,n)$-category $\mathbf{Bord}_{n}$ can be endowed with additional, often called tangential structures for the manifolds, e.g. orientations or $n$-framings, by requiring all manifolds to be equipped with such a structure in a compatible way. For orientations and $n$-framings we call the corresponding $(\infty,n)$-categories $\mathbf{Bord}_{n}^{\mathrm{or}}$ and $\mathbf{Bord}_{n}^{\mathrm{fr}}$, respectively. In the next section we also introduce a more general way to endow $\mathbf{Bord}_{n}$ with additional structures.
+\\
+Now for a symmetric monoidal $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ an \textbf{$n$-dimensional fully extended ${_{(\infty,n)}}\mathbf{C}$-valued TQFT} is a symmetric monoidal functor
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Bord}_{n}
+  &\to
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+of $(\infty,n)$-categories. If we replace $\mathbf{Bord}_{n}$ by $\mathbf{Bord}_{n}^{\mathrm{or}}$ or $\mathbf{Bord}_{n}^{\mathrm{fr}}$ we add the adjective \textbf{oriented} or \textbf{framed}. For a precise definition of this version of the cobordism category as a symmetric monoidal $(\infty,n)$-category the reader is referred to \cite{29781dd2} where also the case of additional tangential structures (see section \ref{sec:vyzstruct}) is treated. In \cite{dfcdc48c} there is a description, too, which however lacks some details and also contains an error which is corrected by the slightly modified approach in \cite{29781dd2}. Both works use $n$-fold complete Segal spaces as a model for $(\infty,n)$-categories. A major advantage of this approach is that composition does not need to be defined on the nose but rather up to a contractible space of choices. This makes the subtleties of gluing, like dealing with the smooth structure, disappear. The basic idea for the construction is the following.
+\\
+\begin{cst}[Sketch]
+\label{cst:bordn}
+For any finite-dimensional vector space $V$ and multiindex
+\begin{align*}
+  \underline{k}
+  &=
+  (k_{1},\ldots,k_{n})
+  \in
+  \mathbb{N}^{n}
+\end{align*}
+consider the set
+\begin{align*}
+  \left(
+    \mathrm{PBord}_{n}^{V}
+  \right)_{\underline{k}}
+\end{align*}
+consisting of tuples
+\begin{align*}
+  \left(
+    M
+    ,
+    \left(
+      t_{0}^{1}
+      ,
+      \ldots
+      ,
+      t_{k_{1}}^{1}
+    \right)
+    ,
+    \ldots
+    ,
+    \left(
+      t_{0}^{n}
+      ,
+      \ldots
+      ,
+      t_{k_{n}}^{n}
+    \right)
+  \right)
+\end{align*}
+where $M$ is a submanifold of $V \times \mathbb{R}^{n}$ satisfying some properties, the tuple $(t_{0}^{i},\ldots,t_{k_{i}}^{i})$ consists of $k_{i}+1$ real numbers with $t_{0}^{i} \leq \ldots \leq t_{k_{i}}^{i}$ for $i = 1,\ldots,n$ and the manifold and these tuples satisfy another property. The tuples of real numbers are meant to encode where the manifold can be cut in pieces so that one should think of an element in $(\mathrm{PBord}_{n}^{V})_{\underline{k}}$ as a collection of $k_{1} k_{2} \cdots k_{n}$ cobordisms which are glued together in the $n$ possible directions, i.e. $k_{i}$ cobordisms in direction $i$.
+\\
+The next step is to make the $(\mathrm{PBord}_{n}^{V})_{\underline{k}}$ into topological spaces or simplicial sets which contain the information about diffeomorphisms between the cobordisms and the higher homotopy information. Now all these spaces can be organized into an $n$-fold simplicial space which we call $(\mathrm{PBord}_{n}^{V})$ and in fact this already is an $n$-fold Segal space.
+\\
+So far $(\mathrm{PBord}_{n}^{V})$ is defined w.r.t. some finite-dimensional vector space $V$. But by Whitney's embedding theorem any manifold can be embedded into such a vector space if the dimension of the vector space is large enough. Therefore one takes the homotopy\footnote{homotopy (co)limits can be thought of as a weak form of (co)limits, i.e. (co)limits up to coherent homotopy} colimit over all finite-dimensional subspaces of the countably infinite-dimensional vector space $\mathbb{R}^{\infty}$, ordered by inclusion\footnote{thus this homotopy colimit can basically be thought of as the direct limit}, to obtain an $n$-fold Segal space
+\begin{align*}
+  \mathrm{PBord}_{n}
+  &:=
+  \mathrm{hocolim}_{V \subset \mathbb{R}^{\infty}}
+  \mathrm{PBord}_{n}^{V}
+\end{align*}
+containing a representative for every manifold we want to consider. This $n$-fold Segal space is generally not complete but there is a completion functor taking an $n$-fold Segal space to a corresponding complete $n$-fold Segal space. The completion of $\mathrm{PBord}_{n}$ is then the $(\infty,n)$-category $\mathbf{Bord}_{n}$ of cobordisms.
+\end{cst}
+That this construction indeed captures the informal description given before is discussed in \cite{29781dd2} with the help of some (refined version of) Morse theory. Moreover, \cite{29781dd2} includes a discussion of the symmetric monoidal structure.

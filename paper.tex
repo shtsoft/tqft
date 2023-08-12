@@ -1,0 +1,356 @@
+\documentclass[a4paper,11pt,psamsfonts,reqno]{amsbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{calc}
+\usepackage{color}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{longtable}
+\usepackage{pdfpages}
+\usepackage{amscd,amsmath,amssymb,amstext,amsthm}
+\usepackage{braket}
+\usepackage{mathpartir}
+\usepackage{tikz}
+
+\usetikzlibrary{cd}
+\usetikzlibrary{patterns}
+\usetikzlibrary{tqft}
+
+
+\geometry{a4paper,left=20mm,right=20mm,top=20mm,bottom=20mm}
+\onehalfspacing
+
+\allowdisplaybreaks
+
+
+\newcounter{prpcounter}
+
+
+\newtheoremstyle{proposition}
+{0pt}
+{10pt}
+{\normalfont}
+{}
+{\bfseries}
+{}
+{0.8em}
+{\bfseries{\thmnumber{#2}\hspace{0.4em}\thmname{#1}\thmnote{\hspace{0.5em}(#3)}}}
+
+\newtheoremstyle{proof}
+{0pt}
+{10pt}
+{\normalfont}
+{}
+{\bfseries}
+{}
+{0.8em}
+{\bfseries{\thmname{#1}\thmnote{\hspace{0.5em}(#3)}}}
+
+
+\theoremstyle{proposition}
+\newtheorem{prp}{Proposition}[prpcounter]
+\newtheorem{con}[prp]{Conjecture}
+\newtheorem{cor}[prp]{Corollary}
+\newtheorem{cst}[prp]{Construction}
+\newtheorem{exa}[prp]{Example}
+\newtheorem{lem}[prp]{Lemma}
+\newtheorem{rem}[prp]{Remark}
+\newtheorem{thm}[prp]{Theorem}
+
+
+\theoremstyle{proof}
+\newtheorem{prf}{Proof}
+
+
+\setcounter{tocdepth}{2}
+
+
+\begin{document}
+
+\title{Ordinary TQFTs and Close Encounters of the Higher Kind}
+\author{SHTSoft.EU\footnote{\datename{ \today}}}
+\maketitle
+\tableofcontents
+
+
+\input{macros.tex}
+
+
+\chapter{Introduction}
+\label{chap:intro}
+\stepcounter{prpcounter}
+\input{src-intro.tex}
+
+
+\section{Standard Notation}
+\label{sec:notation}
+\input{src-notation.tex}
+
+
+
+\chapter{Motivation - An overview of QFT}
+\label{chap:motqft}
+\stepcounter{prpcounter}
+\input{src-motqft.tex}
+
+
+
+
+\part{Ordinary TQFTs}
+\label{part:ordinary}
+\input{src-partordinary.tex}
+
+
+
+
+\chapter{Preliminaries}
+\label{chap:prelim1}
+\stepcounter{prpcounter}
+\input{src-prelim1.tex}
+
+\section{Symmetric Monoidal Categories and Dual Objects}
+\label{sec:smoncatdual}
+\input{src-smoncatdual.tex}
+
+\section{Principal Bundles and Vector Bundles}
+\label{sec:bundles}
+\input{src-bundles.tex}
+
+\section{Orientation}
+\label{sec:orient}
+\input{src-orientation.tex}
+
+
+
+\chapter{Definition of Ordinary TQFTs}
+\label{chap:defordtqft}
+\stepcounter{prpcounter}
+\input{src-defordtqft.tex}
+
+
+\section{Cobordism Category}
+\label{sec:cob}
+\input{src-cob.tex}
+
+
+\section{Vector Space Category}
+\label{sec:vec}
+\input{src-vec.tex}
+
+
+\section{Definition of a TQFT}
+\label{sec:deftqft}
+\input{src-deftqft.tex}
+
+
+
+\chapter{Motivation from Path Integrals}
+\label{chap:motpathint}
+\stepcounter{prpcounter}
+\input{src-motpathint.tex}
+
+
+\section{Path Integrals in QFT}
+\label{sec:piform}
+\input{src-piform.tex}
+
+
+\section{Path Integrals and TQFTs}
+\label{sec:pitqfts}
+\input{src-pitqfts.tex}
+
+
+
+\chapter{Alternative Characterization and Basic Properties}
+\label{CHAP:ALTCHARPROPS}
+\stepcounter{prpcounter}
+\input{src-altcharprops.tex}
+
+
+\section{Alternative Characterization}
+\label{sec:altchar}
+\input{src-altchar.tex}
+
+
+\section{Comparison of TQFTs}
+\label{sec:comparison}
+\input{src-comparison.tex}
+
+
+\section{Basic Properties}
+\label{sec:basprop}
+\input{src-basprop.tex}
+
+\subsection{Dimensionality of the State Spaces}
+\label{subsec:dim}
+\input{src-dim.tex}
+
+\subsection{Dimensional Reduction}
+\label{subsec:dimred}
+\input{src-dimred.tex}
+
+\subsection{Connected Sum}
+\label{subsec:consum}
+\input{src-consum.tex}
+
+
+
+
+\part{Close Encounters of the Higher Kind}
+\label{part:higher}
+\input{src-parthigher.tex}
+
+
+
+
+\chapter{Preliminaries}
+\label{chap:prelim2}
+\stepcounter{prpcounter}
+\input{src-prelim2.tex}
+
+
+\section{Higher Categories}
+\label{sec:highcat}
+\input{src-highcat.tex}
+
+
+\section{Manifolds with Corners}
+\label{sec:mancorn}
+\input{src-mancorn.tex}
+
+
+
+\chapter{Motivation: Low-Dimensional TQFTs}
+\label{chap:lowdimtqft}
+\stepcounter{prpcounter}
+\input{src-lowdimtqft.tex}
+
+
+\section{1-Dimensional TQFTs}
+\label{sec:1dimtqft}
+\input{src-1dimtqft.tex}
+
+
+\section{2-Dimensional TQFTs}
+\label{sec:2dimtqft}
+\input{src-2dimtqft.tex}
+
+
+
+\chapter{Extending the Category $\mathbf{Cob}_{n}$}
+\label{chap:extcob}
+\stepcounter{prpcounter}
+\input{src-extcob.tex}
+
+
+\section{Extending Down}
+\label{sec:extdown}
+\input{src-extdown.tex}
+
+
+\section{Extending Up}
+\label{sec:extup}
+\input{src-extup.tex}
+
+
+\section{The $(\infty,n)$-Category $\mathbf{Bord}_{n}$}
+\label{sec:bordn}
+\input{src-bordn.tex}
+
+
+
+\chapter{Formulation of the Cobordism Hypothesis}
+\label{chap:formcobhyp}
+\stepcounter{prpcounter}
+\input{src-formcobhyp.tex}
+
+
+\section{Full Dualizability}
+\label{sec:fulldual}
+\input{src-fulldual.tex}
+
+
+\section{Framed Version}
+\label{sec:vframed}
+\input{src-vframed.tex}
+
+
+\section{$(Y,\zeta)$-Structure Version}
+\label{sec:vyzstruct}
+\input{src-vyzstruct.tex}
+
+
+\section{$G$-Structure Version}
+\label{sec:vgstruct}
+\input{src-vgstruct.tex}
+
+
+
+
+\addtocontents{toc}{\vspace{\normalbaselineskip}}
+
+
+
+
+\chapter{A Brief Outlook}
+\label{chap:outlook}
+\stepcounter{prpcounter}
+\input{src-outlook.tex}
+
+
+
+
+\part*{Appendices}
+
+
+
+
+\chapter*{Appendix A:\quad Homology}
+\label{chap:hom}
+\stepcounter{prpcounter}
+\input{src-homology.tex}
+
+
+
+\chapter*{Appendix B:\quad Morse Theory}
+\label{sec:morseth}
+\stepcounter{prpcounter}
+\input{src-morseth.tex}
+
+
+
+\chapter*{Appendix C:\quad Detailed Proofs from Chapter \ref{CHAP:ALTCHARPROPS}}
+\label{chap:detailproofs}
+\stepcounter{prpcounter}
+\input{src-detailproofs.tex}
+
+
+\section*{Lemma \ref{LEM:DUALOBTENSOR}}
+\label{sec:lemdualobtensor}
+\input{src-lemdualobtensor.tex}
+
+
+\section*{Theorem \ref{THM:ACSMF}}
+\label{sec:thmacsmf}
+\input{src-thmacsmf.tex}
+
+
+\section*{Theorem \ref{THM:ACMNT}}
+\label{sec:thmacmnt}
+\input{src-thmacmnt.tex}
+
+
+
+\nocite{wiki-nlab0000}
+\nocite{wiki-pedia0en}
+
+\bibliographystyle{alpha}
+\bibliography{bib}
+
+\end{document}

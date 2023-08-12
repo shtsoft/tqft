@@ -1,0 +1,503 @@
+\begin{thm}
+\label{thm:appacmnt}
+Let $\mathbf{C}, \mathbf{C}_{\alpha}$ be symmetric monoidal categories and let $\mathbf{C}$ be left rigid. Further let $F_{1},F_{2}$ be tuples as in theorem \ref{THM:ACSMF} satisfying the conditons (AC1) - (AC5) there and let $\mathsf{T}_{12}$ be a function assigning to each $X \in \mathrm{ob}_{\mathbf{C}}$ an isomorphism
+\begin{align*}
+  \mathsf{T}_{12}(X)
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}(F_{1}(X),F_{2}(X))
+\end{align*}
+Then the following are equivalent
+\begin{enumerate}
+\item[i)]
+$\mathsf{T}_{12}$ is a monoidal natural isomorphism between the symmetric monoidal functors obtained by extending $F_{1},F_{2}$ via theorem \ref{THM:ACSMF}.
+
+\item[ii)]
+$\mathsf{T}$ satisfies
+\begin{enumerate}
+\item[(TAC1)]
+for $f \in \mathrm{mor}_{\mathbf{C}}(1,X)$ the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[column sep=large]
+  F_{1}(1)
+  \ar{r}{F_{1}(f)}
+  &
+  F_{1}(X)
+  \ar{dd}{\mathsf{T}_{12}(X)}
+  \\
+  1_{\alpha}
+  \ar{u}{\Phi_{1}}
+  \ar{d}[swap]{\Phi_{2}}
+  \\
+  F_{2}(1)
+  \ar{r}{F_{2}(f)}
+  &
+  F_{2}(X)
+\end{tikzcd}
+\end{equation*}
+
+\item[(TAC2)]
+for $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$ the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=8em]
+  F_{1}(X_{1})
+  \otimes_{\alpha}
+  F_{1}(X_{2})
+  \arrow{r}{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} \mathsf{T}_{12}(X_{2})}
+  \arrow[swap]{d}{\mathsf{H}_{1}(X_{1},X_{2})}
+  &
+  F_{2}(X_{1})
+  \otimes_{\alpha}
+  F_{2}(X_{2})
+  \arrow{d}{\mathsf{H}_{2}(X_{1},X_{2})}
+  \\
+  F_{1}(X_{1} \otimes X_{2})
+  \arrow{r}{\mathsf{T}_{12}(X_{1} \otimes X_{2})}
+  &
+  F_{2}(X_{1} \otimes X_{2})
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+\end{enumerate}
+\end{thm}
+\begin{prf}
+By theorem \ref{THM:ACSMF} we may assume for both directions of the proof that $F_{1},F_{2}$ are both symmetric monoidal functors from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$.
+\\\\
+i) $\Rightarrow$ ii)
+\qquad
+This direction is easy. The diagram in (TAC1) is immediate from the naturality of $\mathsf{T}_{12}$ and the diagram for monoidal natural transformations (MT2) involving $\Phi_{1},\Phi_{2}$. The diagram in (TAC2) is the same as (MT1) for a monoidal natural transformation.
+\\\\
+ii) $\Rightarrow$ i)
+\qquad
+The monoidality of $\mathsf{T}_{12}$ is easy, since, as already said above, (MT1) is just (TAC2) and (MT2) which demands
+\begin{align*}
+  \Phi_{2}
+  &=
+  \mathsf{T}_{12}(1)
+  \circ
+  \Phi_{1}
+\end{align*}
+is just (TAC1) for $X = 1$ and $f = \mathrm{id}_{1}$ since $F_{i}(\mathrm{id}_{1}) = \mathrm{id}_{F_{i}(1)}$ for $i = 1,2$. This also implies that (TAC1) yields the naturality of $\mathsf{T}_{12}$ for morphisms $f \in \mathrm{mor}_{\mathbf{C}}(1,X)$ and it remains to show the naturality for arbitrary morphisms
+\begin{align*}
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+This requires more, somewhat tedious, work and we do it in three steps.
+\begin{enumerate}
+\item[(i)]
+Remember the definition of the coevalution map for
+\begin{align*}
+  F_{i}(X_{1})
+  \qquad
+  \text{and}
+  \qquad
+  F_{i}(X_{1}^{\prime})
+  ,\qquad
+  i
+  &=
+  1
+  ,
+  2
+\end{align*}
+as
+\begin{align*}
+  \mathrm{coev}_{F_{i}(X_{1})}
+  &=
+  \mathsf{H}_{i}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  F_{i}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{i}
+\end{align*}
+From (TAC1) we have
+\begin{align*}
+  F_{2}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{2}
+  &=
+  \mathsf{T}_{12}(X_{1} \otimes X_{1}^{\prime})
+  \circ
+  F_{1}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{1}
+\end{align*}
+and (TAC2) hence implies
+\begin{align*}
+  \mathrm{coev}_{F_{2}(X_{1})}
+  &=
+  \mathsf{H}_{2}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  F_{2}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{2}
+  \\
+  &=
+  \mathsf{H}_{2}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  \mathsf{T}_{12}(X_{1} \otimes X_{1}^{\prime})
+  \circ
+  F_{1}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{1}
+  \\
+  &=
+  \left(
+    \mathsf{T}_{12}(X_{1})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1}^{\prime})
+  \right)
+  \circ
+  \mathsf{H}_{1}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  F_{1}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{1}
+  \\
+  &=
+  \left(
+    \mathsf{T}_{12}(X_{1})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1}^{\prime})
+  \right)
+  \circ
+  \mathrm{coev}_{F_{1}(X_{1})}
+\end{align*}
+
+\item[(ii)]
+We want to prove a similar relation for the evaluation maps $\mathrm{ev}_{F_{i}(X_{1})}$ corresponding to the $\mathrm{coev}_{F_{i}(X_{1})}$, i.e. we want to show
+\begin{align*}
+  \mathrm{ev}_{F_{1}(X_{1})}
+  &=
+  \mathrm{ev}_{F_{2}(X_{1})}
+  \circ
+  \left(
+    \mathsf{T}_{12}(X_{1}^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1})
+  \right)
+\end{align*}
+Note that we cannot reason as in (i) since we do not have a diagram analogous to (TAC1) for morphisms with codomain $1$. Thus, to show the above equation we will check that
+\begin{align*}
+  \tilde{\mathrm{ev}}_{F_{1}(X_{1})}
+  &:=
+  \mathrm{ev}_{F_{2}(X_{1})}
+  \circ
+  \left(
+    \mathsf{T}_{12}(X_{1}^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1})
+  \right)
+\end{align*}
+also is an evaluation map for $\mathrm{coev}_{F_{1}(X_{1})}$. Then the uniqueness of the evaluation map implies what we want to show.
+\\
+The first diagram which has to commute is the outer way of the following diagram where the upper inner part obviously commutes. The upper left and upper right part commute by the naturality of $\mathsf{L}_{\alpha}$ and $\mathsf{R}_{\alpha}$, respectively. The lower left part commutes by (i) and the lower right part by definition.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=6em,column sep=1.7em,font=\footnotesize,every label/.append style={font=\tiny}]
+  F_{1}(X_{1})
+  \ar{rr}{\mathsf{T}_{12}(X_{1})}
+  \ar[bend left]{rrrr}{\mathrm{id}_{F_{1}(X_{1})}}
+  &
+  &
+  F_{2}(X_{1})
+  &
+  &
+  F_{1}(X_{1})
+  \ar{ll}[swap]{\mathsf{T}_{12}(X_{1})}
+  \\
+  1_{\alpha} F_{1}(X_{1})
+  \ar{u}[description]{\mathsf{L}_{\alpha}(F_{1}(X_{1}))}
+  \ar{rd}[description]{\mathrm{coev}_{F_{2}(X_{1})} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  \ar{dd}[description]{\mathrm{coev}_{F_{1}(X_{1})} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  1_{\alpha} F_{2}(X_{1})
+  \ar{ur}[description]{\mathsf{L}_{\alpha}(F_{2}(X_{1}))}
+  \ar{l}[swap]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{T}_{12}(X_{1})^{-1}}
+  &
+  &
+  F_{2}(X_{1}) 1_{\alpha}
+  \ar{ul}[description]{\mathsf{R}_{\alpha}(F_{2}(X_{1}))}
+  &
+  F_{1}(X_{1}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(F_{1}(X_{1}))}
+  \ar{l}[swap]{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  \\
+  &
+  (F_{2}(X_{1}) F_{2}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{dl}[description,xshift=6mm]{(\mathsf{T}_{12}(X_{1})^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime}))^{-1} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  &
+  F_{1}(X_{1}) (F_{2}(X_{1}^{\prime}) F_{2}(X_{1}))
+  \ar{ru}[description]{\mathrm{id}_{F_{2}(X_{1})} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X_{1})}}
+  &
+  \\
+  (F_{1}(X_{1}) F_{1}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{rrrr}{\mathsf{A}_{\alpha}(F_{1}(X_{1}),F_{1}(X_{1}^{\prime}),F_{1}(X_{1}))}
+  &
+  &
+  &
+  &
+  F_{1}(X_{1}) (F_{1}(X_{1}^{\prime}) F_{1}(X_{1}))
+  \ar{uu}[description]{\mathrm{id}_{F_{1}(X_{1})} \otimes_{\alpha} \tilde{\mathrm{ev}}_{F_{1}(X_{1})}}
+  \ar{ul}[description,xshift=-3mm]{\mathrm{id}_{F_{1}(X_{1})} \otimes_{\alpha} (\mathsf{T}_{12}(X_{1}^{\prime}) \otimes_{\alpha} \mathsf{T}_{12}(X_{1}))}
+\end{tikzcd}
+\end{equation*}
+\newpage
+Going the inner way we obtain the outer perimeter of the following diagram. The parts on the left and right commute due to the functoriality of the tensor product and the lower part follows from the naturality of $\mathsf{A}_{\alpha}$. The upper part is diagram (LD1) governing dual objects for $\mathrm{ev}_{F_{2}(X_{1})}$ and $\mathrm{coev}_{F_{2}(X_{1})}$. Thus the outer way commutes and hence so does the diagram above.
+\begin{equation*}
+\hspace{-2.4em}
+\begin{tikzcd}[row sep=6.5em,column sep=1.4em,font=\footnotesize,every label/.append style={font=\tiny}]
+  1_{\alpha} F_{2}(X_{1})
+  \ar{rr}{\mathsf{L}_{\alpha}(F_{2}(X_{1}))}
+  \ar{rd}[description,yshift=3mm]{\mathrm{coev}_{F_{2}(X_{1})} \otimes_{\alpha} \mathrm{id}_{F_{2}(X_{1})}}
+  \ar{d}[description,yshift=-3mm]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{T}_{12}(X_{1})^{-1}}
+  &
+  &
+  F_{2}(X_{1})
+  &
+  &
+  F_{2}(X_{1}) 1_{\alpha}
+  \ar{ll}[swap]{\mathsf{R}_{\alpha}(F_{2}(X_{1}))}
+  \\
+  1_{\alpha} F_{1}(X_{1})
+  \ar{d}[description,yshift=3mm]{\mathrm{coev}_{F_{2}(X_{1})} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  (F_{2}(X_{1}) F_{2}(X_{1}^{\prime})) F_{2}(X_{1})
+  \ar{rr}[yshift=3pt]{\mathsf{A}_{\alpha}(F_{2}(X_{1}),F_{2}(X_{1}^{\prime}),F_{2}(X_{1}))}
+  \ar[bend left=35]{ddl}[description,xshift=-5mm,yshift=-10.5mm]{(\mathsf{T}_{12}(X_{1})^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime}))^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1})^{-1}}
+  \ar{dl}[description,yshift=-3.5mm]{\mathrm{id}_{F_{2}(X_{1}) F_{2}(X_{1}^{\prime})} \otimes_{\alpha} \mathsf{T}_{12}(X_{1})^{-1}}
+  &
+  &
+  F_{2}(X_{1}) (F_{2}(X_{1}^{\prime}) F_{2}(X_{1}))
+  \ar{ur}[description,yshift=3mm]{\mathrm{id}_{F_{2}(X_{1})} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X_{1})}}
+  &
+  F_{1}(X_{1}) 1_{\alpha}
+  \ar{u}[description,yshift=-3mm]{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  \\
+  (F_{2}(X_{1}) F_{2}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{d}[description,xshift=4mm,yshift=6.5mm]{(\mathsf{T}_{12}(X_{1})^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime}))^{-1} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  &
+  &
+  &
+  F_{1}(X_{1}) (F_{2}(X_{1}^{\prime}) F_{2}(X_{1}))
+  \ar{u}[description,yshift=3mm]{\mathrm{id}_{F_{1}(X_{1})} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X_{1})}}
+  \ar{ul}[description,yshift=-3mm]{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} \mathrm{id}_{F_{2}(X_{1}^{\prime}) F_{2}(X_{1})}}
+  \\
+  (F_{1}(X_{1}) F_{1}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{rrrr}{\mathsf{A}_{\alpha}(F_{1}(X_{1}),F_{1}(X_{1}^{\prime}),F_{1}(X_{1}))}
+  &
+  &
+  &
+  &
+  F_{1}(X_{1}) (F_{1}(X_{1}^{\prime}) F_{1}(X_{1}))
+  \ar{u}[description]{\mathrm{id}_{F_{1}(X_{1})} \otimes_{\alpha} (\mathsf{T}_{12}(X_{1}^{\prime}) \otimes_{\alpha} \mathsf{T}_{12}(X_{1}))}
+  \ar[bend left=35]{uul}[description,yshift=-1mm]{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} (\mathsf{T}_{12}(X_{1}^{\prime}) \otimes_{\alpha} \mathsf{T}_{12}(X_{1}))}
+\end{tikzcd}
+\end{equation*}
+The second diagram can be treated analogously.
+
+\item[(iii)]
+We have to show that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=3.2em]
+  F_{1}(X_{1})
+  \ar{r}{F_{1}(f_{12})}
+  \ar{d}[swap]{\mathsf{T}_{12}(X_{1})}
+  &
+  F_{1}(X_{2})
+  \ar{d}{\mathsf{T}_{12}(X_{2})}
+  \\
+  F_{2}(X_{1})
+  \ar{r}{F_{2}(f_{12})}
+  &
+  F_{2}(X_{2})
+\end{tikzcd}
+\end{equation*}
+To do this we recall the definition of $F_{i}(f_{12})$, $i = 1,2$, in terms of
+\begin{align*}
+  \tilde{f}_{12}
+  &=
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  \mathrm{coev}_{X_{1}}
+  \colon
+  1
+  \to
+  X_{2} \otimes X_{1}^{\prime}
+  \\
+  \gamma_{f_{12}}^{F_{i}}
+  &=
+  \mathsf{H}_{i}^{-1}(X_{2},X_{1}^{\prime})
+  \circ
+  F_{i}(\tilde{f}_{12})
+  \circ
+  \Phi_{i}
+\end{align*}
+by the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  F_{i}(X_{1})
+  \ar{r}{F_{i}(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(F_{i}(X_{1}))}
+  &
+  F_{i}(X_{2})
+  \\
+  1_{\alpha} F_{i}(X_{1})
+  \ar{d}[swap]{\gamma_{f_{12}}^{F_{i}} \otimes_{\alpha} \mathrm{id}_{F_{i}(X_{1})}}
+  &
+  F_{i}(X_{2}) 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(F_{i}(X_{2}))}
+  \\
+  (F_{i}(X_{2}) F_{i}(X_{1}^{\prime})) F_{i}(X_{1})
+  \ar{r}{\mathsf{A}_{\alpha}(F_{i}(X_{2}),F_{i}(X_{1}^{\prime}),F_{i}(X_{1}))}
+  &
+  F_{i}(X_{2}) (F_{i}(X_{1}^{\prime}) F_{i}(X_{1}))
+  \ar{u}[swap]{\mathrm{id}_{F_{i}(X_{2})} \otimes_{\alpha} \mathrm{ev}_{F_{i}(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+From (TAC1) for $\tilde{f}_{12}$ and (TAC2) we find the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=2.5em,column sep=4em]
+  F_{1}(1)
+  \ar{r}{F_{1}(\tilde{f}_{12})}
+  &
+  F_{1}(X_{2} X_{1}^{\prime})
+  \arrow{r}{\mathsf{H}_{1}^{-1}(X_{1},X_{2})}
+  &
+  F_{1}(X_{2}) F_{1}(X_{1}^{\prime})
+  \\
+  1_{\alpha}
+  \ar[out=150,in=140,looseness=1.5]{rru}[xshift=2.3cm,yshift=3mm]{\gamma_{f_{12}}^{F_{1}}}
+  \ar{u}{\Phi_{1}}
+  \ar[out=210,in=220,looseness=1.5]{rrd}[swap,xshift=2.3cm,yshift=-3mm]{\gamma_{f_{12}}^{F_{2}}}
+  \ar{d}[swap]{\Phi_{2}}
+  \\
+  F_{2}(1)
+  \ar{r}{F_{2}(\tilde{f}_{12})}
+  &
+  F_{2}(X_{2} X_{1}^{\prime})
+  \arrow{r}{\mathsf{H}_{2}^{-1}(X_{1},X_{2})}
+  \ar{uu}[description]{\mathsf{T}_{12}(X_{2} X_{1}^{\prime})^{-1}}
+  &
+  F_{2}(X_{2}) F_{2}(X_{1}^{\prime})
+  \ar{uu}[description]{\mathsf{T}_{12}(X_{2})^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime})^{-1}}
+\end{tikzcd}
+\end{equation*}
+that is, we have the following relation
+\begin{align*}
+  \gamma_{f_{12}}^{F_{1}}
+  &=
+  \left(
+    \mathsf{T}_{12}(X_{2})^{-1}
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1}^{\prime})^{-1}
+  \right)
+  \circ
+  \gamma_{f_{12}}^{F_{2}}
+\end{align*}
+With this equation and from the definition of $F_{1}(f_{12})$ we have the inner path of following commuting diagram. The lower middle part follows from step (ii), the lower right part is the functoriality of $\otimes_{\alpha}$ and the inner right part is the naturality of $\mathsf{R}_{\alpha}$.
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=5.5em]
+  F_{1}(X_{1})
+  \ar{rr}{F_{1}(f_{12})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(F_{1}(X_{1}))}
+  &
+  &
+  F_{1}(X_{2})
+  \ar{d}{\mathsf{T}_{12}(X_{2})}
+  \\
+  1_{\alpha} F_{1}(X_{1})
+  \ar{r}{\gamma_{f_{12}}^{F_{2}} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  \ar{d}[description,yshift=-2mm]{\gamma_{f_{12}}^{F_{1}} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  (F_{2}(X_{2}) F_{2}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{dl}[description,xshift=3mm,yshift=3mm]{(\mathsf{T}_{12}(X_{2})^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  F_{2}(X_{2})
+  \\
+  (F_{1}(X_{2}) F_{1}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{d}[description]{\mathsf{A}_{\alpha}(F_{1}(X_{2}),F_{1}(X_{1}^{\prime}),F_{1}(X_{1}))}
+  &
+  F_{1}(X_{2})
+  \ar{ur}[description]{\mathsf{T}_{12}(X_{2})}
+  &
+  F_{2}(X_{2}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(F_{2}(X_{2}))}
+  \\
+  F_{1}(X_{2}) (F_{1}(X_{1}^{\prime}) F_{1}(X_{1}))
+  \ar{rr}{\mathrm{id}_{F_{1}(X_{2})} \otimes_{\alpha} \mathrm{ev}_{F_{1}(X_{1})}}
+  \ar{rd}[description]{\mathrm{id}_{F_{1}(X_{2})} \otimes_{\alpha} (\mathsf{T}_{12}(X_{1}^{\prime}) \otimes_{\alpha} \mathsf{T}_{12}(X_{1}))}
+  &
+  &
+  F_{1}(X_{2}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{T}_{12}(X_{2}) \otimes_{\alpha} \mathrm{id}_{1_{\alpha}}}
+  \ar{ul}[description]{\mathsf{R}_{\alpha}(F_{1}(X_{2}))}
+  \\
+  &
+  F_{1}(X_{2}) (F_{2}(X_{1}^{\prime}) F_{2}(X_{1}))
+  \ar{r}[xshift=5mm,yshift=3pt]{\mathsf{T}_{12}(X_{2}) \otimes_{\alpha} \mathrm{id}_{F_{2}(X_{1}^{\prime}) F_{2}(X_{1})}}
+  \ar{ur}[description]{\mathrm{id}_{F_{1}(X_{2})} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X_{1})}}
+  &
+  F_{2}(X_{2}) (F_{2}(X_{1}^{\prime}) F_{2}(X_{1}))
+  \ar[bend right=55]{uu}[description,xshift=-5mm,,yshift=-10mm]{\mathrm{id}_{F_{2}(X_{2})} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+From the outer way we obtain the outer perimeter of following diagram. The lower part is the naturality of $\mathsf{A}_{\alpha}$, the lower and middle left part commutes due to the functoriality of the tensor product and the upper left part is the naturality of $\mathsf{L}_{\alpha}$. The central right part commutes by definition and hence the upper part also commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=6em,column sep=5em]
+  &
+  F_{1}(X_{2})
+  \ar{rd}{\mathsf{T}_{12}(X_{2})}
+  &
+  \\
+  F_{1}(X_{1})
+  \ar{ur}{F_{1}(f_{12})}
+  \ar{r}{\mathsf{T}_{12}(X_{1})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(F_{1}(X_{1}))}
+  &
+  F_{2}(X_{1})
+  \ar{r}{F_{2}(f_{12})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(F_{2}(X_{1}))}
+  &
+  F_{2}(X_{2})
+  \\
+  1_{\alpha} F_{1}(X_{1})
+  \ar{r}{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{T}_{12}(X_{1})}
+  \ar{d}[description]{\gamma_{f_{12}}^{F_{2}} \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  1_{\alpha} F_{2}(X_{1})
+  \ar{d}[description]{\gamma_{f_{12}}^{F_{2}} \otimes_{\alpha} \mathrm{id}_{F_{2}(X_{1})}}
+  &
+  F_{2}(X_{2}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(F_{2}(X_{2}))}
+  \\
+  (F_{2}(X_{2}) F_{2}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{r}[yshift=4pt]{\mathrm{id}_{F_{2}(X_{2}) F_{2}(X_{1}^{\prime})} \otimes_{\alpha} \mathsf{T}_{12}(X_{1})}
+  \ar{d}[description,yshift=3.5mm]{(\mathsf{T}_{12}(X_{2})^{-1} \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{F_{1}(X_{1})}}
+  &
+  (F_{2}(X_{2}) F_{2}(X_{1}^{\prime})) F_{2}(X_{1})
+  \ar{r}[yshift=5pt]{\mathsf{A}_{\alpha}(F_{2}(X_{2}),F_{2}(X_{1}^{\prime}),F_{2}(X_{1}))}
+  &
+  F_{2}(X_{2}) (F_{2}(X_{1}^{\prime}) F_{2}(X_{1}))
+  \ar{u}[description]{\mathrm{id}_{F_{2}(X_{2})} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X_{1})}}
+  \\
+  (F_{1}(X_{2}) F_{1}(X_{1}^{\prime})) F_{1}(X_{1})
+  \ar{ur}[description,xshift=2mm,yshift=-3.5mm]{(\mathsf{T}_{12}(X_{2}) \otimes_{\alpha} \mathsf{T}_{12}(X_{1}^{\prime})) \otimes_{\alpha} \mathsf{T}_{12}(X_{1})}
+  \ar{rr}{\mathsf{A}_{\alpha}(F_{1}(X_{2}),F_{1}(X_{1}^{\prime}),F_{1}(X_{1}))}
+  &
+  &
+  F_{1}(X_{2}) (F_{1}(X_{1}^{\prime}) F_{1}(X_{1}))
+  \ar{u}[description]{\mathsf{T}_{12}(X_{2}) \otimes_{\alpha} (\mathsf{T}_{12}(X_{1}^{\prime}) \otimes_{\alpha} \mathsf{T}_{12}(X_{1}))}
+\end{tikzcd}
+\end{equation*}
+This proves the claim.
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}

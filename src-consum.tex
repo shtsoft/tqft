@@ -1,0 +1,651 @@
+\nocite{0a816f4c}
+%%%
+The last property we examine is about the connected sum, which is a way to produce a new connected $n$-manifold from two given connected $n$-manifolds. This means we can take two connected cobordisms and make a new one out of them. The property we consider then says that the linear map associated to the new cobordism by a TQFT can easily be calculated from the old ones, provided that a certain condition holds, namely that the state space on the $(n - 1)$-sphere $S^{n-1}$ is $1$-dimensional.
+\\
+We first sketch how to define this connected sum. For more details see e.g. \cite{wiki-map00000} in the article \href{http://www.map.mpim-bonn.mpg.de/Connected_sum}{Connected sum} and the references therein. Let $S_{1},S_{2}$ be objects in $\mathbf{Cob}_{n}$ and
+\begin{align*}
+  M_{1}
+  \colon
+  \emptyset
+  &\to
+  S_{1}
+  ,\qquad
+  M_{2}
+  \colon
+  S_{2}
+  \to
+  \emptyset
+\end{align*}
+be connected compact oriented cobordisms. To define the connected sum
+\begin{align*}
+  [M_{1}]
+  \#
+  [M_{2}]
+\end{align*}
+of the corresponding morphisms we cut out $n$-balls
+\begin{align*}
+  \mathbb{B}^{n}
+  &:=
+  \lbrace
+    x
+    \in
+    \mathbb{R}^{n}
+    \colon
+    \Vert
+    x
+    \Vert
+    \leq
+    1
+  \rbrace
+\end{align*}
+- or more precisely, we cut out embeddings of the $n$-ball, where the embedding into $M_{1}$ preserves orientation and the one into $M_{2}$ reverses orientation - from $M_{1}$ and $M_{2}$ to obtain cobordims
+\begin{align*}
+  \tilde{M_{1}}
+  \colon
+  S^{n-1}
+  &\to
+  S_{1}
+  \qquad
+  \text{and}
+  \qquad
+  \tilde{M_{2}}
+  \colon
+  S_{2}
+  \to
+  S^{n-1}
+\end{align*}
+Then we glue the resulting manifolds together along the resulting boundary spheres to obtain the new cobordism
+\begin{align*}
+  M_{1}
+  \#
+  M_{2}
+  \colon 
+  S_{2}
+  &\to
+  S_{1}
+\end{align*}
+Regarding the $n$-ball as cobordisms
+\begin{align*}
+  \mathbb{B}_{\dashv}^{n}
+  \colon
+  \emptyset
+  &\to
+  S^{n-1}
+  \qquad
+  \text{and}
+  \qquad
+  \mathbb{B}_{\vdash}^{n}
+  \colon
+  S^{n-1}
+  \to
+  \emptyset
+\end{align*}
+respectively (see figure \ref{fig:nballs} for an illustration), this means that we have
+\begin{align*}
+  [M_{1}]
+  &=
+  [\tilde{M_{1}}]
+  \circ
+  [\mathbb{B}_{\dashv}^{n}]
+  ,\qquad
+  [M_{2}]
+  =
+  [\mathbb{B}_{\vdash}^{n}]
+  \circ
+  [\tilde{M_{2}}]
+\end{align*}
+and the \textbf{connected sum} is defined by
+\begin{align*}
+  [M_{1}] \# [M_{2}]
+  &:=
+  [M_{1} \# M_{2}]
+  :=
+  [\tilde{M_{1}}]
+  \circ
+  [\tilde{M_{2}}]
+\end{align*}
+Using the disc theorem one can show that this construction is unique up to diffeomorphism, that is, does not depend on the chosen embeddings of the $n$-ball, so that the resulting morphism in $\mathbf{Cob}_{n}$ is well-defined. Moreover, the resulting morphism is connected which means that one and thus each cobordism representing the morphism is connected. The idea now is that when the state space of $S^{n-1}$ is $1$-dimensional then a TQFT yields, up to a constant, the same result for the composition of $M_{1}$ and $M_{2}$ and their connected sum. See figure \ref{fig:consumexa} for an illustration. This is because the state space for the empty $(n-1)$-manifold is $1$-dimensional, too, and linear maps between $1$-dimensional vector spaces cannot do more than multiplying by a constant when fixing bases.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  %top
+  \pic[tqft,name=rtp,boundary separation=1.75cm,incoming boundary components=3,outgoing boundary components=1,offset=1,every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(rtp-incoming boundary 2),below=14pt,font=\small]{$\tilde{M}_{2}$};
+  \node[at=(rtp-outgoing boundary 1),left=15pt,font=\small]{$M_{2}$};
+  \pic[tqft/cup,name=cup,at=(rtp-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(cup-incoming boundary 1),below=11pt,font=\small]{$\mathbb{B}_{\vdash}^{n}$};
+  \node[at=(rtp-outgoing boundary 1),left=2cm,below=0.65cm,font=\small]{$M_{1} \circ M_{2}$};
+  %bottom
+  \pic[tqft/cap,name=cap,anchor={(1,0)},at=(rtp-outgoing boundary 1),every outgoing lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(cap-outgoing boundary 1),above=11pt,font=\small]{$\mathbb{B}_{\dashv}^{n}$};
+  \node[at=(cap-outgoing boundary 1),left=15pt,font=\small]{$M_{1}$};
+  \pic[tqft/pair of pants,name=p,at=(cap-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(p-between outgoing 1 and 2),above=5pt,font=\small]{$\tilde{M}_{1}$};
+  
+  %right
+  \node[at=(rtp-outgoing boundary 1),right=3.1cm,below=0.8cm]{$\to$};
+  %top
+  \pic[tqft,name=rtp2,anchor={(-2.5,-0.5)},at=(rtp-incoming boundary 1),boundary separation=1.75cm,incoming boundary components=3,outgoing boundary components=1,offset=1,every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(rtp2-incoming boundary 2),below=14pt,font=\small]{$\tilde{M}_{2}$};
+  \node[at=(rtp2-outgoing boundary 1),right=1.5cm,font=\small]{$M_{1} \# M_{2}$};
+  %bottom
+  \pic[tqft/pair of pants,name=p2,at=(rtp2-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(p2-between outgoing 1 and 2),above=5pt,font=\small]{$\tilde{M}_{1}$};
+
+  %equation
+  \node[at=(p-between outgoing 1 and 2),below=1.5cm,font=\small]{$Z([M_{1}] \circ [M_{2}])$};
+  \node[at=(rtp-outgoing boundary 1),right=3.1cm,below=5.15cm]{$=$};
+  \node[at=(p2-between outgoing 1 and 2),below=2.5cm,font=\small]{$\mathrm{const} \cdot Z([M_{1}] \# [M_{2}])$};
+\end{tikzpicture}
+\caption{Illustration of the calculation of a TQFT for the connected sum}
+\label{fig:consumexa}
+\end{figure}
+\\
+More precisely, we have the following
+\\
+\begin{thm}
+\label{thm:consum}
+Let
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Vec}_{K}
+\end{align*}
+be a TQFT with
+\begin{align*}
+  \dim(Z(S^{n-1}))
+  &=
+  1
+\end{align*}
+Then
+\begin{align*}
+\Phi^{-1}(Z([S^{n}])(\Phi(1))) \neq 0
+\end{align*}
+and for $S_{1},S_{2} \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ and connected
+\begin{align*}
+  [M_{1}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S_{1})
+  ,\qquad
+  [M_{2}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{2},\emptyset)
+\end{align*}
+we have
+\begin{align*}
+  Z([M_{1}] \# [M_{2}])
+  &=
+  \frac{1}{\Phi^{-1}(Z([S^{n}])(\Phi(1)))}
+  Z([M_{1}])
+  \circ
+  Z([M_{2}])
+\end{align*}
+\end{thm}
+\begin{prf}
+We keep using the notation from the definition of the connected sum above. First note that
+\begin{align*}
+  [\mathbb{B}_{\vdash}^{n}]
+  \circ
+  [\mathbb{B}_{\dashv}^{n}]
+  \colon
+  \emptyset
+  &\to
+  \emptyset
+\end{align*}
+can be represented by the $n$-sphere $S^{n} \colon \emptyset \to \emptyset$, as illustrated in figure \ref{fig:nballs}, which means
+\begin{align*}
+  Z([\mathbb{B}_{\vdash}^{n}])
+  \circ
+  Z([\mathbb{B}_{\dashv}^{n}])
+  &=
+  Z([\mathbb{B}_{\vdash}^{n}] \circ [\mathbb{B}_{\dashv}^{n}])
+  \\
+  &=
+  Z([S^{n}])
+\end{align*}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[every node/.style={scale=1.5},tqft/cobordism/.style={draw}]
+  %left
+  %top
+  \pic[tqft/cap,name=bu,cobordism height=8em,circle x radius=1.8em,circle y radius=0.7em,every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(bu-outgoing boundary 1),font=\small]{$S^{n-1}$};
+  \node[at=(bu-outgoing boundary 1),above=1.9em,font=\small]{$\mathbb{B}_{\dashv}^{n}$};
+  %bottom
+  \pic[tqft/cup,name=bd,at=(bu-outgoing boundary 1),cobordism height=8em,circle x radius=1.8em,circle y radius=0.7em,every incoming boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(bd-incoming boundary 1),below=2.1em,font=\small]{$\mathbb{B}_{\vdash}^{n}$};
+
+  %right
+  \node[at=(bu-outgoing boundary 1),right=1.3cm,font=\small]{$\cong \quad S^{n}$};
+\end{tikzpicture}
+\caption{Gluing two $n$-balls together yields an $n$-sphere}
+\label{fig:nballs}
+\end{figure}
+\\
+Since $Z(S^{n-1})$ is $1$-dimensional we can choose a basis element, say $e$, and then we have
+\begin{align*}
+  Z([\mathbb{B}_{\dashv}^{n}])(\Phi(1))
+  &=
+  b_{\dashv}
+  e
+  ,\qquad
+  \Phi^{-1}
+  \left(
+    Z([\mathbb{B}_{\vdash}^{n}])(e)
+  \right)
+  =
+  b_{\vdash}
+  ,\qquad
+  Z([\tilde{M_{2}}])(v)
+  =
+  c(v)
+  e
+\end{align*}
+for certain $b_{\dashv},b_{\vdash},c(v) \in K$ and all $v \in Z(S_{2})$. With this and the linearity of all involved maps we can easily calculate
+\begin{align*}
+  &
+  \left(
+    Z([\tilde{M_{1}}])
+    \circ
+    Z([\mathbb{B}_{\dashv}^{n}])
+    \circ
+    Z([\mathbb{B}_{\vdash}^{n}])
+    \circ
+    Z([\tilde{M_{2}}])
+  \right)
+  (v)
+  \\
+  &=
+  c(v)
+  \left(
+    Z([\tilde{M_{1}}])
+    \circ
+    Z([\mathbb{B}_{\dashv}^{n}])
+    \circ
+    Z([\mathbb{B}_{\vdash}^{n}])
+  \right)
+  (e)
+  \\
+  &=
+  b_{\vdash}
+  c(v)
+  \left(
+    Z([\tilde{M_{1}}])
+    \circ
+    Z([\mathbb{B}_{\dashv}^{n}])
+  \right)
+  (\Phi(1))
+  \\
+  &=
+  b_{\dashv}
+  b_{\vdash}
+  c(v)
+  Z([\tilde{M_{1}}])(e)
+  \\
+  &=
+  b_{\dashv}
+  \Phi^{-1}
+  \left(
+    Z([\mathbb{B}_{\vdash}^{n}])(e)
+  \right)
+  Z([\tilde{M_{1}}])(c(v)e)
+  \\
+  &=
+  \Phi^{-1}
+  \left(
+    Z([\mathbb{B}_{\vdash}^{n}])(b_{\dashv}e)
+  \right)
+  \left(
+    Z([\tilde{M_{1}}])
+    \circ
+    Z([\tilde{M_{2}}])
+  \right)
+  (v)
+  \\
+  &=
+  \Phi^{-1}
+  \left(
+    \left(
+      Z([\mathbb{B}_{\vdash}^{n}])
+      \circ
+      Z([\mathbb{B}_{\dashv}^{n}])
+    \right)
+    (\Phi(1))
+  \right)
+  \left(
+    Z([\tilde{M_{1}}])
+    \circ
+    Z([\tilde{M_{2}}])
+  \right)
+  (v)
+\end{align*}
+This shows that
+\begin{align*}
+  Z([M_{1}])
+  \circ
+  Z([M_{2}])
+  &=
+  Z([\tilde{M_{1}}])
+  \circ
+  Z([\mathbb{B}_{\dashv}^{n}])
+  \circ
+  Z([\mathbb{B}_{\vdash}^{n}])
+  \circ
+  Z([\tilde{M_{2}}])
+  \\
+  &=
+  \Phi^{-1}
+  \left(
+    \left(
+      Z([\mathbb{B}_{\vdash}^{n}])
+      \circ
+      Z([\mathbb{B}_{\dashv}^{n}])
+    \right)
+    (\Phi(1))
+  \right)
+  \left(
+    Z([\tilde{M_{1}}])
+    \circ
+    Z([\tilde{M_{2}}])
+  \right)
+  \\
+  &=
+  \Phi^{-1}
+  \left(
+    Z([S^{n}])(\Phi(1))
+  \right)
+  Z([M_{1}] \# [M_{2}])
+\end{align*}
+If we can show that
+\begin{align*}
+  \Phi^{-1}(Z([S^{n}])(\Phi(1)))
+  &\neq
+  0
+\end{align*}
+then we are done. To this end suppose
+\begin{align*}
+  \Phi^{-1}(Z([S^{n}])(\Phi(1)))
+  &=
+  0
+\end{align*}
+then the above equation implies
+\begin{align*}
+  Z([M_{1}]) \circ Z([M_{2}])
+  &=
+  0
+\end{align*}
+for all $S_{1},S_{2} \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ and connected
+\begin{align*}
+  [M_{1}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S_{1})
+  ,\qquad
+  [M_{2}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{2},\emptyset)
+\end{align*}
+To bring this to a contradiction let
+\begin{align*}
+  [M_{1}]
+  &:=
+  \mathrm{coev}_{\overline{S^{n-1}}}
+  \qquad
+  \text{and}
+  \qquad
+  [M_{2}]
+  :=
+  \mathrm{ev}_{S^{n-1}}
+\end{align*}
+which are both clearly connected. Consider the morphisms $X$ and $Y$ defined by making the following diagrams commute
+\begin{equation*}
+\hspace{-4em}
+\begin{tikzcd}[row sep=5em,column sep=6em]
+  S^{n-1}
+  \sqcup
+  (\overline{S^{n-1}} \sqcup S^{n-1})
+  \ar{r}{X}
+  \ar{d}[swap]{\mathsf{A}^{-1}(S^{n-1},\overline{S^{n-1}},S^{n-1})}
+  &
+  S^{n-1}
+  \\
+  (S^{n-1} \sqcup \overline{S^{n-1}})
+  \sqcup
+  S^{n-1}
+  \ar{r}{\mathrm{ev}_{\overline{S^{n-1}}} \sqcup \mathrm{id}_{S^{n-1}}}
+  &
+  \emptyset
+  \sqcup
+  S^{n-1}
+  \ar{u}[swap]{\mathsf{L}(S^{n-1})}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\hspace{4em}
+\begin{tikzcd}[row sep=5em,column sep=6em]
+  S^{n-1}
+  \ar{r}{Y}
+  \ar{d}[swap]{\mathsf{L}^{-1}(S^{n-1})}
+  &
+  S^{n-1}
+  \sqcup
+  (\overline{S^{n-1}} \sqcup S^{n-1})
+  \\
+  \emptyset
+  \sqcup
+  S^{n-1}
+  \ar{r}{\mathrm{coev}_{S^{n-1}} \sqcup \mathrm{id}_{S^{n-1}}}
+  &
+  (S^{n-1} \sqcup \overline{S^{n-1}})
+  \sqcup
+  S^{n-1}
+  \ar{u}[swap]{\mathsf{A}(S^{n-1},\overline{S^{n-1}},S^{n-1})}
+\end{tikzcd}
+\end{equation*}
+where we used $\overline{\overline{S^{n-1}}} = S^{n-1}$ in the first diagram. We will show that
+\begin{align}
+\label{diffcyl}
+  X
+  \circ
+  \left(
+    \mathrm{id}_{S^{n-1}}
+    \sqcup
+    \left(
+      \mathrm{coev}_{\overline{S^{n-1}}}
+      \circ
+      \mathrm{ev}_{S^{n-1}}
+    \right)
+  \right)
+  \circ
+  Y
+  &=
+  \mathrm{id}_{S^{n-1}}
+\end{align}
+See figure \ref{fig:s1contr} for an illustration with the associativity and unit cylinders suppressed.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  %coevaluation
+  \pic[tqft,name=co,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(co-between outgoing 1 and 2),above=3pt,font=\small]{$\mathrm{coev}_{S^{n-1}}$};
+  %evaluation
+  \pic[tqft,name=ev,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor=incoming boundary 1,at=(co-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev-between incoming 1 and 2),below=4pt,font=\small]{$\mathrm{ev}_{S^{n-1}}$};
+  %cylinders
+  \pic[tqft/cylinder,name=c1,cobordism height=1.6cm,anchor=outgoing boundary 1,at=(ev-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c1-incoming boundary 1),above=3pt,font=\small]{$S^{n-1}$};
+  \node[at=(c1-between first incoming and first outgoing),right=-2pt,font=\small]{$\mathrm{id}_{S^{n-1}}$};
+  \pic[tqft/cylinder,name=c2,cobordism height=1.6cm,anchor=incoming boundary 1,at=(co-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c2-between first incoming and first outgoing),right=-2pt,font=\small]{$\mathrm{id}_{S^{n-1}}$};
+  \pic[tqft/cylinder,name=c3,cobordism height=1.6cm,anchor=incoming boundary 1,at=(c2-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c3-between first incoming and first outgoing),right=-2pt,font=\small]{$\mathrm{id}_{S^{n-1}}$};
+  %opposite evaluation
+  \pic[tqft,name=evop,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor=incoming boundary 1,at=(c3-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(evop-between incoming 1 and 2),below=4pt,font=\small]{$\mathrm{ev}_{\overline{S^{n-1}}}$};
+  %opposite coevaluation
+  \pic[tqft,name=coop,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,anchor=outgoing boundary 1,at=(evop-incoming boundary 2),every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(coop-between outgoing 1 and 2),above=1pt,font=\small]{$\mathrm{coev}_{\overline{S^{n-1}}}$};
+  %cylinder
+  \pic[tqft/cylinder,name=c4,cobordism height=1.6cm,anchor=incoming boundary 1,at=(coop-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c4-outgoing boundary 1),below=4pt,font=\small]{$S^{n-1}$};
+  \node[at=(c4-between first incoming and first outgoing),right=-2pt,font=\small]{$\mathrm{id}_{S^{n-1}}$};
+
+  %right
+  \node[at=(c2-outgoing boundary 1),right=5.5cm]{$\cong$};
+  %top
+  \pic[tqft/cylinder,name=c5,cobordism height=2.8cm,anchor={(-1.3,-0.175)},at=(c1-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c5-incoming boundary 1),above=3pt,font=\small]{$S^{n-1}$};
+  \node[at=(c5-between first incoming and first outgoing),right=-2pt,font=\small]{$\mathrm{id}_{S^{n-1}}$};
+  %bottom
+  \pic[tqft/cylinder,name=c6,cobordism height=2.8cm,anchor=incoming boundary 1,at=(c5-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c6-outgoing boundary 1),below=4pt,font=\small]{$S^{n-1}$};
+  \node[at=(c6-between first incoming and first outgoing),right=-2pt,font=\small]{$\mathrm{id}_{S^{n-1}}$};
+\end{tikzpicture}
+\caption{Illustration of equation \eqref{diffcyl}}
+\label{fig:s1contr}
+\end{figure}
+\newpage
+By definition we have the outer perimeter of the following commuting diagram. The lower part follows from the functoriality of $\sqcup$, the lower left part follows from diagram (LD1) for $\mathrm{coev}_{S^{n-1}}$ and $\mathrm{ev}_{S^{n-1}}$ and the lower right part follows from diagram (LD2) for $\mathrm{coev}_{\overline{S^{n-1}}}$ and $\mathrm{ev}_{\overline{S^{n-1}}}$. The central part obviously commutes and hence so does the upper part proving equation \eqref{diffcyl}.
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=6em,font=\footnotesize,every label/.append style={font=\tiny}]
+  S^{n-1}
+  \sqcup
+  (\overline{S^{n-1}} \sqcup S^{n-1})
+  \ar{rr}{\mathrm{id}_{S^{n-1}} \sqcup (\mathrm{coev}_{\overline{S^{n-1}}} \circ \mathrm{ev}_{S^{n-1}})}
+  &
+  &
+  S^{n-1}
+  \sqcup
+  (\overline{S^{n-1}} \sqcup S^{n-1})
+  \ar{d}{X}
+  \\
+  S^{n-1}
+  \ar{u}{Y}
+  \ar{rr}{\mathrm{id}_{S^{n-1}}}
+  \ar{rddd}{\mathsf{R}^{-1}(S^{n-1})}
+  \ar{d}[swap]{\mathsf{L}^{-1}(S^{n-1})}
+  &
+  &
+  S^{n-1}
+  \\
+  \emptyset
+  \sqcup
+  S^{n-1}
+  \ar{d}[swap]{\mathrm{coev}_{S^{n-1}} \sqcup \mathrm{id}_{S^{n-1}}}
+  &
+  &
+  \emptyset
+  \sqcup
+  S^{n-1}
+  \ar{u}[swap]{\mathsf{L}(S^{n-1})}
+  \\
+  (S^{n-1} \sqcup \overline{S^{n-1}})
+  \sqcup
+  S^{n-1}
+  \ar{d}[swap]{\mathsf{A}(S^{n-1},\overline{S^{n-1}},S^{n-1})}
+  &
+  &
+  (S^{n-1} \sqcup \overline{S^{n-1}})
+  \sqcup
+  S^{n-1}
+  \ar{u}[swap]{\mathrm{ev}_{\overline{S^{n-1}}} \sqcup \mathrm{id}_{S^{n-1}}}
+  \\
+  S^{n-1}
+  \sqcup
+  (\overline{S^{n-1}} \sqcup S^{n-1})
+  \ar{r}{\mathrm{id}_{S^{n-1}} \sqcup \mathrm{ev}_{S^{n-1}}}
+  \ar[bend right]{rr}[yshift=4pt]{\mathrm{id}_{S^{n-1}} \sqcup (\mathrm{coev}_{\overline{S^{n-1}}} \circ \mathrm{ev}_{S^{n-1}})}
+  &
+  S^{n-1}
+  \sqcup
+  \emptyset
+  \ar{uuur}{\mathsf{R}(S^{n-1})}
+  \ar{r}{\mathrm{id}_{S^{n-1}} \sqcup \mathrm{coev}_{\overline{S^{n-1}}}}
+  &
+  S^{n-1}
+  \sqcup
+  (\overline{S^{n-1}} \sqcup S^{n-1})
+  \ar{u}[swap]{\mathsf{A}^{-1}(S^{n-1},\overline{S^{n-1}},S^{n-1})}
+\end{tikzcd}
+\end{equation*}
+Now we apply $Z$ to equation \eqref{diffcyl} which yields zero for the left-hand side since
+\begin{align*}
+  &
+  Z
+  \left(
+    \mathrm{id}_{S^{n-1}}
+    \sqcup
+    \left(
+      \mathrm{coev}_{\overline{S^{n-1}}}
+      \circ
+      \mathrm{ev}_{S^{n-1}}
+    \right)
+  \right)
+  \\
+  &=
+  \mathsf{H}
+  \left(
+    S^{n-1}
+    ,
+    \overline{S^{n-1}} \sqcup S^{n-1}
+  \right)
+  \circ
+  \left(
+    Z(\mathrm{id}_{S^{n-1}})
+    \otimes
+    \left(
+      Z(\mathrm{coev}_{\overline{S^{n-1}}})
+      \circ
+      Z(\mathrm{ev}_{S^{n-1}})
+    \right)
+  \right)
+  \circ
+  \mathsf{H}^{-1}
+  \left(
+    S^{n-1}
+    ,
+    \overline{S^{n-1}} \sqcup S^{n-1}
+  \right)
+  \\
+  &=
+  \mathsf{H}
+  \left(
+    S^{n-1}
+    ,
+    \overline{S^{n-1}} \sqcup S^{n-1}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{Z(S^{n-1})}
+    \otimes
+    0
+  \right)
+  \circ
+  \mathsf{H}^{-1}
+  \left(
+    S^{n-1}
+    ,
+    \overline{S^{n-1}} \sqcup S^{n-1}
+  \right)
+  \\
+  &=
+  0
+\end{align*}
+but for the right-hand side we obtain $\mathrm{id}_{Z(S^{n-1})}$ which is not zero since $\dim(Z(S^{n-1})) = 1$. This contradiction shows that
+\begin{align*}
+  \Phi^{-1}(Z(S^{n})(\Phi(1)))
+  &\neq
+  0
+\end{align*}
+and finishes our proof.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+Thus if the state space of the sphere $S^{n-1}$ for a TQFT is $1$-dimensional we have another way to calculate the linear map associated to a cobordism provided it can be written as the connected sum of two connected cobordisms where one has empty in-boundary and one has empty out-boundary.

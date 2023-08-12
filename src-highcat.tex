@@ -1,0 +1,1089 @@
+%\nocite{6f59ab3c}
+%\nocite{9094cf60}
+%\nocite{d37d0fca}
+%\nocite{dfcdc48c}
+%\nocite{f3c68a99}
+%\nocite{0349e8ea}
+%\nocite{00000001}
+%%%
+As the natural language for the formulation of the cobordism hypothesis is that of higher categories we want to give a description of them here. However, we do it in an informal way, trying to give the reader a good idea of the concept rather than a precise definition as the latter needs some concepts we have not introduced here.
+\\\\
+An ordinary category $\mathbf{C}$ basically consists of a set of objects $\mathrm{ob}_{\mathbf{C}}$ and for any two objects $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$ a set of morphisms $\mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})$ between them. Moreover, there is a composition $\circ_{\mathbf{C}}$ for morphisms, usually simply written $\circ$, producing a morphism
+\begin{align*}
+  f_{13}
+  &=
+  f_{23}
+  \circ
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{3})
+\end{align*}
+from two morphisms $f_{12} \in \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})$ and $f_{23} \in \mathrm{mor}_{\mathbf{C}}(X_{2},X_{3})$ for any $X_{1},X_{2},X_{3} \in \mathrm{ob}_{\mathbf{C}}$. This composition is associative and unital, where the latter means that for every object $X_{1} \in \mathrm{ob}_{\mathbf{C}}$ there is an identity morphism $\mathrm{id}_{X_{1}}$ for the composition.
+\\
+However, there may also be relations between the morphisms, as is the case, for example, when considering the category $\mathbf{Cat}$ of small categories and functors between them. Then we have natural transformations as relations between morphisms but we cannot include them into $\mathbf{Cat}$ unless we allow an additional layer of morphisms in the concept of categories. This leads to the notion of a (strict) $2$-category ${_{2}\mathbf{C}}$, which basically can be described as follows
+\begin{enumerate}
+\item[(0)]
+we have a set of objects $\mathrm{ob}_{{_{2}\mathbf{C}}}$, sometimes also referred to as $0$-morphisms and written ${_{0}}\mathrm{mor}_{{_{2}\mathbf{C}}}$
+
+\item[(1)]
+for any two objects $X_{1},X_{2} \in {_{0}}\mathrm{mor}_{{_{2}\mathbf{C}}}$ we have a set ${_{1}}\mathrm{mor}_{{_{2}\mathbf{C}}}(X_{1},X_{2})$ of $1$-morphisms between them
+
+\item[(2)]
+for any two parallel $1$-morphisms $f_{12},f_{12}^{\backprime} \in {_{1}}\mathrm{mor}_{{_{2}\mathbf{C}}}(X_{1},X_{2})$ - which means $1$-morphisms between the same objects - we have a set ${_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}(X_{1},X_{2},f_{12},f_{12}^{\backprime})$ of $2$-morphisms between them. We ususally depict such a $2$-morphism by a double arrow as in the following diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=D]
+\end{tikzcd}
+\end{equation*}
+
+\item[(c)]
+there are different associative and unital compositions on the level of $1$-morphisms and $2$-morphisms
+\begin{enumerate}
+\item[(1)]
+composition for $1$-morphisms, written $\circ$, is just as in the case of an ordinary category
+
+\item[(2)]
+$2$-morphisms can be composed in two directions, vertically and horizontally
+\begin{enumerate}
+\item[(v)]
+the vertical composition $\circ^{\mathrm{v}}$ is along $1$-morphisms, i.e. for $2$-morphisms
+\begin{align*}
+\hspace{7em}
+  \alpha_{1}
+  \in
+  {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{1}
+    ,
+    X_{2}
+    ,
+    f_{12}
+    ,
+    f_{12}^{\backprime}
+  \right)
+  \qquad
+  \text{and}
+  \qquad
+  \alpha_{2} \in {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{1}
+    ,
+    X_{2}
+    ,
+    f_{12}^{\backprime}
+    ,
+    f_{12}^{\backprime\backprime}
+  \right)
+\end{align*}
+we obtain a $2$-morphism
+\begin{align*}
+\hspace{2em}
+  \alpha_{2}
+  \circ^{\mathrm{v}}
+  \alpha_{1}
+  &\in
+  {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{1}
+    ,
+    X_{2}
+    ,
+    f_{12}
+    ,
+    f_{12}^{\backprime\backprime}
+  \right)
+\end{align*}
+as in the following diagram
+\begin{equation*}
+\hspace{7em}
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U1]{}{f_{12}}
+  \ar{r}[name=D1]{}[swap]{f_{12}^{\backprime}}[swap,below=5.5mm,font=\normalsize]{\circ^{\mathrm{v}}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U1,to=D1,"\alpha_{1}"]
+  \\
+  X_{1}
+  \ar{r}[swap,name=U2]{}{f_{12}^{\backprime}}
+  \ar[bend right=50]{r}[name=D2]{}[swap]{f_{12}^{\backprime\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U2,to=D2,"\alpha_{2}"]
+\end{tikzcd}
+  \quad
+  =
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{1}
+  \ar[bend left=60]{r}[swap,name=U]{}{f_{12}}
+  \ar{r}[name=M1]{f_{12}^{\backprime}}[swap,name=M2]{f_{12}^{\backprime}}
+  \ar[bend right=60]{r}[name=D]{}[swap]{f_{12}^{\backprime\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=M1,"\alpha_{1}"]
+  \ar[Rightarrow,from=M2,to=D,"\alpha_{2}"]
+\end{tikzcd}
+\end{equation*}
+Unitality of the vertical composition means that for every $1$-morphism $f_{12} \in {_{1}}\mathrm{mor}_{{_{2}\mathbf{C}}}(X_{1},X_{2})$ there is a $2$-morphism 
+\begin{align*}
+\hspace{7em}
+  \mathrm{id}_{f_{12}}
+  \in
+  {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{1}
+    ,
+    X_{2}
+    ,
+    f_{12}
+    ,
+    f_{12}
+  \right)
+\end{align*}
+which is an identity of the vertical composition, i.e. for $\alpha_{1} \in {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}(X_{1},X_{2},f_{12},f_{12}^{\backprime})$ we have
+\begin{equation*}
+\hspace{7em}
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{1}
+  \ar[bend left=60]{r}[swap,name=U]{}{f_{12}}
+  \ar{r}[name=M1]{f_{12}^{\backprime}}[swap,name=M2]{f_{12}^{\backprime}}
+  \ar[bend right=60]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=M1,"\alpha_{1}"]
+  \ar[Rightarrow,from=M2,to=D,"\mathrm{id}_{f_{12}^{\backprime}}"]
+\end{tikzcd}
+  \quad
+  =
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=D,"\alpha_{1}"]
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\hspace{7em}
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{1}
+  \ar[bend left=60]{r}[swap,name=U]{}{f_{12}}
+  \ar{r}[name=M1]{f_{12}}[swap,name=M2]{f_{12}}
+  \ar[bend right=60]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=M1,"\mathrm{id}_{f_{12}}"]
+  \ar[Rightarrow,from=M2,to=D,"\alpha_{1}"]
+\end{tikzcd}
+  \quad
+  =
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=D,"\alpha_{1}"]
+\end{tikzcd}
+\end{equation*}
+
+\item[(h)]
+the horizontal composition $\circ^{\mathrm{h}}$ is along $0$-morphisms, i.e. for $2$-morphisms
+\begin{align*}
+\hspace{7em}
+  \alpha_{12}
+  \in
+  {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{1}
+    ,
+    X_{2}
+    ,
+    f_{12}
+    ,
+    f_{12}^{\backprime}
+  \right)
+  \qquad
+  \text{and}
+  \qquad
+  \alpha_{23}
+  \in
+  {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{2}
+    ,
+    X_{3}
+    ,
+    f_{23}
+    ,
+    f_{23}^{\backprime}
+  \right)
+\end{align*}
+we obtain a $2$-morphism
+\begin{align*}
+\hspace{7em}
+  \alpha_{23}
+  \circ^{\mathrm{h}}
+  \alpha_{12}
+  &\in
+  {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}
+  \left(
+    X_{1}
+    ,
+    X_{3}
+    ,
+    f_{23} \circ f_{12}
+    ,
+    f_{23}^{\backprime}
+    \circ
+    f_{12}^{\backprime}
+  \right)
+\end{align*}
+as in the following diagram
+\begin{equation*}
+\hspace{3em}
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U1]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D1]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U1,to=D1,"\alpha_{12}"]
+\end{tikzcd}
+  \circ^{\mathrm{h}}
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{2}
+  \ar[bend left=50]{r}[swap,name=U2]{}{f_{23}}
+  \ar[bend right=50]{r}[name=D2]{}[swap]{f_{23}^{\backprime}}
+  &
+  X_{3}
+  \ar[Rightarrow,from=U2,to=D2,"\alpha_{23}"]
+\end{tikzcd}
+  \quad
+  =
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U1]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D1]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U1,to=D1,"\alpha_{12}"]
+  \ar[bend left=50]{r}[swap,name=U2]{}{f_{23}}
+  \ar[bend right=50]{r}[name=D2]{}[swap]{f_{23}^{\backprime}}
+  &
+  X_{3}
+  \ar[Rightarrow,from=U2,to=D2,"\alpha_{23}"]
+\end{tikzcd}
+\end{equation*}
+The identities for the horizontal composition are given by the identity $2$-morphisms of the identity $1$-morphisms of the corresponding objects, that is, for a $2$-morphism $\alpha_{1} \in {_{2}}\mathrm{mor}_{{_{2}\mathbf{C}}}(X_{1},X_{2},f_{12},f_{12}^{\backprime})$ we have
+\begin{equation*}
+\hspace{3em}
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U1]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D1]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U1,to=D1,"\alpha_{12}"]
+  \ar[bend left=50]{r}[swap,name=U2]{}{\mathrm{id}_{X_{2}}}
+  \ar[bend right=50]{r}[name=D2]{}[swap]{\mathrm{id}_{X_{2}}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U2,to=D2,"\mathrm{id}_{\mathrm{id}_{X_{2}}}"]
+\end{tikzcd}
+  \quad
+  =
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=D,"\alpha_{12}"]
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\hspace{3em}
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U2]{}{\mathrm{id}_{X_{1}}}
+  \ar[bend right=50]{r}[name=D2]{}[swap]{\mathrm{id}_{X_{1}}}
+  &
+  X_{1}
+  \ar[Rightarrow,from=U2,to=D2,"\mathrm{id}_{\mathrm{id}_{X_{1}}}"]
+  \ar[bend left=50]{r}[swap,name=U1]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D1]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U1,to=D1,"\alpha_{12}"]
+\end{tikzcd}
+  \quad
+  =
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=5.6em]
+  X_{1}
+  \ar[bend left=50]{r}[swap,name=U]{}{f_{12}}
+  \ar[bend right=50]{r}[name=D]{}[swap]{f_{12}^{\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=D,"\alpha_{12}"]
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+The two ways of composing $2$-morphisms are independent in the sense that they commute, i.e. when composing in both directions it does not matter in which direction we start, which means that the diagrams
+\begin{equation*}
+\hspace{5em}
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{1}
+  \ar[bend left=60]{r}[swap,name=U]{}{f_{12}}
+  \ar{r}[name=M1]{f_{12}^{\backprime}}[swap,name=M2]{f_{12}^{\backprime}}
+  \ar[bend right=60]{r}[name=D]{}[swap]{f_{12}^{\backprime\backprime}}
+  &
+  X_{2}
+  \ar[Rightarrow,from=U,to=M1,"\alpha_{1}"]
+  \ar[Rightarrow,from=M2,to=D,"\alpha_{3}"]
+\end{tikzcd}
+  \quad
+  \circ^{\mathrm{h}}
+  \quad
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{2}
+  \ar[bend left=60]{r}[swap,name=U]{}{f_{23}}
+  \ar{r}[name=M1]{f_{23}^{\backprime}}[swap,name=M2]{f_{23}^{\backprime}}
+  \ar[bend right=60]{r}[name=D]{}[swap]{f_{23}^{\backprime\backprime}}
+  &
+  X_{3}
+  \ar[Rightarrow,from=U,to=M1,"\alpha_{2}"]
+  \ar[Rightarrow,from=M2,to=D,"\alpha_{4}"]
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\begin{tikzcd}[row sep=2.4em,column sep=12em]
+  X_{1}
+  \ar[bend left=60]{r}[swap,name=U1]{}{f_{12}}
+  \ar{r}[name=M1]{}[swap]{f_{12}^{\backprime}}[swap,below=7mm,right=25mm,font=\normalsize]{\circ^{\mathrm{v}}}
+  &
+  X_{2}
+  \ar[bend left=60]{r}[swap,name=U2]{}{f_{23}}
+  \ar{r}[name=M2]{}[swap]{f_{23}^{\backprime}}
+  &
+  X_{3}
+  \ar[Rightarrow,from=U1,to=M1,"\alpha_{1}"]
+  \ar[Rightarrow,from=U2,to=M2,"\alpha_{2}"]
+  \\
+  X_{1}
+  \ar{r}[swap,name=U3]{}{f_{12}^{\backprime}}
+  \ar[bend right=60]{r}[name=M3]{}[swap]{f_{12}^{\backprime\backprime}}
+  &
+  X_{2}
+  \ar{r}[swap,name=M4]{}{f_{23}^{\backprime}}
+  \ar[bend right=60]{r}[name=D4]{}[swap]{f_{23}^{\backprime\backprime}}
+  &
+  X_{3}
+  \ar[Rightarrow,from=U3,to=M3,"\alpha_{3}"]
+  \ar[Rightarrow,from=M4,to=D4,"\alpha_{4}"]
+\end{tikzcd}
+\end{equation*}
+depict the same $2$-morphism. This latter property is often referred to as the exchange law or interchange law.
+\end{enumerate}
+\end{enumerate}
+In the case of $\mathbf{Cat}$ we add the natural transformations between functors as $2$-morphisms and hence obtain the (strict) $2$-category ${_{2}}\mathbf{Cat}$.
+\\
+If we require composition at both levels to be associative, unital and interchanging on the nose, as in the case of ${_{2}}\mathbf{Cat}$, we obtain the notion of strict $2$-categories which are rather easy to define precisely. Closer investigation of the structure above shows that we have a set of objects and for any two objects a category of morphisms between them. The objects of that category are interpreted as $1$-morphisms, the morphisms are interpreted as $2$-morphisms and the composition is the vertical composition of $2$-morphisms. In addition, for every three objects there is a functor between the corresponding morphism categories which encodes the composition of $1$-morphisms and the horizontal composition of $2$-morphisms (see e.g. \cite{00000001} for a spelled out description). The functoriality of the horizontal composition ensures that the interchange law is satisfied. More concisely a strict $2$-category can be defined to be a category enriched in small categories (see e.g. \cite{00000001}).
+\\\\
+Now why should we stop at level $2$? We can generalize the notion of $2$-categories to the notion of \textit{$n$-categories} for any $n \in \mathbb{N}$ by adding layers up to level $n$, i.e. we basically have
+\begin{enumerate}
+\item[(0)]
+a set of objects
+
+\item[(1)]
+for any pair of objects $X_{1},X_{2}$ a set of $1$-morphisms from $X_{1}$ to $X_{2}$
+
+\item[(2)]
+for any pair of objects $X_{1},X_{2}$ and any pair of parallel $1$-morphisms $f_{1},f_{2}$ from $X_{1}$ to $X_{2}$ a set of $2$-morphisms from $f_{1}$ to $f_{2}$
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(n)]
+for any pair of objects $X_{1},X_{2}$ and any pair of parallel $1$-morphisms $f_{1},f_{2}$ from $X_{1}$ to $X_{2}$ ... and any pair of parallel $(n-1)$-morphisms $\alpha_{1},\alpha_{2}$ a set of $n$-morphisms from $\alpha_{1}$ to $\alpha_{2}$
+
+\item[(c)]
+at each level $0 \leq k \leq n$ an associative and unital composition in $k$ interchanging directions, one direction along which $k$-morphisms can be composed for each level below $k$
+\end{enumerate}
+In particular a $0$-category is just a set and a $1$-category is just an ordinary category. Again, in the case that composition at each level is associative, unital and interchanging on the nose we obtain the notion of strict $n$-categories which are fairly easy to define precisely. Namely we can inductively define a strict $n$-category to be a category enriched in small $(n-1)$-categories. One may also go another way and use internalization\footnote{see e.e. \cite{00000001} for the idea of internalization} to define category objects internal to $\mathbf{Cat}$ which yields so called double categories. In order to obtain a $2$-category in the above sense one has to impose a further condition but then one can iterate this process of internalization to define $n$-categories. We will not press the details on this further here.
+\\
+Functors between categories are generalized to $n$-categories in the way one would probably expect: an \textit{$n$-functor}, usually only called functor, from an $n$-category ${_{n}}\mathbf{C}$ to an $n$-category ${_{n}}\mathbf{C}_{\alpha}$ takes objects in ${_{n}}\mathbf{C}$ to objects in ${_{n}}\mathbf{C}_{\alpha}$, $1$-morphisms in ${_{n}}\mathbf{C}$ to $1$-morphisms in ${_{n}}\mathbf{C}_{\alpha}$, ... and $n$-morphisms in ${_{n}}\mathbf{C}$ to $n$-morphisms in ${_{n}}\mathbf{C}_{\alpha}$ in a functorial way, that is, such that compositions and identities are respected at all levels. More concisely one can say that an $n$-functor takes $k$-morphisms in ${_{n}}\mathbf{C}$ to $k$-morphisms in ${_{n}}\mathbf{C}_{\alpha}$ for $0 \leq k < n+1$ in a functorial way. Similarly, natural transformations between functors are generalized to \textit{$n$-natural transformations} between $n$-functors, taking $k$-morphisms in ${_{n}}\mathbf{C}$ to $(k+1)$-morphisms in ${_{n}}\mathbf{C}_{\alpha}$ for $0 \leq k < n$ in a natural way. But now that there are more levels of morphisms, there is a more general concept subsuming that of functors and natural transformations, namely that of \textit{$m$-transfors}\footnote{the word transfor is a portmanteau of the words functor and transformation} of $n$-categories, sometimes also called $(n,m)$-transfors. For $0 \leq m < n+1$ an $m$-transfor from ${_{n}}\mathbf{C}$ to ${_{n}}\mathbf{C}_{\alpha}$ is an operation that takes $k$-morphisms, $0 \leq k < n-m+1$, in ${_{n}}\mathbf{C}$ to $(k+m)$-morphisms in ${_{n}}\mathbf{C}_{\alpha}$ while satisfying conditions of functoriality and naturality. For $m \geq 1$ the source and target of an $m$-transfor are $(m-1)$-transfors and the naturality conditions are satisfied w.r.t. them. An $n$-functor is hence a $0$-transfor and an $n$-natural transformation is a $1$-transfor. If we depict the morphism levels of an $n$-category ${_{n}}\mathbf{C}$ as follows
+\begin{equation*}
+\begin{tikzcd}[sep=tiny]
+  {_{0}}\mathrm{Mor}_{{_{n}}\mathbf{C}}
+  \\
+  \vdots
+  \\
+  {_{n}}\mathrm{Mor}_{{_{n}}\mathbf{C}}
+\end{tikzcd}
+\end{equation*}
+then for $n$-categories ${_{n}}\mathbf{C}$ and ${_{n}}\mathbf{C}_{\alpha}$ we can illustrate an $m$-transfor as\footnote{here we assumed $n-m > m+m$ which of course is not necessarily the case}
+\begin{equation*}
+\begin{tikzcd}[row sep=tiny,column sep=large]
+  {_{0}}\mathrm{Mor}_{{_{n}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  {_{0}}\mathrm{Mor}_{{_{n}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  {_{m}}\mathrm{Mor}_{{_{n}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  {_{m}}\mathrm{Mor}_{{_{n}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  \vdots
+  &
+  {_{m+m}}\mathrm{Mor}_{{_{n}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  {_{n-m}}\mathrm{Mor}_{{_{n}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  \vdots
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  {_{n}}\mathrm{Mor}_{{_{n}}\mathbf{C}}
+  &
+  {_{n}}\mathrm{Mor}_{{_{n}}\mathbf{C}_{\alpha}}
+\end{tikzcd}
+\end{equation*}
+We will not pursue further details here.
+\\
+One can also imagine to allow layers of morphisms at arbitrary levels (of natural numbers) which leads to the notion of \textit{strict $\infty$-categories} which also often go by the name (strict) $\omega$-categories. The precise definition here is a bit more difficult than in the case of finitely many layers.
+\\\\
+Contemplating examples of higher categories one quickly realizes that the notion of strict $n$-categories is too narrow and one would rather like to have some kind of weak enrichment or internalization: for most of the interesting examples composition is, for example, not associative on the nose but rather only up to equivalence, i.e. there is an isomorphism on level $k$ between two different bracketings of the composition of three $(k-1)$-morphisms. In order to still reasonably speak of an associative composition one should require that this reassociation happens in a coherent way, which basically means that when rebracketing longer expressions it should not really matter in what order the rebrackting is done so that any two ways of rebracketing are again (coherently) isomorphic, i.e. equivalent. This leads to the notion of \textit{weak $n$-categories} in which composition is associative, unital and interchanging only up to equivalence. Again, just to be clear, {\glqq}up to equivalence{\grqq} means that there is a morphism one level above the structure in question which conveys the equivalence and this higher morphism is invertible - again weakly, i.e. only up to equivalence - and satisfies some coherence conditions, also in a weak way. Thus, this weak notion of equivalence is of a somewhat recursive nature. Equality only exists on the level of $n$-morphisms, i.e. the highest morphism level, because there are no higher morphisms that can convey a weak equivalence. For a weak $2$-category, often also called bicategory, the coherence conditions can be spelled out explicitly with reasonable effort (see e.g. \cite{00000001} or the appendix of \cite{d37d0fca}) and they are basically the same as the ones of monoidal categories. For higher weak $n$-categories it becomes more and more difficult to handle the coherence laws. There are many different proposed definitions of weak $n$-categories but it is not generally clear whether they are equivalent.
+\\
+However, there is a somewhat different approach for which there has been a lot of progress in recent years, namely that of \textit{$(\infty,n)$-categories} for $n \in \mathbb{N}$. Here we have a \textit{weak $\infty$-category}, i.e. morphisms at aribtrary levels and weak compositions everywhere, but all $k$-morphisms for $k > n$ are required to be weakly invertible, that is invertible up to equivalence which means up to higher weakly invertible morphisms in a coherent way all the way up. Note that now there is no highest level of morphisms anymore, so that equivalence always goes really all the way up and there is no equality at all anymore. A bit more spelled out we can describe the structure schematically as having
+\begin{enumerate}
+\item[(0)]
+a set of objects
+
+\item[(1)]
+for any pair of objects $X_{1},X_{2}$ a set of $1$-morphisms from $X_{1}$ to $X_{2}$
+
+\item[(2)]
+for any pair of objects $X_{1},X_{2}$ and any pair of parallel $1$-morphisms $f_{1},f_{2}$ from $X_{1}$ to $X_{2}$ a set of $2$-morphisms from $f_{1}$ to $f_{2}$
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(n)]
+for any pair of objects $X_{1},X_{2}$ and any pair of parallel $1$-morphisms $f_{1},f_{2}$ from $X_{1}$ to $X_{2}$ ... and any pair of parallel $(n-1)$-morphisms $\alpha_{1},\alpha_{2}$ a set of $n$-morphisms from $\alpha_{1}$ to $\alpha_{2}$
+
+\item[(n+1)]
+for any pair of objects $X_{1},X_{2}$ and any pair of parallel $1$-morphisms $f_{1},f_{2}$ from $X_{1}$ to $X_{2}$ ... and any pair of parallel $n$-morphisms $\nu_{1},\nu_{2}$ a set of weakly invertible $(n+1)$-morphisms from $\nu_{1}$ to $\nu_{2}$
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(...)]
+all higher morphisms are weakly invertible
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(c)]
+at each level $k \in \mathbb{N}$ a weakly associative and weakly unital composition in $k$ weakly interchanging directions, one direction along which $k$-morphisms can be composed for each level below $k$
+\end{enumerate}
+\textit{Functors between $(\infty,n)$-categories} of course act on all morphism levels and functoriality is understood in a weak sense and similar for more general \textit{transfors of $(\infty,n)$-categories}. An illustration of an $m$-transfor of $(\infty,n)$-categories ${_{(\infty,n)}}\mathbf{C}$ and ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ then looks as follows
+\begin{equation*}
+\begin{tikzcd}[row sep=tiny,column sep=large]
+  {_{0}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  {_{0}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  {_{m}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  {_{m}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  \vdots
+  &
+  {_{m+m}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+  \\
+  {_{n}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  \vdots
+  \\
+  {_{n+1}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}}
+  \arrow{rdd}{}
+  &
+  \vdots
+  \\
+  \vdots
+  &
+  {_{n+m}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  {_{n+m+1}}\mathrm{Mor}_{{_{(\infty,n)}}\mathbf{C}_{\alpha}}
+  \\
+  \vdots
+  &
+  \vdots
+\end{tikzcd}
+\end{equation*}
+\\
+Now one may wonder how it could be helpful to allow morphisms at arbitrary levels, as we suggested above that it is already not that easy to define strict $\infty$-categories, let alone weak ones. The point is that we do not need a general definition of weak $\infty$-categories because all morphisms above level $n$ are weakly invertible. Here homotopy-theoretical methods come to our help as we will explain in the following. From now on we adopt the convention that composition is weak unless stated otherwise.
+\\
+We first focus more closely on $(\infty,0)$-categories, often referred to as \textit{$\infty$-groupoids}. According to the homotopy hypothesis the notion of $\infty$-groupoids is basically equivalent to the notion of topological spaces by means of the fundamental $\infty$-groupoid construction. In principle this construction proceeds as follows
+\\
+\begin{cst}
+\label{cst:fundinfgrpd}
+Given a topological space $X$ its \textit{fundamental $\infty$-groupoid} $\pi_{\leq\infty}X$ can be described in the following way
+\begin{enumerate}
+\item[(0)]
+the objects are the points of $X$
+
+\item[(1)]
+for two objects $x_{1},x_{2}$ a $1$-morphism from $x_{1}$ to $x_{2}$ is a path from $x_{1}$ to $x_{2}$ in $X$
+
+\item[(2)]
+for two objects $x_{1},x_{2}$ and two parallel $1$-morphisms $f_{1},f_{2} \colon x_{1} \to x_{2}$ a $2$-morphism from $f_{1}$ to $f_{2}$ is a homotopy of paths in $X$ (which we require to be fixed at the common endpoints)
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(k)]
+higher morphisms are higher homotopies between lower ones (fixed on the common boundaries)
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(c)]
+composition\footnote{see e.g. \cite{00000001} for a bit more on this} at all levels is given by patching homotopies together along common boundaries in the various directions
+\end{enumerate}
+\end{cst}
+As homotopies are invertible up to higher homotopies and the compositions are associative, unital and interchanging up to higher homotopies this is indeed an $\infty$-groupoid. The homotopy hypothesis may be stated as follows
+\\
+\begin{prp}[Homotopy Hypothesis]
+\label{prp:homhyp}
+Construction \ref{cst:fundinfgrpd}, which takes a topological space $X$ to its fundamental $\infty$-groupoid $\pi_{\leq\infty}X$, establishes a bijection between topological spaces up to weak homotopy equivalence and $\infty$-groupoids up to equivalence.
+\end{prp}
+Therefore one possibility is to define an $\infty$-groupoid to be a topological space. There are other possible definitions. For another, more combinatorial approach note that the classical homotopy theory of topological spaces is the same as the classical homotopy theory of simplicial sets in the sense that the corresponding model categories are Quillen equivalent\footnote{model categories are a setting for doing kind of abstract homotopy theory and Quillen equivalence is the corresponding notion of equivalence of such abstract homotopy theories}. Thus it is reasonable to take simplicial sets, or more precisely \textit{Kan complexes} which are the so-called fibrant objects in the classical model structure on simplicial sets, as the definition of $\infty$-groupoids. Whatever definition is taken, the homotopy hypothesis should be understood as a consistency condition for the definition to be reasonable. In some sense it can be seen as a litmus test for whether the coherence conditions are properly encoded. 
+\\
+With a good model for the definition of an $\infty$-groupoid at hand we can try to use some kind of enrichment (or internalization) to define $(\infty,n)$-categories inductively, i.e. an $(\infty,n)$-category is kind of a category enriched in $(\infty,n-1)$-categories (or kind of a category object internal to $(\infty,n-1)$-categories). But as we want composition to be weak rather than strict we would once again like to have a weak process of enrichment or internalization. This may seem to get us into the same troubles as before, yet the structure of $(\infty,n)$-categories can be handled much more easily compared to the structure of weak $n$-categories even though the former are more general: the theory of $(\infty,n)$-categories subsumes the theory of \textit{$(m,n)$-categorie}s, $m \geq n$, i.e. of categories with morphisms up to level $m$ but only invertible ones above level $n$. The latter can be viewed as the special case of the former in which all $k$-morphisms with $k > m$ are trivial, i.e. identities, or to put it differently, any two parallel $k$-morphisms are equivalent for $k > m$. Weak $n$-categories are then obtained as the special case of $(n,n)$-categories. The reason why $(\infty,n)$-categories are easier to define and handle than $(m,n)$-categories for finite $m$ is that for the former it is not necessary to demand anything to be equal on the nose but only that some spaces ($\infty$-groupoids) of choices, like that for the associator with its higher coherence morphisms, is contractible. In this context one also speaks of things {\glqq}up to infinite coherent homotopy{\grqq}, like associative up to infinite coherent homotopy. For $(m,n)$-categories without morphisms above level $m$ one has to demand some of these spaces of higher morphisms to be exactly equal to a single point space which is more difficult to control than just being contractible.
+\\
+There are different very well-understood models, i.e. precise definitions in terms of concrete mathematical objects, of $(\infty,1)$-categories using homotopy-theoretic tools such as simplicial objects. Here the coherence laws can be nicely packaged into the definition. An $(\infty,1)$-category can to some extent be viewed as an abstract homotopy theory:
+\begin{enumerate}
+\item[(c)]
+in classical homotopy theory one is concerned with topological spaces, continuous functions between them and classical homotopies between these continuous functions and iteratively higher homotopies
+
+\item[(a)]
+in an $(\infty,1)$-category there are objects, $1$-morphisms between them and higher weakly invertible morphisms between these $1$-morphisms and on all levels above which can be interpreted as homotopies
+\end{enumerate}
+In this light one sometimes speaks of categories up to coherent homotopy. However, there is actually a bit more to classical homotopy theory, namely the objects have the structure of spaces and in particular allow for homotopy groups. Thus, one might argue that the objects of an $(\infty,1)$-category considered as abstract homotopy theory should have a structure of some kind of generalized spaces, which leads to the notion of \textit{$(\infty,1)$-topoi} as a setting for abstract homotopy theory (see e.g. \cite{00000001} and the references therein for a bit more on ($(\infty,1)$-)topoi). The classical homotopy theory can be viewed as a special case of this abstract notion in a certain sense by considering the category $\mathbf{Top}$ of topological spaces homotopically as an $(\infty,1)$-category, for example by \textit{simplicial localization} at weak homotopy equivalences. This basically means that the objects and morphisms of the ordinary category $\mathbf{Top}$ are contained in the resulting $(\infty,1)$-category, denoted $\mathrm{L}\mathbf{Top}$, in such a way that all weak homotopy equivalences are equivalences in the sense of $1$-morphisms in $(\infty,1)$-categories, i.e. they are invertible up to coherent homotopy. Note that the simplicial localization is to be distinguished from viewing the ordinary category $\mathbf{Top}$ as an $(\infty,1)$-category with only trivial morphisms above level $1$ in which case the homotopical information is not built into the higher morphisms.
+\\
+The above-mentioned models for $(\infty,1)$-categories can be compared using model structures and are known to be equivalent from a homotopy-theoretic point of view via Quillen equivalences. These models can be generalized to yield models for $(\infty,n)$-categories in many different ways and many of them are by now well-understood and have also been shown to be equivalent. In comparison, the theory of \textit{$(\infty,\infty)$-categories}\footnote{this is a less ambiguous notation for weak $\infty$-categories mentioned before} is currently rather poorly understood. There are several proposed definitions for what an $(\infty,\infty)$-category is but it does not really seem to be clear what the right morphisms between $(\infty,\infty)$-categories are.
+\\
+For a good overview and many references for details of some of these models for $(\infty,n)$-categories see e.g. \cite{f3c68a99}. That survey does not cover all models but there are many references to models that are not covered. Moreover, there are references to the axiomatic approaches of To\"en, in the $(\infty,1)$-case, and Barwick and Schommer-Pries \cite{6f59ab3c}, in the more general $(\infty,n)$-case. This axiomatic approach is accomplished within a specific model of $(\infty,1)$-categories, namely the model of quasicategories since this one is currently the most-developed one by far. In fact, most of basic category theory has been extended by Joyal, Lurie and others (see e.g. \cite{0349e8ea} for an extensive account) from ordinary categories to $(\infty,1)$-categories using the specific model of quasicategories. This extension is done in such a way that the obtained quasicategorical notions reduce to the ordinary categorical notions when considered on ordinary categories. Now a quasicategory satisfying some reasonable axioms is called a theory of $(\infty,n)$-categories in \cite{6f59ab3c} and the authors of the paper show that all such theories are equivalent and that many of the models for $(\infty,n)$-categories are theories in this sense.
+\\
+As there are so many different models, a natural question is whether the choice of model matters for constructions and theorems about $(\infty,n)$-categories? In particular, is it possible to transfer all the results accomplished in the model of quasicategories to other models for $(\infty,1)$-categories? At least for the models that are equivalent from a homotopy-theoretic point of view the choice of model should not really matter. To make this precise in a systematic way there is a rather new, and still rapidly-evolving as the authors say, {\glqq}model-independent{\grqq} approach by Riehl and Verity \cite{53e76732}. They use a special model of $(\infty,2)$-categories - namely categories enriched in quasicategories satisfying some axioms, then called $\infty$-cosmoi - as an ambient framework in which higher category theory is developed. The objects in such an $\infty$-cosmos are then called $\infty$-categories (recast as a technical term) and their results hold for any model of higher categories fitting into the framework, i.e. for any model satisfying the axioms of $\infty$-categories in this sense. This is known to include several of the above-mentioned models for $(\infty,1)$-categories - in particular quasicategories - and moreover some models for $(\infty,n)$-categories and more models may be added. In addition to the model-independent results there are {\glqq}change-of-model{\grqq} functors called biequivalences which allow to transfer theorems proven within a specific model to any other biequivalent model. One may expect that the above-mentioned models which are known to be equivalent in the homotopy-theoretic sense by Quillen equivalences are also biequivalent and indeed, it is known that some of the above models of $(\infty,1)$-categories are biequivalent. Hence the whole theory of quasicategories can be transferred to them (and the other way around).
+\\
+The particular model used in \cite{dfcdc48c} for the formulation of the cobordism hypothesis is that of $n$-fold complete Segal spaces because it is rather well-suited for the description of the higher category of cobordisms. Complete Segal spaces were first defined by Rezk as a model for $(\infty,1)$-categories and later generalized to the notion of $n$-fold complete Segal spaces by Barwick as a model for $(\infty,n)$-categories. In \cite{dfcdc48c} Lurie gives a definition without too many prerequisites needed and also motivates a bit why complete Segal spaces capture the structure of $(\infty,1)$-categories. Essentially a Segal space is a simplicial space\footnote{naively this is a simplicial object in $\mathbf{Top}$, i.e. a functor $\Delta^{\mathrm{op}} \to \mathbf{Top}$; often, however, one uses the category $\mathbf{sSet}$ of simplicial sets instead of $\mathbf{Top}$ because they are basically the same from a homotopy-theoretic point of view and $\mathbf{sSet}$ is often easier to work with; a simplicial set is then also called a space, though one often only considers Kan complexes as spaces}
+\begin{align*}
+  F
+  \colon
+  \Delta^{\mathrm{op}}
+  &\to
+  \mathbf{sSet}
+\end{align*}
+satisfying the Segal condition which is a property encoding the idea that giving a chain of $m$ composable $1$-morphisms depicted as
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=1.5em]
+  X_{0}
+  \ar{r}{f_{1}}
+  &
+  X_{1}
+  \ar{r}{f_{2}}
+  &
+  \ldots
+  \ar{r}{f_{m}}
+  &
+  X_{m}
+\end{tikzcd}
+\end{equation*}
+is equivalent to giving the pair of chains
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=1.5em]
+  X_{0}
+  \ar{r}{f_{1}}
+  &
+  \ldots
+  \ar{r}{f_{k}}
+  &
+  X_{k}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=3em,column sep=1.5em]
+  X_{k}
+  \ar{r}{f_{k+1}}
+  &
+  \ldots
+  \ar{r}{f_{m}}
+  &
+  X_{m}
+\end{tikzcd}
+\end{equation*}
+The set $F(0)(0)$ of $0$-simplices of the space $F(0)$ is viewed as the set of objects. Given two such objects $X_{1},X_{2}$ then those simplices of $F(1)$ for which the appropriate face maps (in $F$) have value $X_{1}$ and $X_{2}$, up to homotopy, are interpreted as the $\infty$-groupoid of morphisms from $X_{1}$ to $X_{2}$. For more precision one uses the homotopy fiber product here. Thus $F(1)$ consists of all the $\infty$-groupoids of morphisms for pairs of objects. The higher spaces $F(k)$, $k \geq 2$, encode the composition of these morphisms. But what about the higher homotopical information of $F(0)$, i.e. $F(0)(k)$ for $k \geq 1$? Here the completeness of a Segal space comes into play. Completeness is a condition which basically means that the $\infty$-groupoid consisting of all the invertible morphisms of the category associated to the Segal space is already encoded in the space of $0$-simplices $F(0)$ so that $F(0)$ does not contain further information spoiling the interpretation as $(\infty,1)$-category. For more general $n$-fold Segal spaces one uses $n$-fold or $n$-uple\footnote{terminology varies a bit here} simplicial spaces
+\begin{align*}
+  F
+  \colon
+  \Delta^{\mathrm{op}}
+  \times
+  \ldots
+  \times
+  \Delta^{\mathrm{op}}
+  &\to
+  \mathbf{sSets}
+\end{align*}
+where the product on the left has $n$ factors. These have to satisfy appropriate generalizations of the Segal condition and the completeness condition (and moreover another condition). For more details see \cite{9094cf60} or \cite{29781dd2} for example.
+\\
+We refrain here from precisely describing a specific model for $(\infty,n)$-categories and instead content ourselves with the schematic description given so far, hoping that the idea has become clear. Nevertheless, in the following we want to describe some constructions and properties for $(\infty,n)$-categories, again in an informal way. These may also be thought of as desiderata for a good model in which the details can be made precise.
+\begin{itemize}
+\item
+First note that we can extend a given $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ to an $(\infty,n+1)$-category by simply viewing it as an $(\infty,n+1)$-category in which all $(n+1)$-morphisms are weakly invertible. We call this the \textit{extension (of ${_{(\infty,n)}}\mathbf{C}$)} and denote the resulting category by $\mathrm{E}({_{(\infty,n)}}\mathbf{C})$. More generally, we can view ${_{(\infty,n)}}\mathbf{C}$ as an $(\infty,n+m)$-category for $m \in \mathbb{N}$ in which all $(n+k)$-morphisms are weakly invertible for $0 < k \leq m$ (and of course on all levels above). We call this the \textit{$m$-extension (of ${_{(\infty,n)}}\mathbf{C}$)} and denote the resulting category by $\mathrm{E}^{m}({_{(\infty,n)}}\mathbf{C})$. Note that in the case $m=0$ there is no condition to be satisfied so that
+\begin{align*}
+  \mathrm{E}^{0}({_{(\infty,n)}}\mathbf{C})
+  &:=
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+
+\item
+Given an $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ with $n \geq 1$, then for any two objects $X_{1},X_{2}$ in ${_{(\infty,n)}}\mathbf{C}$ the morphisms from $X_{1}$ to $X_{2}$ on all levels form an $(\infty,n-1)$-category which is denoted by ${_{1}}\mathbf{mor}_{{_{(\infty,n)}}\mathbf{C}}(X_{1},X_{2})$ and is usually referred to as the \textit{mapping category (from $X_{1}$ to $X_{2}$)}. For an $\infty$-groupoid ${_{(\infty,0)}}\mathbf{C}$ and two objects $X_{1},X_{2}$ in ${_{(\infty,0)}}\mathbf{C}$ the morphisms from $X_{1}$ to $X_{2}$ on all levels again form an $\infty$-groupoid denoted by ${_{1}}\mathbf{mor}_{{_{(\infty,0)}}\mathbf{C}}(X_{1},X_{2})$, again called the \textit{mapping category (from $X_{1}$ to $X_{2}$)} or the \textit{mapping groupoid (from $X_{1}$ to $X_{2}$)}. When ${_{(\infty,0)}}\mathbf{C}$ is viewed as an $(\infty,1)$-category $\mathrm{E}({_{(\infty,0)}}\mathbf{C})$ then the two notions for the $\infty$-groupoid of morphisms between two objects coincide
+\begin{align*}
+  {_{1}}\mathbf{mor}_{\mathrm{E}({_{(\infty,0)}}\mathbf{C})}(X_{1},X_{2})
+  &\simeq
+  {_{1}}\mathbf{mor}_{{_{(\infty,0)}}\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+
+\item
+Given two $(\infty,n)$-categories ${_{(\infty,n)}}\mathbf{C}$, ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ there is an $(\infty,n)$-category whose morphisms at level $k$ are the $k$-transfors {\glqq}from ${_{(\infty,n)}}\mathbf{C}$ to ${_{(\infty,n)}}\mathbf{C}_{\alpha}${\grqq}. Note that for $k > n$ a $k$-transfor sends all morphisms of ${_{(\infty,n)}}\mathbf{C}$ to weakly invertible morphisms of ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ and is thus itself weakly invertible so that the $k$-transfors indeed form an $(\infty,n)$-category. Since $0$-transfors are functors this category is usually called the \textit{category of functors (from ${_{(\infty,n)}}\mathbf{C}$ to ${_{(\infty,n)}}\mathbf{C}_{\alpha}$)} and we use the notation
+\begin{align*}
+  \mathrm{func}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+    ,
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \right)
+\end{align*}
+
+\item
+The (small) $(\infty,n)$-categories together are the objects of a (large) $(\infty,n+1)$-category denoted ${_{(\infty,n)}}\mathbf{Cat}$ and whose mapping category for two $(\infty,n)$-categories ${_{(\infty,n)}}\mathbf{C}$, ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ is given by their functor category
+\begin{align*}
+  {_{1}}\mathbf{mor}_{{_{(\infty,n)}}\mathbf{Cat}}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+    ,
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \right)
+  &\simeq
+  \mathrm{func}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+    ,
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \right)
+\end{align*}
+Since any $(\infty,n)$-category can be viewed as an $(\infty,n+1)$-category by extension, one may also think of ${_{(\infty,n)}}\mathbf{Cat}$ as a full subcategory of ${_{(\infty,n+1)}}\mathbf{Cat}$.
+\\
+In this light one can regard the $m$-extension $E^{m}$ as the inclusion functor from ${_{(\infty,n)}}\mathbf{Cat}$ to ${_{(\infty,n+m)}}\mathbf{Cat}$ taking an $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ to its $m$-extension $E^{m}({_{(\infty,n)}}\mathbf{C})$ and the transfors between two $(\infty,n)$-categories to the corresponding transfors between the $m$-extensions.
+
+\item
+Next we consider truncating $(\infty,n)$-categories. Given an $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ then its \textit{weak $m$-truncation}\footnote{we call this $m$-truncation weak since there is another notion of truncation (see below)} for $m \leq n$ is the $(\infty,m)$-category $\mathrm{G}_{m}({_{(\infty,n)}}\mathbf{C})$ obtained by discarding all non-invertible $k$-morphisms for $m < k \leq n$. Similar to the extension, $\mathrm{G}_{m}$ can be viewed as a functor from ${_{(\infty,n)}}\mathbf{Cat}$ to ${_{(\infty,m)}}\mathbf{Cat}$. In the case $m = 0$, where all non-invertible morphisms are discarded, we simply write $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ and also call the weak $0$-truncation the \textit{underlying $\infty$-groupoid (of ${_{(\infty,n)}}\mathbf{C}$)}. In the case $m=n$ we have the identity functor $\mathrm{id}_{{_{(\infty,n)}}\mathbf{Cat}}$.
+\\
+The weak $m$-truncation can be characterized by a universal property or more precisely an $\mathrm{E}^{n-m}$-terminal property. As $\mathrm{G}_{m}$ basically chooses a subcategory of ${_{(\infty,n)}}\mathbf{C}$ there is an inclusion functor
+\begin{align*}
+  \iota
+  \colon
+  \mathrm{E}^{n-m}
+  \left(
+    \mathrm{G}_{m}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+  &\to
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+Then for any $(\infty,m)$-category ${_{(\infty,m)}}\mathbf{C}$ and functor
+\begin{align*}
+  F
+  \colon
+  \mathrm{E}^{n-m}
+  \left(
+    {_{(\infty,m)}}\mathbf{C}
+  \right)
+  &\to
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+there is an \textit{essentially unique} - i.e. unique up to equivalence - functor
+\begin{align*}
+  F_{!}
+  \colon
+  {_{(\infty,m)}}\mathbf{C}
+  &\to
+  \mathrm{G}_{m}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+\end{align*}
+such that the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=2.4em,column sep=1.6em]
+  &
+  \mathrm{E}^{n-m}
+  \left(
+    \mathrm{G}_{m}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+  \ar{rd}{\iota}
+  &
+  \\
+  \mathrm{E}^{n-m}
+  \left(
+    {_{(\infty,m)}}\mathbf{C}
+  \right)
+  \ar{ur}{\mathrm{E}^{n-m}(F_{!})}
+  \ar{rr}{F}
+  &
+  &
+  {_{(\infty,n)}}\mathbf{C}
+\end{tikzcd}
+\end{equation*}
+commutes up to equivalence, or put differently, composition with $\iota$ induces an equivalence
+\begin{align*}
+  \mathrm{func}
+  \left(
+    {_{(\infty,m)}}\mathbf{C}
+    ,
+    \mathrm{G}_{m}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+  &\to
+  \mathrm{func}
+  \left(
+    \mathrm{E}^{n-m}
+    \left(
+      {_{(\infty,m)}}\mathbf{C}
+    \right)
+    ,
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+\end{align*}
+This is because a functor takes invertible morphisms to invertible morphisms and since ${_{(\infty,m)}}\mathbf{C}$ has only invertible morphisms above level $m$ the image of a functor to ${_{(\infty,n)}}\mathbf{C}$ must essentially be contained in the $m$-truncation.
+\\
+Furthermore, note that when we first extend ${_{(\infty,n)}}\mathbf{C}$ and then take the weak $n$-truncation of $\mathrm{E}({_{(\infty,n)}}\mathbf{C})$ we obtain ${_{(\infty,n)}}\mathbf{C}$ again as there are no non-invertible $(n+1)$-morphisms
+\begin{align*}
+  {_{(\infty,n)}}\mathbf{C}
+  &\simeq
+  \mathrm{G}_{n}
+  \left(
+    \mathrm{E}({_{(\infty,n)}}\mathbf{C})
+  \right)
+\end{align*}
+Actually, $\mathrm{G}_{n}$ is right adjoint to $\mathrm{E}$ and the above shows that the unit
+\begin{align*}
+  \eta
+  \colon
+  \mathrm{id}_{{_{(\infty,n)}}\mathbf{Cat}}
+  &\to
+  \mathrm{G}_{n}
+  \circ
+  \mathrm{E}
+\end{align*}
+of this adjunction is the identity.
+
+\item
+Next, we briefly discuss monoidal structures on $(\infty,n)$-categories. Recall that an ordinary monoidal category $\mathbf{C}$ is a category equipped with a way to multiply objects such that this multiplication is associative and unital but only up to isomorphisms satisfying some coherence conditions. As this is usually called the tensor product one also speaks of tensoring objects. Moreover, a pair of morphisms can be tensored as well to yield a morphism between the tensor product of the domains and that of the codomains, i.e. the tensor product is a functor from the cartesian product $\mathbf{C} \times \mathbf{C}$ to $\mathbf{C}$. In much the same way a \textit{monoidal $(\infty,n)$-category} is an $(\infty,n)$-category with a way of multiplying, or tensoring, objects which is associative and unital up to equivalence and such that morphisms at all levels can be tensored appropriately.
+\\
+Recall further that a monoidal structure on an ordinary category can be commutative to different degrees. It can be braided, that is, equipped with a way of interchanging the positions of two objects in their tensor product and it can moreover be symmetric, that is, such that when the braiding is appilied twice to a tensoring of two objects then one recovers the original tensoring. A monoidal $(\infty,n)$-category is said to be \textit{symmetric} if the tensor product is {\glqq}maximally commutative{\grqq}, i.e. commutative up to infinite coherent homotopy. But now there are arbitrary levels of morphisms and one may also demand commutativity only up to coherent homotopy until a finite level of morphisms. Hence there are infinitely many degrees of commutativity.
+\\
+To describe all these structures properly one may look at ordinary monoidal categories in a somewhat different way. Just as a monoid is basically the same as an ordinary category with one object, we can associate to any monoidal category $\mathbf{C}$ a $2$-category $\mathrm{B}\mathbf{C}$, usually called the \textit{delooping (of $\mathbf{C}$)}, which can be described as follows
+\begin{enumerate}
+\item[(0)]
+$\mathrm{B}\mathbf{C}$ has only a single object, call it $\ast$
+
+\item[(1)]
+the $1$-morphisms of $\mathrm{B}\mathbf{C}$ are the objects of $\mathbf{C}$
+
+\item[(2)]
+the $2$-morphisms of $\mathrm{B}\mathbf{C}$ are the morphisms of $\mathbf{C}$
+
+\item[(c)]
+composition of morphisms on the two levels is as follows
+\begin{enumerate}
+\item[(1)]
+for $1$-morphisms composition is given by the tensor product $\otimes$ of objects in $\mathbf{C}$
+
+\item[(2)]
+for the $2$-morphisms there are two kinds of composition
+\begin{enumerate}
+\item[(v)]
+vertical composition is given by the usual composition of morphisms in $\mathbf{C}$
+
+\item[(h)]
+horizontal composition is given by the tensor product $\otimes$ of morphisms in $\mathbf{C}$
+\end{enumerate}
+\end{enumerate}
+
+\item[(i)]
+the identity $1$-morphism of the single object $\mathrm{id}_{\ast}$ is given by the unit of the tensor product
+\end{enumerate}
+The other way around for a $2$-category ${_{2}}\mathbf{C}$ and an object $\star$ in ${_{2}}\mathbf{C}$ the category of endomorphisms ${_{1}}\mathbf{mor}_{{_{2}}\mathbf{C}}(\star,\star)$, which is also called the \textit{looping (of ${_{2}}\mathbf{C}$ at $\star$)} and denoted $\Omega_{\star}({_{2}}\mathbf{C})$, has a monoidal structure defined by composition of $1$-morphisms and horizontal composition of $2$-morphisms. There is a canonical $2$-functor from $\mathrm{B}({_{1}}\mathbf{mor}_{{_{2}}\mathbf{C}}(\star,\star))$ to ${_{2}}\mathbf{C}$ taking the single object of $\mathrm{B}({_{1}}\mathbf{mor}_{{_{2}}\mathbf{C}}(\star,\star))$ to $\star$ and identifying the corresponding endomorphism categories. This $2$-functor is an equivalence of $2$-categories precisely if every object of ${_{2}}\mathbf{C}$ is equivalent to $\star$, so that a monoidal category is basically the same as a $2$-category having, up to equivalence, only a single object.
+\\
+In a similar vein braided monoidal categories can be described as $3$-categories with only one object and only one $1$-morphism which has to be the identity of the single object. Here the objects of the braided monoidal category are identified with the $2$-morphisms of the corresponding $3$-category so that there are now two ways to multiply objects. However, using the exchange law of the vertical and horizontal composition of $2$-morphisms, the so-called Eckmann-Hilton argument shows that these multiplications are equivalent and moreover that the two objects in a tensoring can be interchanged by an isomorphism. Hence this indeed captures the structure of braided monoidal categories. Moving another level up to a $4$-category with only one object, one $1$-morphism and one $2$-morphism we have three weakly interchanging ways of composition for $3$-morphisms, the latter being interpreted as objects. By a similar argument as before these ways of tensoring are equivalent and a closer investigation shows that the process of interchanging two objects in their tensoring is now symmetric, i.e. we have the structure of symmetric monoidal categories.
+\\
+Generalizing this pattern one arrives at the notion of an \textit{$m$-tuply monoidal $(\infty,n)$-category}, $m \in \mathbb{N}$, which is an $(\infty,n)$-category equipped with $m$ different ways of multiplying objects, all of which weakly interchange with each other. Again, the Eckmann-Hilton argument implies that all of these ways are equivalent and that the resulting {\glqq}single{\grqq} operation of multiplication is more commutative the higher $m$ is. For $m=0$ the notion of $0$-tuply monoidal $(\infty,n)$-category means \textit{pointed $(\infty,n)$-category}, that is $(\infty,n)$-category with a chosen object. In this terminology an ordinary monoidal category is a $1$-tuply monoidal $1$-category, a braided monoidal category is a $2$-tuply monoidal $1$-category and a symmetric monoidal category is a $3$-tuply monoidal $1$-category. These are all special cases of a more general principle, the so called delooping hypothesis which basically says that for $0 \leq k \leq m$ an $m$-tuply monoidal $(\infty,n)$-category is the same as an $(m-k)$-tuply monoidal $(\infty,n+k)$-category with only one object, one $1$-morphism and so on until level $k-1$. A bit more precisely, calling an $(\infty,n)$-category \textit{$k$-(simply )connected} if any two parallel $j$-morphisms are equivalent for $0 \leq j \leq k$ the delooping hypothesis can be stated as follows
+\\
+\begin{prp}[Delooping Hypothesis]
+\label{prp:deloophyp}
+$m$-tuply monoidal $(\infty,n)$-categories can be identified with $(k-1)$-simply connected $(m-k)$-tuply monoidal $(\infty,n+k)$-categories for $0 \leq k \leq m$.
+\end{prp}
+The $(k-1)$-simply connected $(m-k)$-tuply monoidal $(\infty,n+k)$-category so associated to an $m$-tuply monoidal $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ is called its \textit{$k$-fold delooping} and is written $\mathrm{B}^{k}{_{(\infty,n)}}\mathbf{C}$. Conversely, given an $m$-tuply monoidal $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ and an object $\star$ in ${_{(\infty,n)}}\mathbf{C}$ we can define its \textit{looping at $\star$} to be the endomorphism mapping category
+\begin{align*}
+  \Omega_{\star}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  &:=
+  {_{1}}\mathbf{mor}_{{_{(\infty,n)}}\mathbf{C}}
+  (\star,\star)
+\end{align*}
+and this is an $(m+1)$-tuply monoidal $(\infty,n-1)$-category. This process of looping can be iterated by looping again at the identity of $\star$, that is the \textit{$2$-fold looping at $\star$} is
+\begin{align*}
+  \Omega_{\star}^{2}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  &:=
+  \Omega_{\mathrm{id}_{\star}}
+  \left(
+    \Omega_{\star}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+\end{align*}
+and similarly for the \textit{$k$-fold looping at $\star$} denoted $\Omega_{\star}^{k}({_{(\infty,n)}}\mathbf{C})$. Note that when taking the $k$-fold delooping and then the $k$-fold looping at the essentially (i.e. up to equivalence) unique object - different choices of the object yield equivalent categories - the original $m$-tuply monoidal $(\infty,n)$-category is recovered. Starting with a $(k-1)$-simply connected $m$-tuply monoidal $(\infty,n)$-category, first taking the $k$-fold looping and then the $k$-fold delooping one also recovers the category one started with. The delooping hypothesis is a widely accepted principle that should be satisfied by any reasonable definition of higher categories, similar to the homotopy hypothesis.
+\\
+One often applies to the delooping hypothesis to actually define $m$-tuply monoidal $(\infty,n)$-categories as $(m-1)$-simply connected (pointed) $(\infty,n+m)$-categories in which case the delooping hypothesis is almost true by definition. A ($1$-tuply) monoidal $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ is then an $(\infty,n+1)$-category $\mathrm{B}{_{(\infty,n)}}\mathbf{C}$ having essentially only one object $\ast$ and whose mapping category ${_{1}}\mathbf{mor}_{\mathrm{B}{_{(\infty,n)}}\mathbf{C}}(\ast,\ast)$ is equivalent to ${_{(\infty,n)}}\mathbf{C}$. The monoidal structure of ${_{(\infty,n)}}\mathbf{C}$ is then basically given by the composition of $1$-morphisms and the corresponding direction of composition for higher morphisms in $\mathrm{B}{_{(\infty,n)}}\mathbf{C}$. A braiding and its various degrees of commutativity are encoded in $m$-tuply monoidal $(\infty,n)$-categories for higher $m$. To obtain the notion of symmetric monoidal $(\infty,n)$-categories one then has to take $m$ to $\infty$ in an appropriate sense. Details for this strategy can e.g. be found in \cite{29781dd2}. In that paper the authors also give a different yet equivalent way to define symmetric monoidal $(\infty,n)$-categories.
+
+\item
+In the same fashion as for normal functors, given two monoidal or symmetric monoidal $(\infty,n)$-categories ${_{(\infty,n)}}\mathbf{C}$, ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ there is an $(\infty,n)$-category whose morphisms at level $k$ are the $k$-transfors from ${_{(\infty,n)}}\mathbf{C}$ to ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ that are compatible with the monoidal or symmetric monoidal structures in a similar sense as for ordinary monoidal or symmetric monoidal categories (see \cite{29781dd2} for more precision). This category is called the \textit{category of monoidal} or \textit{symmetric monoidal functors (from ${_{(\infty,n)}}\mathbf{C}$ to ${_{(\infty,n)}}\mathbf{C}_{\alpha}$)} written
+\begin{align*}
+  \mathrm{func}^{\otimes}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+    ,
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \right)
+  \qquad
+  \text{or}
+  \qquad
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+    ,
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \right)
+\end{align*}
+
+\item
+In classical homotopy theory one often considers the so called \textit{(classical) homotopy category} which in some sense is designed to identify topological spaces with each other that cannot be distinguished homotopy-theoretically. Naively it is the ordinary category, denoted $\mathrm{Ho}_{\mathrm{he}}(\mathbf{Top})$, having the same objects as $\mathbf{Top}$ and whose morphisms are homotopy classes of continuous maps so that (strong) homotopy equivalences between two spaces become isomorphisms in the homotopy category. Often, however, one rather wants the weak homotopy equivalences to become isomorphisms in the homotopy category. This can be done by localizing $\mathbf{Top}$ at the weak homotopy equivalences - which basically means adding formal inverses for all weak homotopy equivalences - and we denote the resulting category by $\mathrm{Ho}_{\mathrm{whe}}(\mathbf{Top})$. Using CW-complexes there is a more explicit way to describe $\mathrm{Ho}_{\mathrm{whe}}(\mathbf{Top})$ since for CW-complexes strong and weak homotopy equivalences are the same by Whitehead's theorem. Indeed, using CW approximation one can show that $\mathrm{Ho}_{\mathrm{whe}}(\mathbf{Top})$ is equivalent to the full subcategory of $\mathrm{Ho}_{\mathrm{he}}(\mathbf{Top})$ with objects only the (ones homeomorphic to) CW-complexes.
+\\
+Now as $(\infty,1)$-categories are an abstract form of homotopy theory there is an analogue of the homotopy category for them and more generally also for $(\infty,n)$-categories. Let ${_{(\infty,n)}}\mathbf{C}$ be an $(\infty,n)$-category then its \textit{homotopy category} $\mathrm{Ho}({_{(\infty,n)}}\mathbf{C})$ is the ordinary category
+\begin{enumerate}
+\item[(0)]
+with objects those of ${_{(\infty,n)}}\mathbf{C}$
+
+\item[(1)]
+for two objects $X_{1},X_{2}$ the set of morphisms from $X_{1}$ to $X_{2}$ is the set of equivalence classes\footnote{w.r.t. equivalence of morphisms from $X_{1}$ to $X_{2}$} of $1$-morphisms from $X_{1}$ to $X_{2}$ in ${_{(\infty,n)}}\mathbf{C}$ or put differently the set of equivalence classes of objects in the $(\infty,n-1)$-category ${_{1}}\mathbf{mor}_{{_{(\infty,n)}}\mathbf{C}}(X_{1},X_{2})$
+
+\item[(c)]
+composition is given by the composition of representatives in ${_{(\infty,n)}}\mathbf{C}$ and then taking the equivalence class which is well-defined since equivalent choices of representatives give equivalent compositions
+\end{enumerate}
+When consdering $\mathbf{Top}$ homotopically as $(\infty,1)$-category by taking its simplicial localization $\mathrm{L}\mathbf{Top}$ as mentioned earlier then the two notions of homotopy category coincide in the sense that
+\begin{align*}
+  \mathrm{Ho}(\mathrm{L}\mathbf{Top})
+  &\simeq
+  \mathrm{Ho}_{\mathrm{whe}}(\mathbf{Top})
+\end{align*}
+This notion of the homotopy category has a generalization. Given an $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ then its \textit{homotopy $m$-category} $\mathrm{Ho}^{m}({_{(\infty,n)}}\mathbf{C})$ for $m \in \mathbb{N}$ is the $m$-category which can be described as follows
+\begin{enumerate}
+\item[(k)]
+for $k < m$ the $k$-morphisms of $\mathrm{Ho}^{m}({_{(\infty,n)}}\mathbf{C})$ are those of ${_{(\infty,n)}}\mathbf{C}$
+
+\item[(m)]
+the $m$-morphisms in $\mathrm{Ho}^{m}({_{(\infty,n)}}\mathbf{C})$ are given by equivalence classes of $m$-morphisms in ${_{(\infty,n)}}\mathbf{C}$
+
+\item[(c)]
+composition on the levels below $m$ is that of ${_{(\infty,n)}}\mathbf{C}$ and on the level $m$ it is given by the composition of representatives in ${_{(\infty,n)}}\mathbf{C}$ and then taking the equivalence class
+\end{enumerate}
+$\mathrm{Ho}^{m}({_{(\infty,n)}}\mathbf{C})$ also goes by the name \textit{$m$-truncation} but we will avoid this terminology here in order to not cause confusion with the notion of weak $m$-truncation. Note that for any pair $X_{1},X_{2}$ of objects in ${_{(\infty,n)}}\mathbf{C}$ the mapping category of morphisms of the homotopy $m$-category coincides with the homotopy $(m-1)$-category of the mapping category of morphisms in ${_{(\infty,n)}}\mathbf{C}$, that is
+\begin{align*}
+  {_{1}}\mathbf{mor}_{\mathrm{Ho}^{m}({_{(\infty,n)}}\mathbf{C})}
+  (X_{1},X_{2})
+  &\simeq
+  \mathrm{Ho}^{m-1}
+  \left(
+    {_{1}}\mathbf{mor}_{{_{(\infty,n)}}\mathbf{C}}
+    (X_{1},X_{2})
+  \right)
+\end{align*}
+Note further that if ${_{(\infty,n)}}\mathbf{C}$ has a (symmetric) monoidal structure then its homotopy $m$-category inherits such a structure from the one on ${_{(\infty,n)}}\mathbf{C}$.
+\\
+The homotopy $m$-category can also be charaterized by a universal property. Let ${_{n}}\mathbf{Cat}$ denote the full subcategory of ${_{(\infty,n)}}\mathbf{Cat}$ of $n$-categories, that is, those with only trivial morphisms above level $n$. Let further $\mathrm{E}_{\mathrm{tr}}^{m}$ denote the restriction of the $m$-extension functor to ${_{n}}\mathbf{Cat}$, then the universal property for the homotopy $m$-category is more precisely an $\mathrm{E}_{\mathrm{tr}}^{n-m}$-initial property. As $\mathrm{Ho}^{m}({_{(\infty,n)}}\mathbf{C})$ basically is a quotient of ${_{(\infty,n)}}\mathbf{C}$ on the level of $m$-morphisms, there is a quotient functor
+\begin{align*}
+  Q
+  \colon
+  {_{(\infty,n)}}\mathbf{C}
+  &\to
+  \mathrm{E}_{\mathrm{tr}}^{n-m}
+  \left(
+    \mathrm{Ho}^{m}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+\end{align*}
+which takes morphisms below level $m$ to themselves, those on level $m$ to their equivalence class and those above level $m$ to trivial morphisms. Then for any $m$-category ${_{m}}\mathbf{C}$ and functor
+\begin{align*}
+  F
+  \colon
+  {_{(\infty,n)}}\mathbf{C}
+  &\to
+  \mathrm{E}_{\mathrm{tr}}^{n-m}
+  \left(
+    {_{m}}\mathbf{C}
+  \right)
+\end{align*}
+there is an essentially unique functor
+\begin{align*}
+  F_{!}
+  \colon
+  \mathrm{Ho}^{m}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  &\to
+  {_{m}}\mathbf{C}
+\end{align*}
+such that the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=2.4em,column sep=1.6em]
+  &
+  \mathrm{E}_{\mathrm{tr}}^{n-m}
+  \left(
+    \mathrm{Ho}^{m}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+  \ar{ld}[swap]{\mathrm{E}_{\mathrm{tr}}^{n-m}(F_{!})}
+  &
+  \\
+  \mathrm{E}_{\mathrm{tr}}^{n-m}
+  \left(
+    {_{m}}\mathbf{C}
+  \right)
+  &
+  &
+  {_{(\infty,n)}}\mathbf{C}
+  \ar{ll}[swap]{F}
+  \ar{ul}[swap]{Q}
+\end{tikzcd}
+\end{equation*}
+commutes up to equivalence, or put differently pre-composition with $Q$ induces an equivalence
+\begin{align*}
+  \mathrm{func}
+  \left(
+    \mathrm{Ho}^{m}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+    ,
+    {_{m}}\mathbf{C}
+  \right)
+  &\to
+  \mathrm{func}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+    ,
+    \mathrm{E}_{\mathrm{tr}}^{n-m}
+    \left(
+      {_{m}}\mathbf{C}
+    \right)
+  \right)
+\end{align*}
+\end{itemize}
+In the following we assume to have a precise notion of higher categories and the structures on them described so far.

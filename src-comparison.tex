@@ -1,0 +1,824 @@
+\nocite{0a816f4c}
+%%%
+We now come to the comparison of TQFTs, that is, we want to have an appropriate notion of equivalence for two $n$-dimensional TQFTs. From the definition as a symmetric monoidal functor, one is immediately led to monoidal natural transformations. But we want to motivate this a little further in terms of the alternative characterization given above.
+\\
+Let $Y$ and $\tilde{Y}$ be $n$-dimensional TQFTs specified in terms of the data and conditions (AC1) - (AC5) in corollary \ref{cor:actqft}. For equivalent TQFTs we certainly want the state spaces $Y(S)$ and $\tilde{Y}(S)$ on an $(n - 1)$-manifold $S$ to be isomorphic. Thus we demand that there is a function $\mathsf{T}$ assigning to each $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ a linear isomorphism
+\begin{align*}
+  \mathsf{T}(S)
+  \colon
+  Y(S)
+  \to
+  \tilde{Y}(S)
+\end{align*}
+Then for the invariants $Y([M])$ and $\tilde{Y}([M])$ assigned to a diffeomorphism class of cobordisms with boundary $\partial M \cong S$, i.e.
+\begin{align*}
+  [M]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S)
+\end{align*}
+there is an obvious compatibility condition, namely we require
+\begin{align*}
+  \tilde{Y}([M])
+  \circ
+  \tilde{\Phi}
+  &=
+  \mathsf{T}(S)
+  \circ
+  Y([M])
+  \circ
+  \Phi
+  \colon
+  K
+  \to
+  \tilde{Y}(S)
+\end{align*}
+Now if $S = S_{1} \sqcup S_{2}$ we have
+\begin{align*}
+  Y(S)
+  &\cong
+  Y(S_{1})
+  \otimes
+  Y(S_{2})
+\end{align*}
+and likewise for $\tilde{Y}(S)$. We then have two potentially different choices for the isomorphism assigned to $S$, we could take $\mathsf{T}(S)$ or we could take
+\begin{align*}
+  \tilde{\mathsf{H}}(S_{1},S_{2})
+  \circ
+  \left(
+    \mathsf{T}(S_{1})
+    \otimes
+    \mathsf{T}(S_{2})
+  \right)
+  \circ
+  \mathsf{H}(S_{1},S_{2})^{-1}
+\end{align*}
+But there is a relation between them due to the compatibility condition. Namely, let
+\begin{align*}
+  [M]
+  &=
+  [M_{1}]
+  \sqcup
+  [M_{2}]
+\end{align*}
+with
+\begin{align*}
+  [M_{1}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S_{1})
+  ,\quad
+  [M_{2}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S_{2})
+\end{align*}
+then
+\begin{align*}
+  &
+  \mathsf{T}(S)
+  \circ
+  \mathsf{H}(S_{1},S_{2})
+  \circ
+  \left(
+    Y([M_{1}])
+  \otimes
+    Y([M_{2}])
+  \right)
+  \circ
+  \mathsf{H}(\emptyset,\emptyset)^{-1}
+  \\
+  &=
+  \mathsf{T}(S)
+  \circ
+  Y([M_{1}] \sqcup [M_{2}])
+  \\
+  &=
+  \tilde{Y}([M_{1}] \sqcup [M_{2}])
+  \circ
+  \tilde{\Phi}
+  \circ
+  \Phi^{-1}
+  \\
+  &=
+  \tilde{\mathsf{H}}(S_{1},S_{2})
+  \\
+  &\phantom{=}
+  \circ
+  \left(
+    \tilde{Y}([M_{1}])
+    \otimes
+    \tilde{Y}([M_{2}])
+  \right)
+  \\
+  &\phantom{=}
+  \circ
+  \tilde{\mathsf{H}}(\emptyset,\emptyset)^{-1}
+  \circ
+  \tilde{\Phi}
+  \circ
+  \Phi^{-1}
+  \\
+  &=
+  \tilde{\mathsf{H}}(S_{1},S_{2})
+  \\
+  &\phantom{=}
+  \circ
+  \left(
+    \left(
+      \mathsf{T}(S_{1})
+      \circ
+      Y([M_{1}])
+      \circ
+      \Phi
+      \circ
+      \tilde{\Phi}^{-1}
+    \right)
+    \otimes
+    \left(
+      \mathsf{T}(S_{2})
+      \circ
+      Y([M_{2}])
+      \circ
+      \Phi
+      \circ
+      \tilde{\Phi}^{-1}
+    \right)
+  \right)
+  \\
+  &\phantom{=}
+  \circ
+  \tilde{\mathsf{H}}(\emptyset,\emptyset)^{-1}
+  \circ
+  \tilde{\Phi}
+  \circ
+  \Phi^{-1}
+  \\
+  &=
+  \tilde{\mathsf{H}}(S_{1},S_{2})
+  \\
+  &\phantom{=}
+  \circ
+  \left(
+    \mathsf{T}(S_{1})
+    \otimes
+    \mathsf{T}(S_{2})
+  \right)
+  \circ
+  \left(
+    Y([M_{1}])
+    \otimes
+    Y([M_{2}])
+  \right)
+  \\
+  &\phantom{=}
+  \circ
+  \left(
+    (\Phi \circ \tilde{\Phi}^{-1})
+    \otimes
+    (\Phi \circ \tilde{\Phi}^{-1})
+  \right)
+  \\
+  &\phantom{=}
+  \circ
+  \tilde{\mathsf{H}}(\emptyset,\emptyset)^{-1}
+  \circ
+  \tilde{\Phi}
+  \circ
+  \Phi^{-1}
+  \\
+  &=
+  \tilde{\mathsf{H}}(S_{1},S_{2})
+  \\
+  &\phantom{=}
+  \circ
+  \left(
+    \mathsf{T}(S_{1})
+    \otimes
+    \mathsf{T}(S_{2})
+  \right)
+  \circ
+  \left(
+    Y([M_{1}])
+    \otimes
+    Y([M_{2}])
+  \right)
+  \\
+  &\phantom{=}
+  \circ
+  \mathsf{H}(\emptyset,\emptyset)^{-1}
+\end{align*}
+For the last step we used $\emptyset = \emptyset \sqcup \emptyset$ and $\mathsf{L}(\emptyset) = \mathrm{id}_{\emptyset}$ which implies from (MF2) that
+\begin{align*}
+  \mathsf{H}(\emptyset,\emptyset)^{-1}
+  &=
+  (\Phi \otimes \mathrm{id}_{Y(\emptyset)})
+  \circ
+  \mathsf{L}^{-1}(Y(\emptyset))
+  \\
+  \tilde{\mathsf{H}}(\emptyset,\emptyset)^{-1}
+  &=
+  (\tilde{\Phi} \otimes \mathrm{id}_{\tilde{Y}(\emptyset)})
+  \circ
+  \mathsf{L}^{-1}(\tilde{Y}(\emptyset))
+\end{align*}
+Hence we find the following commuting diagram whose outer part justifies the last step in the above equation. The central part and the right parts of this diagram are the naturailty of $\mathsf{L}$ and the functoriality of $\otimes$, respectively.
+\begin{equation*}
+\begin{tikzcd}[row sep=3.5em,column sep=8em]
+  Y(\emptyset)
+  \ar{rrr}{\mathsf{H}(\emptyset,\emptyset)^{-1}}
+  \ar{rd}[description]{\mathrm{id}_{Y(\emptyset)}}
+  \ar[swap]{dd}{\tilde{\Phi} \circ \Phi^{-1}}
+  &
+  &
+  &
+  Y(\emptyset)
+  \otimes
+  Y(\emptyset)
+  \\
+  &
+  Y(\emptyset)
+  \ar{r}{\mathsf{L}^{-1}(Y(\emptyset))}
+  &
+  K
+  \otimes
+  Y(\emptyset)
+  \ar{ur}[description]{\Phi \otimes \mathrm{id}_{Y(\emptyset)}}
+  &
+  \\
+  \tilde{Y}(\emptyset)
+  \ar{ur}[description]{\Phi \circ \tilde{\Phi}^{-1}}
+  \ar{rr}{\mathsf{L}^{-1}(\tilde{Y}(\emptyset))}
+  \ar[bend right]{rrr}{\tilde{\mathsf{H}}(\emptyset,\emptyset)^{-1}}
+  &
+  &
+  K
+  \otimes
+  \tilde{Y}(\emptyset)
+  \ar{u}[description]{\mathrm{id}_{K} \otimes (\Phi \circ \tilde{\Phi}^{-1})}
+  \ar{uur}[description]{\Phi \otimes (\Phi \circ \tilde{\Phi}^{-1})}
+  \ar{r}{\tilde{\Phi} \otimes \mathrm{id}_{\tilde{Y}(\emptyset)}}
+  &
+  \tilde{Y}(\emptyset)
+  \otimes
+  \tilde{Y}(\emptyset)
+  \ar{uu}[description]{(\Phi \circ \tilde{\Phi}^{-1}) \otimes (\Phi \circ \tilde{\Phi}^{-1})}
+\end{tikzcd}
+\end{equation*}
+We are thus led to initially define $\mathsf{T}$ only on connected $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ and then extend it to all objects in $\mathbf{Cob}_{n}$ by taking tensor products, i.e. we recursively define
+\begin{align*}
+  \mathsf{T}(S_{1} \sqcup S_{2})
+  &:=
+  \tilde{\mathsf{H}}(S_{1},S_{2})
+  \circ
+  \left(
+    \mathsf{T}(S_{1})
+    \otimes
+    \mathsf{T}(S_{2})
+  \right)
+  \circ
+  \mathsf{H}(S_{1},S_{2})^{-1}
+\end{align*}
+for $S_{1},S_{2} \in \mathrm{ob}_{\mathbf{Cob}_{n}}$. Note that every object $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ is a finite disjoint union of connected objects. This is because $S$ is compact and every connected component is open so that the open cover consisting of the summands of the disjoint union does not have a finite subcover if there are inifitely many summands. The compatibility condition is only demanded on connected $S$ but it also holds for non-connected ones as the above calculation shows. We now call $Y$ and $\tilde{Y}$ \textbf{equivalent} if such a function $\mathsf{T}$ exists. We will show that $\mathsf{T}$ is then a monoidal natural isomorphism between the symmetric monoidal functors obtained by extending $Y$ and $\tilde{Y}$ according to theorem \ref{THM:ACSMF}. We will additionally show that the converse is also true so that we have an alternative characterization of monoidal natural isomorphisms between symmetric monoidal functors in terms of the data and conditions in theorem \ref{THM:ACSMF}. This is again best proven in a more general context. We have the following
+\\
+\begin{thm}
+\label{THM:ACMNT}
+Let $\mathbf{C}, \mathbf{C}_{\alpha}$ be symmetric monoidal categories and let $\mathbf{C}$ be left rigid. Further let $F_{1},F_{2}$ be tuples as in theorem \ref{THM:ACSMF} satisfying the conditons (AC1) - (AC5) there and let $\mathsf{T}_{12}$ be a function assigning to each $X \in \mathrm{ob}_{\mathbf{C}}$ an isomorphism
+\begin{align*}
+  \mathsf{T}_{12}(X)
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}(F_{1}(X),F_{2}(X))
+\end{align*}
+Then the following are equivalent
+\begin{enumerate}
+\item[i)]
+$\mathsf{T}_{12}$ is a monoidal natural isomorphism between the symmetric monoidal functors obtained by extending $F_{1},F_{2}$ via theorem \ref{THM:ACSMF}.
+
+\item[ii)]
+$\mathsf{T}$ satisfies
+\begin{enumerate}
+\item[(TAC1)]
+for $f \in \mathrm{mor}_{\mathbf{C}}(1,X)$ the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[column sep=large]
+  F_{1}(1)
+  \ar{r}{F_{1}(f)}
+  &
+  F_{1}(X)
+  \ar{dd}{\mathsf{T}_{12}(X)}
+  \\
+  1_{\alpha}
+  \ar{u}{\Phi_{1}}
+  \ar{d}[swap]{\Phi_{2}}
+  \\
+  F_{2}(1)
+  \ar{r}{F_{2}(f)}
+  &
+  F_{2}(X)
+\end{tikzcd}
+\end{equation*}
+
+\item[(TAC2)]
+for $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$ the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=8em]
+  F_{1}(X_{1})
+  \otimes_{\alpha}
+  F_{1}(X_{2})
+  \arrow{r}{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} \mathsf{T}_{12}(X_{2})}
+  \arrow[swap]{d}{\mathsf{H}_{1}(X_{1},X_{2})}
+  &
+  F_{2}(X_{1})
+  \otimes_{\alpha}
+  F_{2}(X_{2})
+  \arrow{d}{\mathsf{H}_{2}(X_{1},X_{2})}
+  \\
+  F_{1}(X_{1} \otimes X_{2})
+  \arrow{r}{\mathsf{T}_{12}(X_{1} \otimes X_{2})}
+  &
+  F_{2}(X_{1} \otimes X_{2})
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+\end{enumerate}
+\end{thm}
+\begin{prf}[Sketch]
+We again only sketch the proof here and give the details in the appendix.
+\\
+By theorem \ref{THM:ACSMF} we may assume for both directions of the proof that $F_{1},F_{2}$ are both symmetric monoidal functors from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$.
+\\\\
+i) $\Rightarrow$ ii)
+\qquad
+This direction is easy. The diagram in (TAC1) is immediate from the naturality of $\mathsf{T}_{12}$ and the diagram for monoidal natural transformations (MT2) involving $\Phi_{1},\Phi_{2}$. The diagram in (TAC2) is the same as (MT1) for a monoidal natural transformation.
+\\\\
+ii) $\Rightarrow$ i)
+\qquad
+The monoidality of $\mathsf{T}_{12}$ is easy, since, as already said above, (MT1) is just (TAC2) and (MT2) which demands
+\begin{align*}
+  \Phi_{2}
+  &=
+  \mathsf{T}_{12}(1)
+  \circ
+  \Phi_{1}
+\end{align*}
+is just (TAC1) for $X = 1$ and $f = \mathrm{id}_{1}$ since $F_{i}(\mathrm{id}_{1}) = \mathrm{id}_{F_{i}(1)}$ for $i = 1,2$. This also implies that (TAC1) yields the naturality of $\mathsf{T}_{12}$ for morphisms $f \in \mathrm{mor}_{\mathbf{C}}(1,X)$ and it remains to show the naturality for arbitrary morphisms
+\begin{align*}
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+We do this in three steps.
+\begin{enumerate}
+\item[(i)]
+Remember the definition of the coevalution map for
+\begin{align*}
+  F_{i}(X_{1})
+  \qquad
+  \text{and}
+  \qquad
+  F_{i}(X_{1}^{\prime})
+  ,\qquad
+  i
+  &=
+  1
+  ,
+  2
+\end{align*}
+as
+\begin{align*}
+  \mathrm{coev}_{F_{i}(X_{1})}
+  &=
+  \mathsf{H}_{i}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  F_{i}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{i}
+\end{align*}
+From (TAC1) we have
+\begin{align*}
+  F_{2}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{2}
+  &=
+  \mathsf{T}_{12}(X_{1} \otimes X_{1}^{\prime})
+  \circ
+  F_{1}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{1}
+\end{align*}
+and (TAC2) hence implies
+\begin{align*}
+  \mathrm{coev}_{F_{2}(X_{1})}
+  &=
+  \mathsf{H}_{2}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  F_{2}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{2}
+  \\
+  &=
+  \mathsf{H}_{2}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  \mathsf{T}_{12}(X_{1} \otimes X_{1}^{\prime})
+  \circ
+  F_{1}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{1}
+  \\
+  &=
+  \left(
+    \mathsf{T}_{12}(X_{1})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1}^{\prime})
+  \right)
+  \circ
+  \mathsf{H}_{1}^{-1}(X_{1},X_{1}^{\prime})
+  \circ
+  F_{1}(\mathrm{coev}_{X_{1}})
+  \circ
+  \Phi_{1}
+  \\
+  &=
+  \left(
+    \mathsf{T}_{12}(X_{1})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1}^{\prime})
+  \right)
+  \circ
+  \mathrm{coev}_{F_{1}(X_{1})}
+\end{align*}
+
+\item[(ii)]
+We want to prove a similar relation for the evaluation maps $\mathrm{ev}_{F_{i}(X_{1})}$ corresponding to the $\mathrm{coev}_{F_{i}(X_{1})}$, i.e. we want to show
+\begin{align*}
+  \mathrm{ev}_{F_{1}(X_{1})}
+  &=
+  \mathrm{ev}_{F_{2}(X_{1})}
+  \circ
+  \left(
+    \mathsf{T}_{12}(X_{1}^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1})
+  \right)
+\end{align*}
+Note that we cannot reason as in (i) since we do not have a diagram analogous to (TAC1) for morphisms with codomain $1$. Thus, to show the above equation we will check that
+\begin{align*}
+  \tilde{\mathrm{ev}}_{F_{1}(X_{1})}
+  &:=
+  \mathrm{ev}_{F_{2}(X_{1})}
+  \circ
+  \left(
+    \mathsf{T}_{12}(X_{1}^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1})
+  \right)
+\end{align*}
+also is an evaluation map for $\mathrm{coev}_{F_{1}(X_{1})}$. Then the uniqueness of the evaluation map implies what we want to show.
+\\
+That the two required diagram from (LD1) and (LD2) commute can be shown from the corresponding diagrams for $\mathrm{ev}_{F_{2}(X_{1})}$ and $\mathrm{coev}_{F_{2}(X_{1})}$ by using (i), the naturality of $\mathsf{L}_{\alpha}$, $\mathsf{R}_{\alpha}$ and $\mathsf{A}_{\alpha}$, the functoriality of the tensor product and the invertibility of $\mathsf{T}_{12}$.
+
+\item[(iii)]
+We have to show that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=3.2em]
+  F_{1}(X_{1})
+  \ar{r}{F_{1}(f_{12})}
+  \ar{d}[swap]{\mathsf{T}_{12}(X_{1})}
+  &
+  F_{1}(X_{2})
+  \ar{d}{\mathsf{T}_{12}(X_{2})}
+  \\
+  F_{2}(X_{1})
+  \ar{r}{F_{2}(f_{12})}
+  &
+  F_{2}(X_{2})
+\end{tikzcd}
+\end{equation*}
+To do this we recall the definition of $F_{i}(f_{12})$, $i = 1,2$, in terms of
+\begin{align*}
+  \tilde{f}_{12}
+  &=
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  \mathrm{coev}_{X_{1}}
+  \colon
+  1
+  \to
+  X_{2} \otimes X_{1}^{\prime}
+  \\
+  \gamma_{f_{12}}^{F_{i}}
+  &=
+  \mathsf{H}_{i}^{-1}(X_{2},X_{1}^{\prime})
+  \circ
+  F_{i}(\tilde{f}_{12})
+  \circ
+  \Phi_{i}
+\end{align*}
+by the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  F_{i}(X_{1})
+  \ar{r}{F_{i}(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(F_{i}(X_{1}))}
+  &
+  F_{i}(X_{2})
+  \\
+  1_{\alpha} F_{i}(X_{1})
+  \ar{d}[swap]{\gamma_{f_{12}}^{F_{i}} \otimes_{\alpha} \mathrm{id}_{F_{i}(X_{1})}}
+  &
+  F_{i}(X_{2}) 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(F_{i}(X_{2}))}
+  \\
+  (F_{i}(X_{2}) F_{i}(X_{1}^{\prime})) F_{i}(X_{1})
+  \ar{r}{\mathsf{A}_{\alpha}(F_{i}(X_{2}),F_{i}(X_{1}^{\prime}),F_{i}(X_{1}))}
+  &
+  F_{i}(X_{2}) (F_{i}(X_{1}^{\prime}) F_{i}(X_{1}))
+  \ar{u}[swap]{\mathrm{id}_{F_{i}(X_{2})} \otimes_{\alpha} \mathrm{ev}_{F_{i}(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+From (TAC1) for $\tilde{f}_{12}$ and (TAC2) one can obtain the following relation
+\begin{align*}
+  \gamma_{f_{12}}^{F_{1}}
+  &=
+  \left(
+    \mathsf{T}_{12}(X_{2})^{-1}
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X_{1}^{\prime})^{-1}
+  \right)
+  \circ
+  \gamma_{f_{12}}^{F_{2}}
+\end{align*}
+Substituting this in the definition of $F_{1}(f_{12})$ and using the result from step (ii) one easily finds the desired diagram.
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+Now we have monoidal natural isomorphisms as equivalences between TQFTs. But what about monoidal natural transformations between them which are not isomorphisms. Is there a similar alternative characterization? As it turns out we do not have to care about that since monoidal natural transformations between TQFTs are always isomorphisms. More generally, we have
+\\
+\begin{thm}
+\label{thm:mntiso}
+Let $\mathbf{C}, \mathbf{C}_{\alpha}$ be monoidal categories,
+\begin{align*}
+  F_{1}
+  ,
+  F_{2}
+  \colon
+  \mathbf{C}
+  &\to
+  \mathbf{C}_{\alpha}
+\end{align*}
+monoidal functors and $\mathsf{T}_{12}$ a monoidal natural transformation from $F_{1}$ to $F_{2}$. If $\mathbf{C}$ is left rigid (or right rigid) then $\mathsf{T}_{12}$ is invertible.
+\end{thm}
+\begin{prf}
+We do the proof for a left rigid category $\mathbf{C}$, the right rigid case is analogous.
+\begin{enumerate}
+\item[(a)]
+Let $X \in \mathrm{ob}_{\mathbf{C}}$ with dual object $X^{\prime}$ and evaluation and coevaluation map $\mathrm{ev}_{X}$ and $\mathrm{coev}_{X}$. From lemma \ref{lem:mfduals} we know that for $i = 1,2$ the object $F_{i}(X)$ has $F_{i}(X^{\prime})$ as a dual object with evaluation and coevaluation map given by
+\begin{align*}
+  \mathrm{ev}_{F_{i}(X)}
+  &=
+  \Phi_{i}^{-1}
+  \circ
+  F_{i}(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}_{i}(X^{\prime},X)
+  \colon
+  F_{i}(X^{\prime})
+  \otimes_{\alpha}
+  F_{i}(X)
+  \to
+  1_{\alpha}
+  \\
+  \mathrm{coev}_{F_{i}(X)}
+  &=
+  \mathsf{H}_{i}^{-1}(X,X^{\prime})
+  \circ
+  F_{i}(\mathrm{coev}_{X})
+  \circ
+  \Phi_{i}
+  \colon
+  1_{\alpha}
+  \to
+  F_{i}(X)
+  \otimes_{\alpha}
+  F_{i}(X^{\prime})
+\end{align*}
+Furthermore, these duality maps for $F_{1}$ and $F_{2}$ are related by $\mathsf{T}_{12}$. In the proof of theorem \ref{THM:ACMNT} we showed in step (i) that
+\begin{align}
+\label{F12coev}
+  \mathrm{coev}_{F_{2}(X)}
+  &=
+  \left(
+    \mathsf{T}_{12}(X)
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X^{\prime})
+  \right)
+  \circ
+  \mathrm{coev}_{F_{1}(X)}
+\end{align}
+and this is valid here, too. For the evaluation map we cannot reason in the same way as in theorem \ref{THM:ACMNT}, step (ii), since $\mathsf{T}_{12}(X)$ is a priori not invertible here. But we do not need to since we have naturality for all morphisms. Hence we calculate
+\begin{align*}
+  \Phi_{2}
+  \circ
+  \mathrm{ev}_{F_{1}(X)}
+  &=
+  \Phi_{2}
+  \circ
+  \Phi_{1}^{-1}
+  \circ
+  F_{1}(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}_{1}(X^{\prime},X)
+  \\
+  &=
+  \mathsf{T}_{12}(1)
+  \circ
+  F_{1}(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}_{1}(X^{\prime},X)
+  \\
+  &=
+  F_{2}(\mathrm{ev}_{X})
+  \circ
+  \mathsf{T}_{12}(X^{\prime} \otimes X)
+  \circ
+  \mathsf{H}_{1}(X^{\prime},X)
+  \\
+  &=
+  \Phi_{2}
+  \circ
+  \Phi_{2}^{-1}
+  \circ
+  F_{2}(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}_{2}(X^{\prime},X)
+  \circ
+  \left(
+    \mathsf{T}_{12}(X^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X)
+  \right)
+  \\
+  &=
+  \Phi_{2}
+  \circ
+  \mathrm{ev}_{F_{2}(X)}
+  \circ
+  \left(
+    \mathsf{T}_{12}(X^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X)
+  \right)
+\end{align*}
+Applying $\Phi_{2}^{-1}$ from the left shows
+\begin{align}
+\label{F12ev}
+  \mathrm{ev}_{F_{1}(X)}
+  &=
+  \mathrm{ev}_{F_{2}(X)}
+  \circ
+  \left(
+    \mathsf{T}_{12}(X^{\prime})
+    \otimes_{\alpha}
+    \mathsf{T}_{12}(X)
+  \right)
+\end{align}
+
+\item[(b)]
+As in theorem \ref{THM:ACSMF} we assume to have chosen a dual object for every object in $\mathbf{C}$. We now claim that the function $\mathsf{T}_{21}$ assigning to each $X \in \mathrm{ob}_{\mathbf{C}}$ a morphism
+\begin{align*}
+  \mathsf{T}_{21}(X)
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}(F_{2}(X),F_{1}(X))
+\end{align*}
+defined by the commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=4em]
+  F_{2}(X)
+  \ar{r}{\mathsf{T}_{21}(X)}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(F_{2}(X))}
+  &
+  F_{1}(X)
+  &
+  F_{1}(X) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(F_{1}(X))}
+  \\
+  1_{\alpha} F_{2}(X)
+  \ar{d}[swap]{\mathrm{coev}_{F_{1}(X)} \otimes_{\alpha} \mathrm{id}_{F_{2}(X)}}
+  &
+  &
+  F_{1}(X) (F_{2}(X^{\prime}) F_{2}(X))
+  \ar{u}[swap]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X)}}
+  \\
+  (F_{1}(X) F_{1}(X^{\prime})) F_{2}(X)
+  \ar{rr}{\mathsf{A}_{\alpha}(F_{1}(X),F_{1}(X^{\prime}),F_{2}(X))}
+  &
+  &
+  F_{1}(X) (F_{1}(X^{\prime}) F_{2}(X))
+  \ar{u}[swap]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} (\mathsf{T}_{12}(X^{\prime}) \otimes_{\alpha} \mathrm{id}_{F_{2}(X)})}
+\end{tikzcd}
+\end{equation*}
+is a monoidal natural transformation which is an inverse of $\mathsf{T}_{12}$. For this it suffices to show that $\mathsf{T}_{21}(X)$ is an inverse of $\mathsf{T}_{12}(X)$ for every object $X \in \mathrm{ob}_{\mathbf{C}}$. The naturality and monoidality then follow from that of $\mathsf{T}_{12}$ as is easily seen. For example the following diagram commutes because of the naturality of $\mathsf{T}_{12}$ and shows the naturality of $\mathsf{T}_{21}$. The monoidality is treated similarly.
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=3.2em]
+  F_{2}(X_{1})
+  \ar{r}{\mathsf{T}_{21}(X_{1})}
+  \ar{rd}[swap]{\mathrm{id}_{F_{2}(X_{1})}}
+  &
+  F_{1}(X_{1})
+  \ar{r}{F_{1}(f_{12})}
+  \ar{d}[description]{\mathsf{T}_{12}(X_{1})}
+  &
+  F_{1}(X_{2})
+  \ar{rd}{\mathrm{id}_{F_{1}(X_{2})}}
+  \ar{d}[description]{\mathsf{T}_{12}(X_{2})}
+  &
+  \\
+  &
+  F_{2}(X_{1})
+  \ar{r}{F_{2}(f_{12})}
+  &
+  F_{2}(X_{2})
+  \ar{r}{\mathsf{T}_{21}(X_{2})}
+  &
+  F_{1}(X_{2})
+\end{tikzcd}
+\end{equation*}
+\newpage
+We have the outer perimeter of the following commuting diagram from the definition of $\mathsf{T}_{21}(X)$. The naturality of $\mathsf{A}_{\alpha}$ and $\mathsf{L}_{\alpha}$ implies that the left and lower parts commute. The middle right part commutes by equation \eqref{F12ev} and the central part by (LD1) for $\mathrm{ev}_{F_{1}(X)}$ and $\mathrm{coev}_{F_{1}(X)}$. Hence the upper part commutes.
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=6em,column sep=3.2em,font=\footnotesize,every label/.append style={font=\tiny}]
+  F_{1}(X)
+  \ar{rr}{\mathsf{T}_{12}(X)}
+  \ar[bend right=15]{rrr}[swap]{\mathrm{id}_{F_{1}(X)}}
+  \ar{rd}[description]{\mathsf{L}_{\alpha}^{-1}(F_{1}(X))}
+  \ar{d}[description]{\mathsf{T}_{12}(X)}
+  &
+  &
+  F_{2}(X)
+  \ar{r}{\mathsf{T}_{21}(X)}
+  &
+  F_{1}(X)
+  \\
+  F_{2}(X)
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(F_{2}(X))}
+  &
+  1_{\alpha} F_{1}(X)
+  \ar{d}[description,yshift=-2mm]{\mathrm{coev}_{F_{1}(X)} \otimes_{\alpha} \mathrm{id}_{F_{1}(X)}}
+  \ar{dl}[description,yshift=2mm]{\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathsf{T}_{12}(X)}
+  &
+  &
+  F_{1}(X) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(F_{1}(X))}
+  \\
+  1_{\alpha} F_{2}(X)
+  \ar{d}[description,yshift=3mm]{\mathrm{coev}_{F_{1}(X)} \otimes_{\alpha} \mathrm{id}_{F_{2}(X)}}
+  &
+  (F_{1}(X) F_{1}(X^{\prime})) F_{1}(X)
+  \ar{r}[yshift=3pt]{\mathsf{A}_{\alpha}(F_{1}(X),F_{1}(X^{\prime}),F_{1}(X))}
+  \ar{dl}[description,yshift=-3mm]{\mathrm{id}_{F_{1}(X) F_{1}(X^{\prime})} \otimes_{\alpha} \mathsf{T}_{12}(X)}
+  &
+  F_{1}(X) (F_{1}(X^{\prime}) F_{1}(X))
+  \ar[in=180,out=90]{ur}[description]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} \mathrm{ev}_{F_{1}(X)}}
+  \ar{r}[yshift=3pt]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} (\mathsf{T}_{12}(X^{\prime}) \otimes_{\alpha} \mathsf{T}_{12}(X))}
+  \ar{rd}[description,yshift=-4mm]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} (\mathrm{id}_{F_{1}(X^{\prime})} \otimes_{\alpha} \mathsf{T}_{12}(X))}
+  &
+  F_{1}(X) (F_{2}(X^{\prime}) F_{2}(X))
+  \ar{u}[description]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} \mathrm{ev}_{F_{2}(X)}}
+  \\
+  (F_{1}(X) F_{1}(X^{\prime})) F_{2}(X)
+  \ar{rrr}{\mathsf{A}_{\alpha}(F_{1}(X),F_{1}(X^{\prime}),F_{2}(X))}
+  &
+  &
+  &
+  F_{1}(X) (F_{1}(X^{\prime}) F_{2}(X))
+  \ar{u}[description,xshift=-2.5mm,yshift=3.5mm]{\mathrm{id}_{F_{1}(X)} \otimes_{\alpha} (\mathsf{T}_{12}(X^{\prime}) \otimes_{\alpha} \mathrm{id}_{F_{2}(X)})}
+\end{tikzcd}
+\end{equation*}
+A similar calculation using \eqref{F12coev} and (LD1) for $\mathrm{ev}_{F_{2}(X)}$ and $\mathrm{coev}_{F_{2}(X)}$ shows
+\begin{align*}
+  \mathsf{T}_{12}(X)
+  \circ
+  \mathsf{T}_{21}(X)
+  &=
+  \mathrm{id}_{F_{2}(X)}
+\end{align*}
+which finishes our proof.
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+The above theorem \ref{thm:mntiso} implies that the category
+\begin{align*}
+  \mathbf{TQFT}_{n}
+  &:=
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    \mathbf{Cob}_{n},\mathbf{Vec}_{K}
+  \right)
+\end{align*}
+with objects $n$-dimensional TQFTs and morphisms monoidal natural transformations between them is a groupoid.

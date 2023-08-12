@@ -1,0 +1,446 @@
+\nocite{0a816f4c}
+%%%
+Next, we consider a process called dimensional reduction which allows to produce many TQFTs of lower dimension from a given TQFT. This illustrates why TQFTs in higher dimensions are generally way more complicated as there are way more data involved. The higher the dimension of the given TQFT is, the more lower-dimensional TQFTs can be produced. Dimensional reduction is basically accomplished by taking the cartesian product with a fixed manifold of lower dimension and the main part is described by the following
+\\
+\begin{lem}
+\label{lem:cobprod}
+Let $X \in \mathrm{ob}_{\mathbf{DiffCOr}_{\infty}^{r}}$ be a smooth oriented closed manifold of dimension $r < n$. Consider the functions\footnote{we abuse notation here because these functions constitute a functor}
+\begin{align*}
+  &
+  (\cdot) \times X
+  \colon
+  \mathrm{ob}_{\mathbf{Cob}_{n - r}}
+  \to
+  \mathrm{ob}_{\mathbf{Cob}_{n}}
+  \\
+  &
+  ((\cdot) \times X)(S)
+  :=
+  S \times X
+  \\
+  &
+  (\cdot) \times X
+  \colon
+  \mathrm{Mor}_{\mathbf{Cob}_{n - r}}
+  \to
+  \mathrm{Mor}_{\mathbf{Cob}_{n}}
+  \\
+  &
+  ((\cdot) \times X)([(M,\iota_{1},\iota_{2})])
+  :=
+  \left[
+    \left(
+      M \times X
+      ,
+      \iota_{1}
+      \times
+      \mathrm{id}_{X}
+      ,
+      \iota_{2}
+      \times
+      \mathrm{id}_{X}
+    \right)
+  \right]
+\end{align*}
+and
+\begin{align*}
+  &
+  \mathsf{H}_{X}
+  \colon
+  \mathrm{ob}_{\mathbf{Cob}_{n - r} \times \mathbf{Cob}_{n - r}}
+  \to
+  \mathrm{Mor}_{\mathbf{Cob}_{n}}
+  \\
+  &
+  \mathsf{H}_{X}(S_{1},S_{2})
+  :=
+  C_{n}(h_{S_{1},S_{2}}^{X})
+\end{align*}
+where the latter is defined using the cylinder construction for the canonical diffeomorphism
+\begin{align*}
+  h_{S_{1},S_{2}}^{X}
+  \colon
+  (S_{1} \times X)
+  \sqcup
+  (S_{2} \times X)
+  &
+  \to
+  (S_{1} \sqcup S_{2})
+  \times
+  X
+\end{align*}
+Then
+\begin{align*}
+  \left(
+    (\cdot)
+    \times
+    X
+    ,
+    \mathsf{H}_{X}
+    ,
+    \mathrm{id}_{\emptyset}
+  \right)
+  \colon
+  \mathbf{Cob}_{n - r}
+  &\to
+  \mathbf{Cob}_{n}
+\end{align*}
+is a symmetric monoidal functor where $\mathrm{id}_{\emptyset}$ is the identity for the empty $(n - 1)$-manifold in $\mathbf{Cob}_{n}$.
+\end{lem}
+\begin{prf}[Sketch]
+We will just give a sketch here and leave the details to the diligent reader.
+\begin{enumerate}
+\item[i)]
+The well-definedness of the functions $(\cdot) \times X$ is easy to see since the Cartesian product behaves nicely with manifolds so we take this for granted here.
+
+\item[ii)]
+The function $(\cdot) \times X$ clearly takes morphisms from $S_{1}$ to $S_{2}$ to morphisms from $S_{1} \times X$ to $S_{2} \times X$ which is necessary for $(\cdot) \times X$ to be a functor.
+\\
+The preservation of the identity is rather obvious since
+\begin{align*}
+  \left(
+    S
+    \times
+    [0,1]
+  \right)
+  \times
+  X
+  \qquad
+  \text{and}
+  \qquad
+  \left(
+    S
+    \times
+    X
+  \right)
+  \times
+  [0,1]
+\end{align*}
+are clearly diffeomorphic rel boundary and thus represent the same morphism.
+\\
+For the preservation of composition consider cobordisms
+\begin{align*}
+  M_{1}
+  \colon
+  S_{1}
+  &\to
+  S
+  \qquad
+  \text{and}
+  \qquad
+  M_{2}
+  \colon
+  S
+  \to
+  S_{2}
+\end{align*}
+glued along $S$ to yield the cobordism $M \colon S_{1} \to S_{2}$. Then it is not difficult to see that
+\begin{align*}
+M \times X \colon S_{1} \times X \to S_{2} \times X
+\end{align*}
+is equivalent to the cobordism obtained by gluing
+\begin{align*}
+  M_{1} \times X \colon S_{1} \times X \to S \times X
+  \qquad
+  \text{and}
+  \qquad
+  M_{2}
+  \times
+  X
+  \colon
+  S
+  \times
+  X
+  \to
+  S_{2}
+  \times
+  X
+\end{align*}
+along $S \times X$. This shows that $(\cdot) \times X$ is indeed a functor.
+
+\item[iii)]
+We have $\emptyset \times X = \emptyset$, where $\emptyset$ is regarded as the empty manifold of dimension $n - r - 1$ and $n - 1$, respectively, so that the identity $\mathrm{id}_{\emptyset}$ is indeed an isomorphism for the preservation of unit objects as demanded for monoidal functors.
+\\
+Further consider two cobordisms
+\begin{align*}
+  M_{1}
+  \colon
+  S_{1}
+  &\to
+  \tilde{S}_{1}
+  \qquad
+  \text{and}
+  \qquad
+  M_{2}
+  \colon
+  S_{2}
+  \to
+  \tilde{S}_{2}
+\end{align*}
+We have a canonical diffeomorphism
+\begin{align*}
+  (M_{1} \times X)
+  \sqcup
+  (M_{2} \times X)
+  &\to
+  (M_{1} \sqcup M_{2})
+  \times
+  X
+\end{align*}
+which yields the naturality of $\mathsf{H}_{X}$ with a similar argument as for the associator $\mathsf{A}$ in $\mathbf{Cob}_{n}$ (cf. section \ref{sec:cob} in chapter \ref{chap:defordtqft}).
+\\
+Moreover, we can define a functor
+\begin{align*}
+  \mathbf{DiffCOr}_{\infty}^{n - r - 1}
+  \to
+  \mathbf{DiffCOr}_{\infty}^{n - 1}
+\end{align*}
+doing the same as $(\cdot) \times X$ on objects and taking a morphism
+\begin{align*}
+  \phi
+  \in
+  \mathrm{mor}_{\mathbf{DiffCOr}_{\infty}^{n - r - 1}}(S_{1},S_{2})
+\end{align*}
+to
+\begin{align*}
+  \phi
+  \times
+  \mathrm{id}_{X}
+  \in
+  \mathrm{mor}_{\mathbf{DiffCOr}_{\infty}^{n - 1}}
+  \left(
+    S_{1}
+    \times
+    X
+    ,
+    S_{2}
+    \times
+    X
+  \right)
+\end{align*}
+It is fairly evident that this is a functor and abusing notation we will again denote it by $(\cdot) \times X$. This functor and the corresponding one for cobordisms are compatible with the cylinder construction in the sense that
+\begin{align*}
+  C_{n}
+  \circ
+  ((\cdot) \times X)
+  &=
+  ((\cdot) \times X)
+  \circ
+  C_{n - r}
+\end{align*}
+This is obvious for objects and since
+\begin{align*}
+  C_{n}(\phi \times \mathrm{id}_{X})
+  \qquad
+  \text{and}
+  \qquad
+  C_{n - r}(\phi)
+  \times
+  X
+\end{align*}
+can be respectively represented by the cobordisms
+\begin{align*}
+  \left(
+    S_{2}
+    \times
+    X
+  \right)
+  \times
+  [0,1]
+  \qquad
+  \text{and}
+  \qquad
+  \left(
+    S_{2}
+    \times
+    [0,1]
+  \right)
+  \times
+  X
+\end{align*}
+for which there is an obvious equivalence, it is clear for morphisms as well. Hence the coherence conditions can be shown by using the cylinder construction: the diagram in (MF1) for the associator for example follows from the evident commuting diagram\footnote{in a slight abuse of notation we denote both associators in $\mathbf{DiffCOr}_{\infty}^{n - r - 1}$ and in $\mathbf{DiffCOr}_{\infty}^{n - 1}$ by $\mathsf{a}$ as it is clear from the context in which category they are}
+\begin{equation*}
+\hspace{2em}
+\begin{tikzcd}[row sep=3em, column sep=9em]
+  ((S_{1} \times X) \sqcup (S_{2} \times X))
+  \sqcup
+  (S_{3} \times X)
+  \arrow{r}{\mathsf{a}(S_{1} \times X,S_{2} \times X,S_{3} \times X)}
+  \arrow[swap]{d}{h_{S_{1},S_{2}}^{X} \sqcup \mathrm{id}_{S_{3} \times X}}
+  &
+  (S_{1} \times X)
+  \sqcup
+  ((S_{2} \times X) \sqcup (S_{3} \times X))
+  \arrow{d}{\mathrm{id}_{S_{1} \times X} \sqcup h_{S_{2},S_{3}}^{X}}
+  \\
+  ((S_{1} \sqcup S_{2}) \times X)
+  \sqcup
+  (S_{3} \times X)
+  \arrow[swap]{d}{h_{S_{1} \sqcup S_{2},S_{3}}^{X}}
+  &
+  (S_{1} \times X)
+  \sqcup
+  ((S_{2} \sqcup S_{3}) \times X)
+  \arrow{d}{h_{S_{1},S_{2} \sqcup S_{3}}^{X}}
+  \\
+  \left(
+    (S_{1} \sqcup S_{2})
+    \sqcup
+    S_{3}
+  \right)
+  \times
+  X
+  \arrow{r}{\mathsf{a}(S_{1},S_{2},S_{3}) \times \mathrm{id}_{X}}
+  &
+  \left(
+    S_{1}
+    \sqcup
+    (S_{2} \sqcup S_{3})
+  \right)
+  \times
+  X
+\end{tikzcd}
+\end{equation*}
+by applying $C_{n}$ and using
+\begin{align*}
+  C_{n}
+  \left(
+    \mathsf{a}
+    \left(
+      S_{1}
+      ,
+      S_{2}
+      ,
+      S_{3}
+    \right)
+    \times
+    \mathrm{id}_{X}
+  \right)
+  &=
+  C_{n - r}(\mathsf{a}
+  \left(
+    S_{1}
+    ,
+    S_{2}
+    ,
+    S_{3})
+  \right)
+  \times
+  X
+\end{align*}
+and that $C_{n}$ (strictly) preserves the disjoint union. A similar argument works for the other diagrams. Thus $(\cdot) \times X$ is monoidal.
+
+\item[iv)]
+The braidings for the manifolds involved are given by the cylinder constructions $C_{n - r}$ and $C_{n}$ for the canonical diffeomorphisms of the braidings\footnote{again slighty abusing notation we denote both braidings by $\mathsf{b}$ as it should always be clear from the context in which category they are} in $\mathbf{DiffCOr}_{\infty}^{n - r - 1}$ and $\mathbf{DiffCOr}_{\infty}^{n - 1}$,
+\begin{align*}
+  &
+  \mathsf{b}(S_{1},S_{2})
+  \colon
+  S_{1}
+  \sqcup
+  S_{2}
+  \to
+  S_{2}
+  \sqcup
+  S_{1}
+  \\
+  &
+  \text{and}
+  \\
+  &
+  \mathsf{b}(S_{1} \times X,S_{2} \times X)
+  \colon
+  (S_{1} \times X)
+  \sqcup
+  (S_{2} \times X)
+  \to
+  (S_{2} \times X)
+  \sqcup
+  (S_{1} \times X)
+\end{align*}
+respectively. Composed with $(h_{S_{1},S_{2}}^{X})^{-1}$ and $h_{S_{2},S_{1}}^{X}$ the latter is the same as
+\begin{align*}
+  \mathsf{b}(S_{1},S_{2})
+  \times
+  \mathrm{id}_{X}
+  \colon
+  (S_{1} \sqcup S_{2})
+  \times
+  X
+  &\to
+  (S_{2} \sqcup S_{1})
+  \times X
+\end{align*}
+that is,
+\begin{align*}
+  h_{S_{2},S_{1}}^{X}
+  \circ
+  \mathsf{b}(S_{1} \times X,S_{2} \times X)
+  \circ
+  (h_{S_{1},S_{2}}^{X})^{-1}
+  &=
+  \mathsf{b}(S_{1},S_{2})
+  \times
+  \mathrm{id}_{X}
+\end{align*}
+and applying $C_{n}$ shows that the coherence condition for the braiding is satisfied because
+\begin{align*}
+  C_{n}(\mathsf{b}(S_{1},S_{2}) \times \mathrm{id}_{X})
+  &=
+  C_{n - r}(\mathsf{b}(S_{1},S_{2}))
+  \times
+  X
+\end{align*}
+Hence $(\cdot) \times X$ is a symmetric monoidal functor, since the categories are symmetric.
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+Now dimensional reduction is an easy corollary.
+\\
+\begin{cor}
+\label{cor:dimred}
+Let
+\begin{align*}
+  (Z,\mathsf{H},\Phi)
+  \colon
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Vec}_{K}
+\end{align*}
+be an $n$-dimensional TQFT and let $X \in \mathrm{ob}_{\mathbf{DiffCOr}_{\infty}^{r}}$ be a smooth oriented closed manifold of dimension $r < n$. The composition\footnote{remember that this is just the definition of composition for (symmetric) monoidal functors}
+\begin{align*}
+  (Z,\mathsf{H},\Phi)
+  \circ
+  \left(
+    (\cdot)
+    \times
+    X
+    ,
+    \mathsf{H}_{X}
+    ,
+    \mathrm{id}_{\emptyset}
+  \right)
+  &=
+  \left(
+    Z
+    \circ
+    ((\cdot) \times X)
+    ,
+    Z(\mathsf{H}_{X}(\cdot,\cdot))
+    \circ
+    \mathsf{H}(\cdot \times X,\cdot \times X)
+    ,
+    \Phi
+  \right)
+\end{align*}
+is an $(n - r)$-dimensional TQFT.
+\end{cor}
+\begin{prf}
+By lemma \ref{lem:cobprod} the tuple $((\cdot) \times X,\mathsf{H}_{X},\mathrm{id}_{\emptyset})$ is a symmetric monoidal functor and since the composition of symmetric monoidal functors is again a symmetric monoidal functor there is nothing more to do here.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}

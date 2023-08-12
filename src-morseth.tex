@@ -1,0 +1,234 @@
+%\nocite{e6be9f07}
+%%%
+For the sake of completeness and because it is mentioned here and there in the text we briefly want to sketch the basic idea of Morse theory. We do not give any proofs here and for a more thorough introduction we refer the reader to \cite{e6be9f07}.
+\\\\
+The aim of Morse theory is to study differentiable real-valued functions on a manifold in order to gain information about the topology of the manifold. To illustrate this let us consider a mountainous landscape $M$ and the function $f \colon M \to \mathbb{R}$ taking every point of $M$ to its elevation over some fixed height, say sea level. Such a landscape has basins, mountain passes and peaks, or put differently minima, saddles and maxima. Now imagine the landscape is flooded with water in such a way that the water level is the same everywhere, say by rising sea level and heavy rain due to climate change. Admittedly, this is a bit artificial as there may be points lying under sea level which are not covered with water but we suppose that this does not happen because the rain is perfectly well-orchestrated. Anyway, consider the part of the landscape which is covered with water when the water level is at height $a \in \mathbb{R}$, given by
+\begin{align*}
+  M^{a}
+  &:=
+  f^{-1}
+  \left(
+    (-\infty,a]
+  \right)
+\end{align*}
+The question now is, how does the topology of $M^{a}$ change when the water rises, i.e. when $a$ changes? Well, so long as no basin is filled, no mountain pass is covered and no peak is exceeded there does not seem to be any change in topology. But as soon as the water level passes one of these critical points - they really are critical points in the sense that the differential of $f$ vanishes here - there is a change in topology. When a peak is submerged then a hole in $M^{a}$ is closed, when a basin is filled then a {\glqq}bowl{\grqq} appears and when a pass is exceeded then a big hole is made into two.
+\\
+To get a better feeling for different kinds of critical points we consider another example. Let $M$ be a torus standing upright as illustrated in figure \ref{fig:torus}. Let moreover $f \colon M \to \mathbb{R}$ be the function taking every point to its height, i.e. the projection to the vertical axis in figure \ref{fig:torus}. The labelled points in figure \ref{fig:torus} are the critical points of $f$, that is, the points where the differential vanishes.
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[thick]
+  % inner ellipse
+  \draw[rotate around={32:(0,0)}] (0,0) ellipse (1cm and 1.5cm);
+  % outer ellipse
+  \draw[rotate around={30:(0,0)}] (0,0) ellipse (4.3cm and 5cm);
+
+  % criticl points
+  \fill (0,4.6) circle (1mm);
+  \node[at={(0.2,4.4)}]{$h$};
+  \draw[thin,dashed] (0,1.7) circle (1mm);
+  \node[at={(0.35,1.45)}]{$m_{2}$};
+  \fill (0,-1.6) circle (1mm);
+  \node[at={(0.35,-1.85)}]{$m_{1}$};
+  \draw[thin,dashed] (0,-4.3) circle (1mm);
+  \node[at={(0.2,-4.5)}]{$l$};
+
+  % coordinate axes
+  \draw (0,0) -- (0,1.3);
+  \draw[->] (0,4.6) -- (0,6);
+  \draw (0,0) -- (-10:1.16cm);
+  \draw[->] (-10:4.3cm) -- (-10:6cm);
+\end{tikzpicture}
+\caption{A torus standing upright and the critical points for the height function}
+\label{fig:torus}
+\end{figure}
+We again consider how the topology of
+\begin{align*}
+  M^{a}
+  &:=
+  f^{-1}
+  \left(
+    (-\infty,a]
+  \right)
+\end{align*}
+changes when $a \in \mathbb{R}$ varies. If $a$ is smaller than the height of the lowest point of the torus, labelled $l$ in figure \ref{fig:torus}, then $M^{a}$ is empty. When $a$ surpasses the lowest point, $a > l$, then $M^{a}$ starts becoming a bowl. Further increasing $a$ does not change the topology if the point where the inner hole of the torus begins is not exceeded, i.e. for $l < a < m_{1}$ with $m_{1}$ as in figure \ref{fig:torus}. But for $a > m_{1}$ and so long as $a < m_{2}$, i.e. so long as the height of the hole is not exceeded, we can describe $M^{a}$ as a cylinder with both ends bent upwards. This is homotopy equivalent to the bowl with a handle (a line segment here) attached to two points of the edge of the bowl. For $m_{2} < a < h$, i.e. when the hole is surpassed but not the full height $h$ of the torus, we have a torus with a cap cut off for $M^{a}$. This is homotopy equivalent to the cylinder with a handle attached, where the ends of the handle are attached to the two circles limiting the holes of the cylinder. Finally if $a > h$ then $M^{a}$ is the whole torus and for greater $a$ there is no more change of course. In summary we can say that the topology does not change unless a critical point is surpassed and if a critical point is surpassed then there is a cell attached to the previous object. But there are different cells attached for different critical points: at $l$ a single point, i.e. a $0$-cell, is attached to the empty set, at the middle points $m_{1},m_{2}$ a $1$-cell is attached and at $h$ a cap, i.e. a $2$-cell, is attached. But how do these critical points differ? Well, the lowest point is a minimum, i.e. here $f$ increases in either direction along the torus. The middle points are saddles, i.e. here $f$ increases in one direction and decreases in the other direction. Finally, the highest point is a maximum, thus here $f$ decreases in either direction.
+\\\\
+We want to capture this more formally. To this end let $M$ be an $n$-manifold, smooth as always here, and let $f \colon M \to \mathbb{R}$ a smooth function. A point $p \in M$ is a \textbf{critical point} if the differential at this point is zero, $T_{p}f = 0$. For a critical point $p$ let $\varphi \colon U \to O$ be a chart around $p$ with $\varphi(p) = 0$. Further write
+\begin{align*}
+  (v_{1},\ldots,v_{n})
+  &:=
+  T_{p}\varphi(v)
+  \in
+  T_{0}O
+  \cong
+  \mathbb{R}^{n}
+\end{align*}
+for $v \in T_{p}M$. Then consider the map
+\begin{align*}
+  T_{p}M
+  \times
+  T_{p}M
+  &\to
+  \mathbb{R}
+  ,\qquad
+  (v,w)
+  \mapsto
+  \sum_{i,j=1}^{n}
+  \left(
+    \partial_{i}
+    \partial_{j}
+    (f \circ \varphi^{-1})
+  \right)
+  (0)
+  v_{i}
+  w_{j}
+\end{align*}
+Now since
+\begin{align*}
+  \partial_{i}
+  \partial_{j}
+  (f \circ \varphi^{-1})
+  &=
+  \partial_{j}
+  \partial_{i}
+  (f \circ \varphi^{-1})
+\end{align*}
+for $1 \leq i,j \leq n$ the above map is a symmetric bilinear form on $T_{p}M$. One can moreover show that any other chart around $p$ which takes $p$ to $0$ defines the same symmetric bilinear form in this way. Note however that this is only true because $p$ is a critical point. Thus for a critical point we call the above symmetric bilinear form the \textbf{Hessian of $f$ at $p$} and denote it $\mathrm{Hess}_{p}(f)$. For any basis $\lbrace b_{1},\ldots,b_{n} \rbrace$ of $T_{p}M$ we obtain a symmetric matrix with entries
+\begin{align*}
+  A_{ij}
+  &=
+  \mathrm{Hess}_{p}(f)
+  (b_{i},b_{j})
+\end{align*}
+In particular, for the basis coming from a coordinate chart $\varphi$ around $p$ as above this is just the matrix of second partial derivatives of $f \circ \varphi^{-1}$ at $0$. Now the symmetric matrices for different bases may have different eigenvalues. However, let $n_{0}$ be the geometric multiplicity of the eigenvalue $0$, $n_{+}$ the total geometric multiplicity of the positive eigenvalues, i.e. the sum of the dimensions of all eigenspaces for the positive eigenvalues, and likewise for $n_{-}$. Then $n_{0}$, $n_{+}$ and $n_{-}$ are independent of the chosen basis according to Sylvester's law of inertia. We call $n_{0}$ the \textbf{nullity}, $n_{+}$ the \textbf{positive index} and $n_{-}$ the \textbf{negative index}. As every matrix representing the bilinear form is symmetric we have
+\begin{align*}
+  n
+  &=
+  n_{0}
+  +
+  n_{+}
+  +
+  n_{-}
+\end{align*}
+We call $\mathrm{Hess}_{p}(f)$ \textbf{non-degenerate} if\footnote{this is not the standard definition for non-degeneracy of a bilinear form but for symmetric bilinear forms it is equivalent to the standard definition} $n_{0} = 0$. In this case the critical point $p$ of $f$ is also called \textbf{non-degenerate}.
+\\
+With these preparations we define that for an $n$-manifold $M$ a smooth function $f \colon M \to \mathbb{R}$ is a \textbf{Morse function} if every critical point of $f$ is non-degenerate. Moreover, for a critical point $p$ of $f$ the \textbf{index $\lambda(p)$ of $p$} is the negative index $n_{-}$ of the Hessian $\mathrm{Hess}_{p}(f)$. Intuitively this index of the critical point corresponds to the number of directions in which $f$ decreases from $p$. In the example of the torus above the point $l$ has index $0$, $m_{1}$ and $m_{2}$ have index $1$ and the point $h$ has index $2$. A naturally arising question is how many Morse functions there are for a manifold, if any. The answer is: there always are Morse functions and in fact, at least for compact manifolds, there is not only one Morse function but {\glqq}almost all{\grqq} functions are Morse functions. More precisely, when endowing the set $C^{\infty}(M,\mathbb{R})$ of smooth real-valued functions on compact $M$ with the Whitney $C^{2}$-topology then the Morse functions form an open and dense subset.
+\\
+A first important result in Morse theory is the following
+\\
+\begin{lem}[Morse lemma]
+\label{lem:morselem}
+Let $M$ be an $n$-manifold and $f \colon M \to \mathbb{R}$ a smooth function. Further let $p$ a non-degenerate critical point of $f$. Then there exists a chart $(U,\varphi)$ around $p$ with $\varphi(p) = 0$, written as
+\begin{align*}
+  \varphi
+  &=
+  \left(
+    \varphi_{1}
+    ,
+    \ldots
+    ,
+    \varphi_{n}
+  \right)
+  \qquad
+  \text{with appropriate}
+  \qquad
+  \varphi_{i}
+  \colon
+  U
+  \to
+  \varphi_{i}(U)
+  \subset
+  \mathbb{R}
+\end{align*}
+such that
+\begin{align*}
+  f(x)
+  &=
+  f(p)
+  -
+  \sum_{i=1}^{\lambda(p)}
+  \varphi_{i}(x)^{2}
+  +
+  \sum_{i=\lambda(p)+1}^{n}
+  \varphi_{i}(x)^{2}
+\end{align*}
+for all $x \in U$. Writing
+\begin{align*}
+  \left(
+    y_{1}
+    ,
+    \ldots
+    ,
+    y_{n}
+  \right)
+  &:=
+  \left(
+    \varphi_{1}(x)
+    ,
+    \ldots
+    ,
+    \varphi_{n}(x)
+  \right)
+\end{align*}
+for $y := \varphi(x) \in \varphi(U)$ we thus have
+\begin{align*}
+  f(\varphi^{-1}(y))
+  &=
+  f(\varphi^{-1}(0))
+  -
+  \sum_{i=1}^{\lambda(p)}
+  y_{i}^{2}
+  +
+  \sum_{i=\lambda(p)+1}^{n}
+  y_{i}^{2}
+\end{align*}
+for all $y \in \varphi(U)$. 
+\end{lem}
+As a corollary we see that non-degenerate critical points are isolated.
+\\
+\begin{cor}
+\label{cor:ndcrisol}
+Let $M$ be an $n$-manifold and $f \colon M \to \mathbb{R}$ a smooth function. Then for a non-degenerate critical point $p$ theire exists a neighbourhood of $p$ in $M$ which contains no other critical point than $p$. Thus if $f$ is a Morse function, the set of non-degenerate critical points is discrete.
+\end{cor}
+Now for $a \in \mathbb{R}$ and smooth $f \colon M \to \mathbb{R}$ define
+\begin{align*}
+  M^{a}
+  &:=
+  f^{-1}
+  \left(
+    (-\infty,a]
+  \right)
+\end{align*}
+which is manifold with boundary if $f^{-1}(\lbrace a \rbrace)$ contains no critical point. Then we have the following two fundamental theorems describing how $M^{a}$ changes as $a$ varies.
+\\
+\begin{thm}
+\label{thm:morsenocrit}
+Let $f \colon M \to \mathbb{R}$ a smooth map on an $n$-manifold $M$ and let $a < b \in \mathbb{R}$. If $f^{-1}([a,b])$ is compact and contains no critical points of $f$ then $M^{a}$ is diffeomorphic to $M^{b}$ and $M^{a}$ is a deformation retract of $M^{b}$.
+\end{thm}
+\begin{thm}
+\label{thm:morseonecrit}
+Let $f \colon M \to \mathbb{R}$ a smooth map on an $n$-manifold $M$, let $p \in M$ be a critical point of $f$ and set $c := f(p)$. Suppose there is $\varepsilon > 0$ such that $f^{-1}([c-\varepsilon,c+\varepsilon])$ is compact and contains no critical points of $f$ besides $p$. Then $M^{c+\varepsilon}$ is homotopy equivalent to $M^{c-\varepsilon}$ with a $\lambda(p)$-dimensional cell $D^{\lambda(p)}$ attached, i.e. to
+\begin{align*}
+  M^{c-\varepsilon}
+  \cup_{g}
+  D^{\lambda(p)}
+\end{align*}
+where
+\begin{align*}
+  g
+  \colon
+  \partial
+  D^{\lambda(p)}
+  &\to
+  M^{c-\varepsilon}
+\end{align*}
+is some attaching map.
+\end{thm}
+The idea for attaching the cell in the latter theorem \ref{thm:morseonecrit} is to choose a chart according to the Morse lemma \ref{lem:morselem} and attach the cell to the part of $M^{c-\varepsilon}$ with vanishing coordinates for $i > \lambda(p)$.
+\\
+With the help of the two above theorems one can show the following
+\\
+\begin{thm}
+\label{thm:mancw}
+Let $f \colon M \to \mathbb{R}$ a Morse function on an $n$-manifold $M$. If $M^{a}$ is compact for each $a \in \mathbb{R}$ then $M$ is homotopy equivalent to a CW-complex with one cell of dimension $\lambda$ for each critical point with index $\lambda$.
+\end{thm}
+From the above results we see that a Morse function provides a way of decomposing a manifold. But different Morse functions may yield different decompositions and the question then is how these decompositions are related. This can be examined with Cerf theory where one studies families of smooth functions, or more precisely paths between two Morse functions in the space of smooth functions. Therefore people sometimes also speak of paramaterized Morse theory. We do not go into further detail here but refer the reader to the literature and conclude our description of Morse theory.

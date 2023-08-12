@@ -1,0 +1,15 @@
+This final chapter of part \ref{part:ordinary} is about examining some properties of topological quantum field theories. We start in section \ref{sec:altchar} with giving an alternative characterization for a TQFT that could be used instead of the common definition. The following section \ref{sec:comparison} is about how to compare TQFTs. In the final section \ref{sec:basprop} we want to prove some basic properties for TQFTs which hold in general, i.e. they are valid in any dimension $n \in \mathbb{N}^{\times}$.
+\\
+As in chapter \ref{chap:defordtqft} we will not subscript the braiding $\mathsf{B}$, the associator $\mathsf{A}$ and the left and right unit law $\mathsf{L}$ and $\mathsf{R}$ of the categories $\mathbf{Cob}_{n}$ and $\mathbf{Vec}_{K}$ and we will often suppress the tensor product symbol $\otimes$ between objects of symmetric monoidal categories in diagrams and longer expressions. Moreover we will make heavy use of the coherence theorem for (symmetric) monoidal categories. Remember, or note, that this theorem can be basically stated by saying that any diagram which is built up only from the associator and the unit laws (and the symmetric braiding) commutes. More precisely, this means that given any two parenthesized tensor products $P_{1},P_{2}$ of objects $X_{1}, \ldots, X_{m}$ in this order (or in any orders in the symmetric case) with arbitrary insertions of the unit object, then for any two isomorphisms
+\begin{align*}
+  f_{12},g_{12}
+  \colon
+  P_{1}
+  &\to
+  P_{2}
+\end{align*}
+obtained by composing $\mathsf{A}$, $\mathsf{L}$, $\mathsf{R}$ (and $\mathsf{B}$) and their inverses, possibly tensored with identity morphisms, we have $f_{12} = g_{12}$. Hence there always is a unique such isomorphism and we will often simply write $\sim$ for it, possibly indexed by natural numbers like $\sim_{2}$, provided it is clear from the context what $\sim$ looks like. Of course this is heavy abuse of notation but will further improve readability, especially in diagrams. All diagrams in this chapter are supposed to be commutative unless stated otherwise, as we will often make changes in diagrams and justify why the diagrams still commute without explicitly saying that they commute.
+\\
+Note that due to the coherence theorem it often suffices to consider strict monoidal categories where the associator and unit isomorphisms are identities. However, it can sometimes be helpful to explicitly write out all these isomorphisms and we will often do so here at the cost of increased length and possibly apparent complexity.
+\\
+Detailed proofs of lemma \ref{LEM:DUALOBTENSOR}, theorem \ref{THM:ACSMF} and theorem \ref{THM:ACMNT} in this chapter are given in the appendix as the details are not very insightful and rather tedious. The conventions above are thus also valid for the corresponding chapter in the appendix.

@@ -1,0 +1,685 @@
+%\nocite{dfcdc48c}
+%\nocite{47e8603a}
+%%%
+Remember that in an ordinary monoidal category $\mathbf{C}$ an object $X \in \mathrm{ob}_{\mathbf{C}}$ is said to have a left dual (object) $X^{\prime}$ if there are morphisms
+\begin{align*}
+  \mathrm{ev}_{X}
+  \in
+  \mathrm{mor}_{\mathbf{C}}
+  \left(
+    X^{\prime} \otimes X
+    ,
+    1
+  \right)
+  \qquad
+  \text{and}
+  \qquad
+  \mathrm{coev}_{X}
+  \in
+  \mathrm{mor}_{\mathbf{C}}
+  \left(
+    1
+    ,
+    X \otimes X^{\prime}
+  \right)
+\end{align*}
+making the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=7em]
+  1 \otimes X
+  \ar{r}{\mathsf{L}(X)}
+  \ar{d}[swap]{\mathrm{coev}_{X} \otimes \mathrm{id}_{X}}
+  &
+  X
+  &
+  X \otimes 1
+  \ar{l}[swap]{\mathsf{R}(X)}
+  \\
+  (X \otimes X^{\prime}) \otimes X
+  \ar{rr}{\mathsf{A}(X,X^{\prime},X)}
+  &
+  &
+  X \otimes (X^{\prime} \otimes X)
+  \ar{u}[swap]{\mathrm{id}_{X} \otimes \mathrm{ev}_{X}}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=7em]
+  X^{\prime} \otimes 1
+  \ar{r}{\mathsf{R}(X^{\prime})}
+  \ar{d}[swap]{\mathrm{id}_{X^{\prime}} \otimes \mathrm{coev}_{X}}
+  &
+  X^{\prime}
+  &
+  1 \otimes X^{\prime}
+  \ar{l}[swap]{\mathsf{L}(X^{\prime})}
+  \\
+  X^{\prime} \otimes (X \otimes X^{\prime})
+  \ar{rr}{\mathsf{A}^{-1}(X^{\prime},X,X^{\prime})}
+  &
+  &
+  (X^{\prime} \otimes X) \otimes X^{\prime}
+  \ar{u}[swap]{\mathrm{ev}_{X} \otimes \mathrm{id}_{X^{\prime}}}
+\end{tikzcd}
+\end{equation*}
+The notion of right dual objects is defined by interchanging the roles of $X$ and $X^{\prime}$ so that $X^{\prime}$ is left dual to $X$ if and only if $X$ is right dual to $X^{\prime}$. If every object has a left/right dual then the category is called left/right rigid. If the category $\mathbf{C}$ is symmetric then a left dual object is also a right dual object and vice versa. Thus we simply call it a dual object and if every object in a symmetric monoidal category has a dual then the category is called rigid. Now in the case of a monoidal $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ we say that an object $X$ in ${_{(\infty,n)}}\mathbf{C}$ \textbf{has a left/right dual (object)} if it has a left/right dual object when it is regarded as an object in the homotopy category $\mathrm{Ho}({_{(\infty,n)}}\mathbf{C})$. Then ${_{(\infty,n)}}\mathbf{C}$ is said to \textbf{have duals for objects} if every object has both a left and a right dual object. In the symmetric monoidal case we will again omit the adjectives left and right as they are unnecessary and moreover sometimes call an object \textbf{dualizable} if it has a dual.
+\\
+If $n = 1$ this generalization of the notion of dual objects is a sufficient finiteness condition for the existence of a TQFT just as in the case of an ordinary category. Yet for higher dimensions $n > 1$ this condition is not good enough and we need a stronger notion that involves a concept of duality not only for objects but also for morphisms on all levels. But what is the right notion of duality for morphisms? Consider one of the most basic higher categories, the (strict) $2$-category $\mathbf{Cat}$ with small categories as objects, functors as $1$-morphisms and natural transformations as $2$-morphisms. Transferring the diagrams governing dual objects into the morphism categories of $\mathbf{Cat}$ by replacing the tensor product with the horizontal composition and leaving out the associators and unit laws - the $2$-category $\mathbf{Cat}$ is strict - one arrives at the definition of adjoint functors by unit and counit: for two categories $\mathbf{C}_{\alpha},\mathbf{C}_{\beta}$ and a functor $F_{\alpha\beta} \colon \mathbf{C}_{\alpha} \to \mathbf{C}_{\beta}$, a functor $F_{\beta\alpha} \colon \mathbf{C}_{\beta} \to \mathbf{C}_{\alpha}$ is right adjoint to $F_{\alpha\beta}$ - and then $F_{\alpha\beta}$ is left adjoint to $F_{\beta\alpha}$ - precisely if there are natural transformations
+\begin{align*}
+  \varepsilon
+  \colon
+  F_{\alpha\beta}
+  \circ
+  F_{\beta\alpha}
+  &\Rightarrow
+  \mathrm{id}_{\mathbf{C}_{\beta}}
+\end{align*}
+called counit, and
+\begin{align*}
+  \eta
+  \colon
+  \mathrm{id}_{\mathbf{C}_{\alpha}}
+  &\Rightarrow
+  F_{\beta\alpha}
+  \circ
+  F_{\alpha\beta}
+\end{align*}
+called unit, such that the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=7em]
+  \mathrm{id}_{\mathbf{C}_{\alpha}}
+  \circ
+  F_{\beta\alpha}
+  \arrow[Rightarrow]{r}{\eta \circ^{\mathrm{h}} \mathrm{id}_{F_{\beta\alpha}}}
+  &
+  (F_{\beta\alpha} \circ F_{\alpha\beta})
+  \circ
+  F_{\beta\alpha}
+  \arrow[equal]{r}
+  &
+  F_{\beta\alpha}
+  \circ
+  (F_{\alpha\beta} \circ F_{\beta\alpha})
+  \arrow[Rightarrow]{d}{\mathrm{id}_{F_{\beta\alpha}} \circ^{\mathrm{h}} \varepsilon}
+  \\
+  F_{\beta\alpha}
+  \arrow[equal]{u}
+  \arrow[Rightarrow]{r}{\mathrm{id}_{F_{\beta\alpha}}}
+  &
+  F_{\beta\alpha}
+  \arrow[equal]{r}
+  &
+  F_{\beta\alpha}
+  \circ
+  \mathrm{id}_{\mathbf{C}_{\beta}}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=7em]
+  F_{\alpha\beta}
+  \circ
+  \mathrm{id}_{\mathbf{C}_{\alpha}}
+  \arrow[Rightarrow]{r}{\mathrm{id}_{F_{\alpha\beta}} \circ^{\mathrm{h}} \eta}
+  &
+  F_{\alpha\beta}
+  \circ
+  (F_{\beta\alpha} \circ F_{\alpha\beta})
+  \arrow[equal]{r}
+  &
+  (F_{\alpha\beta} \circ F_{\beta\alpha})
+  \circ
+  F_{\alpha\beta}
+  \arrow[Rightarrow]{d}{\varepsilon \circ^{\mathrm{h}} \mathrm{id}_{F_{\alpha\beta}}}
+  \\
+  F_{\alpha\beta}
+  \arrow[equal]{u}
+  \arrow[Rightarrow]{r}{\mathrm{id}_{F_{\beta\alpha}}}
+  &
+  F_{\alpha\beta}
+  \arrow[equal]{r}
+  &
+  \mathrm{id}_{\mathbf{C}_{\beta}}
+  \circ
+  F_{\alpha\beta}
+\end{tikzcd}
+\end{equation*}
+Replacing the equalities in these diagrams by associators and unit isomorphisms we can make the same definition in any $2$-category ${_{2}}\mathbf{C}$: given two objects $X_{1},X_{2}$ in ${_{2}}\mathbf{C}$ and $1$-morphisms $f_{12} \colon X_{1} \to X_{2}$ and $f_{21} \colon X_{2} \to X_{1}$ we call a $2$-morphism
+\begin{align*}
+  \varepsilon
+  \colon
+  f_{12}
+  \circ
+  f_{21}
+  &\Rightarrow
+  \mathrm{id}_{X_{2}}
+\end{align*}
+the \textbf{counit of an adjunction (between $f_{12}$ and $f_{21}$)} if there exists another $2$-morphism
+\begin{align*}
+  \eta
+  \colon
+  \mathrm{id}_{X_{1}}
+  &\Rightarrow
+  f_{21}
+  \circ
+  f_{12}
+\end{align*}
+such that the diagrams\footnote{appending arrows representing $2$-morphisms always means vertical composition}
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=7em]
+  \mathrm{id}_{X_{1}}
+  \circ
+  f_{21}
+  \arrow[Rightarrow]{r}{\eta \circ^{\mathrm{h}} \mathrm{id}_{f_{21}}}
+  &
+  (f_{21} \circ f_{12})
+  \circ
+  f_{21}
+  \arrow[Rightarrow]{r}{\sim}
+  &
+  f_{21}
+  \circ
+  (f_{12} \circ f_{21})
+  \arrow[Rightarrow]{d}{\mathrm{id}_{f_{21}} \circ^{\mathrm{h}} \varepsilon}
+  \\
+  f_{21}
+  \arrow[Rightarrow]{u}{\sim}
+  \arrow[Rightarrow]{r}{\mathrm{id}_{f_{21}}}
+  &
+  f_{21}
+  \arrow[Rightarrow]{r}{\sim}
+  &
+  f_{21}
+  \circ
+  \mathrm{id}_{X_{2}}
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=7em]
+  f_{12}
+  \circ
+  \mathrm{id}_{X_{1}}
+  \arrow[Rightarrow]{r}{\mathrm{id}_{f_{12}} \circ^{\mathrm{h}} \eta}
+  &
+  f_{12}
+  \circ
+  (f_{21} \circ f_{12})
+  \arrow[Rightarrow]{r}{\sim}
+  &
+  (f_{12} \circ f_{21})
+  \circ
+  f_{12}
+  \arrow[Rightarrow]{d}{\varepsilon \circ^{\mathrm{h}} \mathrm{id}_{f_{12}}}
+  \\
+  f_{12}
+  \arrow[Rightarrow]{u}{\sim}
+  \arrow[Rightarrow]{r}{\mathrm{id}_{f_{12}}}
+  &
+  f_{12}
+  \arrow[Rightarrow]{r}{\sim}
+  &
+  \mathrm{id}_{X_{2}}
+  \circ
+  f_{12}
+\end{tikzcd}
+\end{equation*}
+commute. $\eta$ is then called the \textbf{unit of the adjunction} and we say that $f_{12}$ is \textbf{left adjoint} to $f_{21}$ and $f_{21}$ is \textbf{right adjoint} to $f_{12}$. Here we simply wrote $\sim$ for the associator and unit isomorphisms since it should be clear from the context what is meant.
+\\
+This definition of adjoint morphisms in $2$-categories includes the definition of dual objects in ordinary monoidal categories by applying to the delooping: an object $X^{\prime}$ in a monoidal category $\mathbf{C}$ is left/right dual to an object $X \in \mathrm{ob}_{\mathbf{C}}$ if and only if $X^{\prime}$ is left/right adjoint to $X$ when both are considered as $1$-morphisms in the delooping $\mathrm{B}\mathbf{C}$ of $\mathbf{C}$.
+\\
+Further note that every equivalence between ordinary categories can be made into an adjoint equivalence. The same is true for any invertible $1$-morphism in a $2$-category. First we need the following
+\\
+\begin{lem}
+\label{lem:inv2commid}
+Let ${_{2}}\mathbf{C}$ a $2$-category, $X$ an object in ${_{2}}\mathbf{C}$, $f \colon X \to X$ a $1$-morphism and $\alpha \colon f \Rightarrow \mathrm{id}_{X}$ an invertible $2$-morphism. Then
+\begin{align*}
+  \alpha
+  \circ^{\mathrm{h}}
+  \mathrm{id}_{f}
+  &=
+  \mathrm{id}_{f}
+  \circ^{\mathrm{h}}
+  \alpha
+\end{align*}
+\end{lem}
+\begin{prf}
+This is an easy application of the fact that $\alpha$ is invertible and of the interchange law. From the latter we find
+\begin{align*}
+  \alpha
+  \circ^{\mathrm{v}}
+  \left(
+    \alpha
+    \circ^{\mathrm{h}}
+    \mathrm{id}_{f}
+  \right)
+  &=
+  \left(
+    \mathrm{id}_{\mathrm{id}_{X}}
+    \circ^{\mathrm{h}}
+    \alpha
+  \right)
+  \circ^{\mathrm{v}}
+  \left(
+    \alpha
+    \circ^{\mathrm{h}}
+    \mathrm{id}_{f}
+  \right)
+  \\
+  &=
+  \left(
+    \mathrm{id}_{\mathrm{id}_{X}}
+    \circ^{\mathrm{v}}
+    \alpha
+  \right)
+  \circ^{\mathrm{h}}
+  \left(
+    \alpha
+    \circ^{\mathrm{v}}
+    \mathrm{id}_{f}
+  \right)
+  \\
+  &=
+  \left(
+    \mathrm{id}_{\mathrm{id}_{X}}
+    \circ^{\mathrm{v}}
+    \alpha
+    \circ^{\mathrm{v}}
+    \mathrm{id}_{f}
+  \right)
+  \circ^{\mathrm{h}}
+  \left(
+    \mathrm{id}_{\mathrm{id}_{X}}
+    \circ^{\mathrm{v}}
+    \alpha
+    \circ^{\mathrm{v}}
+    \mathrm{id}_{f}
+  \right)
+  \\
+  &=
+  \left(
+    \alpha
+    \circ^{\mathrm{v}}
+    \mathrm{id}_{f}
+  \right)
+  \circ^{\mathrm{h}}
+  \left(
+    \mathrm{id}_{\mathrm{id}_{X}}
+    \circ^{\mathrm{v}}
+    \alpha
+  \right)
+  \\
+  &=
+  \left(
+    \alpha
+    \circ^{\mathrm{h}}
+    \mathrm{id}_{\mathrm{id}_{X}}
+  \right)
+  \circ^{\mathrm{v}}
+  \left(
+    \mathrm{id}_{f}
+    \circ^{\mathrm{h}}
+    \alpha
+  \right)
+  \\
+  &=
+  \alpha
+  \circ^{\mathrm{v}}
+  \left(
+    \mathrm{id}_{f}
+    \circ^{\mathrm{h}}
+    \alpha
+  \right)
+\end{align*}
+Since $\alpha$ is invertible we hence find
+\begin{align*}
+  \alpha
+  \circ^{\mathrm{h}}
+  \mathrm{id}_{f}
+  &=
+  \alpha^{-1}
+  \circ^{\mathrm{v}}
+  \alpha
+  \circ^{\mathrm{v}}
+  \left(
+    \alpha
+    \circ^{\mathrm{h}}
+    \mathrm{id}_{f}
+  \right)
+  \\
+  &=
+  \alpha^{-1}
+  \circ^{\mathrm{v}}
+  \alpha
+  \circ^{\mathrm{v}}
+  \left(
+    \mathrm{id}_{f}
+    \circ^{\mathrm{h}}
+    \alpha
+  \right)
+  \\
+  &=
+  \mathrm{id}_{f}
+  \circ^{\mathrm{h}}
+  \alpha
+\end{align*}
+proving the claim.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+Using this we can prove
+\\
+\begin{lem}
+\label{lem:adjequiv}
+Let ${_{2}}\mathbf{C}$ a $2$-category, $X_{1},X_{2}$ objects in ${_{2}}\mathbf{C}$ and $f_{12} \colon X_{1} \to X_{2}$ an invertible $1$-morphism with inverse $f_{12}^{-1}$, then $f_{12}^{-1}$ is left adjoint and right adjoint to $f_{12}$.
+\end{lem}
+\begin{prf}[Sketch]
+We only do the proof for a strict $2$-category. The general case is a bit more tedious as one has to deal with some associators and unit isomorphisms but the idea is still the same. Let
+\begin{align*}
+  \eta
+  \colon
+  \mathrm{id}_{X_{1}}
+  &\Rightarrow
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \qquad
+  \text{and}
+  \qquad
+  \epsilon
+  \colon
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \Rightarrow
+  \mathrm{id}_{X_{2}}
+\end{align*}
+be invertible $2$-morphisms exhibiting $f_{12}^{-1}$ as an inverse to $f_{12}$. These may not satisfy the conditions of units and counits of an adjuntion but if we define $\varepsilon$ such that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=7em]
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{r}{\mathrm{id}_{f_{12} \circ f_{12}^{-1}} \circ^{\mathrm{h}} \epsilon^{-1}}
+  \ar{d}[swap]{\varepsilon}
+  &
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{d}{\mathrm{id}_{f_{12}} \circ^{\mathrm{h}} \eta^{-1} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1}}}
+  \\
+  \mathrm{id}_{X_{2}}
+  &
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{l}[swap]{\epsilon}
+\end{tikzcd}
+\end{equation*}
+then $\eta$ and $\varepsilon$ exhibit $f_{12}^{-1}$ as a right adjoint to $f_{12}$. To show this note that for two $1$-morphisms $g_{1},g_{2} \in {_{2}}\mathbf{C}$ for which the composition $g_{2} \circ g_{1}$ is defined, we have
+\begin{align*}
+  \mathrm{id}_{g_{2}}
+  \circ^{\mathrm{h}}
+  \mathrm{id}_{g_{1}}
+  &=
+  \mathrm{id}_{g_{2} \circ g_{1}}
+\end{align*}
+Hence using lemma \ref{lem:inv2commid} for the upper triangle and the exchange law for the lower triangle we see that
+\begin{equation*}
+\begin{tikzcd}[row sep=7em,column sep=9em]
+  &
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{rd}{\mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}} \circ^{\mathrm{h}} \eta^{-1} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1}}}
+  &
+  \\
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{ur}{\mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}} \mathrm{id}_{f_{12} \circ f_{12}^{-1}} \circ^{\mathrm{h}} \epsilon^{-1}}
+  \ar{r}{\mathrm{id}_{f_{12}^{-1} \circ f_{12}} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}} \epsilon^{-1}}
+  \ar{rd}[swap]{\eta^{-1} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1}}}
+  &
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{r}{\eta^{-1} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1} \circ f_{12}} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1}}}
+  &
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \\
+  &
+  f_{12}^{-1}
+  \ar{ur}[swap]{\mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}} \epsilon^{-1}}
+  &
+\end{tikzcd}
+\end{equation*}
+commutes and thus that the outer perimeter of
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=7em]
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{r}{\eta^{-1} \circ^{\mathrm{h}} \mathrm{id}_{f_{12}^{-1}}}
+  \ar{d}[swap]{\mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}}\varepsilon}
+  &
+  f_{12}^{-1}
+  \ar{d}{\mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}} \epsilon^{-1}}
+  \ar{dl}[swap]{\mathrm{id}_{f_{12}^{-1}}}
+  \\
+  f_{12}^{-1}
+  &
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \ar{l}[swap]{\mathrm{id}_{f_{12}^{-1}} \circ^{\mathrm{h}} \epsilon}
+\end{tikzcd}
+\end{equation*}
+commutes. But the right part clearly commutes and the left part is just the first diagram for an adjunction. The other diagram can be shown in a similar fashion.
+\\
+Finally it is immediate that taking
+\begin{align*}
+  \varepsilon^{-1}
+  \colon
+  \mathrm{id}_{X_{2}}
+  \Rightarrow
+  f_{12}
+  \circ
+  f_{12}^{-1}
+  \qquad
+  \text{and}
+  \qquad
+  \eta^{-1}
+  \colon
+  f_{12}^{-1}
+  \circ
+  f_{12}
+  &\Rightarrow
+  \mathrm{id}_{X_{1}}
+\end{align*}
+as unit and counit exhibits $f_{12}^{-1}$ as a left adjoint to $f_{12}$ since one can simply reverse the direction of all arrows in the diagrams for $\eta$ and $\varepsilon$.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+With this lemma we find the following
+\\
+\begin{cor}
+\label{cor:invadj}
+Let ${_{2}}\mathbf{C}$ be a $2$-category in which every $2$-morphism is invertible and let $f$ be a $1$-morphism in ${_{2}}\mathbf{C}$. Then the following are equivalent
+\begin{enumerate}
+\item[(i)]
+$f$ is invertible
+
+\item[(ii)]
+$f$ has a left adjoint
+
+\item[(iii)]
+$f$ has a right adjoint
+\end{enumerate}
+\end{cor}
+\begin{prf}
+(i) $\Rightarrow$ (ii) and (i) $\Rightarrow$ (iii) follows from lemma \ref{lem:adjequiv}. But (ii) $\Rightarrow$ (i) and (iii) $\Rightarrow$ (i) is immediate because the units and counits of adjunctions are invertible since they are $2$-morphisms.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+We say that a $2$-category ${_{2}}\mathbf{C}$ \textbf{has adjoints for $1$-morphisms} if every $1$-morphism has both a left and a right adjoint. With the help of the homotopy $2$-category we can generalize this definition to higher categories. For an $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ with $n \geq 2$ we define that ${_{(\infty,n)}}\mathbf{C}$ \textbf{has adjoints for $1$-morphisms} if the homotopy $2$-category $\mathrm{Ho}^{2}({_{(\infty,n)}}\mathbf{C})$ has adjoints for $1$-morphisms.
+\\
+For higher morphisms we use the mapping categories to define adjoints. Let $1 < k < n \in \mathbb{N}$, then we say that ${_{(\infty,n)}}\mathbf{C}$ \textbf{has adjoints for $k$-morphisms} if for any two objects $X_{1},X_{2}$ in ${_{(\infty,n)}}\mathbf{C}$ the $(\infty,n-1)$-category ${_{1}}\mathbf{mor}_{{_{(\infty,n)}}\mathbf{C}}(X_{1},X_{2})$ has adjoints for $(k-1)$-morphisms. With this at hand we define that an $(\infty,n)$-category ${_{(\infty,n)}}\mathbf{C}$ \textbf{has adjoints} if it has adjoints for $k$-morphisms for all $1 \leq k < n$. Note that when $n < 2$ there is no condition to be satisfied. Note further that lemma \ref{lem:adjequiv} implies that if every $k$-morphism in ${_{(\infty,n)}}\mathbf{C}$ is invertible then ${_{(\infty,n)}}\mathbf{C}$ has adjoints for $k$-morphisms and corollary \ref{cor:invadj} implies that if every $(k+1)$-morphism in ${_{(\infty,n)}}\mathbf{C}$ is invertible then the converse holds, too. This shows that one needs to be a bit careful with the definition of having adjoints as it depends on the choice of $n$: we can regard ${_{(\infty,n)}}\mathbf{C}$ as an $(\infty,n+1)$-category in which all $(n+1)$-morphisms are invertible, its extension $\mathrm{E}({_{(\infty,n)}}\mathbf{C})$. The definition of having adjoints then requires the existence of adjoints for $n$-morphisms and hence, since all $(n+1)$-morphisms are invertible, that all $n$-morphisms are invertible. But then the existence of adjoints for $(n-1)$-morphisms implies that all $(n-1)$-morphisms are invertible, and so on, so that ${_{(\infty,n)}}\mathbf{C}$ is necessarily an $\infty$-groupoid.
+\\
+Now for a monoidal category we can demand a bit more than having adjoints, as we have the notion of dual objects. We thus say that a monoidal category ${_{(\infty,n)}}\mathbf{C}$ \textbf{has duals} if it has adjoints and additionally duals for objects. This definition can also be rephrased so that one does not need dual objects by using the delooping $\mathrm{B}{_{(\infty,n)}}\mathbf{C}$ of ${_{(\infty,n)}}\mathbf{C}$. A monoidal $(\infty,n)$-category then has duals if and only if its delooping has adjoints.
+\\
+\begin{exa}
+An important example of a symmetric monoidal $(\infty,n)$-category with duals is $\mathbf{Bord}_{n}^{\mathrm{fr}}$. This is because a morphism below level $n$ can be identified with an oriented manifold and one can show that the manifold with opposite orientation can be interpreted as a morphism in the other direction which is both a left and a right adjoint (or dual object in the case of objects).
+\end{exa}
+\begin{prf}
+The idea of the proof is similar to the case of the ordinary category $\mathbf{Cob}_{n}$ (see chapter \ref{chap:defordtqft} in part \ref{part:ordinary}). Yet the details are way more involved. A proof in the case of no tangential structures, i.e. for $\mathbf{Bord}_{n}$, is given in \cite{47e8603a} and the case for oriented or framed cobordisms is then similar.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+With the notion of having duals at hand we can finally define what it means for an object in a symmetric monoidal $(\infty,n)$-category to be fully dualizable. Basically, it means that the object is in the largest subcategory that has duals. More precisely, we can use the following universal property
+\\
+\begin{thm}
+\label{thm:fdsubcat}
+Let ${_{(\infty,n)}}\mathbf{C}$ be a symmetric monoidal $(\infty,n)$-category, then there exist a symmetric monoidal category with duals $\textrm{fd}({_{(\infty,n)}}\mathbf{C})$ and a symmetric monoidal functor
+\begin{align*}
+  \iota
+  \colon
+  \textrm{fd}({_{(\infty,n)}}\mathbf{C})
+  &\to
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+such that for any symmetric monoidal $(\infty,n)$-category with duals ${_{(\infty,n)}}\mathbf{C}_{\alpha}$ and any symmetric monoidal functor
+\begin{align*}
+  F
+  \colon
+  {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \to
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+there is an essentially unique symmetric monoidal functor
+\begin{align*}
+  F_{!}
+  \colon
+  {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \to
+  \textrm{fd}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+\end{align*}
+such that the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=2.4em,column sep=1.6em]
+  &
+  \textrm{fd}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  \ar{rd}{\iota}
+  &
+  \\
+  {_{(\infty,n)}}\mathbf{C}_{\alpha}
+  \ar{ur}{F_{!}}
+  \ar{rr}{F}
+  &
+  &
+  {_{(\infty,n)}}\mathbf{C}
+\end{tikzcd}
+\end{equation*}
+commutes up to equivalence, or put differently composition with $\iota$ induces an equivalence
+\begin{align*}
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+    ,
+    \textrm{fd}
+    \left(
+      {_{(\infty,n)}}\mathbf{C}
+    \right)
+  \right)
+  &\to
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}_{\alpha}
+    ,
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+\end{align*}
+$\textrm{fd}({_{(\infty,n)}}\mathbf{C})$ is uniquely determined up to equivalence by these properties.
+\end{thm}
+\begin{prf}
+A proof using $n$-fold complete Segal spaces as model for $(\infty,n)$-categories is given in \cite{47e8603a}.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+The category $\textrm{fd}({_{(\infty,n)}}\mathbf{C})$ is obtained from ${_{(\infty,n)}}\mathbf{C}$ basically by repeatedly discarding morphisms that do not have adjoints and objects that do not have duals. An object in a symmetric monoidal category ${_{(\infty,n)}}\mathbf{C}$ is now said to be \textbf{fully dualizable} if it is in the \textit{essential image} of the functor
+\begin{align*}
+  \iota
+  \colon
+  \textrm{fd}
+  \left(
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  &\to
+  {_{(\infty,n)}}\mathbf{C}
+\end{align*}
+which, remember, is the smallest subcategory of ${_{(\infty,n)}}\mathbf{C}$ which contains the image of $\iota$ and is closed under isomorphisms. The latter condition means that for any object $X$ in the essential image and any isomorphism in ${_{(\infty,n)}}\mathbf{C}$ whose source is $X$, the isomorphism (and with it its target) is also in the essential image.
+\\
+Note that since having duals depends on the choice of $n$ so does the definition of full dualizability. In the case $n = 1$ one can show that $\textrm{fd}({_{(\infty,1)}}\mathbf{C})$ can be identified with the full subcategory of ${_{(\infty,1)}}\mathbf{C}$ spanned by the dualizable objects so that an object is fully dualizable if and only if it is dualizable. However, for $n > 1$ full dualizability is a much stronger condition and its strength grows very quickly with $n$, since an object not only needs to have a dual object but in addition the evaluation and coevaluation must have adjoints which again must have adjoints and so on. Moreover, for each of these adjunctions the $2$-morphisms exhibiting the adjunction as unit and counit must have adjoints which have adjoints and so on and this goes up to the level of $(n-1)$-morphisms. Thus this condition is in general rather difficult to verify for large $n$ but one luckily does not always have to check all adjunctions manually. In dimension $n = 2$, for example, there is the following simple criterion
+\\
+\begin{lem}
+\label{lem:2dimfd}
+Let ${_{(\infty,2)}}\mathbf{C}$ be a symmetric monoidal $(\infty,2)$-category. An object $X$ in ${_{(\infty,2)}}\mathbf{C}$ is fully dualizable if and only if it has a dual object $X^{\prime}$ and the evaluation
+\begin{align*}
+  \mathrm{ev}
+  \colon
+  X^{\prime}
+  \otimes
+  X
+  &\to
+  1
+\end{align*}
+has both a left and a right adjoint.
+\end{lem}
+\begin{prf}
+See e.g. \cite{dfcdc48c}.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}

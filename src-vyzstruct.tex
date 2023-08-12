@@ -1,0 +1,74 @@
+%\nocite{29781dd2}
+%\nocite{dfcdc48c}
+%%%
+The next step is to explain how to generalize the framed version of the cobordism hypothesis to more general tangential structures - i.e. structures for the tangent bundles of the manifolds (see below) - than $n$-framings. To this end we first explain how the orthogonal group $O(n)$ acts on the category $\mathrm{func}^{\otimes,\mathrm{sym}}(\mathbf{Bord}_{n}^{\mathrm{fr}},{_{(\infty,n)}}\mathbf{C})$ for ${_{(\infty,n)}}\mathbf{C}$ a symmetric monoidal $(\infty,n)$-category with duals. In the following we adopt the convention that action means right action unless stated otherwise.
+\\
+\begin{cst}[Sketch]
+\label{cst:onaction}
+An $n$-framing of a $k$-dimensional manifold with corners $M$, $k \leq n$, is an isomorphism of vector bundles from the stabilized tangent bundle $TM \oplus (M \times \mathbb{R}^{n-k})$ to the product bundle $M \times \mathbb{R}^{n}$. Composing such an isomorphism with $\mathrm{id}_{M} \times g^{t} = \mathrm{id}_{M} \times g^{-1}$ for\footnote{here $g^{t}$ means the transpose of $g$} $g \in O(n)$ yields another $n$-framing so that $O(n)$ acts on the set of all $n$-framings of $M$. As this can be done simultaneously on all manifolds we obtain an action of $O(n)$ on $\mathbf{Bord}_{n}^{\mathrm{fr}}$, i.e. for any $g \in O(n)$ a (symmetric monoidal) functor
+\begin{align*}
+  \rho(g)
+  \colon
+  \mathbf{Bord}_{n}^{\mathrm{fr}}
+  &\to
+  \mathbf{Bord}_{n}^{\mathrm{fr}}
+\end{align*}
+such that the identity $\mathrm{id}_{O(n)} \in O(n)$ is mapped to the identity functor and $\rho(g^{-1})$ is a (weak) inverse of $\rho(g)$. Precomposition with $\rho(g)$ for $g \in O(n)$ hence yields an action of $O(n)$ on $\mathrm{func}^{\otimes,\mathrm{sym}}(\mathbf{Bord}_{n}^{\mathrm{fr}},{_{(\infty,n)}}\mathbf{C})$. With this we find that the underlying $\infty$-groupoid $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ of ${_{(\infty,n)}}\mathbf{C}$ carries an action of the orthogonal group induced by the equivalence with $\mathrm{func}^{\otimes,\mathrm{sym}}(\mathbf{Bord}_{n}^{\mathrm{fr}},{_{(\infty,n)}}\mathbf{C})$ from theorem \ref{thm:cobhypframed}.
+\end{cst}
+Remember that according to the homotopy hypothesis we can identify $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ with the fundamental $\infty$-groupoid of some topological space, unique up to homotopy equivalence, and this topological space then carries an action of the orthogonal group $O(n)$ induced from that of $G({_{(\infty,n)}}\mathbf{C})$.
+\\
+\begin{exa}
+\label{exa:o1action}
+As an example consider the case $n = 1$, where having duals means for ${_{(\infty,1)}}\mathbf{C}$ that every object $X$ has a dual object $X^{\prime}$ when considered as objects in the homotopy category $\mathrm{Ho}({_{(\infty,1)}}\mathbf{C})$. The non-trivial part of the action of $O(1) \cong \mathbb{Z}_{2}$ on $\mathrm{func}^{\otimes,\mathrm{sym}}(\mathbf{Bord}_{1}^{\mathrm{fr}},{_{(\infty,1)}}\mathbf{C})$ comes from taking the opposite $1$-framing, which is the composition of the original $1$-framing with the reflection and thus in particular yields a dual object for every object in $\mathbf{Bord}_{1}^{\mathrm{fr}}$. Hence, as TQFTs preserve taking dual objects since they are symmetric monoidal functors, the induced $O(1)$-action on $\mathrm{G}({_{(\infty,1)}}\mathbf{C})$ corresponds to taking a dual object $X^{\prime}$ for every object $X$.
+\end{exa}
+Now let $Y$ be a topological space and $\zeta$ a real vector bundle of rank $n$ over $Y$ with total space $E_{\zeta}$ and projection $\pi_{\zeta}$. Let further $M$ be a $k$-dimensional manifold (with corners), where $k \leq n$. Then a \textbf{$(Y,\zeta)$-structure (on $M$)} is a pair $(f,\phi)$ consisting of a continuous map $f \colon M \to Y$ and an isomorphism $\phi$ of vector bundles over $M$ from the $n$-stabilized tangent bundle of $M$ to the pullback of $\zeta$ along $f$,
+\begin{align*}
+  \phi
+  \colon
+  TM
+  \oplus
+  (M \times \mathbb{R}^{n-k})
+  &\to
+  f^{\ast}
+  \zeta
+\end{align*}
+Fixing a pair $(Y,\zeta)$ of a topological space $Y$ and a real vector bundle $\zeta$ of rank $n$ over $Y$ we define the symmetric monoidal $(\infty,n)$-category $\mathbf{Bord}_{n}^{(Y,\zeta)}$ just as $\mathbf{Bord}_{n}$, except that all manifolds carry a $(Y,\zeta)$-structure in a compatible way. As mentioned before, details can e.g. be found in \cite{29781dd2}.
+\\
+If $\zeta$ is equipped with a bundle metric then there is the associated principal $O(n)$-bundle of orthonormal frames in $\zeta$, denoted $\mathsf{OF}(\zeta)$. Its total space is written $E_{\mathsf{OF}(\zeta)}$ and its projection $\pi_{\mathsf{OF}(\zeta)}$. Further, we write $\mathrm{mor}_{O(n)}(Y_{1},Y_{2})$ for the set of $O(n)$-equivariant maps between two topological spaces $Y_{1},Y_{2}$ equipped with $O(n)$-actions. For an $\infty$-groupoid ${_{(\infty,0)}}\mathbf{C}$ carrying an $O(n)$-action we can choose a corresponding topological space $Y_{{_{(\infty,0)}}\mathbf{C}}$ with an $O(n)$-action and then consider the topological space\footnote{the topology comes from the compact-open topology of the full function space} $\mathrm{mor}_{O(n)}(Y_{1},Y_{{_{(\infty,0)}}\mathbf{C}})$. We will denote the fundamental $\infty$-groupoid corresponding to this function space by $\mathrm{mor}_{O(n)}(Y_{1},{_{(\infty,0)}}\mathbf{C})$ which is of course determined only up to equivalence. With these notations introduced we can state
+\\
+\begin{thm}[Cobordism Hypothesis: $(Y,\zeta)$-Structure Version]
+\label{thm:cobhypyzstruct}
+Let ${_{(\infty,n)}}\mathbf{C}$ a symmetric monoidal $(\infty,n)$-category with duals. Let further $Y$ be a CW-complex and $\zeta$ a vector bundle of rank $n$ over $Y$ equipped with a bundle metric. Then there is an equivalence of $\infty$-groupoids
+\begin{align*}
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    \mathbf{Bord}_{n}^{(Y,\zeta)}
+    ,
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  \to
+  \mathrm{mor}_{O(n)}
+  \left(
+    E_{\mathsf{OF}(\zeta)}
+    ,
+    \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+  \right)
+\end{align*}
+where $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ carries the $O(n)$-action from construction \ref{cst:onaction}.
+\end{thm}
+\begin{prf}
+A detailed sketch of a proof is given in \cite{dfcdc48c}.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+The equivalence basically is implemented in the following way. Every $b \in E_{\mathsf{OF}(\zeta)}$ is an orthonormal basis of the fiber $\pi_{\zeta}^{-1}(\lbrace \pi_{\mathsf{OF}(\zeta)}(b) \rbrace)$ of $\zeta$ over $\pi_{\mathsf{OF}(\zeta)}(b) \in Y$. Thus for the manifold $M = \lbrace \bullet \rbrace$ we obtain a $(Y,\zeta)$-structure on it by taking $f \colon M \to Y$ to be the map defined by
+\begin{align*}
+  f(\bullet)
+  &:=
+  \pi_{\mathsf{OF}(\zeta)}(b)
+\end{align*}
+since then $f^{\ast}\zeta$ can be identified with $\pi_{\zeta}^{-1}(\lbrace \pi_{\mathsf{OF}(\zeta)}(b) \rbrace)$. Hence, as the stabilized tangent bundle of $M$ can be identified with $\mathbb{R}^{n}$, a $(Y,\zeta)$-structure is given by mapping the standard basis of $\mathbb{R}^{n}$ to $b$. One can then show that evaluating a symmetric monoidal functor $Z \colon \mathbf{Bord}_{n}^{(Y,\zeta)} \to {_{(\infty,n)}}\mathbf{C}$ on these objects for all such $b$ yields an object of  $\mathrm{mor}_{O(n)}(E_{\mathsf{OF}(\zeta)},\mathrm{G}({_{(\infty,n)}}\mathbf{C}))$ and in this way induces the above mentioned equivalence.
+\\
+In the case that $Y = \lbrace \bullet \rbrace$ is a singleton the vector bundle $\zeta$ must be trivial, i.e. essentially just $\mathbb{R}^{n}$. Therefore a $(Y,\zeta)$-structure on a manifold $M$ is just an $n$-framing as there is only one map $f \colon M \to Y$, taking each element of $M$ to $\bullet$, and the corresponding pullback bundle $f^{\ast}\zeta$ is trivial. In this case $E_{\mathsf{OF}(\zeta)}$ is basically just $O(n)$, the orthonormal bases of $\mathbb{R}^{n}$, and hence, taking continuity properties into account, one can show that $\mathrm{mor}_{O(n)}(E_{\mathsf{OF}(\zeta)},\mathrm{G}({_{(\infty,n)}}\mathbf{C}))$ can be identified with\footnote{this is because for a topological space $\hat{Y}$ the space $\mathrm{mor}_{O(n)}(O(n),\hat{Y})$ can be identified with the space $\mathrm{mor}_{\mathbf{Top}}(\lbrace \ast \rbrace,\hat{Y})$ from a one-point set to $\hat{Y}$ again carrying the compact-open topology and one property of the compact-open topology is that this in turn can be identified with $\hat{Y}$ itself} $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ so that theorem \ref{thm:cobhypyzstruct} reduces to theorem \ref{thm:cobhypframed}. However, the two have to be considered individually when proving them since \ref{thm:cobhypyzstruct} cannot be formulated without assuming \ref{thm:cobhypframed}, or more precisely the $O(n)$-action the latter yields on $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$.

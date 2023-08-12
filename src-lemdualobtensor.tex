@@ -1,0 +1,415 @@
+\begin{lem}
+\label{lem:appdualobtensor}
+Let $\mathbf{C}$ be a monoidal category and let $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$ have left dual objects $X_{1}^{\prime},X_{2}^{\prime}$ with coevaluations $\mathrm{coev}_{X_{1}},\mathrm{coev}_{X_{2}}$ and evaluations $\mathrm{ev}_{X_{1}},\mathrm{ev}_{X_{2}}$, respectively. Then $X_{2}^{\prime} \otimes X_{1}^{\prime}$ is a left dual object of $X_{1} \otimes X_{2}$ where the coevaluation is given by
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  1
+  \ar{rr}{\mathrm{coev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}}}
+  &
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})
+  \\
+  X_{1} X_{1}^{\prime}
+  \ar{r}{\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (X_{1} 1) X_{1}^{\prime}
+  \ar{r}{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (X_{1} (X_{2} X_{2}^{\prime})) X_{1}^{\prime}
+  \ar{u}[swap]{i_{\mathsf{A}}^{(c)}}
+\end{tikzcd}
+\end{equation*}
+and the evaluation is given by
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  (X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{rr}{\mathrm{ev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{i_{\mathsf{A}}^{(e)}}
+  &
+  &
+  1
+  \\
+  X_{2}^{\prime} ((X_{1}^{\prime} X_{1}) X_{2})
+  \ar{r}{\mathrm{id}_{X_{2}^{\prime}} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  &
+  X_{2}^{\prime} (1 X_{2})
+  \ar{r}{\mathrm{id}_{X_{2}^{\prime}} \otimes \mathsf{L}(X_{2})}
+  &
+  X_{2}^{\prime} X_{2}
+  \ar{u}[swap]{\mathrm{ev}_{X_{2}}}
+\end{tikzcd}
+\end{equation*}
+with $i_{\mathsf{A}}^{(c)}$ and $i_{\mathsf{A}}^{(e)}$ the corresponding unique\footnote{the uniqueness is guaranteed by the coherence theorem} isomorphisms built from the associator.
+\\
+In the case of a symmetric monoidal category the coevaluation and the evaluation can be written as
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  1
+  \ar{r}{\mathrm{coev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{\mathsf{R}^{-1}(1)}
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})
+  \\
+  1 1
+  \ar{r}{\mathrm{coev}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}}
+  &
+  (X_{1} X_{1}^{\prime}) (X_{2} X_{2}^{\prime})
+  \ar{u}[swap]{i^{(c)}}
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  (X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{r}{\mathrm{ev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{i^{(e)}}
+  &
+  1
+  \\
+  (X_{1}^{\prime} X_{1}) (X_{2}^{\prime} X_{2})
+  \ar{r}{\mathrm{ev}_{X_{1}} \otimes \mathrm{ev}_{X_{2}}}
+  &
+  1 1
+  \ar{u}[swap]{\mathsf{L}(1)}
+\end{tikzcd}
+\end{equation*}
+where $i^{(c)}$ and $i^{(e)}$ are the corresponding unique isomorphisms built from the associator and the braiding.
+\end{lem}
+\begin{prf}
+With the coherence theorem we find from the definitions that the outer perimeter of the following diagram commutes. The small inner parts commutes because of the naturality of $\mathsf{A}$.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=5.5em,column sep=3.5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  ((X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})) (X_{1} X_{2})
+  \ar{rr}{\mathsf{A}(X_{1} X_{2},X_{2}^{\prime} X_{1}^{\prime},X_{1} X_{2})}
+  &
+  &
+  (X_{1} X_{2}) ((X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2}))
+  \ar{d}[description,xshift=3mm]{\mathrm{id}_{X_{1} X_{2}} \otimes \mathrm{ev}_{X_{1} X_{2}}}
+  \\
+  1 (X_{1} X_{2})
+  \ar{u}[description,xshift=-3mm]{\mathrm{coev}_{X_{1} X_{2}} \otimes \mathrm{id}_{X_{1} X_{2}}}
+  \ar{d}[description,xshift=-2mm]{\mathsf{A}^{-1}(1,X_{1},X_{2})}
+  &
+  &
+  (X_{1} X_{2}) 1
+  \\
+  (1 X_{1}) X_{2}
+  \ar{d}[description,xshift=-2mm]{\mathsf{A}(1,X_{1},X_{2})}
+  \ar{r}{(\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  ((X_{1} X_{1}^{\prime}) X_{1}) X_{2}
+  \ar{ddl}[description,xshift=4mm,yshift=4mm]{\mathsf{A}(X_{1} X_{1}^{\prime},X_{1},X_{2})}
+  &
+  X_{1} (X_{2} 1)
+  \ar{u}[description,xshift=2mm]{\mathsf{A}^{-1}(X_{1},X_{2},1)}
+  \\
+  1 (X_{1} X_{2})
+  \ar{d}[description,xshift=-4mm]{\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{X_{1} X_{2}}}
+  &
+  &
+  (X_{1} X_{2}) 1
+  \ar{u}[description,xshift=3mm]{\mathsf{A}(X_{1},X_{2},1)}
+  \\
+  (X_{1} X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{d}[description,xshift=-5mm]{(\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes \mathrm{id}_{X_{1} X_{2}}}
+  &
+  X_{1} (X_{2} (X_{2}^{\prime} X_{2}))
+  \ar{uur}[description,xshift=-4mm,yshift=-5mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{2}})}
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{2})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{1} X_{2}} \otimes \mathrm{ev}_{X_{2}}}
+  \ar{l}{\mathsf{A}(X_{1},X_{2},X_{2}^{\prime} X_{2})}
+  \\
+  ((X_{1} 1) X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{r}{\mathsf{A}(X_{1} 1,X_{1}^{\prime},(X_{1} X_{2}))}
+  \ar{d}[description,xshift=-4mm]{((\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes \mathrm{id}_{X_{1} X_{2}}}
+  &
+  (X_{1} 1) (X_{1}^{\prime} (X_{1} X_{2}))
+  \ar{ddl}[description,xshift=11mm,yshift=5mm]{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime} (X_{1} X_{2})}}
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} (1 X_{2}))
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{X_{1} X_{2}} \otimes (\mathrm{id}_{X_{2}^{\prime}} \otimes \mathsf{L}(X_{2}))}
+  \\
+  ((X_{1} (X_{2} X_{2}^{\prime})) X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{d}[description,xshift=-4mm]{\mathsf{A}(X_{1} (X_{2} X_{2}^{\prime}),X_{1}^{\prime},(X_{1} X_{2}))}
+  &
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} ((X_{1}^{\prime} X_{1}) X_{2}))
+  \ar{u}[description,xshift=7mm,yshift=-4mm]{\mathrm{id}_{X_{1} X_{2}} \otimes (\mathrm{id}_{X_{2}^{\prime}} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}}))}
+  \\
+  (X_{1} (X_{2} X_{2}^{\prime})) (X_{1}^{\prime} (X_{1} X_{2}))
+  \ar{rd}[swap]{\mathsf{id}_{X_{1} (X_{2} X_{2}^{\prime})} \otimes \mathsf{A}^{-1}(X_{1}^{\prime},X_{1},X_{2})}
+  &
+  ((X_{1} X_{2}) X_{2}^{\prime}) (1 X_{2})
+  \ar{uur}[description,xshift=-7mm,yshift=-5mm]{\mathsf{A}(X_{1} X_{2},X_{2}^{\prime},1 X_{2})}
+  &
+  ((X_{1} X_{2}) X_{2}^{\prime}) ((X_{1}^{\prime} X_{1}) X_{2})
+  \ar{u}[description,xshift=5mm]{\mathsf{A}(X_{1} X_{2},X_{2}^{\prime},(X_{1}^{\prime} X_{1}) X_{2})}
+  \ar{l}[swap,xshift=1mm,yshift=2pt]{\mathrm{id}_{(X_{1} X_{2}) X_{2}^{\prime}} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  \\
+  &
+  (X_{1} (X_{2} X_{2}^{\prime})) ((X_{1}^{\prime} X_{1}) X_{2})
+  \ar{ur}[swap]{\mathsf{A}^{-1}(X_{1},X_{2},X_{2}^{\prime}) \otimes \mathrm{id}_{(X_{1}^{\prime} X_{1}) X_{2}}}
+  &
+\end{tikzcd}
+\end{equation*}
+We go the inner way and use the functoriality of the tensor product for the four lowermost arrows to obtain the following diagram. The small inner parts commute due to the coherence theorem.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=5.5em,column sep=2.5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  ((X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})) (X_{1} X_{2})
+  \ar{rrr}{\mathsf{A}(X_{1} X_{2},X_{2}^{\prime} X_{1}^{\prime},X_{1} X_{2})}
+  &
+  &
+  &
+  (X_{1} X_{2}) ((X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2}))
+  \ar{d}[description,xshift=4mm]{\mathrm{id}_{X_{1} X_{2}} \otimes \mathrm{ev}_{X_{1} X_{2}}}
+  \\
+  1 (X_{1} X_{2})
+  \ar{u}[description,xshift=-4mm]{\mathrm{coev}_{X_{1} X_{2}} \otimes \mathrm{id}_{X_{1} X_{2}}}
+  \ar{d}[description,xshift=-4mm]{\mathsf{A}^{-1}(1,X_{1},X_{2})}
+  &
+  &
+  &
+  (X_{1} X_{2}) 1
+  \\
+  (1 X_{1}) X_{2}
+  \ar{d}[description,xshift=-4mm]{(\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  &
+  X_{1} (X_{2} 1)
+  \ar{u}[description,xshift=4mm]{\mathsf{A}^{-1}(X_{1},X_{2},1)}
+  \\
+  ((X_{1} X_{1}^{\prime}) X_{1}) X_{2}
+  \ar{rd}{\mathsf{A}(X_{1},X_{1}^{\prime},X_{1}) \otimes \mathrm{id}_{X_{2}}}
+  \ar{d}[description,xshift=-5mm]{\mathsf{A}(X_{1} X_{1}^{\prime},X_{1},X_{2})}
+  &
+  &
+  &
+  X_{1} (X_{2} (X_{2}^{\prime} X_{2}))
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{2}})}
+  \\
+  (X_{1} X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{d}[description,xshift=-4mm]{(\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime}}) \otimes \mathrm{id}_{X_{1} X_{2}}}
+  &
+  (X_{1} (X_{1}^{\prime} X_{1})) X_{2}
+  \ar{d}[description,xshift=3mm]{(\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime} X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{2})
+  \ar{u}[description,xshift=4mm]{\mathsf{A}(X_{1},X_{2},X_{2}^{\prime} X_{2})}
+  \\
+  ((X_{1} 1) X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{d}[description,xshift=-4mm]{\mathsf{A}(X_{1} 1,X_{1}^{\prime},(X_{1} X_{2}))}
+  &
+  ((X_{1} 1) (X_{1}^{\prime} X_{1})) X_{2}
+  \ar{ddl}{\mathsf{A}(X_{1} 1,X_{1}^{\prime} X_{1},X_{2})}
+  &
+  X_{1} ((X_{2} X_{2}^{\prime}) X_{2})
+  \ar{uur}{\mathrm{id}_{X_{1}} \otimes \mathsf{A}(X_{2},X_{2}^{\prime},X_{2})}
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} (1 X_{2}))
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{X_{1} X_{2}} \otimes (\mathrm{id}_{X_{2}^{\prime}} \otimes \mathsf{L}(X_{2}))}
+  \\
+  (X_{1} 1) (X_{1}^{\prime} (X_{1} X_{2}))
+  \ar{d}[description,xshift=-5.5mm,yshift=3mm]{\mathsf{id}_{X_{1} 1} \otimes \mathsf{A}^{-1}(X_{1}^{\prime},X_{1},X_{2})}
+  &
+  &
+  X_{1} ((X_{2} X_{2}^{\prime}) (1 X_{2}))
+  \ar{u}[description,xshift=-4mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{X_{2} X_{2}^{\prime}} \otimes \mathsf{L}(X_{2}))}
+  &
+  ((X_{1} X_{2}) X_{2}^{\prime}) (1 X_{2})
+  \ar{u}[description,xshift=4mm]{\mathsf{A}(X_{1} X_{2},X_{2}^{\prime},1 X_{2})}
+  \\
+  (X_{1} 1) ((X_{1}^{\prime} X_{1}) X_{2})
+  \ar{rrd}[swap]{\mathrm{id}_{X_{1} 1} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  &
+  &
+  &
+  (X_{1} (X_{2} X_{2}^{\prime})) (1 X_{2})
+  \ar{u}[description,xshift=4mm]{\mathsf{A}^{-1}(X_{1},X_{2},X_{2}^{\prime}) \otimes \mathrm{id}_{1 X_{2}}}
+  \ar{ul}{\mathsf{A}(X_{1},X_{2} X_{2}^{\prime},1 X_{2})}
+  \\
+  &
+  &
+  (X_{1} 1) (1 X_{2})
+  \ar{ur}[swap]{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{1 X_{2}}}
+  &
+\end{tikzcd}
+\end{equation*}
+\newpage
+Again going the inner way yields the following outer diagram. Here the lower inner small parts on the left and right are the naturality of $\mathsf{A}$ and the middle inner small parts on the left and right commute due to the functoriality of the tensor product. Moreover the upper inner small parts on the left and right are diagram (LD1) governing dual objects for $X_{1}, X_{1}^{\prime}$ and $X_{2}, X_{2}^{\prime}$, respectively. Finally the central inner part follows from the coherence theorem.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=5.8em,column sep=3.1em,font=\footnotesize,every label/.append style={font=\tiny}]
+  ((X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})) (X_{1} X_{2})
+  \ar{rrr}{\mathsf{A}(X_{1} X_{2},X_{2}^{\prime} X_{1}^{\prime},X_{1} X_{2})}
+  &
+  &
+  &
+  (X_{1} X_{2}) ((X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2}))
+  \ar{d}[description,xshift=4mm]{\mathrm{id}_{X_{1} X_{2}} \otimes \mathrm{ev}_{X_{1} X_{2}}}
+  \\
+  1 (X_{1} X_{2})
+  \ar{u}[description,xshift=-4mm]{\mathrm{coev}_{X_{1} X_{2}} \otimes \mathrm{id}_{X_{1} X_{2}}}
+  \ar{rr}{\mathsf{L}(X_{1} X_{2})}
+  \ar{d}[description,xshift=-5mm]{\mathsf{A}^{-1}(1,X_{1},X_{2})}
+  &
+  &
+  X_{1} X_{2}
+  \ar{r}{\mathsf{R}^{-1}(X_{1} X_{2})}
+  &
+  (X_{1} X_{2}) 1
+  \\
+  (1 X_{1}) X_{2}
+  \ar{rd}{\mathsf{L}(X_{1}) \otimes \mathrm{id}_{X_{2}}}
+  \ar{d}[description,xshift=-4mm]{(\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  &
+  X_{1} (X_{2} 1)
+  \ar{u}[description,xshift=5mm]{\mathsf{A}^{-1}(X_{1},X_{2},1)}
+  \\
+  ((X_{1} X_{1}^{\prime}) X_{1}) X_{2}
+  \ar{d}[description,xshift=-4mm]{\mathsf{A}(X_{1},X_{1}^{\prime},X_{1}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  X_{1} X_{2}
+  \ar{d}[description]{\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  X_{1} X_{2}
+  \ar{ur}{\mathrm{id}_{X_{1}} \otimes \mathsf{R}^{-1}(X_{2})}
+  &
+  X_{1} (X_{2} (X_{2}^{\prime} X_{2}))
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{2}})}
+  \\
+  (X_{1} (X_{1}^{\prime} X_{1})) X_{2}
+  \ar{r}[yshift=3pt]{(\mathrm{id}_{X_{1}} \otimes \mathrm{ev}_{X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  \ar{d}[description,xshift=-4mm]{(\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime} X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  (X_{1} 1) X_{2}
+  \ar{d}[description,xshift=-4mm]{(\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{1}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  X_{1} (1 X_{2})
+  \ar{u}[description]{\mathrm{id}_{X_{1}} \otimes \mathsf{L}(X_{2})}
+  \ar{r}[yshift=3pt]{\mathrm{id}_{X_{1}} \otimes (\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{2}})}
+  &
+  X_{1} ((X_{2} X_{2}^{\prime}) X_{2})
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{X_{1}} \otimes \mathsf{A}(X_{2},X_{2}^{\prime},X_{2})}
+  \\
+  ((X_{1} 1) (X_{1}^{\prime} X_{1})) X_{2}
+  \ar{r}[yshift=3pt]{(\mathrm{id}_{X_{1} 1} \otimes \mathrm{ev}_{X_{1}}) \otimes \mathrm{id}_{X_{2}}}
+  \ar{d}[description,xshift=-5mm]{\mathsf{A}(X_{1} 1,X_{1}^{\prime} X_{1},X_{2})}
+  &
+  ((X_{1} 1) 1) X_{2}
+  \ar{rdd}[swap]{\mathsf{A}(X_{1} 1,1,X_{2})}
+  &
+  X_{1} (1 (1 X_{2}))
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{1} \otimes \mathsf{L}(X_{2}))}
+  \ar{r}[yshift=3pt]{\mathrm{id}_{X_{1}} \otimes (\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{1 X_{2}})}
+  &
+  X_{1} ((X_{2} X_{2}^{\prime}) (1 X_{2}))
+  \ar{u}[description,xshift=4mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{X_{2} X_{2}^{\prime}} \otimes \mathsf{L}(X_{2}))}
+  \\
+  (X_{1} 1) ((X_{1}^{\prime} X_{1}) X_{2})
+  \ar{rrd}[swap]{\mathrm{id}_{X_{1} 1} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  &
+  &
+  &
+  (X_{1} (X_{2} X_{2}^{\prime})) (1 X_{2})
+  \ar{u}[description,xshift=4mm]{\mathsf{A}(X_{1},X_{2} X_{2}^{\prime},1 X_{2})}
+  \\
+  &
+  &
+  (X_{1} 1) (1 X_{2})
+  \ar{uu}[swap]{\mathsf{A}(X_{1},1,1 X_{2})}
+  \ar{ur}[swap]{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{1 X_{2}}}
+  &
+\end{tikzcd}
+\end{equation*}
+But the upper part is precisely the first diagram (LD1) governing dual objects for $X_{1} \otimes X_{2}$ and $X_{2}^{\prime} \otimes X_{1}^{\prime}$. The commutativity of the second diagram (LD2) can be shown in the same way.
+\newpage
+For the second part, concerning symmetric monoidal categories, consider the following diagram whose outer perimeter is the definition of $\mathrm{coev}_{X_{1} X_{2}}$. The lower part follows from the naturality of $\mathsf{A}$. Note that we use the notation mentioned in the introduction, i.e. we write $\sim$ for unique isomorphisms built from $\mathsf{A}$, $\mathsf{L}$, $\mathsf{R}$, and $\mathsf{B}$.
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=5em]
+  1
+  \ar{rrr}{\mathrm{coev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}}}
+  &
+  &
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})
+  \\
+  X_{1} X_{1}^{\prime}
+  \ar{d}[swap]{\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  X_{1} (1 X_{1}^{\prime})
+  \ar{rr}{\mathrm{id}_{X_{1}} \otimes (\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  &
+  &
+  X_{1} ((X_{2} X_{2}^{\prime}) X_{1}^{\prime})
+  \ar{u}[swap]{\sim}
+  \\
+  (X_{1} 1) X_{1}^{\prime}
+  \ar{ur}[swap]{\mathsf{A}(X_{1},1,X_{1}^{\prime})}
+  \ar{rrr}{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  &
+  &
+  (X_{1} (X_{2} X_{2}^{\prime})) X_{1}^{\prime}
+  \ar{u}[swap]{\mathsf{A}(X_{1},X_{2} X_{2}^{\prime},X_{1}^{\prime})}
+\end{tikzcd}
+\end{equation*}
+The upper part can be rewritten the with the help of the coherence theorem for symmetric monoidal categories to obtain the outer perimeter of the following diagram. The right part is the naturality of $\mathsf{B}$, the lower part is the naturality of $\mathsf{A}$, the leftmost part is the naturality of $\mathsf{R}$ and the triangle next to it is the functoriality of the tensor product. For the upper right part the coherence theorem ensures that there is a unique isomorphism $i^{(c)}$ built from $\mathsf{A}$, $\mathsf{L}$, $\mathsf{R}$, and $\mathsf{B}$. But the upper left part is exactly what we had to show.
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=5em]
+  &
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})
+  &
+  \\
+  1
+  \ar{urr}{\mathrm{coev}_{X_{1} X_{2}}}
+  \ar{r}[swap]{\mathsf{R}^{-1}(1)}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}}}
+  &
+  1 1
+  \ar{d}[description,xshift=5mm]{\mathrm{coev}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}}
+  \ar{ddl}[swap,xshift=3mm,yshift=2mm]{\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{1}}
+  &
+  &
+  X_{1} ((X_{2} X_{2}^{\prime}) X_{1}^{\prime})
+  \ar{ul}[swap]{\sim}
+  \\
+  X_{1} X_{1}^{\prime}
+  \ar{d}[swap]{\mathsf{R}^{-1}(X_{1} X_{1}^{\prime})}
+  &
+  (X_{1} X_{1}^{\prime}) (X_{2} X_{2}^{\prime})
+  \ar[bend right=28]{uur}{i^{(c)}}
+  \ar{r}{\mathsf{A}(X_{1},X_{1}^{\prime},X_{2} X_{2}^{\prime})}
+  &
+  X_{1} (X_{1}^{\prime} (X_{2} X_{2}^{\prime}))
+  \ar{ur}{\mathrm{id}_{X_{1}} \otimes \mathsf{B}(X_{1}^{\prime},X_{2} X_{2}^{\prime})}
+  &
+  X_{1} (1 X_{1}^{\prime})
+  \ar{u}[description,xshift=3mm]{\mathrm{id}_{X_{1}} \otimes (\mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  \\
+  (X_{1} X_{1}^{\prime}) 1
+  \ar{ur}[swap]{\mathrm{id}_{X_{1} X_{1}^{\prime}} \otimes \mathrm{coev}_{X_{2}}}
+  \ar{rrr}{\mathsf{A}(X_{1},X_{1}^{\prime},1)}
+  &
+  &
+  &
+  X_{1} (X_{1}^{\prime} 1)
+  \ar{u}[description,xshift=5mm]{\mathrm{id}_{X_{1}} \otimes \mathsf{B}(X_{1}^{\prime},1)}
+  \ar{ul}{\mathrm{id}_{X_{1}} \otimes (\mathrm{id}_{X_{1}^{\prime}} \otimes \mathrm{coev}_{X_{2}})}
+\end{tikzcd}
+\end{equation*}
+The diagram defining the evaluation $\mathrm{ev}_{X_{1} X_{2}}$ can be treated analogously.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}

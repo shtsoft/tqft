@@ -1,0 +1,1312 @@
+%\nocite{bf5195ee}
+\nocite{0a816f4c}
+%%%
+Let us start with the first category, $\mathbf{Cob}_{n}$ where $n \in \mathbb{N}^{\times}$. From now on we work with smooth manifolds unless stated otherwise and thus from now on diffeomorphism will accordingly always mean $C^{\infty}$-diffeomorphism if nothing else is said. The objects in the category $\mathbf{Cob}_{n}$ are the smooth oriented closed $(n - 1)$-dimensional manifolds. Given $S_{1},S_{2} \in \mathrm{ob}_{\mathbf{Cob}_{n}}$, a morphism between them is an equivalence class of smooth cobordisms from $S_{1}$ to $S_{2}$, which we have to define now. A smooth \textbf{cobordism\footnote{there also is the term bordism which is interchangeably used with cobordism by some authors, but others distinguish them with respect to the context; we will stick to the term cobordism here} $(M,\iota_{1},\iota_{2})$ from $S_{1}$ to $S_{2}$}, sometimes abusively\footnote{we will frequently also suppress $\iota_{1},\iota_{2}$ if they are not explicitly needed and simply write $M \doteq (M,\iota_{1},\iota_{2})$ in abuse of notation} written as $M \colon S_{1} \to S_{2}$, is a smooth oriented\footnote{one can also define cobordisms without orientation and hence a cobordism category with unoriented manifolds; we will however use the oriented version as standard for now} compact $n$-dimensional manifold $M$ with boundary $\partial M$ together with smooth so called \textbf{boundary maps}
+\begin{align*}
+  \iota_{1}
+  \colon
+  S_{1}
+  &\to
+  M
+  ,\qquad
+  \iota_{2}
+  \colon
+  S_{2}
+  \to
+  M
+\end{align*}
+with
+\begin{align*}
+  \iota_{i}(S_{i})
+  &\subset
+  \partial M
+  \qquad
+  \text{for }
+  i
+  =
+  1,2
+\end{align*}
+such that we have an orientation-preserving diffeomorphism
+\begin{align*}
+  \iota_{1}
+  \sqcup
+  \iota_{2}
+  \colon
+  \overline{S}_{1}
+  \sqcup
+  S_{2}
+  &\to
+  \partial M
+\end{align*}
+Here $\sqcup$ denotes the disjoint union and $\overline{S}_{1}$ is $S_{1}$ with the opposite orientation. The abusive notation chosen above for the cobordism suggests that it starts at one part of its boundary and transfers this to the other part, though of course a cobordism is not a function. But the incoming and outcoming part of the boundary can be distinguished in the following way. The orientation of the underlying manifold $M$ induces an orientation on its boundary $\partial M$. The boundary maps now each map a manifold onto a part of $\partial M$, but in slightly different ways. The orientation of the manifold $S_{1}$ of the first boundary map $\iota_{1}$ is opposed to the induced orientation on the part of $\partial M$ the manifold is mapped to in the sense that $\iota_{1}$ is an orientation-reversing diffeomorphism onto its image $\iota_{1}(S_{1})$. $S_{1}$ is often called the \textbf{in-boundary} or \textbf{source}. For the second boundary map $\iota_{2}$ the orientations coincide, i.e. $\iota_{2}$ is an orientation-preserving diffeomorphism onto $\iota_{2}(S_{2})$ and $S_{2}$ is often called the \textbf{out-boundary} or \textbf{target}. When we speak of source and target together we will often simply say \textbf{boundaries}. Note that the same underlying manifold $M$ of $(M,\iota_{1},\iota_{2})$ serves as a cobordism in the other direction but with opposite orientations for the boundaries. More precisely, $(M,\iota_{2},\iota_{1})$ is a cobordism from $\overline{S}_{2}$ to $\overline{S}_{1}$ since
+\begin{align*}
+  \iota_{2}
+  \sqcup
+  \iota_{1}
+  \colon
+  S_{2}
+  \sqcup
+  \overline{S}_{1}
+  &\to
+  \partial M
+\end{align*}
+is orientation-preserving. This, however, does not mean that all morphisms in $\mathbf{Cob}_{n}$ are invertible: although we can clearly compose $(M,\iota_{1},\iota_{2})$ as cobordism from $S_{1}$ to $S_{2}$ with $(\overline{M},\iota_{2},\iota_{2})$ ($M$ with the opposite orientation) as a cobordism from $S_{2}$ to $S_{1}$ this composition is not necessarily the identity as will become clear later.\footnote{this is depictable as special case of figure \ref{fig:comp}}
+\\
+\begin{exa}
+\label{exa:2dimcob}
+\begin{enumerate}
+\item[(i)]
+A two-dimensional example of a cobordism is depicted in figure \ref{fig:exacob}.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  \pic[tqft,name=p,incoming boundary components=2,outgoing boundary components=3,genus=1,offset=-.5,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(p-incoming boundary 1),above=3pt,font=\small]{$S_{1}$};
+  \node[at=(p-incoming boundary 2),above=3pt,font=\small]{$S_{2}$};
+  \node[at=(p-outgoing boundary 1),below=4pt,font=\small]{$S_{3}$};
+  \node[at=(p-outgoing boundary 2),below=4pt,font=\small]{$S_{4}$};
+  \node[at=(p-outgoing boundary 3),below=4pt,font=\small]{$S_{5}$};
+\end{tikzpicture}
+\caption{A two-dimensional cobordism}
+\label{fig:exacob}
+\end{figure}
+\\
+We will always only draw two-dimensional examples as cobordisms in higher dimensions are difficult to draw, yet the two-dimensional pictures should make clear what we want to illustrate, even in higher dimensions. Moreover we will suppress associativity constraints. We adopt the convention that the in-boundaries are always above the out-boundaries, i.e. the cobordism goes {\glqq}top down{\grqq}. In figure \ref{fig:exacob} this means that the in-boundary is $S_{1} \sqcup S_{2}$ and the out-boundary is $S_{3} \sqcup S_{4} \sqcup S_{5}$.
+
+\item[(ii)]
+Note that the cobordisms need not be connected, thus another cobordism with the same boundaries as the one in figure \ref{fig:exacob} is pictured in figure \ref{fig:exnoncon}.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  \pic[tqft/pair of pants,name=p,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(p-incoming boundary 1),above=3pt,font=\small]{$S_{1}$};
+  \node[at=(p-outgoing boundary 1),below=4pt,font=\small]{$S_{3}$};
+  \node[at=(p-outgoing boundary 2),below=4pt,font=\small]{$S_{4}$};
+  
+  %right
+  \pic[tqft/cylinder to next,name=c,anchor={(0,1)},at=(p-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c-incoming boundary 1),above=3pt,font=\small]{$S_{2}$};
+  \node[at=(c-outgoing boundary 1),below=4pt,font=\small]{$S_{5}$};
+\end{tikzpicture}
+\caption{A non-connected two-dimensional cobordism}
+\label{fig:exnoncon}
+\end{figure}
+\end{enumerate}
+\end{exa}
+Now as morphisms in $\mathbf{Cob}_{n}$ are equivalence classes of cobordisms we have to explain what equivalence means. Two cobordisms $(M,\iota_{1},\iota_{2}),(M^{\backprime},\iota_{1}^{\backprime},\iota_{2}^{\backprime})$ from $S_{1}$ to $S_{2}$ are \textbf{equivalent} if there is an orientation-preserving \textbf{diffeomorphism rel boundary}\footnote{we will sometimes also speak of a diffeomorphism that preserves the boundary} between them, that is, a diffeomorphism $\psi \colon M \to M^{\backprime}$ such that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=4em]
+  &
+  M
+  \ar{dd}{\psi}
+  &
+  \\
+  S_{1}
+  \ar{ur}{\iota_{1}}
+  \ar{dr}[swap]{\iota_{1}^{\backprime}}
+  &
+  &
+  S_{2}
+  \ar{ul}[swap]{\iota_{2}}
+  \ar{dl}{\iota_{2}^{\backprime}}
+  \\
+  &
+  M^{\backprime}
+  &
+\end{tikzcd}
+\end{equation*}
+It is evident that this is an equivalence relation and we write $[M] \doteq [(M,\iota_{1},\iota_{2})]$ for the equivalence classes. These are the morphisms of $\mathbf{Cob}_{n}$.
+\\\\
+The composition of two morphisms
+\begin{align*}
+  [(M,\iota_{1},\iota_{2})]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{1},S_{2})
+  ,\qquad
+  [(\tilde{M},\tilde{\iota}_{1},\tilde{\iota}_{2})]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{2},S_{3})
+\end{align*}
+is given by gluing the representatives $M$ and $\tilde{M}$ along $S_{2}$. More precisely let $\sim_{S_{2}}$ denote the equivalence relation in $M \sqcup \tilde{M}$ generated by the following property: two points $m \in M$ and $\tilde{m} \in \tilde{M}$ are equivalent if there is a point $s_{2} \in S_{2}$ such that
+\begin{align*}
+  \iota_{2}(s_{2})
+  &=
+  m
+  \qquad
+  \text{and}
+  \qquad
+  \tilde{\iota}_{1}(s_{2})
+  =
+  \tilde{m}
+\end{align*}
+Then the composition of morphisms
+\begin{align*}
+  [(\tilde{M},\tilde{\iota}_{1},\tilde{\iota}_{2})]
+  \circ
+  [(M,\iota_{1},\iota_{2})]
+\end{align*}
+is basically given by the equivalence class containing the cobordism
+\begin{align*}
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+  &:=
+  (M \sqcup \tilde{M})
+  /
+  \sim_{S_{2}}
+\end{align*}
+with boundary maps
+\begin{align*}
+  \hat{\iota}_{1}
+  \colon
+  S_{1}
+  &\to
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+  ,\qquad
+  \hat{\tilde{\iota}}_{2}
+  \colon
+  S_{3}
+  \to
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+\end{align*}
+the maps obtained from $\iota_{1}$ and $\tilde{\iota}_{2}$ by extending the codomain from $M$ and $\tilde{M}$ to $M \sqcup_{S_{2}} \tilde{M}$ by composing with the maps
+\begin{align*}
+  j
+  \colon
+  M
+  &\to
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+  \qquad
+  \text{and}
+  \qquad
+  \tilde{j}
+  \colon
+  \tilde{M}
+  \to
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+\end{align*}
+induced on the quotient by the corresponding injections into the disjoint union. See figure \ref{fig:comp} for an illustration.
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %top
+  \pic[tqft/pair of pants,name=p,every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(p-incoming boundary 1),above=3pt,font=\small]{$S_{1}$};
+  \node[at=(p-between outgoing 1 and 2),above=5pt,font=\small]{$M$};
+  
+  %bottom
+  \pic[tqft/reverse pair of pants,name=rp,at=(p-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(rp-outgoing boundary 1),below=4pt,font=\small]{$S_{3}$};
+  \node[at=(rp-between incoming 1 and 2),below=4pt,font=\small]{$\tilde{M}$};
+\end{tikzpicture}
+\caption{Composition of two cobordisms}
+\label{fig:comp}
+\end{figure}
+\\
+One can check that this construction is the pushout
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=4em]
+  &
+  &
+  S_{3}
+  \ar{d}{\tilde{\iota}_{2}}
+  \\
+  &
+  S_{2}
+  \ar{r}{\tilde{\iota}_{1}}
+  \ar[swap]{d}{\iota_{2}}
+  &
+  \tilde{M}
+  \ar{d}{\tilde{j}}
+  \\
+  S_{1}
+  \ar{r}{\iota_{1}}
+  &
+  M
+  \ar{r}{j}
+  &
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+\end{tikzcd}
+\end{equation*}
+in $\mathbf{Top}$, the category of topological spaces. Thus, considering everything merely as topological spaces this definition of composition does not depend on the representing cobordisms since we always have a homeomorphism respecting the boundary maps for different choices. More precisely let
+\begin{align*}
+  \left(
+    M^{\backprime}
+    ,
+    \iota_{1}^{\backprime}
+    ,
+    \iota_{2}^{\backprime}
+  \right)
+  \qquad
+  \text{and}
+  \qquad
+  \left(
+    \tilde{M}^{\backprime}
+    ,
+    \tilde{\iota}_{1}^{\backprime}
+    ,
+    \tilde{\iota}_{2}^{\backprime}
+  \right)
+\end{align*}
+be other cobordisms representing
+\begin{align*}
+  [(M,\iota_{1},\iota_{2})]
+  \qquad
+  \text{and}
+  \qquad
+  [(\tilde{M},\tilde{\iota}_{1},\tilde{\iota}_{2})]
+\end{align*}
+respectively, and let
+\begin{align*}
+  \psi
+  \colon
+  M
+  &\to
+  M^{\backprime}
+  \qquad
+  \text{and}
+  \qquad
+  \tilde{\psi}
+  \colon
+  \tilde{M}
+  \to
+  \tilde{M}^{\backprime}
+\end{align*}
+be corresponding diffeomorphis rel boundary. Then we have the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=5em,column sep=6em]
+  S_{2}
+  \ar{r}{\tilde{\iota}_{1}}
+  \ar[bend left=25]{rr}{\tilde{\iota}_{1}^{\backprime}}
+  \ar[swap]{d}{\iota_{2}}
+  \ar[bend right=40]{dd}[swap]{\iota_{2}^{\backprime}}
+  &
+  \tilde{M}
+  \ar{r}{\tilde{\psi}}
+  \ar{d}{\tilde{j}}
+  &
+  \tilde{M}^{\backprime}
+  \ar{dd}{\tilde{j}^{\backprime}}
+  \ar[bend left=20]{l}{\tilde{\psi}^{-1}}
+  \\
+  M
+  \ar{r}{j}
+  \ar{d}[swap]{\psi}
+  &
+  M
+  \sqcup_{S_{2}}
+  \tilde{M}
+  \ar[bend right=10,dashed]{rd}[swap]{\psi \sqcup_{S_{2}} \tilde{\psi}}
+  \\
+  M^{\backprime}
+  \ar[bend right]{u}[swap]{\psi^{-1}}
+  \ar{rr}{j^{\backprime}}
+  &
+  &
+  M^{\backprime}
+  \sqcup_{S_{2}}
+  \tilde{M}^{\backprime}
+  \ar[bend right=10,dashed]{ul}[swap]{\psi^{-1} \sqcup_{S_{2}} \tilde{\psi}^{-1}}
+\end{tikzcd}
+\end{equation*}
+where the small square and the outer perimeter are pushouts and the dashed arrows, which can be thought of as the result of {\glqq}gluing{\grqq} $\psi,\tilde{\psi}$ and $\psi^{-1},\tilde{\psi}^{-1}$, respectively, along $S_{2}$, are the unique arrows for the corresponding pushouts. The pushout properties further imply that
+\begin{align*}
+  \left(
+    \psi^{-1}
+    \sqcup_{S_{2}}
+    \tilde{\psi}^{-1}
+  \right)
+  \circ
+  \left(
+    \psi
+    \sqcup_{S_{2}}
+    \tilde{\psi}
+  \right)
+  &=
+  \mathrm{id}_{M \sqcup_{S_{2}} \tilde{M}}
+  \\
+  \left(
+    \psi
+    \sqcup_{S_{2}}
+    \tilde{\psi}
+  \right)
+  \circ
+  \left(
+    \psi^{-1}
+    \sqcup_{S_{2}}
+    \tilde{\psi}^{-1}
+  \right)
+  &=
+  \mathrm{id}_{M^{\backprime} \sqcup_{S_{2}} \tilde{M}^{\backprime}}
+\end{align*}
+so that we indeed have a homeomorphism rel boundary for the glued cobordisms.
+\\
+Moreover, there is a canonical way to construct a continuous atlas for this topological space, so that we have the structure of topological manifolds for the composition. Note that the induced orientations on the boundaries along which the two cobordisms are glued are opposite which ensures that the orientations of the interiors are compatible with gluing. However, there is no canonical way to construct a smooth structure for $M \sqcup_{S_{2}} \tilde{M}$ from the smooth structures on $M$ and on $\tilde{M}$. Still, there is a way to endow $M \sqcup_{S_{2}} \tilde{M}$ with a smooth structure compatible with the given ones\footnote{one basically shows that one can always give the cobordisms a collar - i.e. a small neighbourhood diffeomorphic to the cylinder - at the boundary along which one wants to glue, since gluing of cylinders is easy; one might also choose the objects of $\mathbf{Cob}_{n}$ to be manifolds with collars in the first place to circumvent this problem but we do not need that here} and, with the help of morse theory, one can show that this is unique up to (non-unique) diffeomorphism, which is good enough for us since then we have the well-definedness of the composition. We do not go into the details of this construction here and instead refer the interested reader, for example, to \cite{bf5195ee} and the references therein.
+\\
+From this construction the associativity of the composition is not very difficult to see. On the level of topological spaces it is a consequence of the pushout property and for the smooth manifold structure it follows from the way this structure is constructed. Furthermore, it is easy to see that the identity morphism $\mathrm{id}_{S}$ for $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ is the equivalence class that contains the cylinder $S \times [0,1]$ regarded as a cobordism from $S$ to $S$, i.e. with boundary maps induced by the identity. See figure \ref{fig:cylinder} for an illustration.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  \pic[tqft/cylinder,name=c,every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c-incoming boundary 1),above=3pt,font=\small]{$S$};
+  \node[at=(c-outgoing boundary 1),font=\small]{$S$};
+  \node[at=(c-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{S}$};
+  \pic[tqft/pair of pants,name=g,genus=1,at=(c-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+
+  %right
+  \node[at=(c-outgoing boundary 1),right=2.5cm]{$\cong$};
+  \pic[tqft/pair of pants,name=gc,genus=1,anchor={(-1.5,0.5)},at=(c-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(gc-incoming boundary 1),above=3pt,font=\small]{$S$};
+\end{tikzpicture}
+\caption{The cylinder represents the identity}
+\label{fig:cylinder}
+\end{figure}
+\\\\\\\\\\\\
+We now know that $\mathbf{Cob}_{n}$ is indeed a category, but we want to show some more, namely that it can also be given a symmetric monoidal structure. To this end, first consider the following
+\\
+\begin{cst}[Cylinder construction]
+\label{cst:cylcst}
+An orientation-preserving diffeomorphism $\phi \colon S_{1} \to S_{2}$ between two closed oriented $(n - 1)$-manifolds induces an equivalence class of cobordisms $C_{n}(\phi)$ from $S_{1}$ to $S_{2}$ via the so called cylinder construction: as a representative we can take the cylinder $S_{2} \times [0,1]$ with boundary map for $S_{1}$ the obvious map induced by $\phi$ and for $S_{2}$ the one induced by the identity. Of course we can also take $S_{1} \times [0,1]$ and use $\phi^{-1}$ for $S_{2}$ which yields an equivalent cobordism by the diffeomorphism $\phi \times \mathrm{id}_{[0,1]}$ mapping $S_{1} \times \lbrace t \rbrace$ to $S_{2} \times \lbrace t \rbrace$ by $\phi$ for each $t \in [0,1]$.
+\end{cst}
+\begin{prf}
+Should be pretty clear.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+Let $\mathbf{DiffCOr}_{\infty}^{n - 1}$ denote the full subcategory of $\mathbf{DiffOr}_{\infty}$ with objects $\mathrm{ob}_{\mathbf{Cob}_{n}}$ (i.e. those that are compact and have dimension $n - 1$). Then we have
+\\
+\begin{lem}
+$C_{n}$ is a functor from $\mathbf{DiffCOr}_{\infty}^{n - 1}$ to $\mathbf{Cob}_{n}$ when defined as the identity on objects and by the cylinder construction \ref{cst:cylcst} for morphisms.
+\end{lem}
+\begin{prf}
+\begin{enumerate}
+\item[(F1)]
+The identity cobordism is clearly induced by the identity diffeomorphism.
+
+\item[(F2)]
+Having two orientation-preserving diffeomorphisms
+\begin{align*}
+  \phi_{12}
+  \colon
+  S_{1}
+  &\to
+  S_{2}
+  \qquad
+  \text{and}
+  \qquad
+  \phi_{23}
+  \colon
+  S_{2}
+  \to S_{3}
+\end{align*}
+we have to show that
+\begin{align*}
+  C_{n}(\phi_{23})
+  \circ
+  C_{n}(\phi_{12})
+  &=
+  C_{n}(\phi_{23} \circ \phi_{12})
+\end{align*}
+To this end note that by the equivalence $\phi_{23} \times \mathrm{id}_{[0,1]}$ which maps $S_{2} \times \lbrace t \rbrace$ to $S_{3} \times \lbrace t \rbrace$ by $\phi_{23}$ for each $t \in [0,1]$, we can represent $C_{n}(\phi_{12})$ by $S_{3} \times [0,1]$ with boundary maps induced by $\phi_{23} \circ \phi_{12}$ for $S_{1}$ and $\phi_{23}$ for $S_{2}$. Then by taking $S_{3} \times [0,1]$ for $C_{n}(\phi_{23})$ we can represent the compositon
+\begin{align*}
+  C_{n}(\phi_{23})
+  \circ
+  C_{n}(\phi_{12})
+\end{align*}
+by $S_{3} \times [0,2]$ with boundary maps induced by $\phi_{23} \circ \phi_{12}$ and $\mathrm{id}_{S_{3}}$. This latter cobordism is of course equivalent to $S_{3} \times [0,1]$ with the same boundary maps which is a representative of
+\begin{align*}
+  C_{n}(\phi_{23} \circ \phi_{12})
+\end{align*}
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+It is not too difficult to show (cf. e.g. \cite{bf5195ee}) that two parallel\footnote{remember that this means that they have the same domain and codomain} diffeomorphisms induce the same equivalence class of cobordisms if and only if they are smoothly homotopic, i.e. homotopic via a smooth homotopy.
+\\
+Now the category $\mathbf{DiffCOr}_{\infty}^{n - 1}$ has a symmetric monoidal structure coming from its coproduct\footnote{note that every category that has finite (co)products has a monoidal structure induced from the (co)product}, the disjoint union $\sqcup$, where the unit object is the initial object, that is, the empty $(n - 1)$-manifold $\emptyset = 1_{\mathbf{DiffCOr}_{\infty}^{n - 1}}$. The associator $\mathsf{a}$ and the left and right unit law $\mathsf{l},\mathsf{r}$ are given by the obvious canonical morphisms
+\begin{align*}
+  \mathsf{a}(S,\tilde{S},\hat{S})
+  &\colon
+  \left(
+    S
+    \sqcup
+    \tilde{S}
+  \right)
+  \sqcup
+  \hat{S}
+  \to
+  S
+  \sqcup
+  \left(
+    \tilde{S}
+    \sqcup
+    \hat{S}
+  \right)
+  \\
+  \mathsf{l}(S)
+  &\colon
+  \emptyset
+  \sqcup
+  S
+  \to
+  S
+  \\
+  \mathsf{r}(S)
+  &\colon
+  S
+  \sqcup
+  \emptyset
+  \to
+  S
+\end{align*}
+for
+\begin{align*}
+  S
+  ,
+  \tilde{S}
+  ,
+  \hat{S}
+  \in
+  \mathrm{ob}_{\mathbf{Cob}_{n}}
+  &=
+  \mathrm{ob}_{\mathbf{DiffCOr}_{\infty}^{n - 1}}
+\end{align*}
+It is pretty clear that these are natural and satisfy the coherence conditions so we will not go into further detail here. The braiding $\mathsf{b}$ is given by the canonical morphisms
+\begin{align*}
+  \mathsf{b}(S,\tilde{S})
+  \colon
+  S
+  \sqcup
+  \tilde{S}
+  &\to
+  \tilde{S}
+  \sqcup
+  S
+\end{align*}
+and it is again pretty obvious that this is natural and satisfies the hexagon equations. Moreover, it is evident that this braiding is symmteric. From this symmetric monoidal structure the cylinder construction $C_{n}$ induces a symmetric monoidal structure on $\mathbf{Cob}_{n}$ as described below.
+\\
+The tensor product in $\mathbf{Cob}_{n}$ is given by the disjoint union $\sqcup$. The disjoint union of two equivalence classes of cobordisms
+\begin{align*}
+  [(M,\iota_{1},\iota_{2})]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{1},S_{2})
+  \qquad
+  \text{and}
+  \qquad
+  [(\tilde{M},\tilde{\iota}_{1},\tilde{\iota}_{2})]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\tilde{S}_{1},\tilde{S}_{2})
+\end{align*}
+is the equivalence class of cobordisms of the disjoint union of a representative from each class, i.e.
+\begin{align*}
+  [(M,\iota_{1},\iota_{2})] \sqcup [(\tilde{M},\tilde{\iota}_{1},\tilde{\iota}_{2})]
+  &:=
+  [(M \sqcup \tilde{M},\iota_{1} \sqcup \tilde{\iota}_{1},\iota_{2} \sqcup \tilde{\iota}_{2})]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{1} \sqcup \tilde{S}_{1},S_{2} \sqcup \tilde{S}_{2})
+\end{align*}
+This does not depend on the chosen representatives since for other representatives
+\begin{align*}
+  M^{\backprime}
+  \in
+  [M]
+  \qquad
+  \text{and}
+  \qquad
+  \tilde{M}^{\backprime}
+  \in
+  [\tilde{M}]
+\end{align*}
+we have equivalences
+\begin{align*}
+  \psi
+  \colon
+  M
+  &\to
+  M^{\backprime}
+  \qquad
+  \text{and}
+  \qquad
+  \tilde{\psi}
+  \colon
+  \tilde{M}
+  \to
+  \tilde{M}^{\backprime}
+\end{align*}
+respectively, and together they give an equivalence between the disjoint unions
+\begin{align*}
+  \psi
+  \sqcup
+  \tilde{\psi}
+  &\colon
+  M
+  \sqcup
+  \tilde{M}
+  \to
+  M^{\backprime}
+  \sqcup
+  \tilde{M}^{\backprime}
+\end{align*}
+To show that this really yields a tensor product on $\mathbf{Cob}_{n}$ we need the following
+\\
+\begin{lem}
+\label{lem:disunfun}
+Taking the disjoint union of manifolds on the level of objects and the disjoint union of equivalence classes of cobordisms on the level of morphisms yields a functor
+\begin{align*}
+  \cdot
+  \sqcup
+  \cdot
+  \doteq
+  \sqcup
+  \colon
+  \mathbf{Cob}_{n}
+  \times
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Cob}_{n}
+\end{align*}
+We use infix notation for this functor as is usual for disjoint unions.
+\end{lem}
+\begin{prf}
+\begin{enumerate}
+\item[(F1)]
+For $S_{1},S_{2} \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ it is clear that there is an equivalence of cobordisms between the cylinders
+\begin{align*}
+  \left(
+    S_{1}
+    \times
+    [0,1]
+  \right)
+  \sqcup
+  \left(
+    S_{2}
+    \times
+    [0,1]
+  \right)
+\end{align*}
+and
+\begin{align*}
+  \left(
+    S_{1}
+    \sqcup
+    S_{2}
+  \right)
+  \times
+  [0,1]
+\end{align*}
+Hence we have
+\begin{align*}
+  \mathrm{id}_{S_{1}}
+  \sqcup
+  \mathrm{id}_{S_{2}}
+  &=
+  \mathrm{id}_{S_{1} \sqcup S_{2}}
+\end{align*}
+
+\item[(F2)]
+Given two pairs of cobordisms such that each pair consists of two cobordisms which can be glued together,
+\begin{align*}
+  (M^{12},\iota_{1}^{12},\iota_{2}^{12})
+  \colon
+  S_{1}
+  &\to
+  S_{2}
+  ,\qquad
+  (M^{23},\iota_{1}^{23},\iota_{2}^{23})
+  \colon
+  S_{2}
+  \to
+  S_{3}
+  \\
+  (\tilde{M}^{12},\tilde{\iota}_{1}^{12},\tilde{\iota}_{2}^{12})
+  \colon
+  \tilde{S}_{1}
+  &\to
+  \tilde{S}_{2}
+  ,\qquad
+  (\tilde{M}^{23},\tilde{\iota}_{1}^{23},\tilde{\iota}_{2}^{23})
+  \colon
+  \tilde{S}_{2}
+  \to
+  \tilde{S}_{3}
+\end{align*}
+Then we can first do the gluing of each pair and then take the disjoint union or we can first take the disjoint unions seperately and then glue these disjoint unions together,
+\begin{align*}
+  \left(
+    M^{12}
+    \sqcup_{S_{2}}
+    M^{23}
+  \right)
+  \sqcup
+  \left(
+    \tilde{M}^{12}
+    \sqcup_{\tilde{S}_{2}}
+    \tilde{M}^{23}
+  \right)
+  \colon
+  S_{1}
+  \sqcup
+  \tilde{S}_{1}
+  &\to
+  S_{3}
+  \sqcup
+  \tilde{S}_{3}
+  \\
+  \text{with}
+  \qquad
+  \widehat{\iota_{1}^{12}}
+  \sqcup
+  \widehat{\tilde{\iota}_{1}^{12}}
+  \qquad
+  \text{and}
+  \qquad
+  \widehat{\iota_{2}^{23}}
+  \sqcup
+  \widehat{\tilde{\iota}_{2}^{23}}
+\end{align*}
+or
+\begin{align*}
+  \left(
+    M^{12}
+    \sqcup
+    \tilde{M}^{12}
+  \right)
+  \sqcup_{S_{2} \sqcup \tilde{S}_{2}}
+  \left(
+    M^{23}
+    \sqcup
+    \tilde{M}^{23}
+  \right)
+  \colon
+  S_{1}
+  \sqcup
+  \tilde{S}_{1}
+  &\to
+  S_{3}
+  \sqcup
+  \tilde{S}_{3}
+  \\
+  \text{with}
+  \qquad
+  \widehat{\iota_{1}^{12} \sqcup \tilde{\iota}_{1}^{12}}
+  \qquad
+  \text{and}
+  \qquad
+  \widehat{\iota_{2}^{23} \sqcup \tilde{\iota}_{2}^{23}}
+\end{align*}
+But there clearly is a diffeomorphism respecting the boundary maps between the resulting cobordisms, making them equivalent. For an illustration see figure \ref{fig:disunfun}
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  %upper
+  \pic[tqft/cylinder,name=l,boundary separation=2.5cm,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(l-incoming boundary 1),above=3pt,font=\small]{$S_{1}$};
+  \node[at=(l-between first incoming and first outgoing),right=-1mm,font=\small]{$M^{12}$};
+  \pic[tqft/cylinder,name=r,boundary separation=2.5cm,anchor={(0,0)},at=(l-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(r-incoming boundary 1),above=3pt,font=\small]{$\tilde{S}_{1}$};
+  \node[at=(r-between first incoming and first outgoing),right=-1mm,font=\small]{$\tilde{M}^{12}$};
+  \node[at=(l-outgoing boundary 1),right=1cm,font=\small]{$\sqcup$};
+  %lower
+  \pic[tqft/cylinder,name=l2,boundary separation=2.5cm,at=(l-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(l2-outgoing boundary 1),below=5pt,font=\small]{$S_{3}$};
+  \node[at=(l2-between first incoming and first outgoing),right=-1mm,font=\small]{$M^{23}$};
+  \pic[tqft/cylinder,name=r2,boundary separation=2.5cm,at=(r-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(r2-outgoing boundary 1),below=3pt,font=\small]{$\tilde{S}_{3}$};
+  \node[at=(r2-between first incoming and first outgoing),right=-1mm,font=\small]{$\tilde{M}^{23}$};
+
+  %right
+  \node[at=(r-outgoing boundary 1),right=1.5cm,font=\small]{$\cong$};
+  %upper
+  \pic[tqft/cylinder,name=lu,boundary separation=2.5cm,anchor={(-1.4,0)},every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(lu-incoming boundary 1),above=3pt,font=\small]{$S_{1}$};
+  \node[at=(lu-between first incoming and first outgoing),right=-1mm,font=\small]{$M^{12}$};
+  \node[at=(lu-between first incoming and first outgoing),right=0.75cm,font=\small]{$\sqcup$};
+  \pic[tqft/cylinder,name=ru,boundary separation=2.5cm,anchor={(0.5,0)},at=(lu-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ru-incoming boundary 1),above=3pt,font=\small]{$\tilde{S}_{1}$};
+  \node[at=(ru-between first incoming and first outgoing),right=-1mm,font=\small]{$\tilde{M}^{12}$};
+
+  %lower
+  \pic[tqft/cylinder,name=ll,boundary separation=2.5cm,at=(lu-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(ll-outgoing boundary 1),below=5pt,font=\small]{$S_{3}$};
+  \node[at=(ll-between first incoming and first outgoing),right=-1mm,font=\small]{$M^{23}$};
+  \node[at=(ll-between first incoming and first outgoing),right=0.75cm,font=\small]{$\sqcup$};
+  \pic[tqft/cylinder,name=rl,boundary separation=2.5cm,at=(ru-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(rl-outgoing boundary 1),below=3pt,font=\small]{$\tilde{S}_{3}$};
+  \node[at=(rl-between first incoming and first outgoing),right=-1mm,font=\small]{$\tilde{M}^{23}$};
+\end{tikzpicture}
+\caption{Illustration of the functoriality of the disjoint union}
+\label{fig:disunfun}
+\end{figure}
+\\
+This implies the compatibility with composition
+\begin{align*}
+  \left(
+    [M^{23}]
+    \circ
+    [M^{12}]
+  \right)
+  \sqcup
+  \left(
+    [\tilde{M}^{23}]
+    \circ
+    [\tilde{M}^{12}]
+  \right)
+  &=
+  \left(
+    [M^{23}]
+    \sqcup
+    [\tilde{M}^{23}]
+  \right)
+  \circ
+  \left(
+    [M^{12}]
+    \sqcup
+    [\tilde{M}^{12}]
+  \right)
+\end{align*}
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+The unit object for the symmetric monoidal structure is the empty $(n - 1)$-manifold
+\begin{align*}
+  \emptyset
+  &=
+  1_{\mathbf{Cob}_{n}}
+  =
+  1_{\mathbf{DiffCOr}_{\infty}^{n - 1}}
+\end{align*}
+The associator $\mathsf{A}$ and the left and right unit law $\mathsf{L},\mathsf{R}$ are obtained from the cylinder construction for the associator and the unit laws in $\mathbf{DiffCOr}_{\infty}^{n - 1}$, i.e.
+\begin{align*}
+  \mathsf{A}(S,\tilde{S},\hat{S})
+  &:=
+  C_{n}(\mathsf{a}(S,\tilde{S},\hat{S}))
+  ,\qquad
+  \mathsf{L}(S)
+  :=
+  C_{n}(\mathsf{l}(S))
+  ,\qquad
+  \mathsf{R}(S)
+  :=
+  C_{n}(\mathsf{r}(S))
+\end{align*}
+for
+\begin{align*}
+  S
+  ,
+  \tilde{S}
+  ,
+  \hat{S}
+  \in
+  \mathrm{ob}_{\mathbf{Cob}_{n}}
+  &=
+  \mathrm{ob}_{\mathbf{DiffCOr}_{\infty}^{n - 1}}
+\end{align*}
+Note that since $\emptyset \sqcup \emptyset = \emptyset$, we have
+\begin{align*}
+  \mathsf{l}(\emptyset)
+  &=
+  \mathsf{r}(\emptyset)
+  =
+  \mathrm{id}_{\emptyset}
+  \in
+  \mathrm{mor}_{\mathbf{DiffCOr}_{\infty}^{n-1}}
+  \left(
+    \emptyset
+    ,
+    \emptyset
+  \right)
+\end{align*}
+and thus
+\begin{align*}
+  \mathsf{L}(\emptyset)
+  &=
+  \mathsf{R}(\emptyset)
+  =
+  \mathrm{id}_{\emptyset}
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}
+  \left(
+    \emptyset
+    ,
+    \emptyset
+  \right)
+\end{align*}
+where this latter $\mathrm{id}_{\emptyset}$ is the equivalence class containing the empty $n$-manifold as cobordism\footnote{this is the only cobordism in this equivalence class, of course, and the boundary maps are the empty maps}.
+\\
+For the naturality of $\mathsf{A}$ let
+\begin{align*}
+  [(M,\iota_{1},\iota_{2})]
+  &\in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(S_{1},S_{2})
+  \\
+  [(\tilde{M},\tilde{\iota}_{1},\tilde{\iota}_{2})]
+  &\in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\tilde{S}_{1},\tilde{S}_{2})
+  \\
+  [(\hat{M},\hat{\iota}_{1},\hat{\iota}_{2})]
+  &\in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\hat{S}_{1},\hat{S}_{2})
+\end{align*}
+then we want to show that
+\begin{align*}
+  \left(
+    [M]
+    \sqcup
+    [\tilde{M}]
+  \right)
+  \sqcup
+  [\hat{M}]
+  &=
+  \mathsf{A}^{-1}(S_{2},\tilde{S}_{2},\hat{S}_{2})
+  \circ
+  \left(
+    [M]
+    \sqcup
+    \left(
+      [\tilde{M}]
+      \sqcup
+      [\hat{M}]
+    \right)
+  \right)
+  \circ
+  \mathsf{A}(S_{1},\tilde{S}_{1},\hat{S}_{1})
+\end{align*}
+The equivalence class on the left can be represented by the cobordism
+\begin{align*}
+  \left(
+    (M \sqcup \tilde{M})
+    \sqcup
+    \hat{M}
+    ,
+    (\iota_{1} \sqcup \tilde{\iota}_{1})
+    \sqcup
+    \hat{\iota}_{1}
+    ,
+    (\iota_{2} \sqcup \tilde{\iota}_{2})
+    \sqcup
+    \hat{\iota}_{2}
+  \right)
+\end{align*}
+and the one on the right can be represented by
+\begin{align*}
+  \left(
+    M
+    \sqcup
+    (\tilde{M} \sqcup \hat{M})
+    ,
+    (\iota_{1} \sqcup (\tilde{\iota}_{1} \sqcup \hat{\iota}_{1}))
+    \circ
+    \mathsf{a}(S_{1},\tilde{S}_{1},\hat{S}_{1})
+    ,
+    (\iota_{2} \sqcup (\tilde{\iota}_{2} \sqcup \hat{\iota}_{2}))
+    \circ
+    \mathsf{a}(S_{2},\tilde{S}_{2},\hat{S}_{2})
+  \right)
+\end{align*}
+because we can diffeomorphically collapse the attached cylinders that represent the associators
+\begin{align*}
+  \mathsf{A}^{-1}(S_{2},\tilde{S}_{2},\hat{S}_{2})
+  \qquad
+  \text{and}
+  \qquad
+  \mathsf{A}(S_{1},\tilde{S}_{1},\hat{S}_{1})
+\end{align*}
+and this collapsing results in simply adapting the boundary maps of the cobordisms without the cylinders for the associators. Thus we need a diffeomorphism
+\begin{align*}
+  \psi
+  \colon
+  (M \sqcup \tilde{M})
+  \sqcup
+  \hat{M}
+  \to
+  M
+  \sqcup
+  (\tilde{M} \sqcup \hat{M})
+\end{align*}
+which makes the following diagram commute
+\begin{equation*}
+\begin{tikzcd}[column sep=1.4em]
+  &
+  &
+  (M \sqcup \tilde{M}) \sqcup \hat{M}
+  \ar{dddd}{\psi}
+  &
+  &
+  \\
+  \\
+  (S_{1} \sqcup \tilde{S}_{1}) \sqcup \hat{S}_{1}
+  \ar{uurr}{(\iota_{1} \sqcup \tilde{\iota}_{1}) \sqcup \hat{\iota}_{1}}
+  \ar{dr}[swap]{\mathsf{a}(S_{1},\tilde{S}_{1},\hat{S}_{1})}
+  &
+  &
+  &
+  &
+  (S_{2} \sqcup \tilde{S}_{2}) \sqcup \hat{S}_{2}
+  \ar{uull}[swap]{(\iota_{2} \sqcup \tilde{\iota}_{2}) \sqcup \hat{\iota}_{2}}
+  \ar{dl}{\mathsf{a}(S_{2},\tilde{S}_{2},\hat{S}_{2})}
+  \\
+  &
+  S_{1} \sqcup (\tilde{S}_{1} \sqcup \hat{S}_{1})
+  \ar{dr}[swap]{\iota_{1} \sqcup (\tilde{\iota}_{1} \sqcup \hat{\iota}_{1})}
+  &
+  &
+  S_{2} \sqcup (\tilde{S}_{2} \sqcup \hat{S}_{2})
+  \ar{dl}{\iota_{2} \sqcup (\tilde{\iota}_{2} \sqcup \hat{\iota}_{2})}
+  &
+  \\
+  &
+  &
+  M \sqcup (\tilde{M} \sqcup \hat{M})
+  &
+  &
+\end{tikzcd}
+\end{equation*}
+But the canonical diffeomorphism clearly does the job. A similar argument shows the naturality of $\mathsf{L}$ and $\mathsf{R}$.
+\\
+The braiding $\mathsf{B}$ in $\mathbf{Cob}_{n}$ also comes from the braiding in $\mathbf{DiffCOr}_{\infty}^{n - 1}$ by the cylinder construction,
+\begin{align*}
+  \mathsf{B}(S,\tilde{S})
+  &:=
+  C_{n}(\mathsf{b}(S,\tilde{S}))
+\end{align*}
+This braiding is symmetric since $\mathsf{b}$ is symmetric and thus
+\begin{align*}
+  \mathsf{B}(\tilde{S},S)
+  &=
+  C_{n}(\mathsf{b}(\tilde{S},S))
+  \\
+  &=
+  C_{n}(\mathsf{b}(S,\tilde{S})^{-1})
+  \\
+  &=
+  C_{n}(\mathsf{b}(S,\tilde{S}))^{-1}
+  \\
+  &=
+  \mathsf{B}(S,\tilde{S})^{-1}
+\end{align*}
+The naturality of $\mathsf{B}$ follows again by a similar reasoning as above. We will usually depict the braiding as in figure \ref{fig:braiding} which illustrates the symmetry. Note however that there is not really an intersection of the components, it just illustrates that it does not make sense to talk about crossing over or under as the manifolds considered are abstract and not embedded into a surrounding space.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  %upper braiding
+  \pic[tqft/cylinder to next,name=l,boundary separation=2.5cm,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(l-incoming boundary 1),above=3pt,font=\small]{$S$};
+  \node[at=(l-outgoing boundary 1),below=-7pt,font=\small]{$S$};
+  \pic[tqft/cylinder to prior,name=r,boundary separation=2.5cm,anchor={(0.5,0)},at=(l-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(r-incoming boundary 1),above=3pt,font=\small]{$\tilde{S}$};
+  \node[at=(r-outgoing boundary 1),below=-8pt,font=\small]{$\tilde{S}$};
+  \node[at=(r-between first incoming and first outgoing),left=1cm,font=\small]{$\mathsf{B}(S,\tilde{S})$};
+  %lower braiding
+  \pic[tqft/cylinder to next,name=l2,boundary separation=2.5cm,at=(r-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(l2-outgoing boundary 1),below=3pt,font=\small]{$\tilde{S}$};
+  \pic[tqft/cylinder to prior,name=r2,boundary separation=2.5cm,at=(l-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(r2-outgoing boundary 1),below=5pt,font=\small]{$S$};
+  \node[at=(r2-between first incoming and first outgoing),left=1cm,font=\small]{$\mathsf{B}(\tilde{S},S)$};
+
+  %right
+  \node[at=(r-outgoing boundary 1),right=2.5cm,font=\small]{$\cong$};
+  %upper cylinder
+  \pic[tqft/cylinder,name=lc,boundary separation=2.5cm,anchor={(-0.6,0)},at=(r-between first incoming and first outgoing),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(lc-incoming boundary 1),above=3pt,font=\small]{$S$};
+  \node[at=(lc-outgoing boundary 1),below=5pt,font=\small]{$S$};
+  \node[at=(lc-between first incoming and first outgoing),right=0.75cm,font=\small]{$\sqcup$};
+  %lower cylinder
+  \pic[tqft/cylinder,name=rc,boundary separation=2.5cm,anchor={(0.5,0)},at=(lc-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(rc-incoming boundary 1),above=3pt,font=\small]{$\tilde{S}$};
+  \node[at=(rc-outgoing boundary 1),below=3pt,font=\small]{$\tilde{S}$};
+  \node[at=(rc-between first incoming and first outgoing),right=1cm,font=\small]{$\mathrm{id}_{S \sqcup \tilde{S}}$};
+\end{tikzpicture}
+\caption{Illustration of the symmetry of the braiding}
+\label{fig:braiding}
+\end{figure}
+\newpage
+The pentagon, triangle and hexagon equations follow from the cylinder construction applied to the corresponding equations in $\mathbf{DiffCOr}_{\infty}^{n - 1}$ because the cylinder construction preserves the disjoint union, i.e. as functors we have
+\begin{align*}
+  C_{n}
+  \circ
+  \sqcup
+  &=
+  \sqcup
+  \circ
+  (C_{n} \times C_{n})
+\end{align*}
+On the level of objects this is obvious since $C_{n}$ is the identity there. On the level of morphisms we need to show
+\begin{align*}
+  C_{n}(\phi \sqcup \tilde{\phi})
+  &=
+  C_{n}(\phi)
+  \sqcup
+  C_{n}(\tilde{\phi})
+\end{align*}
+for
+\begin{align*}
+  \phi
+  \in
+  \mathrm{mor}_{\mathbf{DiffCOr}_{\infty}^{n - 1}}
+  \left(
+    S_{1}
+    ,
+    S_{2}
+  \right)
+  ,\qquad
+  \tilde{\phi}
+  \in
+  \mathrm{mor}_{\mathbf{DiffCOr}_{\infty}^{n - 1}}
+  \left(
+    \tilde{S}_{1}
+    ,
+    \tilde{S}_{2}
+  \right)
+\end{align*}
+But this is true because the left-hand side can be represented by the cobordism
+\begin{align*}
+  (S_{2} \sqcup \tilde{S}_{2})
+  \times
+  [0,1]
+\end{align*}
+and the right-hand side by
+\begin{align*}
+  (S_{2} \times [0,1])
+  \sqcup
+  (\tilde{S}_{2} \times [0,1])
+\end{align*}
+and we have a canoncial diffeomorphism between them which is a diffeomorphism rel boundary. Note that this also implies that
+\begin{align*}
+  \left(
+    C_{n}
+    ,
+    \mathrm{id}_{C_{n} \circ \sqcup}
+    ,
+    \mathrm{id}_{\emptyset}
+  \right)
+  \colon
+  \left(
+    \mathbf{DiffCOr}_{\infty}^{n-1}
+    ,
+    \sqcup
+    ,
+    \mathsf{a}
+    ,
+    \emptyset
+    ,
+    \mathsf{l}
+    ,
+    \mathsf{r}
+    ,
+    \mathsf{b}
+  \right)
+  &\to
+  \left(
+    \mathbf{Cob}_{n}
+    ,
+    \sqcup
+    ,
+    \mathsf{A}
+    ,
+    \emptyset
+    ,
+    \mathsf{L}
+    ,
+    \mathsf{R}
+    ,
+    \mathsf{B}
+  \right)
+\end{align*}
+is a symmetric monoidal functor.
+\\\\
+The category $\mathbf{Cob}_{n}$ has another important property: it is rigid, that is, for every $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ there is a dual object in $\mathbf{Cob}_{n}$.
+\\
+\begin{lem}
+\label{lem:cobrigid}
+For every object $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ there is a left dual object in $\mathbf{Cob}_{n}$ given by the manifold with reversed orientation $\overline{S}$. The evaluation
+\begin{align*}
+  \mathrm{ev}_{S}
+  \colon
+  \overline{S}
+  \sqcup
+  S
+  &\to
+  \emptyset
+\end{align*}
+and coevaluation
+\begin{align*}
+  \mathrm{coev}_{S}
+  \colon
+  \emptyset
+  &\to
+  S
+  \sqcup
+  \overline{S}
+\end{align*}
+are each given by the equivalence class of the cylinder $S \times [0,1]$ regarded as cobordism with empty out-boundary and empty in-boundary, respectively. As $\mathbf{Cob}_{n}$ is braided monoidal such a left dual object is also a right dual object with the appropriately adapted evaluation and coevaluation. Hence $\mathbf{Cob}_{n}$ is rigid.
+\end{lem}
+\begin{prf}[Sketch]
+We can think of the evaluation and coevaluation as {\glqq}bent cylinders{\grqq} and will depict them as in figure \ref{fig:evcoev}.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  \pic[tqft,name=ev,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev-incoming boundary 1),above=3pt,font=\small]{$\overline{S}$};
+  \node[at=(ev-incoming boundary 2),above=3pt,font=\small]{$S$};
+  \node[at=(ev-between incoming 1 and 2),below=4pt,font=\small]{$\mathrm{ev}_{S}$};
+
+  %right
+  \pic[tqft,name=co,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,anchor={(0,0.6)},at=(ev-incoming boundary 2),every outgoing boundary component/.style={draw}];
+  \node[at=(co-outgoing boundary 1),below=4pt,font=\small]{$S$};
+  \node[at=(co-outgoing boundary 2),below=4pt,font=\small]{$\overline{S}$};
+  \node[at=(co-between outgoing 1 and 2),above=3pt,font=\small]{$\mathrm{coev}_{S}$};
+\end{tikzpicture}
+\caption{Illustration of the evaluation and coevaluation}
+\label{fig:evcoev}
+\end{figure}
+\\
+They have to make the diagrams (LD1) and (LD2) for dual objects commute, i.e.
+\begin{equation*}
+\begin{tikzcd}
+  \emptyset \sqcup S
+  \ar{rr}{\mathsf{L}(S)}
+  \ar{dd}[swap]{\mathrm{coev}_{S} \sqcup \mathrm{id}_{S}}
+  &
+  &
+  S
+  &
+  &
+  S \sqcup \emptyset
+  \ar{ll}[swap]{\mathsf{R}(S)}
+  \\
+  \\
+  (S \sqcup \overline{S}) \sqcup S
+  \ar{rrrr}{\mathsf{A}(S,\overline{S},S)}
+  &
+  &
+  &
+  &
+  S \sqcup (\overline{S} \sqcup S)
+  \ar{uu}[swap]{\mathrm{id}_{S} \sqcup \mathrm{ev}_{S}}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}
+  \overline{S} \sqcup \emptyset
+  \ar{rr}{\mathsf{R}(\overline{S})}
+  \ar{dd}[swap]{\mathrm{id}_{\overline{S}} \sqcup \mathrm{coev}_{S}}
+  &
+  &
+  \overline{S}
+  &
+  &
+  \emptyset \sqcup \overline{S}
+  \ar{ll}[swap]{\mathsf{L}(\overline{S})}
+  \\
+  \\
+  \overline{S} \sqcup (S \sqcup \overline{S})
+  \ar{rrrr}{\mathsf{A}^{-1}(\overline{S},S,\overline{S})}
+  &
+  &
+  &
+  &
+  (\overline{S} \sqcup S) \sqcup \overline{S}
+  \ar{uu}[swap]{\mathrm{ev}_{S} \sqcup \mathrm{id}_{\overline{S}}}
+\end{tikzcd}
+\end{equation*}
+Since $\mathsf{L}$, $\mathsf{R}$ and $\mathsf{A}$ can be represented by cylinders this is rather clear because we can collapse the cylinders which, as before, results in simply adjusting the boundary maps. Then the composition of the cobordisms in the given way is just gluing bent and unbent cylinders in the appropriate way to form a cobordism again diffeomorphic to an unbent cylinder as illustrated for the first diagram in figure \ref{fig:dualobcob1} and for the second diagram in figure \ref{fig:dualobcob2}.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  %coevaluation
+  \pic[tqft,name=co,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(co-outgoing boundary 1),font=\small]{$S$};
+  \node[at=(co-outgoing boundary 2),below=-7pt,font=\small]{$\overline{S}$};
+  \node[at=(co-between outgoing 1 and 2),above=3pt,font=\small]{$\mathrm{coev}_{S}$};
+  %evaluation
+  \pic[tqft,name=ev,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor=incoming boundary 1,at=(co-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev-incoming boundary 2),font=\small]{$S$};
+  \node[at=(ev-between incoming 1 and 2),below=4pt,font=\small]{$\mathrm{ev}_{S}$};
+  %cylinders
+  \pic[tqft/cylinder,name=c1,cobordism height=1.4cm,anchor=outgoing boundary 1,at=(ev-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c1-incoming boundary 1),above=3pt,font=\small]{$S$};
+  \node[at=(c1-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{S}$};
+  \node[at=(c1-between first incoming and first outgoing),left=8pt,font=\small]{$\sqcup$};
+  \pic[tqft/cylinder,name=c2,cobordism height=1.4cm,anchor=incoming boundary 1,at=(co-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c2-outgoing boundary 1),below=3pt,font=\small]{$S$};
+  \node[at=(c2-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{S}$};
+  \node[at=(c2-between last incoming and last outgoing),right=8pt,font=\small]{$\sqcup$};
+  
+  %right
+  \node[at=(c1-outgoing boundary 1),right=2cm]{$\cong$};
+  \pic[tqft/cylinder,name=c,anchor={(-1.3,-0.25)},at=(c1-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c-incoming boundary 1),above=3pt,font=\small]{$S$};
+  \node[at=(c-outgoing boundary 1),below=4pt,font=\small]{$S$};
+  \node[at=(c-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{S}$};
+\end{tikzpicture}
+\caption{Illustration of the first diagram for dual objects}
+\label{fig:dualobcob1}
+\end{figure}
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %left
+  %coevaluation
+  \pic[tqft,name=co,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(co-outgoing boundary 1),font=\small]{$S$};
+  \node[at=(co-outgoing boundary 2),below=-7pt,font=\small]{$\overline{S}$};
+  \node[at=(co-between outgoing 1 and 2),above=3pt,font=\small]{$\mathrm{coev}_{S}$};
+  %evaluation
+  \pic[tqft,name=ev,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor=incoming boundary 2,at=(co-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev-incoming boundary 1),below=-7pt,font=\small]{$\overline{S}$};
+  \node[at=(ev-between incoming 1 and 2),below=4pt,font=\small]{$\mathrm{ev}_{S}$};
+  %cylinders
+  \pic[tqft/cylinder,name=c1,cobordism height=1.4cm,anchor=outgoing boundary 1,at=(ev-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(c1-incoming boundary 1),above=3pt,font=\small]{$\overline{S}$};
+  \node[at=(c1-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{\overline{S}}$};
+  \node[at=(c1-between first incoming and first outgoing),right=10mm,font=\small]{$\sqcup$};
+  \pic[tqft/cylinder,name=c2,cobordism height=1.4cm,anchor=incoming boundary 1,at=(co-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c2-outgoing boundary 1),below=3pt,font=\small]{$\overline{S}$};
+  \node[at=(c2-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{\overline{S}}$};
+  \node[at=(c2-between last incoming and last outgoing),left=10mm,font=\small]{$\sqcup$};
+  
+  %right
+  \node[at=(c2-incoming boundary 1),right=2cm]{$\cong$};
+  \pic[tqft/cylinder,name=c,anchor={(-3.1,-0.25)},at=(c1-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c-incoming boundary 1),above=3pt,font=\small]{$\overline{S}$};
+  \node[at=(c-outgoing boundary 1),below=4pt,font=\small]{$\overline{S}$};
+  \node[at=(c-between first incoming and first outgoing),right,font=\small]{$\mathrm{id}_{\overline{S}}$};
+\end{tikzpicture}
+\caption{Illustration of the second diagram for dual objects}
+\label{fig:dualobcob2}
+\end{figure}
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+This finishes our treatment of the cobordism category.

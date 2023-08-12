@@ -1,0 +1,49 @@
+%\nocite{64bee405}
+%%%
+We start out by giving an impression of the path integral formulation in QFT. The first thing we need for a QFT is a smooth $n$-manifold $M$ for spacetime. Next we have to specify a space $\mathcal{F}(M)$ of fields or field configurations/histories on $M$ which are certain smooth maps from $M$ to some other manifold, depending on what the QFT aims to describe\footnote{for example, think of smooth maps $\phi \colon M \to \mathbb{C}$ for scalar fields}. More generally and accurately, fields are sections of some bundle over spacetime but for simplicity we stick to functions here. Moreover, we need a map
+\begin{align*}
+  A
+  \colon
+  \mathcal{F}(M)
+  &\to
+  \mathbb{C}
+\end{align*}
+which we call the action. This action is usually determined by some Lagrangian\footnote{see e.g. \cite{64bee405} for a basic overview} capturing the specific physics of the theory. Finally, we need a measure $D\phi$ on $\mathcal{F}(M)$ allowing us to {\glqq}integrate over all fields{\grqq} that possibly satisfies some boundary conditions which we will leave implicit for now. Unfortunately, such a measure does not exist in general and hence such an integration does not make sense in a rigorous way. For this reason, the following calculations are only heuristic. Still, the path integral formulation is a standard tool in QFT to do calculations since it yields physically sensible results. Moreover, when knowing the path integral approach to quantum mechanics it may seem rather intuitive to get to the path integral formulation of QFTs. For a classical particle one has the principle of stationary action determining which path a particle takes to get from a spacetime point $x_{1}$ to a spacetime point $x_{2}$. In quantum mechanics to obtain a probability amplitude for the movement of a particle from $x_{1}$ to $x_{2}$ one does not restrict to the path which makes the action stationary but rather {\glqq}sums up or integrates over all possible paths{\grqq} from $x_{1}$ to $x_{2}$ yet with a weight determined by the action for every path. Now in quantum field theory one is concerned with fields - the particles are then considered as excited states\footnote{provided the particle concept makes sense which is generally not the case anymore on curved spacetimes}, i.e. states of higher energy than the ground state, of certain fields - and in the path integral one {\glqq}integrates over all field configurations{\grqq} to determine how things evolve.
+\\
+We want to describe how to calculate the vacuum expectation value of observables. The first path integral to consider is
+\begin{align*}
+  \mathcal{Z}
+  &:=
+  \int_{\mathcal{F}(M)}
+  \exp(\mathrm{i}A(\phi))
+  D\phi
+\end{align*}
+Due to its close resemblance to the partition function in statistical mechanics, it is often also called partition function. Now we consider observables. Mathematically an observable is represented by a map
+\begin{align*}
+  \mathcal{O}
+  \colon
+  \mathcal{F}(M)
+  &\to
+  \mathbb{C}
+\end{align*}
+assigning a number $\mathcal{O}(\phi)$ to each field $\phi$, i.e. the value of the observable is $\mathcal{O}(\phi)$ if the field configuration is given by $\phi$. The vacuum expectation value for the observable described by $\mathcal{O}$ is
+\begin{align*}
+  \Braket{\mathcal{O}}
+  &=
+  \frac{1}{\mathcal{Z}}
+  \int_{\mathcal{F}(M)}
+  \mathcal{O}(\phi)
+  \exp(\mathrm{i}A(\phi))
+  D\phi
+\end{align*}
+We see that the basic idea of the path integral formulation is to compute a {\glqq}weighted sum{\grqq} over all possible field configurations normalized by the partition function, where the weight of the summands is given by a phase factor determined by the action $A$.
+\\
+Note that the above integrals may depend on the metric of the manifold $M$. If this is not the case, then the quantum field theory is called topological, since metric independence implies invariance under diffeomorphisms. The latter is true because isometries between manifolds
+\begin{align*}
+  T
+  \colon
+  M
+  &\to
+  M^{\prime}
+\end{align*}
+should not change path integrals and any diffeomorphism can be made into an isometry by simply changing the metric on $M$ to be the pull-back metric. But, by assumption, changing the metric does not affect the path integrals.

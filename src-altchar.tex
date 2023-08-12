@@ -1,0 +1,2406 @@
+\nocite{0a816f4c}
+\nocite{5175de60}
+%%%
+We start out by giving an alternative characterization of a TQFT using the fact that the source category $\mathbf{Cob}_{n}$ has dual objects. We give the characterization in a somewhat lax way and then formulate and prove a more general statement for symmetric monoidal functors between symmetric monoidal categories where the details become clear. The idea is that on the level of morphisms a TQFT only needs to be specified for cobordisms with empty in-boundary. The other morphisms are then determined by the duality data because a TQFT preserves the symmetric monoidal structure and hence dual objects.
+\\
+\begin{cor}
+\label{cor:actqft}
+Let $K$ be a field, $n \in \mathbb{N}^{\times}$ and let $Y$ be a tuple $(Y_{\mathrm{ob}},Y_{\mathrm{mor}},\mathsf{H},\Phi)$ consisting of
+\begin{enumerate}
+\item
+a function $Y_{\mathrm{ob}}$ which assigns to each oriented smooth closed $(n-1)$-manifold $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ a $K$-vector space
+\begin{align*}
+  Y_{\mathrm{ob}}(S)
+  \in
+  \mathrm{ob}_{\mathbf{Vec}_{K}}
+\end{align*}
+
+\item
+a function $Y_{\mathrm{mor}}$ mapping each $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ to a function $Y_{S} \doteq Y_{\mathrm{mor}}(S)$ which assigns to each equivalence class of smooth cobordisms $[M] \in \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S)$ a linear map
+\begin{align*}
+  Y_{S}([M])
+  \colon
+  Y_{\mathrm{ob}}(\emptyset)
+  &\to
+  Y_{\mathrm{ob}}(S)
+\end{align*}
+Note that (4) implies that this basically is a vector
+\begin{align*}
+  Y_{S}([M])(\Phi(1))
+  \in
+  Y_{\mathrm{ob}}(S)
+\end{align*}
+
+\item
+a function $\mathsf{H}$ which assigning to each object $(S_{1},S_{2}) \in \mathrm{ob}_{\mathbf{Cob}_{n} \times \mathbf{Cob}_{n}}$ an isomorphism
+\begin{align*}
+  \mathsf{H}(S_{1},S_{2})
+  \colon
+  Y_{\mathrm{ob}}(S_{1}) \otimes Y_{\mathrm{ob}}(S_{2})
+  &\to
+  Y_{\mathrm{ob}}(S_{1} \sqcup S_{2})
+\end{align*}
+
+\item
+an isomorphism
+\begin{align*}
+  \Phi
+  \colon
+  K
+  &\to
+  Y_{\mathrm{ob}}(\emptyset)
+\end{align*}
+\end{enumerate}
+In abuse of notation we will simply write $Y$ for $Y_{\mathrm{ob}}$ and all the $Y_{S} = Y_{\mathrm{mor}}(S)$. Then the following are equivalent
+\begin{enumerate}
+\item[i)]
+$Y$ extends to a symmetric monoidal functor
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Vec}_{K}
+\end{align*}
+that is, a TQFT
+
+\item[ii)]
+$Y$ satisfies
+\begin{enumerate}
+\item[(AC1)]
+the cylinder regarded as the coevaluation $\mathrm{coev}_{S}$ in $\mathbf{Cob}_{n}$ gives a coparing
+\begin{align*}
+  Y(\mathrm{coev}_{S})
+  \colon
+  K
+  \cong
+  Y(\emptyset)
+  &\to
+  Y(S \sqcup \overline{S})
+  \cong
+  Y(S) \otimes Y(\overline{S})
+\end{align*}
+which is nondegenerate in the sense that there exists a pairing
+\begin{align*}
+  \mathrm{ev}_{Y(S)}
+  \colon
+  Y(\overline{S})
+  \otimes
+  Y(S)
+  &\to
+  K
+\end{align*}
+which is dual to $Y(\mathrm{coev}_{S})$
+
+\item[(AC2)]
+for a closed oriented $(n - 1)$-manifold $U$ embedded in $M \colon \emptyset \to S$ let
+\begin{align*}
+  [M^{\backprime}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}
+  \left(
+    \emptyset
+    ,
+    S
+    \sqcup
+    (\overline{U} \sqcup U)
+  \right)
+\end{align*}
+be obtained by cutting $M$ along $U$, i.e. $M^{\backprime}$ gives $M$ again when attaching a cylinder - regarded as the evaluation in $\mathbf{Cob}_{n}$ - to the new ends, so that
+\begin{align*}
+  [M]
+  &=
+  \mathsf{R}(S)
+  \circ
+  (\mathrm{id}_{S} \sqcup \mathrm{ev}_{U})
+  \circ
+  [M^{\backprime}]
+\end{align*}
+as illustrated in figure \ref{fig:cutopencob}.
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism edge/.style={draw}]
+  %left bottom 1
+  \pic[tqft,name=mb,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0];
+
+  %left top
+  \pic[tqft,name=mt,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=3,anchor=outgoing boundary 2,at=(mb-incoming boundary 1)];
+  \node[at=(mt-outgoing boundary 2),above=15pt,font=\small]{$M$};
+
+  %left bottom 2
+  \pic[tqft/cylinder,name=cb,cobordism height=1.3cm,boundary separation=1.75cm,at=(mt-outgoing boundary 1),every outgoing boundary component/.style={draw}];
+  \node[at=(cb-outgoing boundary 1),below=4pt,font=\small]{$S$};
+
+  %cutting line
+  \draw (0.9,0) -- (0.9,-2.1);
+
+  %arrow
+  \draw[->] (2.8,0) -- (3.2,0);
+
+  %right top
+  \pic[tqft,name=mp,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=3,anchor={(-2.5,1)},at=(mt-outgoing boundary 1),every outgoing boundary component/.style={draw}];
+  \node[at=(mp-outgoing boundary 2),above=15pt,font=\small]{$M^{\backprime}$};
+  \node[at=(mp-outgoing boundary 1),below=6pt,font=\small]{$S$};
+  \node[at=(mp-outgoing boundary 2),below=5pt,font=\small]{$\overline{U}$};
+  \node[at=(mp-outgoing boundary 3),below=7pt,font=\small]{$U$};
+
+  %right bottom
+  \pic[tqft,name=ev,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor={(1,-0.35)},at=(mp-outgoing boundary 2),every incoming upper boundary component/.style={draw},every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev-between incoming 1 and 2),below=1mm,font=\small]{$\mathrm{ev}_{U}$};
+  \pic[tqft/cylinder,name=c,cobordism height=1.3cm,anchor={(1,-0.8)},at=(mp-outgoing boundary 1),every incoming upper boundary component/.style={draw},every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c-outgoing boundary 1),below=4pt,font=\small]{$S$};
+\end{tikzpicture}
+\caption{Cutting a cobordism along a closed submanifold}
+\label{fig:cutopencob}
+\end{figure}
+Then
+\begin{align*}
+  Y([M])
+  &=
+  \mathsf{R}(Y(S))
+  \circ
+  \left(
+    \mathrm{id}_{Y(S)}
+    \otimes
+    \mathrm{ev}_{Y(U)}
+  \right)
+  \circ
+  \sim_{\mathsf{H}}
+  \circ
+  Y([M^{\backprime}])
+\end{align*}
+where
+\begin{align*}
+  \sim_{\mathsf{H}}
+  \colon
+  Y(S \sqcup (\overline{U} \sqcup U))
+  &\to
+  Y(S)
+  \otimes
+  (Y(\overline{U}) \otimes Y(U))
+\end{align*}
+is the obvious isomorphism built from $\mathsf{H}$
+\newpage
+
+\item[(AC3)]
+for
+\begin{align*}
+  [M]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,S)
+  \qquad
+  \text{and}
+  \qquad
+  [\tilde{M}]
+  \in
+  \mathrm{mor}_{\mathbf{Cob}_{n}}(\emptyset,\tilde{S})
+\end{align*}
+we have
+\begin{align*}
+  Y([M])
+  \otimes
+  Y(\tilde{[M]})
+  &=
+  \mathsf{H}(S,\tilde{S})^{-1}
+  \circ
+  Y([M] \sqcup [\tilde{M}])
+  \circ
+  \mathsf{H}(\emptyset,\emptyset)
+\end{align*}
+
+\item[(AC4),(AC5)]
+$Y$ is compatible with the symmetric braidings, the associators and the unit laws of $\mathbf{Cob}_{n}$ and $\mathbf{Vec}_{K}$
+\end{enumerate}
+\end{enumerate}
+If $Y$ satisfies the conditions in ii), then the extension to a symmetric monoidal functor in i) is unique.
+\end{cor}
+\begin{prf}
+This follows from theorem \ref{THM:ACSMF} but for illustrative purposes we sketch the main idea here. The direction i) $\Rightarrow$ ii) is rather easy when using that monoidal functors preserve dual objects which we will show later. The idea for the other direction ii) $\Rightarrow$ i) is to extend $Y$ to all cobordisms by making a cobordism $M \colon S_{1} \to S_{2}$ into a cobordism with in-boundary $\emptyset$ using the coevaluation. More precisely, we can glue $M$ to one component of the cylinder representing $\mathrm{coev}_{S_{1}}$ to obtain
+\begin{align*}
+  M^{\backprime}
+  \colon
+  \emptyset
+  &\to
+  S_{2} \sqcup \overline{S}_{1}
+\end{align*}
+that is,
+\begin{align*}
+  [M^{\backprime}]
+  &=
+  ([M] \sqcup \mathrm{id}_{\overline{S}_{1}})
+  \circ
+  \mathrm{coev}_{S_{1}}
+\end{align*}
+See figure \ref{fig:cobto0in} for an illustration.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw}]
+  %top
+  \pic[tqft,name=co,cobordism height=3cm,boundary separation=2.5cm,,incoming boundary components=0,outgoing boundary components=2,every outgoing lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(co-outgoing boundary 2),below=-8pt,font=\small]{$\overline{S}_{1}$};
+  \node[at=(co-between outgoing 1 and 2),above=3pt,font=\small]{$\mathrm{coev}_{S_{1}}$};
+  
+  %bottom
+  \pic[tqft/pair of pants,name=p,at=(co-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(p-incoming boundary 1),font=\small]{$S_{1}$};
+  \node[at=(p-between outgoing 1 and 2),above=4pt,font=\small]{$M$};
+  \node[at=(p-between outgoing 1 and 2),below=6mm,font=\small]{$S_{2}$};
+  \pic[tqft/cylinder,name=c,at=(co-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(c-outgoing boundary 1),below=4pt,font=\small]{$\overline{S}_{1}$};
+
+  %right
+  \node[at=(c-incoming boundary 1),below=7mm,right=1.6cm]{$\cong \qquad M^{\backprime}$};
+\end{tikzpicture}
+\caption{Turning the in-boundary of a cobordism into an out-boundary}
+\label{fig:cobto0in}
+\end{figure}
+\\
+Then we apply $Y$ to obtain a sort of copairing
+\begin{align*}
+  Y([M^{\backprime}])
+  \colon
+  K
+  \cong
+  Y(\emptyset)
+  \to
+  Y(S_{2} \sqcup \overline{S}_{1}) \cong Y(S_{2})
+  \otimes
+  Y(\overline{S}_{1})
+\end{align*}
+With the help of the pairing $\mathrm{ev}_{Y(S_{1})}$ we obtain a linear map from $Y(S_{1})$ to $Y(S_{2})$ by the composition
+\begin{equation*}
+\begin{tikzcd}[row sep=3em,column sep=8em]
+  Y(S_{1})
+  \ar{r}{Y([M^{\backprime}]) \otimes \mathrm{id}_{Y(S_{1})}}
+  &
+  Y(S_{2}) \otimes Y(\overline{S}_{1}) \otimes Y(S_{1})
+  \ar{r}{\mathrm{id}_{Y(S_{2})} \otimes \mathrm{ev}_{Y(S_{1})}}
+  &
+  Y(S_{2})
+\end{tikzcd}
+\end{equation*}
+where we suppressed the isomorphisms involved. If $Y$ is a functor, which we do not know yet, it is fairly easy to see that this coincides with $Y([M])$ so that the construction indeed makes sense. Now one has to check that $Y$ indeed is a symmetric monoidal functor but as we said above this follows from theorem \ref{THM:ACSMF}.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+The details we glossed over will become clear later when we state and prove the more general assertion. But before doing so we give three lemmas concerning dual objects in a monoidal category. The first one is about the uniqueness of dual objects.
+\\
+\begin{lem}
+\label{lem:dualunique}
+Let
+\begin{align*}
+  \mathcal{M}_{\mathbf{C}}
+  &=
+  \left(
+    \mathbf{C}
+    ,
+    \otimes
+    ,
+    \mathsf{A}
+    ,
+    1
+    ,
+    \mathsf{L}
+    ,
+    \mathsf{R}
+  \right)
+\end{align*}
+be a monoidal category. If $X \in \mathrm{ob}_{\mathbf{C}}$ has a left (right) dual object then this dual object is unique up to a unique isomorphism.
+\end{lem}
+\begin{prf}
+\begin{enumerate}
+\item[(i)]
+Let $X_{1}^{\prime},X_{2}^{\prime}$ be left dual objects of $X$ with evaluation and coevaluation
+\begin{align*}
+  e_{1}
+  \colon
+  X_{1}^{\prime}
+  \otimes
+  X
+  &\to
+  1
+  ,\qquad
+  c_{1}
+  \colon
+  1
+  \to
+  X
+  \otimes
+  X_{1}^{\prime}
+\end{align*}
+for $X_{1}^{\prime}$ and
+\begin{align*}
+  e_{2}
+  \colon
+  X_{2}^{\prime}
+  \otimes
+  X
+  &\to
+  1
+  ,\qquad
+  c_{2}
+  \colon
+  1
+  \to
+  X
+  \otimes
+  X_{2}^{\prime}
+\end{align*}
+for $X_{2}^{\prime}$. Define $f \in \mathrm{mor}_{\mathbf{C}}(X_{1}^{\prime},X_{2}^{\prime})$ and $g \in \mathrm{mor}_{\mathbf{C}}(X_{2}^{\prime},X_{1}^{\prime})$ such that the following two diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=2.8em,column sep=2.8em]
+  &
+  X_{1}^{\prime}
+  \ar{r}{f}
+  \ar{dl}[swap]{\mathsf{R}^{-1}(X_{1}^{\prime})}
+  &
+  X_{2}^{\prime}
+  &
+  \\
+  X_{1}^{\prime} 1
+  \ar{d}[swap]{\mathrm{id}_{X_{1}^{\prime}} \otimes c_{2}}
+  &
+  &
+  &
+  1 X_{2}^{\prime}
+  \ar{lu}[swap]{\mathsf{L}(X_{2}^{\prime})}
+  \\
+  X_{1}^{\prime} (X X_{2}^{\prime})
+  \ar{rrr}{\mathsf{A}^{-1}(X_{1}^{\prime},X,X_{2}^{\prime})}
+  &
+  &
+  &
+  (X_{1}^{\prime} X) X_{2}^{\prime}
+  \ar{u}[swap]{e_{1} \otimes \mathrm{id}_{X_{2}^{\prime}}}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=2.8em,column sep=2.8em]
+  &
+  X_{2}^{\prime}
+  \ar{r}{g}
+  \ar{dl}[swap]{\mathsf{R}^{-1}(X_{2}^{\prime})}
+  &
+  X_{1}^{\prime}
+  &
+  \\
+  X_{2}^{\prime} 1
+  \ar{d}[swap]{\mathrm{id}_{X_{2}^{\prime}} \otimes c_{1}}
+  &
+  &
+  &
+  1 X_{1}^{\prime}
+  \ar{lu}[swap]{\mathsf{L}(X_{1}^{\prime})}
+  \\
+  X_{2}^{\prime} (X X_{1}^{\prime})
+  \ar{rrr}{\mathsf{A}^{-1}(X_{2}^{\prime},X,X_{1}^{\prime})}
+  &
+  &
+  &
+  (X_{2}^{\prime} X) X_{1}^{\prime}
+  \ar{u}[swap]{e_{2} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(ii)]
+Now consider the following diagram
+\begin{equation}
+\label{dualuniquestrict}
+\begin{tikzcd}[row sep=8em,column sep=9em]
+  X_{1}^{\prime}
+  \ar{r}{\mathrm{id}_{X_{1}^{\prime}} \otimes c_{1}}
+  \ar{d}[swap]{\mathrm{id}_{X_{1}^{\prime}} \otimes c_{2}}
+  \ar[bend right=50]{dd}{f}
+  &
+  X_{1}^{\prime} (X X_{1}^{\prime})
+  \ar{rd}{\mathrm{id}_{X_{1}^{\prime} (X X_{1}^{\prime})}}
+  \ar{d}[swap]{\mathrm{id}_{X_{1}^{\prime}} \otimes ((c_{2} \otimes \mathrm{id}_{X}) \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  &
+  \\
+  X_{1}^{\prime} (X X_{2}^{\prime})
+  \ar{r}{\mathrm{id}_{X_{1}^{\prime}} \otimes (\mathrm{id}_{X X_{2}^{\prime}} \otimes c_{1})}
+  \ar{d}[swap]{e_{1} \otimes \mathrm{id}_{X_{2}^{\prime}}}
+  &
+  X_{1}^{\prime} (((X X_{2}^{\prime}) X) X_{1}^{\prime})
+  \ar{r}{\mathrm{id}_{X_{1}^{\prime}} \otimes ((\mathrm{id}_{X} \otimes e_{2}) \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  \ar{d}[swap]{(e_{1} \otimes \mathrm{id}_{X_{2}^{\prime} X}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  X_{1}^{\prime} (X X_{1}^{\prime})
+  \ar{d}{e_{1} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \\
+  X_{2}^{\prime}
+  \ar{r}{\mathrm{id}_{X_{2}^{\prime}} \otimes c_{1}}
+  \ar[bend right]{rr}{g}
+  &
+  (X_{2}^{\prime} X) X_{1}^{\prime}
+  \ar{r}{e_{2} \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  X_{1}^{\prime}
+\end{tikzcd}
+\end{equation}
+Here we suppressed the necessary isomorphisms $\mathsf{A}$, $\mathsf{L}$ and $\mathsf{R}$ for readability reasons, but it should be clear from what follows where they are needed. In the strict case, where $\mathsf{A}$, $\mathsf{L}$ and $\mathsf{R}$ are identities, the commutativity of the three small squares is immediate from the functoriality of the tensor product which ensures that\footnote{remember that we can insert unit objects wherever we want and can freely reparenthesize tensorings in the strict case}
+\begin{align*}
+  \left(
+    \left(
+      c_{2}
+      \otimes
+      \mathrm{id}_{X}
+    \right)
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  c_{1}
+  &=
+  \left(
+    c_{2}
+    \otimes
+    \mathrm{id}_{X X_{1}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{1}
+    \otimes
+    c_{1}
+  \right)
+  \\
+  &=
+  c_{2}
+  \otimes
+  c_{1}
+  \\
+  &=
+  \left(
+    \mathrm{id}_{X X_{2}^{\prime}}
+    \otimes
+    c_{1}
+  \right)
+  \circ
+  \left(
+    c_{2}
+    \otimes
+    \mathrm{id}_{1}
+  \right)
+  \\
+  &=
+  \left(
+    \mathrm{id}_{X X_{2}^{\prime}}
+    \otimes
+    c_{1}
+  \right)
+  \circ
+  c_{2}
+\end{align*}
+in the upper left square. This suffices since by the functoriality of $\otimes$ we can add
+\begin{align*}
+  \mathrm{id}_{X_{1}^{\prime}}
+  \otimes
+\end{align*}
+on the left of each morphism and still have an equality. The other squares can be shown analogously.
+\\
+In the non-strict case things are a bit more complicated, as we have to take care of the associators and unit laws. Yet the idea is still the same, of course, because the associators and unit laws are coherent so that they should not differ too much from identities. We exemplarily prove the commutativity of the upper left square, the other squares can be treated in a similar fashion. With all isomorphisms we have
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=10em]
+  X_{1}^{\prime}
+  \ar{d}{\mathsf{R}^{-1}(X_{1}^{\prime})}
+  &
+  &
+  \\
+  X_{1}^{\prime} 1
+  \ar{r}{\mathrm{id}_{X_{1}^{\prime}} \otimes c_{1}}
+  \ar{d}[description]{\mathrm{id}_{X_{1}^{\prime}} \otimes c_{2}}
+  &
+  X_{1}^{\prime} (X X_{1}^{\prime})
+  \ar{r}{\mathrm{id}_{X_{1}^{\prime}} \otimes (\mathsf{L}^{-1}(X)  \otimes  \mathrm{id}_{X_{1}^{\prime}})}
+  &
+  X_{1}^{\prime} ((1 X) X_{1}^{\prime})
+  \ar{d}[description]{\mathrm{id}_{X_{1}^{\prime}} \otimes ((c_{2} \otimes \mathrm{id}_{X}) \otimes \mathrm{id}_{X_{1}^{\prime}})}
+  \\
+  X_{1}^{\prime} (X X_{2}^{\prime})
+  \ar{d}[description]{\mathrm{id}_{X_{1}^{\prime}} \otimes \mathsf{R}^{-1}(X X_{2}^{\prime})}
+  &
+  &
+  X_{1}^{\prime} (((X X_{2}^{\prime}) X) X_{1}^{\prime})
+  \\
+  X_{1}^{\prime} ((X X_{2}^{\prime}) 1)
+  \ar{rr}{\mathrm{id}_{X_{1}^{\prime}} \otimes (\mathrm{id}_{X X_{2}^{\prime}} \otimes c_{1})}
+  &
+  &
+  X_{1}^{\prime} ((X X_{2}^{\prime}) (X X_{1}^{\prime}))
+  \ar{u}[description]{\mathrm{id}_{X_{1}^{\prime}} \otimes  \mathsf{A}^{-1}(X X_{2}^{\prime},X,X_{1}^{\prime})}
+\end{tikzcd}
+\end{equation*}
+so, since $\mathsf{R}$ is an isomorphism, it suffices to show that the outer rectanlge of
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=7em]
+  1
+  \ar{r}{c_{1}}
+  \ar{rd}[swap]{\mathsf{R}^{-1}(1)}
+  \ar{d}[swap]{c_{2}}
+  &
+  X X_{1}^{\prime}
+  \ar{r}{\mathsf{L}^{-1}(X) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (1 X) X_{1}^{\prime}
+  \ar{d}{(c_{2} \otimes \mathrm{id}_{X}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \\
+  X X_{2}^{\prime}
+  \ar{d}[swap]{\mathsf{R}^{-1}(X X_{2}^{\prime})}
+  &
+  11
+  \ar{dl}[swap]{c_{2} \otimes \mathrm{id}_{1}}
+  &
+  ((X X_{2}^{\prime}) X) X_{1}^{\prime}
+  \\
+  (X X_{2}^{\prime}) 1
+  \ar{rr}{\mathrm{id}_{X X_{2}^{\prime}} \otimes c_{1}}
+  &
+  &
+  (X X_{2}^{\prime}) (X X_{1}^{\prime})
+  \ar{u}[swap]{\mathsf{A}^{-1}(X X_{2}^{\prime},X,X_{1}^{\prime})}
+\end{tikzcd}
+\end{equation*}
+commutes, where the left part commutes due to the naturality of $\mathsf{R}$. Using the identities
+\begin{align*}
+  \mathsf{L}(1)
+  &=
+  \mathsf{R}(1)
+  \\
+  \mathsf{L}^{-1}(X)
+  \otimes
+  \mathrm{id}_{X_{1}^{\prime}}
+  &=
+  \mathsf{A}^{-1}(1,X,X_{1}^{\prime})
+  \circ
+  \mathsf{L}^{-1}(X X_{1}^{\prime})
+\end{align*}
+which follow from the coherence theorem, we have to show for the right part that the outer rectangle of
+\begin{equation*}
+\begin{tikzcd}[row sep=4.2em,column sep=8.5em]
+  1
+  \ar{rr}{c_{1}}
+  &
+  &
+  X X_{1}^{\prime}
+  \ar{d}{\mathsf{L}^{-1}(X X_{1}^{\prime})}
+  \\
+  11
+  \ar{r}{\mathrm{id}_{1} \otimes c_{1}}
+  \ar{rd}[swap]{c_{2} \otimes c_{1}}
+  \ar{u}{\mathsf{L}(1)}
+  \ar{d}[swap]{c_{2} \otimes \mathrm{id}_{1}}
+  &
+  1 (X X_{1}^{\prime})
+  \ar{r}{\mathrm{id}_{1 (X X_{1}^{\prime})}}
+  \ar{ur}{\mathsf{L}(X X_{1}^{\prime})}
+  &
+  1 (X X_{1}^{\prime})
+  \ar{d}{\mathsf{A}^{-1}(1,X,X_{1}^{\prime})}
+  \ar{dl}{c_{2} \otimes \mathrm{id}_{X X_{1}^{\prime}}}
+  \\
+  (X X_{2}^{\prime}) 1
+  \ar{d}[swap]{\mathrm{id}_{X X_{2}^{\prime}} \otimes c_{1}}
+  &
+  (X X_{2}^{\prime}) (X X_{1}^{\prime})
+  \ar{rd}[xshift=-3mm,yshift=1mm]{\mathsf{A}^{-1}(X X_{2}^{\prime},X,X_{1}^{\prime})}
+  \ar{dl}[swap,xshift=3mm,yshift=1mm]{\mathrm{id}_{(X X_{2}^{\prime}) (X X_{1}^{\prime})}}
+  &
+  (1 X) X_{1}^{\prime}
+  \ar{d}{(c_{2} \otimes \mathrm{id}_{X}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  \\
+  (X X_{2}^{\prime}) (X X_{1}^{\prime})
+  \ar{rr}{\mathsf{A}^{-1}(X X_{2}^{\prime},X,X_{1}^{\prime})}
+  &
+  &
+  ((X X_{2}^{\prime}) X) X_{1}^{\prime}
+\end{tikzcd}
+\end{equation*}
+commutes. Here the upper left part is the naturality of $\mathsf{L}$, the lower right part is the naturality of $\mathsf{A}$ and the lower left and the central part are the functoriality of $\otimes$ which we already used in the strict case. The upper right and the lower triangle obviously commute, so that all inner diagrams commute. Hence so does the outer diagram.
+
+\item[(iii)]
+Back to diagram \eqref{dualuniquestrict}. The upper right triangle in diagram \eqref{dualuniquestrict} is just the first diagram (LD1) governing $e_{2},c_{2}$ with an $\mathrm{id}_{X_{1}^{\prime}}$ on the left and the right. Thus, the outer diagram commutes. The top right way of this outer diagram is $\mathrm{id}_{X_{1}^{\prime}}$ as follows from (LD2) for $e_{1},c_{1}$. But the left bottom way is just $g \circ f$, so we have shown
+\begin{align*}
+  g
+  \circ
+  f
+  &=
+  \mathrm{id}_{X_{1}^{\prime}}
+\end{align*}
+An analogous argument shows $f \circ g = \mathrm{id}_{X_{2}^{\prime}}$.
+
+\item[(iv)]
+As $f$ must be an isomorphism of dual objects we further have to show that
+\begin{align*}
+  c_{2}
+  &=
+  (\mathrm{id}_{X} \otimes f)
+  \circ
+  c_{1}
+  ,\qquad
+  e_{2}
+  =
+  e_{1}
+  \circ
+  (f^{-1} \otimes \mathrm{id}_{X})
+\end{align*}
+Again, in the strict case this is rather immediate by using the functoriality of the tensor product to change the positions of $c_{1}$ and the $c_{2}$ in $f$, and $e_{1}$ and the $e_{2}$ in $f^{-1} = g$, and subsequently applying the commuting diagrams governing $c_{1},e_{1}$. More precisely for the first equation we calculate
+\begin{align*}
+  (\mathrm{id}_{X} \otimes f)
+  \circ
+  c_{1}
+  &=
+  \left(
+    \mathrm{id}_{X}
+    \otimes
+    \left(
+      \left(
+        e_{1}
+        \otimes
+        \mathrm{id}_{X_{2}^{\prime}}
+      \right)
+      \circ
+      \left(
+        \mathrm{id}_{X_{1}^{\prime}}
+        \otimes
+        c_{2}
+      \right)
+    \right)
+  \right)
+  \circ
+  c_{1}
+  \\
+  &=
+  \left(
+    \mathrm{id}_{X}
+    \otimes
+    \left(
+      e_{1}
+      \otimes
+      \mathrm{id}_{X_{2}^{\prime}}
+    \right)
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X X_{1}^{\prime}}
+    \otimes
+    c_{2}
+  \right)
+  \circ
+  \left(
+    c_{1}
+    \otimes
+    \mathrm{id}_{1}
+  \right)
+  \\
+  &=
+  \left(
+    \left(
+      \mathrm{id}_{X}
+      \otimes
+      e_{1}
+    \right)
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    c_{1}
+    \otimes
+    \mathrm{id}_{X X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{1}
+    \otimes
+    c_{2}
+  \right)
+  \\
+  &=
+  \left(
+    \left(
+      \mathrm{id}_{X}
+      \otimes
+      e_{1}
+    \right)
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \left(
+      c_{1}
+      \otimes
+      \mathrm{id}_{X}
+    \right)
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  c_{2}
+  \\
+  &=
+  c_{2}
+\end{align*}
+In the last step we used (LD1) for $c_{1},e_{1}$. The second equation is treated similarly. The non-strict case again involves some tedious dealing with the coherence conditions. It is done similar as in step (ii) and we forgo it here.
+
+\item[(v)]
+For the uniqueness of the isomorphism let
+\begin{align*}
+  h
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1}^{\prime},X_{2}^{\prime})
+\end{align*}
+be another isomorphism for the duals, i.e.
+\begin{align*}
+  (\mathrm{id}_{X} \otimes f)
+  \circ
+  c_{1}
+  &=
+  c_{2}
+  =
+  (\mathrm{id}_{X} \otimes h)
+  \circ
+  c_{1}
+  \\
+  e_{1}
+  \circ
+  (f^{-1} \otimes \mathrm{id}_{X})
+  &=
+  e_{2}
+  =
+  e_{1}
+  \circ
+  (h^{-1} \otimes \mathrm{id}_{X})
+\end{align*}
+In the strict case we can easily calculate with the help of diagram (LD2) for $c_{1},e_{1}$ and $c_{2},e_{2}$ respectively, that
+\begin{align*}
+  h
+  \circ
+  f^{-1}
+  &=
+  \left(
+    \mathrm{id}_{1}
+    \otimes
+    h
+  \right)
+  \circ
+  \left(
+    e_{1}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X_{1}^{\prime}}
+    \otimes
+    c_{1}
+  \right)
+  \circ
+  \left(
+    f^{-1}
+    \otimes
+    \mathrm{id}_{1}
+  \right)
+  \\
+  &=
+  \left(
+    e_{1}
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \left(
+      \mathrm{id}_{X_{1}^{\prime}}
+      \otimes
+      \mathrm{id}_{X}
+    \right)
+    \otimes
+    h
+  \right)
+  \circ
+  \left(
+    f^{-1}
+    \otimes
+    \left(
+      \mathrm{id}_{X}
+      \otimes
+      \mathrm{id}_{X_{1}^{\prime}}
+    \right)
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X_{2}^{\prime}}
+    \otimes
+    c_{1}
+  \right)
+  \\
+  &=
+  \left(
+    e_{1}
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \left(
+      f^{-1}
+      \otimes
+      \mathrm{id}_{X}
+    \right)
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X_{2}^{\prime}}
+    \otimes
+    \left(
+      \mathrm{id}_{X}
+      \otimes
+      h
+    \right)
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X_{2}^{\prime}}
+    \otimes
+    c_{1}
+  \right)
+  \\
+  &=
+  \left(
+    \left(
+      e_{1}
+      \circ
+      \left(
+        f^{-1}
+        \otimes
+        \mathrm{id}_{X}
+      \right)
+    \right)
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X_{2}^{\prime}}
+    \otimes
+    \left(
+      \left(
+        \mathrm{id}_{X}
+        \otimes
+        h
+      \right)
+      \circ
+      c_{1}
+    \right)
+  \right)
+  \\
+  &=
+  \left(
+    e_{2}
+    \otimes
+    \mathrm{id}_{X_{2}^{\prime}}
+  \right)
+  \circ
+  \left(
+    \mathrm{id}_{X_{2}^{\prime}}
+    \otimes
+    c_{2}
+  \right)
+  \\
+  &=
+  \mathrm{id}_{X_{2}^{\prime}}
+\end{align*}
+Hence we can conclude $h = f$. We forgo the non-strict case, as it is again just juggling with coherence conditions. Right duals can be treated in the same fashion.
+\end{enumerate}
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+The second lemma basically states that monoidal functors preserve dual objects.
+\\
+\begin{lem}
+\label{lem:mfduals}
+Let $\mathbf{C},\mathbf{C}_{\alpha}$ be monoidal categories and let
+\begin{align*}
+  (F,\mathsf{H},\Phi)
+  \colon
+  \mathbf{C}
+  \to
+  \mathbf{C}_{\alpha}
+\end{align*}
+be a monoidal functor. Let $X \in \mathrm{ob}_{\mathbf{C}}$ have a left dual object $X^{\prime}$ with evaluation and coevaluation
+\begin{align*}
+  \mathrm{ev}_{X}
+  \colon
+  X^{\prime}
+  \otimes
+  X
+  &\to
+  1
+  ,\qquad
+  \mathrm{coev}_{X}
+  \colon
+  1
+  \to
+  X
+  \otimes
+  X^{\prime}
+\end{align*}
+Then $F(X^{\prime})$ is a left dual object of $F(X)$ with evaluation and coevaluation given by
+\begin{align*}
+  \mathrm{ev}_{F(X)}
+  &:=
+  \Phi^{-1}
+  \circ
+  F(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}(X^{\prime},X)
+  \colon
+  F(X^{\prime})
+  \otimes_{\alpha}
+  F(X)
+  \to
+  1_{\alpha}
+  \\
+  \mathrm{coev}_{F(X)}
+  &:=
+  \mathsf{H}^{-1}(X,X^{\prime})
+  \circ
+  F(\mathrm{coev}_{X})
+  \circ
+  \Phi
+  \colon
+  1_{\alpha}
+  \to
+  F(X)
+  \otimes_{\alpha}
+  F(X^{\prime})
+\end{align*}
+A similar result holds for right dual objects.
+\end{lem}
+\begin{prf}
+Consider the commuting diagrams (LD1) and (LD2) governing the evaluation $\mathrm{ev}_{X}$ and coevaluation $\mathrm{coev}_{X}$ in $\mathbf{C}$,
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=4.8em]
+  1 X
+  \ar{r}{\mathsf{L}(X)}
+  \ar{d}[swap]{\mathrm{coev}_{X} \otimes \mathrm{id}_{X}}
+  &
+  X
+  &
+  X 1
+  \ar{l}[swap]{\mathsf{R}(X)}
+  \\
+  (X X^{\prime}) X
+  \ar{rr}{\mathsf{A}(X,X^{\prime},X)}
+  &
+  &
+  X (X^{\prime} X)
+  \ar{u}[swap]{\mathrm{id}_{X} \otimes \mathrm{ev}_{X}}
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=4.8em]
+  X^{\prime} 1
+  \ar{r}{\mathsf{R}(X^{\prime})}
+  \ar{d}[swap]{\mathrm{id}_{X^{\prime}} \otimes \mathrm{coev}_{X}}
+  &
+  X^{\prime}
+  &
+  1 X^{\prime}
+  \ar{l}[swap]{\mathsf{L}(X^{\prime})}
+  \\
+  X^{\prime} (X X^{\prime})
+  \ar{rr}{\mathsf{A}^{-1}(X^{\prime},X,X^{\prime})}
+  &
+  &
+  (X^{\prime} X) X^{\prime}
+  \ar{u}[swap]{\mathrm{ev}_{X} \otimes \mathrm{id}_{X^{\prime}}}
+\end{tikzcd}
+\end{equation*}
+Applying $F$ to (LD1) yields
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=4.8em]
+  F(1 X)
+  \ar{r}{F(\mathsf{L}(X))}
+  \ar{d}[swap]{F(\mathrm{coev}_{X} \otimes \mathrm{id}_{X})}
+  &
+  F(X)
+  &
+  F(X 1)
+  \ar{l}[swap]{F(\mathsf{R}(X))}
+  \\
+  F((X X^{\prime}) X)
+  \ar{rr}{F(\mathsf{A}(X,X^{\prime},X))}
+  &
+  &
+  F(X (X^{\prime} X))
+  \ar{u}[swap]{F(\mathrm{id}_{X} \otimes \mathrm{ev}_{X})}
+\end{tikzcd}
+\end{equation*}
+With the naturality of $\mathsf{H}$ we find
+\begin{equation}
+\label{mfdFdiag1}
+\begin{tikzcd}[row sep=4.5em,column sep=3.8em,font=\footnotesize,every label/.append style={font=\tiny}]
+  F(1) F(X)
+  \ar{d}[description,xshift=2mm]{F(\mathrm{coev}_{X}) \otimes F(\mathrm{id}_{X})}
+  &
+  F(1 X)
+  \ar{r}{F(\mathsf{L}(X))}
+  \ar{d}[description,xshift=1mm]{F(\mathrm{coev}_{X} \otimes \mathrm{id}_{X})}
+  \ar{l}[swap]{\mathsf{H}^{-1}(1,X)}
+  &
+  F(X)
+  &
+  F(X 1)
+  \ar{l}[swap]{F(\mathsf{R}(X))}
+  &
+  F(X) F(1)
+  \ar{l}[swap]{\mathsf{H}(X,1)}
+  \\
+  F(X X^{\prime}) F(X)
+  \ar{r}{\mathsf{H}(X X^{\prime},X)}
+  &
+  F((X X^{\prime}) X)
+  \ar{rr}{F(\mathsf{A}(X,X^{\prime},X))}
+  &
+  &
+  F(X (X^{\prime} X))
+  \ar{r}{\mathsf{H}^{-1}(X,X^{\prime} X)}
+  \ar{u}[description,xshift=-1mm]{F(\mathrm{id}_{X} \otimes \mathrm{ev}_{X})}
+  &
+  F(X) F(X^{\prime} X)
+  \ar{u}[description,xshift=-2mm]{F(\mathrm{id}_{X}) \otimes F(\mathrm{ev}_{X})}
+\end{tikzcd}
+\end{equation}
+Now we use the compatilibity conditions for the associators and unit laws and $\mathsf{H}$ which can be expressed by the following commutative diagrams
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  (F(X) F(X^{\prime})) F(X)
+  \ar{r}{\mathsf{A}_{\alpha}(F(X),F(X^{\prime}),F(X))}
+  &
+  F(X) (F(X^{\prime}) F(X))
+  \ar{d}{\mathrm{id}_{F(X)} \otimes \mathsf{H}(X^{\prime},X)}
+  \\
+  F(X X^{\prime}) F(X)
+  \ar{u}{\mathsf{H}^{-1}(X,X^{\prime}) \otimes \mathrm{id}_{F(X)}}
+  \ar{d}[swap]{\mathsf{H}(X X^{\prime},X)}
+  &
+  F(X) F(X^{\prime} X)
+  \\
+  F((X X^{\prime}) X)
+  \ar{r}{F(\mathsf{A}(X,X^{\prime},X))}
+  &
+  F(X (X^{\prime} X))
+  \ar{u}[swap]{\mathsf{H}^{-1}(X,X^{\prime} X)}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  F(X)
+  \ar{r}{\mathsf{L}_{\alpha}^{-1}(F(X))}
+  \ar{d}[swap]{F(\mathsf{L}^{-1}(X))}
+  &
+  1_{\alpha} F(X)
+  \ar{d}{\Phi \otimes_{\alpha} \mathrm{id}_{F(X)}}
+  \\
+  F(1 X)
+  \ar{r}{\mathsf{H}^{-1}(1,X)}
+  &
+  F(1) F(X)
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  F(X) F(1)
+  \ar{r}{\mathrm{id}_{F(X)} \otimes_{\alpha} \Phi^{-1}}
+  \ar{d}[swap]{\mathsf{H}(X,1)}
+  &
+  F(X) 1_{\alpha}
+  \ar{d}{\mathsf{R}_{\alpha}(F(X))}
+  \\
+  F(X 1)
+  \ar{r}{F(\mathsf{R}(X))}
+  &
+  F(X)
+\end{tikzcd}
+\end{equation*}
+Using these relations in \eqref{mfdFdiag1} we obtain
+\begin{equation*}
+\begin{tikzcd}[row sep=4.5em,column sep=3.8em]
+  1_{\alpha} F(X)
+  \ar{r}{\mathsf{L}_{\alpha}(F(X))}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{F(X)}}
+  &
+  F(X)
+  &
+  F(X) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(F(X))}
+  \\
+  F(1) F(X)
+  \ar{d}[swap]{F(\mathrm{coev}_{X}) \otimes \mathrm{id}_{F(X)}}
+  &
+  &
+  F(X) F(1)
+  \ar{u}[swap]{\mathrm{id}_{F(X)} \otimes_{\alpha} \Phi^{-1}}
+  \\
+  F(X X^{\prime}) F(X)
+  \ar{d}[swap]{\mathsf{H}^{-1}(X,X^{\prime}) \otimes_{\alpha} \mathrm{id}_{F(X)}}
+  &
+  &
+  F(X) F(X^{\prime} X)
+  \ar{u}[swap]{\mathrm{id}_{F(X)} \otimes F(\mathrm{ev}_{X})}
+  \\
+  (F(X) F(X^{\prime})) F(X)
+  \ar{rr}{\mathsf{A}_{\alpha}(F(X),F(X^{\prime}),F(X))}
+  &
+  &
+  F(X) (F(X^{\prime}) F(X))
+  \ar{u}[swap]{\mathrm{id}_{F(X)} \otimes_{\alpha} \mathsf{H}(X^{\prime},X)}
+\end{tikzcd}
+\end{equation*}
+Now substituting the definitions of $\mathrm{coev}_{F(X)}$ and $\mathrm{ev}_{F(X)}$ we have exactly the first diagram (LD1) for dual objects
+\begin{equation*}
+\begin{tikzcd}[row sep=4.5em,column sep=4.2em]
+  1_{\alpha} F(X)
+  \ar{r}{\mathsf{L}_{\alpha}(F(X))}
+  \ar{d}[swap]{\mathrm{coev}_{F(X)} \otimes_{\alpha} \mathrm{id}_{F(X)}}
+  &
+  F(X)
+  &
+  F(X) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(F(X))}
+  \\
+  (F(X) F(X^{\prime})) F(X)
+  \ar{rr}{\mathsf{A}_{\alpha}(F(X),F(X^{\prime}),F(X))}
+  &
+  &
+  F(X) (F(X^{\prime}) F(X))
+  \ar{u}[swap]{\mathrm{id}_{F(X)} \otimes_{\alpha} \mathrm{ev}_{F(X)}}
+\end{tikzcd}
+\end{equation*}
+In the same fashion we obtain (LD2) for $\mathrm{coev}_{F(X)}$ and $\mathrm{ev}_{F(X)}$ from (LD2) for $\mathrm{coev}_{X}$ and $\mathrm{ev}_{X}$. The proof for right dual objects works analogously.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+The third lemma is about tensoring dual objects. This statement is not very surprising when knowing the result about composition of pairs of adjoint functors and recognizing that basically duality is for objects what adjointness is for functors. The latter will become clearer in part \ref{part:higher} where full dualizability and the delooping hypothesis are treated.
+\\
+\begin{lem}
+\label{LEM:DUALOBTENSOR}
+Let $\mathbf{C}$ be a monoidal category and let $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$ have left dual objects $X_{1}^{\prime},X_{2}^{\prime}$ with coevaluations $\mathrm{coev}_{X_{1}},\mathrm{coev}_{X_{2}}$ and evaluations $\mathrm{ev}_{X_{1}},\mathrm{ev}_{X_{2}}$, respectively. Then $X_{2}^{\prime} \otimes X_{1}^{\prime}$ is a left dual object of $X_{1} \otimes X_{2}$ where the coevaluation is given by
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  1
+  \ar{rr}{\mathrm{coev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}}}
+  &
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})
+  \\
+  X_{1} X_{1}^{\prime}
+  \ar{r}{\mathsf{R}^{-1}(X_{1}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (X_{1} 1) X_{1}^{\prime}
+  \ar{r}{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime}}}
+  &
+  (X_{1} (X_{2} X_{2}^{\prime})) X_{1}^{\prime}
+  \ar{u}[swap]{i_{\mathsf{A}}^{(c)}}
+\end{tikzcd}
+\end{equation*}
+and the evaluation is given by
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  (X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{rr}{\mathrm{ev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{i_{\mathsf{A}}^{(e)}}
+  &
+  &
+  1
+  \\
+  X_{2}^{\prime} ((X_{1}^{\prime} X_{1}) X_{2})
+  \ar{r}{\mathrm{id}_{X_{2}^{\prime}} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  &
+  X_{2}^{\prime} (1 X_{2})
+  \ar{r}{\mathrm{id}_{X_{2}^{\prime}} \otimes \mathsf{L}(X_{2})}
+  &
+  X_{2}^{\prime} X_{2}
+  \ar{u}[swap]{\mathrm{ev}_{X_{2}}}
+\end{tikzcd}
+\end{equation*}
+with $i_{\mathsf{A}}^{(c)}$ and $i_{\mathsf{A}}^{(e)}$ the corresponding unique\footnote{the uniqueness is guaranteed by the coherence theorem} isomorphisms built from the associator.
+\\
+In the case of a symmetric monoidal category the coevaluation and the evaluation can be written as
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  1
+  \ar{r}{\mathrm{coev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{\mathsf{R}^{-1}(1)}
+  &
+  (X_{1} X_{2}) (X_{2}^{\prime} X_{1}^{\prime})
+  \\
+  1 1
+  \ar{r}{\mathrm{coev}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}}
+  &
+  (X_{1} X_{1}^{\prime}) (X_{2} X_{2}^{\prime})
+  \ar{u}[swap]{i^{(c)}}
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=8em]
+  (X_{2}^{\prime} X_{1}^{\prime}) (X_{1} X_{2})
+  \ar{r}{\mathrm{ev}_{X_{1} X_{2}}}
+  \ar{d}[swap]{i^{(e)}}
+  &
+  1
+  \\
+  (X_{1}^{\prime} X_{1}) (X_{2}^{\prime} X_{2})
+  \ar{r}{\mathrm{ev}_{X_{1}} \otimes \mathrm{ev}_{X_{2}}}
+  &
+  1 1
+  \ar{u}[swap]{\mathsf{L}(1)}
+\end{tikzcd}
+\end{equation*}
+where $i^{(c)}$ and $i^{(e)}$ are the corresponding unique isomorphisms built from the associator and the braiding.
+\end{lem}
+\begin{prf}[Sketch]
+We only sketch the proof for a strict monoidal category\footnote{again, remember that we can insert unit objects wherever we want and do not have to care about parentheses in the strict case} and give a more detailed proof in the appendix.
+\\
+\newpage
+From the definitions we find that the outer perimeter of the following diagram commutes. The lower left part commutes because of the functoriality of the tensor product.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=7em,column sep=6em]
+  1 X_{1} X_{2}
+  \ar{rr}{\mathrm{coev}_{X_{1} X_{2}} \otimes \mathrm{id}_{X_{1} X_{2}}}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{X_{1}} \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  X_{1} X_{2} X_{2}^{\prime} X_{1}^{\prime} X_{1} X_{2}
+  \ar{d}{\mathrm{id}_{X_{1} X_{2}} \otimes \mathrm{ev}_{X_{1} X_{2}}}
+  \\
+  X_{1} X_{1}^{\prime} X_{1} X_{2}
+  \ar{r}{\mathrm{id}_{X_{1}} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  \ar{d}[swap]{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{1}^{\prime} X_{1} X_{2}}}
+  &
+  X_{1} 1 X_{2}
+  \ar{rd}[description]{(\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  X_{1} X_{2} 1
+  \\
+  X_{1} X_{2} X_{2}^{\prime} X_{1}^{\prime} X_{1} X_{2}
+  \ar{rr}{\mathrm{id}_{X_{1} X_{2} X_{2}^{\prime}} \otimes (\mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}})}
+  &
+  &
+  X_{1} X_{2} X_{2}^{\prime} X_{2}
+  \ar{u}[swap]{\mathrm{id}_{X_{1}} \otimes \mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{2}}}
+\end{tikzcd}
+\end{equation*}
+Going the inner way yields the following outer diagram. The inner parts on the left and lower right are diagram (LD1) governing dual objects for $X_{1}, X_{1}^{\prime}$ and $X_{2}, X_{2}^{\prime}$ respectively. The central part obviously commutes.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=7em,column sep=6em]
+  1 X_{1} X_{2}
+  \ar{rr}{\mathrm{coev}_{X_{1} X_{2}} \otimes \mathrm{id}_{X_{1} X_{2}}}
+  \ar{rrd}[description]{\mathrm{id}_{X_{1} X_{2}}}
+  \ar[bend left=60]{dd}[description,xshift=1mm]{\mathrm{id}_{X_{1}} \otimes \mathrm{id}_{X_{2}}}
+  \ar{d}[swap]{\mathrm{coev}_{X_{1}} \otimes \mathrm{id}_{X_{1}} \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  X_{1} X_{2} X_{2}^{\prime} X_{1}^{\prime} X_{1} X_{2}
+  \ar{d}{\mathrm{id}_{X_{1} X_{2}} \otimes \mathrm{ev}_{X_{1} X_{2}}}
+  \\
+  X_{1} X_{1}^{\prime} X_{1} X_{2}
+  \ar{d}[swap]{\mathrm{id}_{X_{1}} \otimes \mathrm{ev}_{X_{1}} \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  X_{1} X_{2} 1
+  \\
+  X_{1} 1 X_{2}
+  \ar{urr}[description]{\mathrm{id}_{X_{1}} \otimes \mathrm{id}_{X_{2}}}
+  \ar{rr}{\mathrm{id}_{X_{1}} \otimes \mathrm{coev}_{X_{2}} \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  X_{1} X_{2} X_{2}^{\prime} X_{2}
+  \ar{u}[swap]{\mathrm{id}_{X_{1}} \otimes \mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{2}}}
+\end{tikzcd}
+\end{equation*}
+But the upper right part is precisely the first diagram (LD1) governing dual objects for $X_{1} \otimes X_{2}$ and $X_{2}^{\prime} \otimes X_{1}^{\prime}$. The commutativity of the second diagram (LD2) can be shown in the same way.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+Now we come to the more general statement about a characterization of a symmetric monoidal functor. We will be more precise here and the details we glossed over at the beginning of this section where we characterized a TQFT will become clear.
+\\
+\begin{thm}
+\label{THM:ACSMF}
+Let $\mathbf{C}$, $\mathbf{C}_{\alpha}$ be symmetric monoidal categories and let $\mathbf{C}$ be left\footnote{the category is also a right rigid then since it is braided} rigid. Let $E$ be a tuple $(E_{\mathrm{ob}},E_{\mathrm{mor}},\mathsf{H},\Phi)$ of
+\begin{enumerate}
+\item
+a function
+\begin{align*}
+  E_{\mathrm{ob}}
+  \colon
+  \mathrm{ob}_{\mathbf{C}}
+  &\to
+  \mathrm{ob}_{\mathbf{C}_{\alpha}}
+\end{align*}
+
+\item
+a function $E_{\mathrm{mor}}$ which maps $X \in \mathrm{ob}_{\mathbf{C}}$ to a function
+\begin{align*}
+  E_{\mathrm{mor}}(X)
+  \colon
+  \mathrm{mor}_{\mathbf{C}}(1,X)
+  &\to
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}
+  \left(
+    E_{\mathrm{ob}}(1)
+    ,
+    E_{\mathrm{ob}}(X)
+  \right)
+\end{align*}
+
+\item
+a function $\mathsf{H}$ assigning to each object
+\begin{align*}
+  (X_{1},X_{2})
+  \in
+  \mathrm{ob}_{\mathbf{C} \times \mathbf{C}}
+\end{align*}
+an isomorphism
+\begin{align*}
+  \mathsf{H}(X_{1},X_{2})
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}
+  \left(
+    E_{\mathrm{ob}}(X_{1})
+    \otimes_{\alpha}
+    E_{\mathrm{ob}}(X_{2})
+    ,
+    E_{\mathrm{ob}}(X_{1} \otimes X_{2})
+  \right)
+\end{align*}
+
+\item
+an isomorphism
+\begin{align*}
+  \Phi
+  \in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}
+  \left(
+    1_{\alpha}
+    ,
+    E_{\mathrm{ob}}(1)
+  \right)
+\end{align*}
+\end{enumerate}
+In abuse of notation we will simply write $E$ for both $E_{\mathrm{ob}}$ and all $E_{\mathrm{mor}}(X)$. Then the following are equivalent
+\begin{enumerate}
+\item[i)]
+$E$ extends to a symmetric monoidal functor from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$
+
+\item[ii)]
+$E$ satisfies
+\begin{enumerate}
+\item[(AC1)]
+for each $X \in \mathrm{ob}_{\mathbf{C}}$ and left dual object $X^{\prime}$ with evaluation $\mathrm{ev}_{X}$ and coevaluaton $\mathrm{coev}_{X}$ there is a morphism
+\begin{align*}
+  \mathrm{ev}_{E(X)}
+  \in
+  \mathrm{mor}_{\mathrm{C}_{\alpha}}
+  \left(
+    E(X^{\prime})
+    \otimes_{\alpha}
+    E(X)
+    ,
+    1_{\alpha}
+  \right)
+\end{align*}
+which makes $E(X^{\prime})$ a left dual object of $E(X)$ with coevaluation map
+\begin{align*}
+  \mathrm{coev}_{E(X)}
+  &:=
+  \mathsf{H}(X,X^{\prime})^{-1}
+  \circ
+  E(\mathrm{coev}_{X})
+  \circ
+  \Phi
+\end{align*}
+Remember that this means that the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=4.5em]
+  1_{\alpha} E(X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(X))}
+  \ar{d}[swap]{\mathrm{coev}_{E(X)} \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(X)
+  &
+  E(X) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E(X))}
+  \\
+  (E(X) E(X^{\prime})) E(X)
+  \ar{rr}{\mathsf{A}_{\alpha}(E(X),E(X^{\prime}),E(X))}
+  &
+  &
+  E(X) (E(X^{\prime}) E(X))
+  \ar{u}[swap]{\mathrm{id}_{E(X)} \otimes_{\alpha} \mathrm{ev}_{E(X)}}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=4.5em]
+  E(X^{\prime}) 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E(X^{\prime}))}
+  \ar{d}[swap]{\mathrm{id}_{E(X^{\prime})} \otimes_{\alpha} \mathrm{coev}_{E(X)}}
+  &
+  E(X^{\prime})
+  &
+  1_{\alpha} E(X^{\prime})
+  \ar{l}[swap]{\mathsf{L}_{\alpha}(E(X^{\prime}))}
+  \\
+  E(X^{\prime}) (E(X) E(X^{\prime}))
+  \ar{rr}{\mathsf{A}_{\alpha}^{-1}(E(X^{\prime}),E(X),E(X^{\prime}))}
+  &
+  &
+  (E(X^{\prime}) E(X)) E(X^{\prime})
+  \ar{u}[swap]{\mathrm{ev}_{E(X)} \otimes_{\alpha} \mathrm{id}_{E(X^{\prime})}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC2)]
+for all $X_{1},X_{2} \in \mathrm{ob}_{\mathbf{C}}$, left dual objects $X_{1}^{\prime}$ of $X_{1}$ and all
+\begin{align*}
+  f
+  \in
+  \mathrm{mor}_{\mathbf{C}}
+  \left(
+    1
+    ,
+    X_{2}
+    \otimes
+    (X_{1}^{\prime} \otimes X_{1})
+  \right)
+\end{align*}
+the following diagram commutes
+\begin{equation*}
+\hspace{1cm}
+\begin{tikzcd}[row sep=3.3em,column sep=7.5em]
+  E(1)
+  \ar{r}{E(\mathsf{R}(X_{2}) \circ (\mathrm{id}_{X_{2}} \otimes \mathrm{ev}_{X_{1}}) \circ f)}
+  \ar{d}[swap]{E(f)}
+  &
+  E(X_{2})
+  &
+  E(X_{2}) 1_{\alpha}
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E(X_{2}))}
+  \\
+  E(X_{2} (X_{1}^{\prime} X_{1}))
+  \ar{r}{\mathsf{H}(X_{2},X_{1}^{\prime} X_{1})^{-1}}
+  &
+  E(X_{2}) (E(X_{1}^{\prime} X_{1}))
+  \ar{r}{\mathrm{id}_{E(X_{2})} \otimes_{\alpha} \mathsf{H}(X_{1}^{\prime},X_{1})^{-1}}
+  &
+  E(X_{2}) (E(X_{1}^{\prime}) E(X_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E(X_{2})} \otimes_{\alpha} \mathrm{ev}_{E(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC3)]
+for all
+\begin{align*}
+  f_{1}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(1,X_{1})
+  ,\qquad
+  f_{2}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(1,X_{2})
+\end{align*}
+the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=8em]
+  E(1)
+  \ar{r}{E((f_{1} \otimes f_{2}) \circ \mathsf{L}^{-1}(1))}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(1))}
+  &
+  E(X_{1} X_{2})
+  \\
+  1_{\alpha} E(1)
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  \\
+  E(1) E(1)
+  \ar{r}{E(f_{1}) \otimes_{\alpha} E(f_{2})}
+  &
+  E(X_{1}) E(X_{2})
+  \ar{uu}[swap]{\mathsf{H}(X_{1},X_{2})}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC4)]
+let
+\begin{align*}
+  X_{1}
+  ,
+  \ldots
+  ,
+  X_{n}
+  \in
+  \mathrm{ob}_{\mathbf{C}}
+  ,\qquad
+  n
+  \in
+  \mathbb{N}^{\times}
+\end{align*}
+and let $W$ be the tensor product of $X_{1},\dots,X_{n}$ in this order, with any choice of bracketing. Let $\pi \in S_{n}$ be a permutation and write $W_{\pi}$ for the tensor product of $X_{\pi(1)},\dots,X_{\pi(n)}$ in this order and with any choice of bracketing which may be different from that of $W$. There is an isomorphism
+\begin{align*}
+    \hat{\pi}
+    \colon
+    W
+    &\to
+    W_{\pi}
+\end{align*}
+built from the symmetric braiding $\mathsf{B}$ and the associator $\mathsf{A}$. This isomorphism is unique since though it can possibly be written in many ways, the coherence theorem ensures that these ways are all equal. Furthermore, let $W^{E}$ be the tensor product of $E(X_{1}),\dots,E(X_{n})$ in this order, with the same bracketing as $W$ and likewise for $W_{\pi}^{E}$ and $E(X_{\pi(1)}),\dots,E(X_{\pi(n)})$. We denote the corresponding unique isomorphism by
+\begin{align*}
+  \hat{\pi}_{\alpha}
+  \colon
+  W^{E}
+  &\to
+  W_{\pi}^{E}
+\end{align*}
+Additionally, we write
+\begin{align*}
+  \mathsf{H}^{W}
+  \colon
+  W^{E}
+  &\to
+  E(W)
+\end{align*}
+for the isomorphism obtained by subsequent applicaton of $\mathsf{H}$ (tensored with appropriate identities) and analogously for
+\begin{align*}
+  \mathsf{H}_{\pi}^{W}
+  \colon
+  W_{\pi}^{E}
+  &\to
+  E(W_{\pi})
+\end{align*}
+Then for $f \in \mathrm{mor}_{\mathbf{C}}(1,W)$ the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=large]
+  E(1)
+  \ar{rr}{E(\hat{\pi} \circ f)}
+  \ar{d}[swap]{E(f)}
+  &
+  &
+  E(W_{\pi})
+  \\
+  E(W)
+  \ar{r}{\mathsf{H}^{W -1}}
+  &
+  W^{E}
+  \ar{r}{\hat{\pi}_{\alpha}}
+  &
+  W_{\pi}^{E}
+  \ar{u}[swap]{\mathsf{H}_{\pi}^{W}}
+\end{tikzcd}
+\end{equation*}
+
+\item[(AC5)]
+for the unit object the equation
+\begin{align*}
+  E(\mathrm{id}_{1})
+  &=
+  \mathrm{id}_{E(1)}
+\end{align*}
+holds and the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=4em]
+  1_{\alpha} E(1)
+  \ar{r}{\mathsf{L}_{\alpha}(E(1))}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}}
+  &
+  E(1)
+  \\
+  E(1) E(1)
+  \ar{r}{\mathsf{H}(1,1)}
+  &
+  E(1 1)
+  \ar{u}[swap]{E(\mathsf{L}(1))}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=3.3em,column sep=4em]
+  E(1) 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E(1))}
+  \ar{d}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \Phi}
+  &
+  E(1)
+  \\
+  E(1) E(1)
+  \ar{r}{\mathsf{H}(1,1)}
+  &
+  E(1 1)
+  \ar{u}[swap]{E(\mathsf{R}(1))}
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+\end{enumerate}
+The extension to a symmetric monoidal functor in i) is unique if $E$ satisfies the conditions in ii).
+\end{thm}
+\begin{prf}[Sketch]
+The proof is not too difficult but quite tedious and lengthy as it involves a lot of dealing with the associators, unit laws and braidings and the diagrams in (AC1) - (AC5). Therefore we only give a sketch of how to proceed and refer to the appendix for all the (not very insightful) details.
+\\\\
+i) $\Rightarrow$ ii)
+\qquad
+This direction is rather immediate. We denote the symmetric monoidal functor which is an extension of $(E,\mathsf{H},\Phi)$ by $(F,\mathsf{H},\Phi)$ and define the evaluation for $E(X^{\prime})$ to be
+\begin{align*}
+  \mathrm{ev}_{E(X)}
+  &:=
+  \Phi^{-1}
+  \circ
+  F(\mathrm{ev}_{X})
+  \circ
+  \mathsf{H}(X^{\prime},X)
+  \colon
+  F(X^{\prime})
+  \otimes_{\alpha}
+  F(X)
+  \to
+  1_{\alpha}
+\end{align*}
+The diagrams in (AC1) are just lemma \ref{lem:mfduals}. We leave the rest out as the other conditions can be checked fairly easily: for (AC2) and (AC3) one uses the functoriality of $F$, (MF2) and the naturality of $\mathsf{H}$; (AC4) follows by the functoriality of $F$ and multiple application of (MF1) and (BF); (AC5) is just the functoriality of $F$ and a special case of (MF2).
+\\\\
+ii) $\Rightarrow$ i)
+\qquad
+This part is a rather long story. Set $F_{\mathrm{ob}} := E_{\mathrm{ob}}$. We have to extend $E$ to all morphisms in $\mathbf{C}$. To this end we need a left dual object $X^{\prime}$ for every object $X \in \mathrm{ob}_{\mathbf{C}}$. We know that $\mathbf{C}$ is left rigid, so these dual objects exist and we can suppose that there is a choice function to choose them or that they have been constructed explicitly. Either way, we choose $1^{\prime} = 1$ with
+\begin{align*}
+  \mathrm{coev}_{1}
+  &=
+  \mathsf{L}^{-1}(1)
+  =
+  \mathsf{R}^{-1}(1)
+  \\
+  \mathrm{ev}_{1}
+  &=
+  \mathsf{L}(1)
+  =
+  \mathsf{R}(1)
+\end{align*}
+and for tensor products we take dual objects as given by lemma \ref{LEM:DUALOBTENSOR}. Now for
+\begin{align*}
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+define
+\begin{align*}
+  \tilde{f}_{12}
+  &:=
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  \mathrm{coev}_{X_{1}}
+  \colon
+  1
+  \to
+  X_{2}
+  \otimes
+  X_{1}^{\prime}
+  \\
+  \gamma_{f_{12}}
+  &:=
+  \mathsf{H}(X_{2},X_{1}^{\prime})^{-1}
+  \circ
+  E(\tilde{f}_{12})
+  \circ
+  \Phi
+  \colon
+  1_{\alpha}
+  \to
+  E(X_{2})
+  \otimes
+  E(X_{1}^{\prime})
+\end{align*}
+Then we let $F_{\mathrm{mor}}$ be the function that maps
+\begin{align*}
+  (X_{1},X_{2})
+  \in
+  \mathrm{ob}_{\mathbf{C}}
+  \times
+  \mathrm{ob}_{\mathbf{C}}
+\end{align*}
+to the function
+\begin{align*}
+  F_{\mathrm{mor}}(X_{1},X_{2})
+  \colon
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+  &\to
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}(F_{\mathrm{ob}}(X_{1}),F_{\mathrm{ob}}(X_{2}))
+\end{align*}
+defined by the following commuting diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.2em,column sep=10em]
+  E(X_{1})
+  \ar{r}{F_{\mathrm{mor}}(X_{1},X_{2})(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(X_{1}))}
+  &
+  E(X_{2})
+  \\
+  1_{\alpha} E(X_{1})
+  \ar{d}[swap]{\gamma_{f_{12}} \otimes_{\alpha} \mathrm{id}_{E(X_{1})}}
+  &
+  E(X_{2}) 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E(X_{2}))}
+  \\
+  (E(X_{2}) E(X_{1}^{\prime})) E(X_{1})
+  \ar{r}{\mathsf{A}_{\alpha}(E(X_{2}),E(X_{1}^{\prime}),E(X_{1}))}
+  &
+  E(X_{2}) (E(X_{1}^{\prime}) E(X_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E(X_{2})} \otimes_{\alpha} \mathrm{ev}_{E(X_{1})}}
+\end{tikzcd}
+\end{equation*}
+Again we will write $F$ for both $F_{\mathrm{ob}}$ and all $F_{\mathrm{mor}}(X_{1},X_{2})$.
+\\\\
+We need to check that $F$ actually extends $E$, i.e. that for $g \in \mathrm{mor}_{\mathbf{C}}(1,Y)$ we have
+\begin{align*}
+  F(g)
+  &=
+  E(g)
+\end{align*}
+Using that $1^{\prime} = 1$ it is easy to see with the help of (AC3) and $E(\mathrm{id}_{1}) = \mathrm{id}_{E(1)}$ from (AC5) that
+\begin{align*}
+  \gamma_{g}
+  &=
+  \left(
+    E(g)
+    \otimes_{\alpha}
+    \mathrm{id}_{E(1)}
+  \right)
+  \circ
+  \mathrm{coev}_{E(1)}
+\end{align*}
+Substituting this in the definition of $F(g)$ and using (AC1) one can obtain the wanted result.
+\\\\
+Next, we have to verify that $(F,\mathsf{H},\Phi)$ is a symmetric monoidal functor from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$. We verify the properties step by step.
+\begin{enumerate}
+\item[(F1)]
+\begin{align*}
+  \mathrm{F}(\mathrm{id}_{X})
+  &=
+  \mathrm{id}_{F(X)}
+\end{align*}
+follows immediately from (AC1) since
+\begin{align*}
+  \widetilde{\mathrm{id}}_{X}
+  &=
+  \mathrm{coev}_{X}
+\end{align*}
+implying that
+\begin{align*}
+  \gamma_{\mathrm{id}_{X}}
+  &=
+  \mathsf{H}(X,X^{\prime})^{-1}
+  \circ
+  E(\mathrm{coev}_{X})
+  \circ
+  \Phi
+  \\
+  &=
+  \mathrm{coev}_{E(X)}
+\end{align*}
+
+\item[(F2)]
+\begin{align*}
+  F(f_{23} \circ f_{12})
+  &=
+  F(f_{23}) \circ F(f_{12})
+\end{align*}
+for
+\begin{align*}
+  f_{12} \in \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+  ,\qquad
+  f_{23} \in \mathrm{mor}_{\mathbf{C}}(X_{2},X_{3})
+\end{align*}
+needs a rather lengthy calculation. To further ease notation we define
+\begin{align*}
+  E_{i}
+  &:=
+  E(X_{i})
+  ,\qquad
+  E_{i}^{\prime}
+  :=
+  E(X_{i}^{\prime})
+  ,\qquad
+  1
+  \leq
+  i
+  \leq
+  4
+\end{align*}
+By definition we have the following commuting diagram.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=3.2em,column sep=5em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{d}[swap]{\gamma_{f_{12}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  (E_{2} E_{1}^{\prime}) E_{1}
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1})}
+  &
+  &
+  E_{3} (E_{2}^{\prime} E_{2})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{2}}}
+  \\
+  E_{2} (E_{1}^{\prime} E_{1})
+  \ar{d}[swap]{\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  &
+  &
+  (E_{3} E_{2}^{\prime}) E_{2}
+  \ar{u}[swap]{\mathsf{A}_{\alpha}(E_{3},E_{2}^{\prime},E_{2})}
+  \\
+  E_{2} 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E_{2})}
+  &
+  E_{2}
+  \ar{r}{\mathsf{L}_{\alpha}^{-1}(E_{2})}
+  &
+  1_{\alpha} E_{2}
+  \ar{u}[swap]{\gamma_{f_{23}} \otimes_{\alpha} \mathrm{id}_{E_{2}}}
+\end{tikzcd}
+\end{equation*}
+Using the naturality of the associator and the unit laws one can exchange the positions of
+\begin{align*}
+  \mathrm{id}_{E_{2}}
+  \otimes_{\alpha}
+  \mathrm{ev}_{E_{1}}
+  \qquad
+  \text{and}
+  \qquad
+  \gamma_{f_{23}}
+  \otimes_{\alpha}
+  \mathrm{id}_{E_{2}}
+\end{align*}
+to obtain the expression
+\begin{align*}
+  \gamma_{f_{23}}
+  \otimes_{\alpha}
+  \gamma_{f_{12}}
+\end{align*}
+Substituting the definition of the $\gamma_{f_{ij}}$ one hence finds the following commuting diagram
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=3.2em,column sep=6em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  E(1) E_{1}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E(1)) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (1_{\alpha} 1_{\alpha})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathsf{R}_{\alpha}(1_{\alpha})}
+  \\
+  (1_{\alpha} E(1)) E_{1}
+  \ar{d}[swap]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} (1_{\alpha} (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{id}_{1_{\alpha}} \otimes_{\alpha} \mathrm{ev}_{E_{1}})}
+  \\
+  (E(1) E(1)) E_{1}
+  \ar{d}[swap]{(E(\tilde{f}_{23}) \otimes_{\alpha} E(\tilde{f}_{12})) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} ((E_{2}^{\prime} E_{2}) (E_{1}^{\prime} E_{1}))
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} (\mathrm{ev}_{E_{2}} \otimes_{\alpha} \mathrm{id}_{E_{1}^{\prime} E_{1}})}
+  \\
+  (E(X_{3} X_{2}^{\prime}) E(X_{2} X_{1}^{\prime})) E_{1}
+  \ar{rr}{(\mathsf{H}(X_{3},X_{2}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{2},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  ((E_{3} E_{2}^{\prime}) (E_{2} E_{1}^{\prime})) E_{1}
+  \ar{u}[swap]{\sim}
+\end{tikzcd}
+\end{equation*}
+where $\sim$ is the unique morphism announced in the introduction to this chapter.
+\\
+Now one can use (AC3) to convert
+\begin{align*}
+  E(\tilde{f}_{23})
+  \otimes_{\alpha}
+  E(\tilde{f}_{12})
+\end{align*}
+to an expression like
+\begin{align*}
+  E
+  \left(
+    \left(
+      \tilde{f}_{23}
+      \otimes
+      \tilde{f}_{12}
+    \right)
+    \circ
+    \mathsf{L}^{-1}(1)
+  \right)
+\end{align*}
+With the help of (AC4) and (AC2) one can then show that the outer perimeter of the following diagram commutes.
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=6em,column sep=8em]
+  E_{1}
+  \ar{r}{F(f_{12})}
+  \ar[bend right]{rr}{F(f_{23} \circ f_{12})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1})}
+  &
+  E_{2}
+  \ar{r}{F(f_{23})}
+  &
+  E_{3}
+  \\
+  1_{\alpha} E_{1}
+  \ar{rd}[description]{\gamma_{f_{23} \circ f_{12}} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+  E_{3} 1_{\alpha}
+  \ar{u}[swap]{\mathsf{R}_{\alpha}(E_{3})}
+  \\
+  E(1) E_{1}
+  \ar{d}[swap]{E(\delta) \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  (E_{3} E_{1}^{\prime}) E_{1}
+  \ar{r}{\mathsf{A}(E_{3},E_{1}^{\prime},E_{1})}
+  &
+  E_{3} (E_{1}^{\prime} E_{1})
+  \ar{u}[swap]{\mathrm{id}_{E_{3}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}}
+  \\
+  E(X_{3} X_{1}^{\prime}) E_{1}
+  \ar{ur}[description]{\mathsf{H}(X_{3},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}}
+  &
+  &
+\end{tikzcd}
+\end{equation*}
+Here we abbreviated
+\begin{align*}
+  \delta
+  &:=
+  \mathsf{R}(X_{3} X_{1}^{\prime})
+  \circ
+  \left(
+    \mathrm{id}_{X_{3} X_{1}^{\prime}}
+    \otimes
+    \mathrm{ev}_{X_{2}}
+  \right)
+  \circ
+  \sim_{2}
+  \circ
+  \left(
+    \tilde{f}_{23}
+    \otimes
+    \tilde{f}_{12}
+  \right)
+  \circ
+  \mathsf{L}^{-1}(1)
+\end{align*}
+Finally one shows with the help of diagram (LD1) governing dual objects for $X_{2}$ that
+\begin{align*}
+  \delta
+  &=
+  \widetilde{f_{23} \circ f_{12}}
+\end{align*}
+Then the lower left part of the diagram commutes and hence also the central part above. But then the uppermost part commutes, too, and we are done with this step.
+
+\item[(NT)]
+for the naturality of $\mathsf{H}$ we have to show that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.6em,column sep=7em]
+  F(X_{1}) F(X_{3})
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[swap]{\mathsf{H}(X_{1},X_{3})}
+  &
+  F(X_{2}) F(X_{4})
+  \ar{d}{\mathsf{H}(X_{2},X_{4})}
+  \\
+  F(X_{1} X_{3})
+  \ar{r}{F(f_{12} \otimes f_{34})}
+  &
+  F(X_{2} X_{4})
+\end{tikzcd}
+\end{equation*}
+which is again a rather long story.
+\newpage
+By definition we have
+\begin{equation*}
+\begin{tikzcd}[row sep=4em,column sep=4.2em]
+  E_{1} E_{3}
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1}) \otimes_{\alpha} \mathsf{L}_{\alpha}^{-1}(E_{3})}
+  &
+  E_{2} E_{4}
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{l}[swap]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  (1_{\alpha} E_{1}) (1_{\alpha} E_{3})
+  \ar{d}[description]{(\Phi \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\Phi \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  (E(1) E_{1}) (E(1) E_{3})
+  \ar{rd}[description,xshift=-5mm]{(E(\tilde{f}_{12}) \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (E(\tilde{f}_{34}) \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+  &
+  ((E_{2} E_{1}^{\prime}) E_{1}) ((E_{4} E_{3}^{\prime}) E_{3})
+  \ar{u}[description]{\mathsf{A}_{\alpha}(E_{2},E_{1}^{\prime},E_{1}) \otimes_{\alpha} \mathsf{A}_{\alpha}(E_{4},E_{3}^{\prime},E_{3})}
+  \\
+  &
+  (E(X_{2} X_{1}^{\prime}) E_{1}) (E(X_{4} X_{3}^{\prime}) E_{3})
+  \ar{ur}[description,xshift=5mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1}}) \otimes_{\alpha} (\mathsf{H}(X_{4},X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{3}})}
+  &
+\end{tikzcd}
+\end{equation*}
+It seems rather obvious that we have to use (AC3), so we need an expression like
+\begin{align*}
+  E(\tilde{f}_{12})
+  \otimes_{\alpha}
+  E(\tilde{f}_{34})
+\end{align*}
+To this end one inserts some identities in terms of associators and braidings and uses their naturality and the coherence theorem. Shifting morphisms around a bit one obtains the outer perimeter of the following diagram. The lower part now commutes because of (AC3).
+\begin{equation*}
+\begin{tikzcd}[row sep=7em,column sep=6em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{rr}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[swap]{\mathsf{L}_{\alpha}^{-1}(E_{1} E_{3})}
+  &
+  &
+  E_{2} E_{4}
+  \\
+  1_{\alpha} (E_{1} E_{3})
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{u}[description]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  E(1) (E_{1} E_{3})
+  \ar{dr}[description,xshift=3mm,yshift=-4mm]{E((\tilde{f}_{12} \otimes \tilde{f}_{34}) \circ \mathsf{L}^{-1}(1)) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar{d}[description,xshift=-2mm,yshift=4mm]{\mathsf{L}_{\alpha}^{-1}(E(1)) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  (1_{\alpha} E(1)) (E_{1} E_{3})
+  \ar{d}[description,xshift=-3mm]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  E((X_{2} X_{1}^{\prime}) (X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{rd}[description,xshift=-9mm,yshift=6mm]{\mathsf{H}(X_{2} X_{1}^{\prime},X_{4} X_{3}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  ((E_{2} E_{1}^{\prime}) (E_{4} E_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[swap]{\sim}
+  \\
+  (E(1) E(1)) (E_{1} E_{3})
+  \ar{rr}{(E(\tilde{f}_{12}) \otimes_{\alpha} E(\tilde{f}_{34})) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  (E(X_{2} X_{1}^{\prime}) E(X_{4} X_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[description,xshift=2.5mm,yshift=-1mm]{(\mathsf{H}(X_{2},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{4},X_{3}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+\end{tikzcd}
+\end{equation*}
+\newpage
+We need a connection between $\widetilde{f_{12} \otimes f_{34}}$ and $\tilde{f}_{12} \otimes \tilde{f}_{34}$. Recalling the definition of $\mathrm{coev}_{X_{1} X_{3}}$ from lemma \ref{LEM:DUALOBTENSOR} and shifting some morphisms around one can see that the following diagram commutes. Here $\tilde{\pi}$ is the unique morphism built from the associator and the braiding.
+\begin{equation*}
+\begin{tikzcd}[row sep=7em,column sep=5em]
+  1
+  \ar{r}{\widetilde{f_{12} \otimes f_{34}}}
+  \ar{d}[swap]{\mathsf{L}^{-1}(1)}
+  &
+  (X_{2} X_{4}) (X_{3}^{\prime} X_{1}^{\prime})
+  \\
+  1 1
+  \ar{r}{\tilde{f}_{12} \otimes \tilde{f}_{34}}
+  &
+  (X_{2} X_{1}^{\prime}) (X_{4} X_{3}^{\prime})
+  \ar{u}[swap]{\tilde{\pi}^{-1}}
+\end{tikzcd}
+\end{equation*}
+Letting $\tilde{\pi}_{\alpha}$ be the isomorphism corresponding to $\tilde{\pi}$ as in (AC4) one finds from the inner way of the diagram before that the following one commutes.
+\begin{equation*}
+\hspace{-2em}
+\begin{tikzcd}[row sep=4em,column sep=5em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{rrr}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E_{1} E_{3})}
+  &
+  &
+  &
+  E_{2} E_{4}
+  \\
+  1_{\alpha} (E_{1} E_{3})
+  \ar{d}[description]{\Phi \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  \ar[bend left=78]{ddd}[description,xshift=2mm]{\gamma_{f_{12} \otimes f_{34}} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  (E_{2} 1_{\alpha}) (E_{4} 1_{\alpha})
+  \ar{u}[description]{\mathsf{R}_{\alpha}(E_{2}) \otimes_{\alpha} \mathsf{R}_{\alpha}(E_{4})}
+  \\
+  E(1) (E_{1} E_{3})
+  \ar{d}[description]{E(\widetilde{f_{12} \otimes f_{34}}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  (E_{2} (E_{1}^{\prime} E_{1})) (E_{4} (E_{3}^{\prime} E_{3}))
+  \ar{u}[description]{(\mathrm{id}_{E_{2}} \otimes_{\alpha} \mathrm{ev}_{E_{1}}) \otimes_{\alpha} (\mathrm{id}_{E_{4}} \otimes_{\alpha} \mathrm{ev}_{E_{3}})}
+  \\
+  E((X_{2} X_{4}) (X_{3}^{\prime} X_{1}^{\prime})) (E_{1} E_{3})
+  \ar{d}[description]{\mathsf{H}(X_{2} X_{4},X_{3}^{\prime} X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  ((E_{2} E_{1}^{\prime}) (E_{4} E_{3}^{\prime})) (E_{1} E_{3})
+  \ar{u}[swap]{\sim}
+  \\
+  (E(X_{2} X_{4}) E(X_{3}^{\prime} X_{1}^{\prime})) (E_{1} E_{3})
+  \ar{rrr}{(\mathsf{H}(X_{2},X_{4})^{-1} \otimes_{\alpha} \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}) \otimes_{\alpha} \mathrm{id}_{E_{1} E_{3}}}
+  &
+  &
+  &
+  ((E_{2} E_{4}) (E_{3}^{\prime} E_{1}^{\prime})) (E_{1} E_{3})
+  \ar{u}[swap]{\tilde{\pi}_{\alpha}}
+\end{tikzcd}
+\end{equation*}
+Inserting an identity in terms of $\mathsf{H}$ and shifting this and the evaluation maps around a bit one finds the outer way of the following diagram with the help of lemma \ref{LEM:DUALOBTENSOR}.
+\begin{equation*}
+\hspace{-1em}
+\begin{tikzcd}[row sep=4.3em,column sep=5.3em,font=\footnotesize,every label/.append style={font=\tiny}]
+  E_{1} E_{3}
+  \ar{r}{F(f_{12}) \otimes_{\alpha} F(f_{34})}
+  \ar{d}[description]{\mathsf{H}(X_{1},X_{3})}
+  &
+  E_{2} E_{4}
+  &
+  E(X_{2} X_{4})
+  \ar{l}[swap]{\mathsf{H}(X_{2},X_{4})^{-1}}
+  \\
+  E(X_{1} X_{3})
+  \ar{urr}[description]{F(f_{12} \otimes f_{34})}
+  \ar{d}[description]{\mathsf{L}_{\alpha}^{-1}(E(X_{1} X_{3}))}
+  &
+  &
+  E(X_{2} X_{4}) 1_{\alpha}
+  \ar{u}[description]{\mathsf{R}_{\alpha}(E(X_{2} X_{4}))}
+  \\
+  1_{\alpha} E(X_{1} X_{3})
+  \ar{d}[description]{\gamma_{f_{12} \otimes f_{34}} \otimes_{\alpha} \mathrm{id}_{E(X_{1} X_{3})}}
+  &
+  &
+  E(X_{2} X_{4}) ((E_{3}^{\prime} E_{1}^{\prime}) (E_{1} E_{3}))
+  \ar{u}[description]{\mathrm{id}_{E(X_{2} X_{4})} \otimes_{\alpha} \mathrm{ev}_{E_{1} E_{3}}}
+  \\
+  (E(X_{2} X_{4}) E(X_{3}^{\prime} X_{1}^{\prime})) E(X_{1} X_{3})
+  \ar{rr}{\mathsf{A}_{\alpha}(E(X_{2} X_{4}),E(X_{3}^{\prime} X_{1}^{\prime}), E(X_{1} X_{3}))}
+  &
+  &
+  E(X_{2} X_{4}) (E(X_{3}^{\prime} X_{1}^{\prime}) E(X_{1} X_{3}))
+  \ar[bend left=80]{uu}[description,xshift=-5mm,yshift=4mm]{\mathrm{id}_{E(X_{2} X_{4})} \otimes_{\alpha} e_{E(X_{1} X_{3})}}
+  \ar{u}[description,xshift=7mm]{\mathrm{id}_{E(X_{2} X_{4})} \otimes_{\alpha} (\mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1} \otimes_{\alpha} \mathsf{H}(X_{1},X_{3})^{-1})}
+\end{tikzcd}
+\end{equation*}
+Here we defiend
+\begin{align*}
+  e_{E(X_{1} X_{3})}
+  &:=
+  \mathrm{ev}_{E_{1} E_{3}}
+  \circ
+  \left(
+    \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})^{-1}
+    \otimes_{\alpha}
+    \mathsf{H}(X_{1},X_{3})^{-1}
+  \right)
+\end{align*}
+To finish this step we have to show that the central part commutes. To this end we use that the evaluation map is unique for a dual object with fixed coevaluation, which follows from the proof of lemma \ref{lem:dualunique}. If we can show that $e_{E(X_{1} X_{3})}$ is an evaluation map for $\mathrm{coev}_{E(X_{1} X_{3})}$ as given in (AC1) then we are done with this part since then we have
+\begin{align*}
+  e_{E(X_{1} X_{3})}
+  &=
+  \mathrm{ev}_{E(X_{1} X_{3})}
+\end{align*}
+and then the central part commutes. To this end one uses lemma \ref{LEM:DUALOBTENSOR}, (AC3) and (AC4) to show that
+\begin{align*}
+  \mathrm{coev}_{E(X_{1} X_{3})}
+  &=
+  \left(
+    \mathsf{H}(X_{1},X_{3})
+    \otimes_{\alpha}
+    \mathsf{H}(X_{3}^{\prime},X_{1}^{\prime})
+  \right)
+  \circ
+  \mathrm{coev}_{E_{1} E_{3}}
+\end{align*}
+Using lemma \ref{LEM:DUALOBTENSOR} again one can then show that the diagrams from (AC1) indeed commute for $e_{E(X_{1} X_{3})}$ and $\mathrm{coev}_{E(X_{1} X_{3})}$.
+
+\item[(ISO)]
+$\Phi$ already is an isomorphism so there is nothing to do here
+
+\item[(MF1),(BF)]
+using the notation from (AC4) we claim that
+\begin{align*}
+  F(\hat{\pi})
+  &=
+  \mathsf{H}_{\pi}^{W}
+  \circ
+  \hat{\pi}_{\alpha}
+  \circ
+  \mathsf{H}^{W -1}
+\end{align*}
+which immediately implies the compatibility with both the associators and the braiding. But this easily follows from the definition of $F$ with the help of (AC4) and (AC1).
+
+\item[(MF2)]
+we have to show that the following two diagrams commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=6em]
+  1_{\alpha} E(X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(X))}
+  \ar{d}[swap]{\Phi \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(X)
+  \\
+  E(1) E(X)
+  \ar{r}{\mathsf{H}(1,X)}
+  &
+  E(1 X)
+  \ar{u}[swap]{F(\mathsf{L}(X))}
+\end{tikzcd}
+\end{equation*}
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=6em]
+  E(X) 1_{\alpha}
+  \ar{r}{\mathsf{R}_{\alpha}(E(X))}
+  \ar{d}[swap]{\mathrm{id}_{E(X)} \otimes_{\alpha} \Phi}
+  &
+  E(X)
+  \\
+  E(X) E(1)
+  \ar{r}{\mathsf{H}(X,1)}
+  &
+  E(X 1)
+  \ar{u}[swap]{F(\mathsf{R}(X))}
+\end{tikzcd}
+\end{equation*}
+and clearly want to use (AC5). Tensoring the first diagram from there with $E(X)$ on the right we obtain the upper part of the following diagram. The lower part follows from (MF1) above.
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=6em]
+  (1_{\alpha} E(1)) E(X)
+  \ar{r}{\mathsf{L}_{\alpha}(E(1)) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \ar{d}[swap]{(\Phi \otimes_{\alpha} \mathrm{id}_{E(1)}) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  &
+  E(1) E(X)
+  \\
+  (E(1) E(1)) E(X)
+  \ar{r}{\mathsf{H}(1,1) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \ar{d}[swap]{\mathsf{A}_{\alpha}(E(1),E(1),E(X))}
+  &
+  E(1 1) E(X)
+  \ar{u}[swap]{F(\mathsf{L}(1)) \otimes_{\alpha} \mathrm{id}_{E(X)}}
+  \\
+  E(1) (E(1) E(X))
+  \ar{d}[swap]{\mathrm{id}_{E(1)} \otimes_{\alpha} \mathsf{H}(1,X)}
+  &
+  E((1 1) X)
+  \ar{u}[swap]{\mathsf{H}^{-1}(1 1,X)}
+  \\
+  E(1) E(1 X)
+  \ar{r}{\mathsf{H}(1,1 X)}
+  &
+  E(1 (1 X))
+  \ar{u}[swap]{F(\mathsf{A}^{-1}(1,1,X))}
+\end{tikzcd}
+\end{equation*}
+From the outer perimeter one can show that the first of the above two diagram commutes by shuffling some morphisms around and using the naturality of $\mathsf{H}$ and the functoriality of $F$. The second one can be treated analogously.
+\end{enumerate}
+The uniqueness of the extension is easy to see. Let $(G,\mathsf{H},\Phi)$ be another symmetric monoidal functor extending $E$. Since
+\begin{align*}
+  G_{\mathrm{ob}}
+  &=
+  E_{\mathrm{ob}}
+  =
+  F_{\mathrm{ob}}
+\end{align*}
+we only have to check that all $G_{\mathrm{mor}}(X_{1},X_{2})$ and $F_{\mathrm{mor}}(X_{1},X_{2})$ coincide. So let
+\begin{align*}
+  f_{12}
+  \in
+  \mathrm{mor}_{\mathbf{C}}(X_{1},X_{2})
+\end{align*}
+From the functoriality of $G$ and since $G$ extends $E$ we know
+\begin{align*}
+  E(\tilde{f}_{12})
+  &=
+  G(\tilde{f}_{12})
+  \\
+  &=
+  G
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  G(\mathrm{coev}_{X_{1}})
+  \\
+  &=
+  G
+  \left(
+    f_{12}
+    \otimes
+    \mathrm{id}_{X_{1}^{\prime}}
+  \right)
+  \circ
+  E(\mathrm{coev}_{X_{1}})
+\end{align*}
+Substituting this in the definition of $F(f_{12})$ it is easy to see by using (AC1) that $F(f_{12}) = G(f_{12})$ which finishes the proof.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}

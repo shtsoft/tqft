@@ -1,0 +1,440 @@
+An interesting class of tangential structures arises when given a topological group $G$ and a continuous homomorphism $\chi \colon G \to O(n)$. Then we have a $G$-action induced by $\chi$ on every space with an $O(n)$-action by letting $g \in G$ act as $\chi(g) \in O(n)$. Now let $\mathrm{B}G$ be a classifying space of $G$ and $\mathrm{E}G$ the weakly contractible total space of the corresponding universal bundle $\hat{\xi}_{G}$. We consider the bundle $\zeta_{\chi} = \hat{\xi}_{G}[\mathbb{R}^{n}]_{\chi}$ over $\mathrm{B}G$ with fiber $\mathbb{R}^{n}$ associated with $\hat{\xi}_{G}$ determined by $\chi$. Remember that this means that the total space of $\zeta_{\chi}$ is
+\begin{align*}
+  E_{\zeta_{\chi}}
+  &=
+  \mathrm{E}G
+  \times_{G,\chi}
+  \mathbb{R}^{n}
+  =
+  (\mathrm{E}G \times \mathbb{R}^{n})/G
+\end{align*}
+where $G$ acts on $\mathrm{E}G \times \mathbb{R}^{n}$ by
+\begin{align*}
+  (p,x)g
+  :=
+  (pg,\chi(g^{-1})x)
+\end{align*}
+for $g \in G$ and $(p,x) \in \mathrm{E}G \times \mathbb{R}^{n}$. The bundle $\zeta_{\chi}$ is a real $n$-dimensional vector bundle over $\mathrm{B}G$, hence we can define a $(\mathrm{B}G,\zeta_{\chi})$-structure on a $k$-dimensional manifold with corners, $k \leq n$, and we call such a structure a \textbf{$G$-structure (on $M$)}. Moreover, we write $\mathbf{Bord}_{n}^{G}$ for the corresponding symmetric monoidal $(\infty,n)$-category $\mathbf{Bord}_{n}^{(\mathrm{B}G,\zeta_{\chi})}$.
+\\
+We want to sketch that a $G$-structure on $M$ is basically a change of the structure group of the $n$-stabilized tangent bundle of $M$ from $O(n)$ to $G$ along $\chi$. Remember that for an $n$-dimensional vector bundle with metric $\zeta$ - whose structure group is $O(n)$ - a reduction of the structure group to some topological group $G$ along a continuous homomorphism $\chi \colon G \to O(n)$ is a reduction of the structure group of the orthonormal frame bundle $\mathsf{OF}(\zeta)$. Remember further that this means that there exists a principal $G$-bundle $\xi$ over $B_{\zeta}$ and an isomorphism from $\mathsf{OF}(\zeta)$ to the principal $O(n)$-bundle $\xi[O(n)]_{\chi}$ over $B_{\zeta}$ with fiber $O(n)$ associated with $\xi$ determined by $\chi$, i.e. whose total space is $E_{\xi} \times_{G,\chi} O(n)$.
+\\
+First we observe
+\\
+\begin{lem}
+\label{lem:redstrgrofzeta}
+Let $G$ be a topological group and $\chi \colon G \to O(n)$ a continuous homomorphism. Let further $\hat{\xi}_{G}$ be the universal bundle of $G$ and $\zeta_{\chi} = \hat{\xi}_{G}[\mathbb{R}^{n}]_{\chi}$ the associated real $n$-dimensional vector bundle over $\mathrm{B}G$ associated with $\hat{\xi}_{G}$ determined by $\chi$. Then the orthonormal frame bundle $\mathsf{OF}(\zeta_{\chi})$ of $\zeta_{\chi}$ is isomorphic to the principal $O(n)$-bundle $\hat{\xi}_{G}[O(n)]_{\chi}$ over $\mathrm{B}G$ with fiber $O(n)$ associated with $\hat{\xi}_{G}$ determined by $\chi$.
+\end{lem}
+\begin{prf}[Sketch]
+Remember that there is a bijection between isomorphism classes of principal $O(n)$-bundles over $\mathrm{B}G$ and isomorphism classes of real $n$-dimensional vector bundles over $\mathrm{B}G$ since the latter is paracompact as CW-complex. This bijection is given by taking a principal $O(n)$-bundle $\xi$ to its associated real $n$-dimensional vector bundle $\xi[\mathbb{R}^{n}]$ and in the other direction taking a real $n$-dimensional vector bundle $\zeta$ to its orthonormal frame bundle $\mathsf{OF}(\zeta)$. Thus it is enough to show that the associated vector bundles of the two $O(n)$-principal bundles $\mathsf{OF}(\zeta_{\chi})$ and $\hat{\xi}_{G}[O(n)]_{\chi}$ are isomorphic.
+\\
+Since
+\begin{align*}
+  \mathsf{OF}(\zeta_{\chi})[\mathbb{R}^{n}]
+  &\cong
+  \zeta_{\chi}
+\end{align*}
+we have to show that
+\begin{align*}
+  \zeta_{\chi}
+  &\cong
+  \hat{\xi}_{G}[O(n)]_{\chi}[\mathbb{R}^{n}]
+\end{align*}
+But this follows because their total spaces are isomorphic,
+\begin{align*}
+  E_{\zeta_{\chi}}
+  &=
+  \mathrm{E}G
+  \times_{G,\chi}
+  \mathbb{R}^{n}
+  \\
+  &\cong
+  \mathrm{E}G
+  \times_{G,\chi}
+  \left(
+    O(n)
+    \times_{O(n)}
+    \mathbb{R}^{n}
+  \right)
+  \\
+  &\cong
+  \left(
+    \mathrm{E}G
+    \times_{G,\chi}
+    O(n)
+  \right)
+  \times_{O(n)}
+  \mathbb{R}^{n}
+  \\
+  &=
+  E_{\hat{\xi}_{G}[O(n)]_{\chi}[\mathbb{R}^{n}]}
+\end{align*}
+as the total space of $\hat{\xi}_{G}[O(n)]_{\chi}$ is $\mathrm{E}G \times_{G,\chi} O(n)$, and because these isomorphisms respect the projections of the bundles.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+This shows that the structure group $O(n)$ of $\mathsf{OF}(\zeta_{\chi})$ can be changed to $G$ along $\chi$ which is of course not very surprising when contemplating the definition of $\zeta_{\chi}$. Furthermore, we have
+\\
+\begin{lem}
+\label{lem:redstrgrofpbzeta}
+Let $G$ a topological group and $\chi \colon G \to O(n)$ a continuous homomorphism. Let further $X$ be a paracompact Hausdorff space and $f \colon X \to \mathrm{B}G$ a continuous map. Then 
+\begin{align*}
+  \mathsf{OF}(f^{\ast}\zeta_{\chi})
+  &\cong
+  \left(
+    f^{\ast}\hat{\xi}_{G}
+  \right)
+  [O(n)]_{\chi}
+\end{align*}
+\end{lem}
+\begin{prf}
+Since taking the associated bundle commutes with taking the pullback bundle, lemma \ref{lem:redstrgrofzeta} implies
+\begin{align*}
+  f^{\ast}
+  \mathsf{OF}(\zeta_{\chi})
+  &\cong
+  f^{\ast}
+  \left(
+    \hat{\xi}_{G}[O(n)]_{\chi}
+  \right)
+  \\
+  &\cong
+  \left(
+    f^{\ast}\hat{\xi}_{G}
+  \right)
+  [O(n)]_{\chi}
+\end{align*}
+But $f^{\ast}\mathsf{OF}(\zeta_{\chi})$ is isomorphic to the orthonormal frame bundle $\mathsf{OF}(f^{\ast}\zeta_{\chi})$ of the pullback of $\zeta_{\chi}$ as both are principal $O(n)$-bundles over a paracompact Hausdorff space and the corresponding associated vector bundles are isomorphic,
+\begin{align*}
+  \left(
+    f^{\ast}
+    \mathsf{OF}(\zeta_{\chi})
+  \right)
+  [\mathbb{R}^{n}]
+  &\cong
+  f^{\ast}
+  \left(
+    \mathsf{OF}(\zeta_{\chi})[\mathbb{R}^{n}]
+  \right)
+  \\
+  &\cong
+  f^{\ast}\zeta_{\chi}
+  \\
+  &\cong
+  \mathsf{OF}(f^{\ast}\zeta_{\chi})[\mathbb{R}^{n}]  
+\end{align*}
+Hence we have
+\begin{align*}
+  \mathsf{OF}(f^{\ast}\zeta_{\chi})
+  &\cong
+  \left(
+    f^{\ast}\hat{\xi}_{G}
+  \right)
+  [O(n)]_{\chi}
+\end{align*}
+which we had to show.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+This shows that the structure group $O(n)$ of $\mathsf{OF}(f^{\ast}\zeta_{\chi})$ can be changed to $G$ along $\chi$ because $f^{\ast}\hat{\xi}_{G}$ is a principal $G$-bundle over $X$. Hence we find
+\\
+\begin{cor}
+\label{cor:redstrgrsttbundle}
+Let $G$ a topological group and $\chi \colon G \to O(n)$ a continuous homomorphism. Let further $(f,\phi)$ be a $G$-structure on a $k$-dimensional manifold $M$, $k \leq n$. Then the structure group of the $n$-stabilized tangent bundle $TM \oplus (M \times \mathbb{R}^{n-k})$ can be changed to $G$ along $\chi$.
+\end{cor}
+\begin{prf}
+The isomorphism
+\begin{align*}
+  \phi
+  \colon 
+  TM
+  \oplus
+  (M \times \mathbb{R}^{n-k})
+  &\to
+  f^{\ast}\zeta_{\chi}
+\end{align*}
+of the $G$-structure on $M$ induces an isomorphism
+\begin{align*}
+  \mathsf{OF}
+  \left(
+    TM
+    \oplus
+    (M \times \mathbb{R}^{n-k})
+  \right)
+  &\cong
+  \mathsf{OF}
+  \left(
+    f^{\ast}\zeta_{\chi}
+  \right)
+\end{align*}
+so that lemma \ref{lem:redstrgrofpbzeta} implies\footnote{note that any manifold is a paracompact Hausdorff space}
+\begin{align*}
+  \mathsf{OF}
+  \left(
+    TM
+    \oplus
+    (M \times \mathbb{R}^{n-k})
+  \right)
+  &\cong
+  \left(
+    f^{\ast}\hat{\xi}_{G}
+  \right)
+  [O(n)]_{\chi}
+\end{align*}
+which is what we want.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+Conversely we have
+\\
+\begin{cor}
+\label{cor:gstructfromred}
+Let $G$ a topological group and $\chi \colon G \to O(n)$ a continuous homomorphism. Let further $M$ be a $k$-dimensional manifold $M$, $k \leq n$, and $\tilde{\phi}$ an isomorphism changing the structure group of the $n$-stabilized tangent bundle $TM \oplus (M \times \mathbb{R}^{n-k})$ to $G$ along $\chi$. Then there is a continuous map $f \colon M \to \mathrm{B}G$, unique up to homotopy, and an isomorphism
+\begin{align*}
+  TM
+  \oplus
+  (M \times \mathbb{R}^{n-k})
+  &\cong
+  f^{\ast}\zeta_{\chi}
+\end{align*}
+\end{cor}
+\begin{prf}
+Let $\xi$ be the principal $G$-bundle over $M$ of the reduction of the structure group, that is,
+\begin{align*}
+  \tilde{\phi}
+  \colon
+  \mathsf{OF}
+  \left(
+    TM
+    \oplus
+    (M \times \mathbb{R}^{n-k})
+  \right)
+  &\to
+  \xi[O(n)]_{\chi}
+\end{align*}
+Due to the universal\footnote{note that a smooth manifold can always be endowed with the structure of a CW-complex} property of the universal bundle there is a continuous map $f \colon M \to \mathrm{B}G$, unique up to homotopy, such that
+\begin{align*}
+  \xi
+  &\cong
+  f^{\ast}\hat{\xi}_{G}
+\end{align*}
+Hence, lemma \ref{lem:redstrgrofpbzeta} implies
+\begin{align*}
+  \mathsf{OF}
+  \left(
+    TM
+    \oplus
+    (M \times \mathbb{R}^{n-k})
+  \right)
+  &\cong
+  \left(
+    f^{\ast}\hat{\xi}_{G}
+  \right)
+  [O(n)]_{\chi}
+  \\
+  &\cong
+  \mathsf{OF}
+  \left(
+    f^{\ast}\zeta_{\chi}
+  \right)
+\end{align*}
+and thus
+\begin{align*}
+  TM
+  \oplus
+  (M \times \mathbb{R}^{n-k})
+  &\cong
+  f^{\ast}\zeta_{\chi}
+\end{align*}
+which we had to show.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+\begin{exa}
+\label{exa:gstruct}
+We consider three examples
+\begin{enumerate}
+\item[(i)]
+Let $G = \lbrace e \rbrace$ be trivial, then there is only one possible $\chi \colon \lbrace e \rbrace \to O(n)$ taking $e \in G$ to $\mathrm{id}_{O(n)}$ and a $G$-structure is nothing but a trivializaton of the stabilized tangent bundle, i.e. an $n$-framing. Hence, we have an equivalence $\mathbf{Bord}_{n}^{\lbrace e \rbrace} \cong \mathbf{Bord}_{n}^{\mathrm{fr}}$.
+
+\item[(ii)]
+Let $G = SO(n)$ and $\chi \colon SO(n) \to O(n)$ the inclusion. Then a $G$-structure is a reduction of the structure group of the stabilized tangent bundle from $O(n)$ to $SO(n)$ which is an orientation of the bundle and thus basically an orientation of the manifold. Hence, we have an equivalence $\mathbf{Bord}_{n}^{SO(n)} \cong \mathbf{Bord}_{n}^{\mathrm{or}}$.
+
+\item[(iii)]
+Let $G = O(n)$ and $\chi \colon O(n) \to O(n)$ the identity. Then a $G$-structure is no change of the structure group at all and thus no structure on the manifold. Hence, we have an equivalence $\mathbf{Bord}_{n}^{O(n)} \cong \mathbf{Bord}_{n}$.
+\end{enumerate}
+\end{exa}
+\begin{prf}
+The details are left to the diligent reader.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+Now let $G$ be a topological group acting on a topological space $Y$ and such that $G$ and $\mathrm{E}G$ are CW-complexes, which in particular can be arranged when $G$ is a compact Lie group. Then the homotopy type of the $G$-equivariant maps $\mathrm{mor}_{G}(\mathrm{E}G,Y)$ is independent of the choice of $\mathrm{E}G$ and is called the \textit{homotopy fixed point set (of the $G$-action on $Y$)}. We denote it $Y^{\mathrm{h}G}$. For an $\infty$-groupoid ${_{(\infty,0)}}\mathbf{C}$ which carries a $G$-action we likewise denote the $\infty$-groupoid $\mathrm{mor}_{G}(\mathrm{E}G,{_{(\infty,0)}}\mathbf{C})$ (defined as in the case of an $O(n)$-action) as ${_{(\infty,0)}}\mathbf{C}^{\mathrm{h}G}$. This allows us to formulate the following version of the cobordism hypothesis for manifolds with $G$-structures.
+\\
+\begin{cor}[Cobordism Hypothesis: $G$-Structure Version]
+\label{cor:cobhypgstruct}
+Let ${_{(\infty,n)}}\mathbf{C}$ be a symmetric monoidal $(\infty,n)$-category with duals. Further, let $G$ be a topological group such that $G$ and the total space $\mathrm{E}G$ of its universal bundle are CW-complexes and let $\chi \colon G \to O(n)$ be a continuous group homomorphism. Then using the $G$-action on the underlying $\infty$-groupoid $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ defined by $\chi$ through the $O(n)$-action there is an equivalence of $\infty$-groupoids
+\begin{align*}
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    \mathbf{Bord}_{n}^{G}
+    ,
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+  \to
+  \left(
+    \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+  \right)^{\mathrm{h}G}
+\end{align*}
+\end{cor}
+\begin{prf}[Sketch]
+As above, let $\zeta_{\chi}$ be the vector bundle associated with the universal bundle $\hat{\xi}_{G}$. From theorem \ref{thm:cobhypyzstruct} we know that
+\begin{align*}
+  \mathrm{func}^{\otimes,\mathrm{sym}}
+  \left(
+    \mathbf{Bord}_{n}^{G}
+    ,
+    {_{(\infty,n)}}\mathbf{C}
+  \right)
+\end{align*}
+can be identified with
+\begin{align*}
+  \mathrm{mor}_{O(n)}
+  \left(
+    E_{\mathsf{OF}(\zeta_{\chi})}
+    ,
+    \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+  \right)
+\end{align*}
+and from the above discussion we know that $E_{\mathsf{OF}(\zeta_{\chi})}$ can be identified with $\mathrm{E}G \times_{G,\chi} O(n)$. Hence, in order to establish the assertion of this corollary we have to show the equivalence
+\begin{align*}
+  \mathrm{mor}_{O(n)}
+  \left(
+    \mathrm{E}G
+    \times_{G,\chi}
+    O(n)
+    ,
+    \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+  \right)
+  &\cong
+  \mathrm{mor}_{G}
+  \left(
+    \mathrm{E}G
+    ,
+    \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+  \right)
+\end{align*}
+where on the left we have the usual $O(n)$-action on $\mathrm{G}({_{(\infty,n)}}\mathbf{C})$ stemming from theorem \ref{thm:cobhypframed} and on the right we have the action induced by $\chi$. We only show that $\mathrm{mor}_{O(n)}(\mathrm{E}G \times_{G,\chi} O(n),Y)$ and $\mathrm{mor}_{G}(\mathrm{E}G,Y)$ are bijective for any space $Y$ with an $O(n)$-action and the corresponding $G$-action induced by $\chi$ and omit continuity properties of this bijection.
+\\
+Define $h_{O(n)} \in \mathrm{mor}_{O(n)}(\mathrm{E}G \times_{G,\chi} O(n),Y)$ for $h \in \mathrm{mor}_{G}(\mathrm{E}G,Y)$ by
+\begin{align*}
+  h_{O(n)}([p,o])
+  &:=
+  h(p)
+  o
+  \in
+  Y
+\end{align*}
+for $[p,o] \in \mathrm{E}G \times_{G,\chi} O(n)$. This is well-defined as a map since for $[p_{1},o_{1}] = [p_{2},o_{2}] \in \mathrm{E}G \times_{G,\chi} O(n)$ there is some $g \in G$ such that
+\begin{align*}
+  (p_{2},o_{2})
+  &=
+  (p_{1},o_{1})
+  g
+  =
+  (p_{1}g,\chi(g^{-1})o_{1})
+\end{align*}
+which implies
+\begin{align*}
+  h_{O(n)}([p_{2},o_{2}])
+  &=
+  h_{O(n)}([p_{1}g,\chi(g^{-1})o_{1}])
+  \\
+  &=
+  h(p_{1}g)
+  \chi(g^{-1})
+  o_{1}
+  \\
+  &=
+  h(p_{1})
+  \chi(g)
+  \chi(g^{-1})
+  o_{1}
+  \\
+  &=
+  h(p_{1})
+  o_{1}
+  \\
+  &=
+  h_{O(n)}([p_{1},o_{1}])
+\end{align*}
+Moreover, $h_{O(n)}$ is continuous as a composition of continuous maps and it is $O(n)$-equivariant,
+\begin{align*}
+  h_{O(n)}([p,o_{1}]o_{2})
+  &=
+  h_{O(n)}([p,o_{1}o_{2}])
+  =
+  h(p)
+  o_{1}
+  o_{2}
+  =
+  h_{O(n)}([p,o_{1}])
+  o_{2}
+\end{align*}
+Conversely, for $h \in \mathrm{mor}_{O(n)}(\mathrm{E}G \times_{G,\chi} O(n),Y)$ define $h_{G} \in \mathrm{mor}_{G}(\mathrm{E}G,Y)$ by
+\begin{align*}
+  h_{G}(p)
+  &:=
+  h([p,\mathrm{id}_{O(n)}])
+  \in
+  Y
+\end{align*}
+for $p \in \mathrm{E}G$, where $\mathrm{id}_{O(n)}$ is the neutral element of $O(n)$. Then $h_{G}$ is again continuous and it is $G$-equivariant,
+\begin{align*}
+  h_{G}(pg)
+  &=
+  h([pg,\mathrm{id}_{O(n)}])
+  \\
+  &=
+  h([p,\chi(g)])
+  \\
+  &=
+  h([p,\mathrm{id}_{O(n)}]\chi(g))
+  \\
+  &=
+  h([p,\mathrm{id}_{O(n)}])
+  \chi(g)
+  \\
+  &=
+  h_{G}(p)
+  \chi(g)
+\end{align*}
+It is immediately checked that these constructions are inverse.
+\\
+To finish the proof a closer investigation of the topologies (inherited from the compact-open topologies of the full function spaces) of the two functions spaces and the continuity properties of the maps between them is needed to show that $\mathrm{mor}_{O(n)}(\mathrm{E}G \times_{G,\chi} O(n),Y)$ and $\mathrm{mor}_{G}(\mathrm{E}G,Y)$ indeed have the same homotopy type. Yet we will not do that here.
+\\
+\phantom{proven}
+\hfill
+$\Box$
+\end{prf}
+In the special case of the trivial group $G = \lbrace e \rbrace$ the total space of the universal bundle can be taken to be a singleton $\mathrm{E}G = \lbrace \bullet \rbrace$ so that $\mathrm{mor}_{G}(\mathrm{E}G,Y)$ can be identified with $Y$ in the obvious way and the compact-open topology agrees with the topology on $Y$ under this identification. Hence, we can conlude in this case that 
+\begin{align*}
+  \mathrm{mor}_{G}
+  \left(
+    \mathrm{E}G
+    ,
+    \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+  \right)
+  &\cong
+  \mathrm{G}({_{(\infty,n)}}\mathbf{C})
+\end{align*}
+so that corollary \ref{cor:cobhypgstruct} reduces to theorem \ref{thm:cobhypframed}.

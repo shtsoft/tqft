@@ -1,0 +1,529 @@
+%\nocite{0a816f4c}
+%%%
+We will now work out some properties of this path integral formulation and examine how they give rise to the rigorous axiomatic definition of an $n$-dimensional TQFT as a symmetric monoidal functor
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Vec}_{\mathbb{C}}
+\end{align*}
+Essentially, we want to obtain a topological invariant of an $n$-manifold $M$ from the action $A$ and the measure $D\phi$ on $\mathcal{F}(M)$ under the assumption that the path integrals do not depend on the metric. To this end, let $S_{1},S_{2}$ be closed $(n-1)$-manifolds, then we assign to $S_{i}$, $i = 1,2$, the vector space 
+\begin{align*}
+  Z_{\mathrm{PI}}(S_{i})
+  &:=
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{i})
+    ,
+    \mathbb{C}
+  \right)
+\end{align*}
+of functions from the field configurations on $S_{i}$ to $\mathbb{C}$. Such $(n-1)$-manifolds can be thought of as a spatial slices of an $n$-dimensional spacetime. The vector spaces associated to the manifolds are often called state spaces. Arguably not every function
+\begin{align*}
+  f
+  \colon
+  \mathcal{F}(S_{i})
+  &\to
+  \mathbb{C}
+\end{align*}
+may qualify as a state and one would rather choose an appropriate subspace, but for simplicity we will not attempt to do so here. Let $M$ be a cobordism from in-boundary $S_{1}$ to out-boundary $S_{2}$, then we associate to $M$ the integral operator
+\begin{align*}
+  Z_{\mathrm{PI}}(M)
+  \colon
+  Z_{\mathrm{PI}}(S_{1})
+  =
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{1})
+    ,
+    \mathbb{C}
+  \right)
+  &\to
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{2})
+    ,
+    \mathbb{C}
+  \right)
+  =
+  Z_{\mathrm{PI}}(S_{2})
+\end{align*}
+defined by
+\begin{align*}
+  \left(
+    Z_{\mathrm{PI}}(M)(f)
+  \right)
+  (\phi_{2})
+  &:=
+  \int_{\mathcal{F}(S_{1})}
+  f(\phi_{1})
+  K_{M}
+  \left(
+    \phi_{1}
+    ,
+    \phi_{2}
+  \right)
+  D\phi_{1}
+\end{align*}
+for $\phi_{2} \in \mathcal{F}(S_{2})$, with integral kernel
+\begin{align*}
+  K_{M}
+  \left(
+    \phi_{1}
+    ,
+    \phi_{2}
+  \right)
+  &:=
+  \int_{\mathcal{D}_{M}(\phi_{1},\phi_{2})}
+  \exp(\mathrm{i}A(\phi))
+  D\phi
+\end{align*}
+where
+\begin{align*}
+  \mathcal{D}_{M}(\phi_{1},\phi_{2})
+  &:=
+  \left\lbrace
+    \phi
+    \in
+    \mathcal{F}(M)
+    \colon
+    \phi
+    \vert
+    S_{1}
+    =
+    \phi_{1}
+    ,
+    \phi
+    \vert
+    S_{2}
+    =
+    \phi_{2}
+  \right\rbrace
+\end{align*}
+Note that for the empty $(n-1)$-manifold $\emptyset$ the space of fields $\mathcal{F}(\emptyset)$ has only one element and hence
+\begin{align*}
+  Z_{\mathrm{PI}}(\emptyset)
+  \cong
+  \mathbb{C}
+\end{align*}
+Now each $n$-manifold $M$ with boundary $\partial M = S$ can be considered as a cobordism $M \colon \emptyset \to S$. Hence we basically obtain a linear map
+\begin{align*}
+  Z_{\mathrm{PI}}(M)
+  \colon
+  \mathbb{C}
+  &\to
+  Z_{\mathrm{PI}}(S)
+\end{align*}
+and this is equivalent to assigning an element of $Z_{\mathrm{PI}}(S)$ to $M$, since a linear map is fully determined by specifying it on a basis. Explicitly, let $f \in Z_{\mathrm{PI}}(\emptyset)$ and $\psi \in \mathcal{F}(S)$, then, writing $0$ for the unique field in $\mathcal{F}(\emptyset)$, we have
+\begin{align*}
+  \left(
+    Z_{\mathrm{PI}}(M)(f)
+  \right)
+  (\psi)
+  &=
+  \int_{\mathcal{F}(\emptyset)}
+  f(\phi_{0})
+  \left(
+    \int_{\mathcal{D}_{M}(\phi_{0},\psi)}
+    \exp(\mathrm{i}A(\phi))
+    D\phi
+  \right)
+  D\phi_{0}
+  \\
+  &=
+  \left(
+    \int_{\mathcal{D}_{M}(0,\psi)}
+    \exp(\mathrm{i}A(\phi))
+    D\phi
+  \right)
+  f(0)
+\end{align*}
+where we assumed the total measure of $\mathcal{F}(\emptyset)$ to be $1$. As we have diffeomorphism invariance for path integrals, we have an invariant assigned to $M$ which is the function in $Z_{\mathrm{PI}}(S)$ defined by
+\begin{align*}
+  \psi
+  &\mapsto
+  \int_{\mathcal{D}_{M}(0,\psi)}
+  \exp(\mathrm{i}A(\phi))
+  D\phi
+\end{align*}
+Note that
+\begin{align*}
+  \mathcal{D}_{M}(0,\psi)
+  &=
+  \left\lbrace
+    \phi
+    \in
+    \mathcal{F}(M)
+    \colon
+    \phi
+    \vert
+    S
+    =
+    \psi
+  \right\rbrace
+\end{align*}
+and in the case that $\partial M = \emptyset$ we have
+\begin{align*}
+  \mathcal{D}_{M}(0,0)
+  &=
+  \lbrace
+    \phi
+    \in
+    \mathcal{F}(M)
+  \rbrace
+\end{align*}
+Thus the invariant assigned to a closed manifold is just the partition function.
+\\
+Actually we have assigned an invariant to every cobordism, not only to those having an empty incoming boundary. The latter case may seem a little more common, as one obtains an element in the vector space associated to the boundary of the manifold then. Still, it is quite useful to have invariants for all cobordisms, as this enables us to compute invariants for manifolds by breaking them into simpler pieces and calculate the invariants for these pieces. To see how this works, let
+\begin{align*}
+  M_{1}
+  \colon
+  S_{1}
+  &\to
+  S_{2}
+  \qquad
+  \text{and}
+  \qquad
+  M_{2}
+  \colon
+  S_{2}
+  \to
+  S_{3}
+\end{align*}
+be two cobordism (classes) and let
+\begin{align*}
+  M
+  &=
+  M_{2}
+  \circ
+  M_{1}
+\end{align*}
+be the cobordism (class) obtained by gluing $M_{1}$ and $M_{2}$ along $S_{2}$. We now use the property that the action is {\glqq}sufficiently local{\grqq} to guarantee that if $\phi$ is a field on $M$ and
+\begin{align*}
+  \phi_{1}
+  &=
+  \phi
+  \vert
+  M_{1}
+  ,\qquad
+  \phi_{2}
+  =
+  \phi
+  \vert
+  M_{2}
+\end{align*}
+then we have
+\begin{align*}
+  A(\phi)
+  &=
+  A(\phi_{1})
+  +
+  A(\phi_{2})
+\end{align*}
+for the action. Additionally, we use that such a field $\phi$ is entirely determined by the restrictions to the $M_{i}$ and the $S_{i}$. With these properties we obtain for
+\begin{align*}
+  \psi_{1}
+  \in
+  \mathcal{F}(S_{1})
+  \qquad
+  \text{and}
+  \qquad
+  \psi_{3}
+  \in
+  \mathcal{F}(S_{3})
+\end{align*}
+that
+\begin{align*}
+  &
+  \int_{\mathcal{F}(S_{2})}
+  K_{M_{1}}(\psi_{1},\psi_{2})
+  K_{M_{2}}(\psi_{2},\psi_{3})
+  D\psi_{2}
+  \\
+  &=
+  \int_{\mathcal{F}(S_{2})}
+  \left(
+    \int_{\mathcal{D}_{M_{1}}(\psi_{1},\psi_{2})}
+    \exp(\mathrm{i}A(\phi_{1}))
+    D\phi_{1}
+  \right)
+  \left(
+    \int_{\mathcal{D}_{M_{2}}(\psi_{2},\psi_{3})}
+    \exp(\mathrm{i}A(\phi_{2}))
+    D\phi_{2}
+  \right)
+  D\psi_{2}
+  \\
+  &=
+  \int_{\mathcal{F}(S_{2})}
+  \int_{\mathcal{D}_{M_{1}}(\psi_{1},\psi_{2})}
+  \int_{\mathcal{D}_{M_{2}}(\psi_{2},\psi_{3})}
+  \exp
+  \left(
+    \mathrm{i}
+    \left(
+      A(\phi_{1})
+      +
+      A(\phi_{2})
+    \right)
+  \right)
+  D\phi_{2}
+  D\phi_{1}
+  D\psi_{2}
+  \\
+  &=
+  \int_{\mathcal{D}_{M}(\psi_{1},\psi_{3})}
+  \exp
+  \left(
+    \mathrm{i}
+    \left(
+      A(\phi \vert M_{1})
+      +
+      A(\phi \vert M_{2})
+    \right)
+  \right)
+  D\phi
+  \\
+  &=
+  \int_{\mathcal{D}_{M}(\psi_{1},\psi_{3})}
+  \exp(\mathrm{i}A(\phi))
+  D\phi
+  \\
+  &=
+  K_{M}(\psi_{1},\psi_{3})
+\end{align*}
+We should justify the third step in this calculation. In the second line in the parenthesized integrals we have fields
+\begin{align*}
+  \phi_{1}
+  \in
+  \mathcal{D}_{M_{1}}(\psi_{1},\psi_{2})
+  \qquad
+  \text{and}
+  \qquad
+  \phi_{2}
+  \in
+  \mathcal{D}_{M_{2}}(\psi_{2},\psi_{3})
+\end{align*}
+and since these fields coincide on $S_{2}$, they determine a field
+\begin{align*}
+  \phi
+  \in
+  \mathcal{D}_{M}(\psi_{1},\psi_{3})
+\end{align*}
+Conversely, if we have a field
+\begin{align*}
+  \phi
+  \in
+  \mathcal{D}_{M}(\psi_{1},\psi_{3})
+\end{align*}
+then the restrictions to $M_{1}$ and $M_{2}$ give fields in
+\begin{align*}
+  \mathcal{D}_{M_{1}}(\psi_{1},\psi_{2})
+  \qquad
+  \text{and}
+  \qquad
+  \mathcal{D}_{M_{2}}(\psi_{2},\psi_{3})
+\end{align*}
+for a $\psi_{2} \in \mathcal{F}(S_{2})$ determined by $\phi$. Thus the integration over
+\begin{align*}
+  \mathcal{D}_{M_{1}}(\psi_{1},\psi_{2})
+  ,\qquad
+  \mathcal{D}_{M_{2}}(\psi_{2},\psi_{3})
+  \qquad
+  \text{and}
+  \qquad
+  \mathcal{F}(S_{2})
+\end{align*}
+is the same as the integration over elements in $\mathcal{D}_{M}(\psi_{1},\psi_{3})$, which justifies the equality in the third step. The above calculation enables us to compute $Z_{\mathrm{PI}}(M)$ from $Z_{\mathrm{PI}}(M_{1})$ and $Z_{\mathrm{PI}}(M_{2})$ since
+\begin{align*}
+  \left(
+    \left(
+      Z_{\mathrm{PI}}(M_{2})
+      \circ
+      Z_{\mathrm{PI}}(M_{1})
+    \right)
+    (f)
+  \right)
+  (\psi_{3})
+  &=
+  \int_{\mathcal{F}(S_{2})}
+  \left(
+    \int_{\mathcal{F}(S_{1})}
+    f(\psi_{1})
+    K_{M_{1}}(\psi_{1},\psi_{2})
+    D\psi_{1}
+  \right)
+  K_{M_{2}}(\psi_{2},\psi_{3})  
+  D\psi_{2}
+  \\
+  &=
+  \int_{\mathcal{F}(S_{1})}
+  f(\psi_{1})
+  \left(
+    \int_{\mathcal{F}(S_{2})}
+    K_{M_{1}}(\psi_{1},\psi_{2})
+    K_{M_{2}}(\psi_{2},\psi_{3})
+    D\psi_{2}
+  \right)
+  D\psi_{1}
+  \\
+  &=
+  \int_{\mathcal{F}(S_{1})}
+  f(\psi_{1})
+  K_{M}(\psi_{1},\psi_{3})
+  D\psi_{1}
+  \\
+  &=
+  \left(
+    Z_{\mathrm{PI}}(M)(f)
+  \right)
+  (\psi_{3})
+\end{align*}
+for $f \in Z_{\mathrm{PI}}(S_{1})$. This shows that
+\begin{align*}
+  Z_{\mathrm{PI}}(M_{2} \circ M_{1})
+  &=
+  Z_{\mathrm{PI}}(M)
+  \\
+  &=
+  Z_{\mathrm{PI}}(M_{2})
+  \circ
+  Z_{\mathrm{PI}}(M_{1})
+\end{align*}
+So far we have for each closed $(n-1)$-manifold $S$ a vector space $Z_{\mathrm{PI}}(S)$ and for each diffeomorphism class of $n$-cobordisms $M$ between closed manifolds $S_{1},S_{2}$ a linear map
+\begin{align*}
+  Z_{\mathrm{PI}}(M)
+  \colon
+  Z_{\mathrm{PI}}(S_{1})
+  &\to
+  Z_{\mathrm{PI}}(S_{2})
+\end{align*}
+Additionally, $Z_{\mathrm{PI}}$ preserves composition, so the only thing we need for $Z_{\mathrm{PI}}$ to be a functor from $\mathbf{Cob}_{n}$ to $\mathbf{Vec}_{\mathbb{C}}$, is the preservation of identities, i.e.
+\begin{align*}
+  Z_{\mathrm{PI}}(S \times [0,1])
+  &=
+  \mathrm{id}_{Z_{\mathrm{PI}}(S)}
+\end{align*}
+since the class containing the cylinder is the identity morphism for the object $S$ in the category $\mathbf{Cob}_{n}$. The connection of this latter property to the path integral can be drawn using dual objects, but we will forgo this discussion here. See \cite{0a816f4c}, for example, for more on this.
+\\
+Instead we briefly discuss the behaviour of the path integral with respect to the monoidal structure of the categories involved here. Consider the disjoint union $S_{1} \sqcup S_{2}$ of two closed $(n-1)$-manifolds, then we have
+\begin{align*}
+  \mathcal{F}(S_{1} \sqcup S_{2})
+  \cong
+  \mathcal{F}(S_{1})
+  \times
+  \mathcal{F}(S_{2})
+\end{align*}
+Now, for a finite set $X$ the space $\mathrm{mor}_{\mathbf{Set}}(X,\mathbb{C})$ of functions from $X$ to $\mathbb{C}$ is nothing but the free vector space on $X$ with basis the maps
+\begin{align*}
+  \delta_{x_{0}}
+  \colon
+  X
+  &\to
+  \mathbb{C}
+  ,\qquad
+  \delta_{x_{0}}(x)
+  =
+  \begin{cases}
+    1
+    &\text{for }
+    x
+    =
+    x_{0}
+    \\
+    0
+    &\text{else}
+  \end{cases}
+\end{align*}
+for $x_{0} \in X$. Thus if $\mathcal{F}(S_{1})$ and $\mathcal{F}(S_{2})$ are finite\footnote{in fact, it will turn out that the state spaces for the functorial definition of a TQFT are finite-dimensional}, then
+\begin{align*}
+  Z_{\mathrm{PI}}
+  \left(
+    S_{1}
+    \sqcup
+    S_{2}
+  \right)
+  &=
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{1} \sqcup S_{2})
+    ,
+    \mathbb{C}
+  \right)
+  \\
+  &\cong
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{1})
+    \times
+    \mathcal{F}(S_{2})
+    ,
+    \mathbb{C}
+  \right)
+  \\
+  &\cong
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{1})
+    ,
+    \mathbb{C}
+  \right)
+  \otimes
+  \mathrm{mor}_{\mathbf{Set}}
+  \left(
+    \mathcal{F}(S_{2})
+    ,
+    \mathbb{C}
+  \right)
+  \\
+  &=
+  Z_{\mathrm{PI}}(S_{1})
+  \otimes
+  Z_{\mathrm{PI}}(S_{2})
+\end{align*}
+For the third step note that the bases of corresponding vector spaces are given by the elements of the form $\delta_{(\psi_{1},\psi_{2})}$ and $\delta_{\psi_{1}} \otimes \delta_{\psi_{2}}$, respectively, where $\psi_{1} \in \mathcal{F}(S_{1})$, $\psi_{2} \in \mathcal{F}(S_{2})$. Moreover, with similar heuristic arguments as those used for the preservation of composition and using the locality of the action which means that
+\begin{align*}
+  A(\phi_{1} \sqcup \phi_{2})
+  &=
+  A(\phi_{1})
+  +
+  A(\phi_{2})
+\end{align*}
+for $\phi_{1} \in \mathcal{F}(M_{1})$, $\phi_{2} \in \mathcal{F}(M_{2})$, one can see that
+\begin{align*}
+  Z_{\mathrm{PI}}
+  \left(
+    M_{1}
+    \sqcup
+    M_{2}
+  \right)
+  &\cong
+  Z_{\mathrm{PI}}(M_{1})
+  \otimes
+  Z_{\mathrm{PI}}(M_{2})
+\end{align*}
+holds for the disjoint union $M_{1} \sqcup M_{2}$ of two cobordisms
+\begin{align*}
+  M_{1}
+  \colon S_{1}
+  &\to
+  \tilde{S}_{1}
+  \qquad
+  \text{and}
+  \qquad
+  M_{2}
+  \colon
+  S_{2}
+  \to
+  \tilde{S}_{2}
+\end{align*}
+in such a way that we have a natural isomorphism
+\begin{align*}
+  Z_{\mathrm{PI}}(\cdot \sqcup \cdot)
+  &\Rightarrow
+  Z_{\mathrm{PI}}(\cdot) \otimes Z_{\mathrm{PI}}(\cdot)
+\end{align*}
+Now since $Z_{\mathrm{PI}}(\emptyset) \cong \mathbb{C}$, we see that $Z_{\mathrm{PI}}$ respects the monoidal structures of the categories. For more precision the coherence conditions would have to be checked in addition, of course, but we will not go into further detail here as this is just a heuristic motivation. One can morover convince oneself that $Z_{\mathrm{PI}}$ is compatible with the symmetric braiding structures of the categories.
+\\
+We did not check every detail for the definition of a symmetric monoidal functor here and also glossed over some other things like the orientation and compactness of the manifolds involved. But still, this heuristic motivation should (hopefully) give a good intuition why the functorial definition for a TQFT is a reasonable axiomatization.

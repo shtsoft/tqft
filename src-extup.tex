@@ -1,0 +1,345 @@
+%\nocite{dfcdc48c}
+%%%
+So far we extended the ordinary cobordism category $\mathbf{Cob}_{n}$ downwards by adding levels for lower dimensional manifolds. There is another way of extending $\mathbf{Cob}_{n}$, namely by not using diffeomorphism classes of cobordisms as morphisms but instead using also higher morphisms to keep track of these diffeomorphisms and how they are related to each other. For a pair of parallel $1$-cobordisms
+\begin{align*}
+  M_{1}
+  ,
+  M_{2}
+  \colon
+  S_{1}
+  &\to
+  S_{2}
+\end{align*}
+between objects $S_{1},S_{2}$ the set of orientation-preserving diffeomorphisms rel boundary $C_{rb}^{\infty}(M_{1},M_{2})$ usually comes with the so-called topology of uniform convergence of all derivatives, also called Whitney $C^{\infty}$ topology, and endowing all the diffeomorphism sets with this topology makes composition continuous. We can thus define a \textit{topologically enriched category}\footnote{a topologically enriched category is a category enriched over the category of (compactly generated) topological spaces} $\mathbf{D}(S_{1},S_{2})$ with objects $1$-cobordisms from $S_{1}$ to $S_{2}$ and morphisms the corresponding diffeomorphism sets with the above topology. This additional homotopical structure is lost in the classical definition of $\mathbf{Cob}_{n}$ and one might wish to include it in an elaborated version. As a further motivation the interested reader may have a look at \cite{dfcdc48c} for example. There the usual morphism sets $\mathrm{mor}_{\mathbf{Cob}_{n}}(S_{1},S_{2})$ are replaced by the classifying spaces\footnote{remember that the classifying space of a category is the geometric realization of its nerve} of the categories $\mathbf{D}(S_{1},S_{2})$ in order to describe symmetric monoidal functors into the category of chain complexes which yield TQFTs by passing to homology.
+\\
+The language of higher categories allows us to capture this structure in the light of the homotopy hypothesis which, from a homotopical perspective, allows us to replace a topological space by its fundamental $\infty$-groupoid. This means that instead of using the ordinary categories $\mathbf{D}(S_{1},S_{2})$ as mapping categories we use the corresponding $(\infty,1)$-categories obtained by replacing the morphism spaces of each $\mathbf{D}(S_{1},S_{2})$ by their fundamental $\infty$-groupoids. These $(\infty,1)$-categories are actually $(\infty,0)$-categories since diffeomorphisms - which are the $1$-morphisms here - are invertible. Hence the elaboration ${_{(\infty,1)}}\mathbf{Cob}_{n}$ of $\mathbf{Cob}_{n}$ can informally be described as an $(\infty,1)$-category as follows
+\begin{enumerate}
+\item[(0)]
+the objects of ${_{(\infty,1)}}\mathbf{Cob}_{n}$ are the objects of $\mathbf{Cob}_{n}$, i.e. closed oriented $(n-1)$-manifolds
+
+\item[(1)]
+for a pair of objects $S_{1},S_{2}$ in ${_{(\infty,1)}}\mathbf{Cob}_{n}$ a $1$-morphism from $S_{1}$ to $S_{2}$ is an oriented $n$-dimensional $1$-cobordism $M \colon S_{1} \to S_{2}$
+
+\item[(2)]
+for a pair of objects $S_{1},S_{2}$ in ${_{(\infty,1)}}\mathbf{Cob}_{n}$ and a pair of parallel $1$-morphisms $M_{1},M_{2} \colon S_{1} \to S_{2}$ a $2$-morphism from $M_{1}$ to $M_{2}$ is an orientation-preserving diffeomorphism rel boundary $f_{12}$ between them, written $f_{12} \colon M_{1} \Rightarrow M_{2}$
+
+\item[(3)]
+given a pair of objects $S_{1},S_{2}$ in ${_{(\infty,1)}}\mathbf{Cob}_{n}$, a pair of parallel $1$-morphisms $M_{1},M_{2} \colon S_{1} \to S_{2}$ and a pair of parallel $2$-morphisms $f,g$ from $M_{1}$ to $M_{2}$, then a $3$-morphism from $f$ to $g$ is a smooth homotopy between them
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(...)]
+higher morphisms are higher (smooth) homotopies between the lower ones
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(c)]
+\begin{enumerate}
+\item[(1)]
+composition of morphisms on level $1$ is given by gluing cobordisms
+
+\item[(2)]
+on level $2$ vertical and horizontal composition have to be distinguished
+\begin{enumerate}
+\item[(v)]
+vertical composition is given by the usual composition of functions
+
+\item[(h)]
+for the horizontal composition let $M_{12},M_{12}^{\backprime} \colon S_{1} \to S_{2}$ and $M_{23},M_{23}^{\backprime} \colon S_{1} \to S_{2}$ be $1$-morphisms and let $f_{12} \colon M_{12} \Rightarrow M_{12}^{\backprime}$ and $f_{23} \colon M_{23} \Rightarrow M_{23}^{\backprime}$ be $2$-morphisms, then their horizontal composition
+\begin{align*}
+  f_{23}
+  \circ^{\mathrm{h}}
+  f_{12}
+  \colon
+  M_{23}
+  \circ
+  M_{12}
+  &\Rightarrow
+  M_{23}^{\backprime}
+  \circ
+  M_{12}^{\backprime}
+\end{align*}
+is given by {\glqq}merging{\grqq} $f_{12}$ and $f_{23}$ into one function along their common {\glqq}boundary{\grqq} $S_{2}$ which basically means that
+\begin{align*}
+  f_{23}
+  \circ^{\mathrm{h}}
+  f_{12}
+  (x)
+  &=
+  f_{12}(x)
+  \in
+  M_{12}^{\backprime}
+  \qquad
+  \text{for }
+  x
+  \in
+  M_{12}
+  \\
+  f_{23}
+  \circ^{\mathrm{h}}
+  f_{12}
+  (x)
+  &=
+  f_{23}(x)
+  \in
+  M_{23}^{\backprime}
+  \qquad
+  \text{for }
+  x
+  \in
+  M_{23}
+\end{align*}
+Note that this is well-defined, at least up to homotopy, since $f_{12}$ and $f_{23}$ basically have to coincide on $S_{2}$ as they are diffeomorphisms rel boundary, but strictly speaking one has to take the subtleties of gluing cobordisms into account, of course.
+\end{enumerate}
+
+\item[(3)]
+on the level of $3$-morphisms we have (smooth) homotopies between diffeomorphisms and there are three ways of composing
+\begin{enumerate}
+\item[(i)]
+given $2$-morphisms $f_{12},f_{12}^{\backprime} \colon M_{1} \Rightarrow M_{2}$ and $f_{23},f_{23}^{\backprime} \colon M_{2} \Rightarrow M_{3}$ and $3$-morphisms
+\begin{align*}
+\hspace{6em}
+  h_{1}
+  \colon
+  f_{12}
+  &\Rrightarrow
+  f_{12}^{\backprime}
+  \quad
+  \text{i.e.}
+  \quad
+  h_{1}
+  \colon
+  M_{1}
+  \times
+  [0,1]
+  \to
+  M_{2}
+  ,\quad
+  h_{1}(\cdot,0)
+  =
+  f_{12}
+  ,\quad
+  h_{1}(\cdot,1)
+  =
+  f_{12}^{\backprime}
+  \\
+  h_{2}
+  \colon
+  f_{23}
+  &\Rrightarrow
+  f_{23}^{\backprime}
+  \quad
+  \text{i.e.}
+  \quad
+  h_{2}
+  \colon
+  M_{2}
+  \times
+  [0,1]
+  \to
+  M_{3}
+  ,\quad
+  h_{2}(\cdot,0)
+  =
+  f_{23}
+  ,\quad
+  h_{2}(\cdot,1)
+  =
+  f_{23}^{\backprime}
+\end{align*}
+then, as vertical composition for $2$-morphisms is just function composition, we obtain a new $3$-morphism between the vertical compositions by
+\begin{align*}
+  &
+  h_{2}
+  \circ^{i}
+  h_{1}
+  \colon
+  f_{23}
+  \circ^{\mathrm{v}}
+  f_{12}
+  \Rrightarrow
+  f_{23}^{\backprime}
+  \circ^{\mathrm{v}}
+  f_{12}^{\backprime}
+  \\
+  &
+  h_{2}
+  \circ^{i}
+  h_{1}
+  (x,t)
+  :=
+  h_{2}(h_{1}(x,t),t)
+  ,\quad
+  (x,t)
+  \in
+  M_{1}
+  \times
+  [0,1]
+\end{align*}
+
+\item[(ii)]
+given $2$-morphisms $f_{12},f_{12}^{\backprime} \colon M_{12} \Rightarrow M_{12}^{\backprime}$ and $f_{23},f_{23}^{\backprime} \colon M_{23} \Rightarrow M_{23}^{\backprime}$ and $3$-morphisms
+\begin{align*}
+\hspace{6em}
+  h_{1}
+  \colon
+  f_{12}
+  &\Rrightarrow
+  f_{12}^{\backprime}
+  \quad
+  \text{i.e.}
+  \quad
+  h_{1}
+  \colon
+  M_{12}
+  \times
+  [0,1]
+  \to
+  M_{12}^{\backprime}
+  ,\quad
+  h_{1}(\cdot,0)
+  =
+  f_{12}
+  ,\quad
+  h_{1}(\cdot,1)
+  =
+  f_{12}^{\backprime}
+  \\
+  h_{2}
+  \colon
+  f_{23}
+  &\Rrightarrow
+  f_{23}^{\backprime}
+  \quad
+  \text{i.e.}
+  \quad
+  h_{2}
+  \colon
+  M_{23}
+  \times
+  [0,1]
+  \to
+  M_{23}^{\backprime}
+  ,\quad
+  h_{2}(\cdot,0)
+  =
+  f_{23}
+  ,\quad
+  h_{2}(\cdot,1)
+  =
+  f_{23}^{\backprime}
+\end{align*}
+then these $3$-morphisms can be merged into a new one between the horizontal compositions of the $2$-morphisms in much the same way as the $2$-morphisms themselves, so basically we have
+\begin{align*}
+\hspace{8em}
+  h_{2}
+  \circ^{ii}
+  h_{1}
+  \colon
+  f_{23}
+  \circ^{\mathrm{h}}
+  f_{12}
+  \Rrightarrow
+  f_{23}^{\backprime}
+  \circ^{\mathrm{h}}
+  f_{12}^{\backprime}
+  \quad
+  \text{i.e.}
+  \quad
+  &
+  h_{2}
+  \circ^{ii}
+  h_{1}
+  \colon
+  \left(
+    M_{23}
+    \circ
+    M_{12}
+  \right)
+  \times
+  [0,1]
+  \to
+  M_{23}^{\backprime}
+  \circ
+  M_{12}^{\backprime}
+  \\
+  &
+  h_{2}
+  \circ^{ii}
+  h_{1}
+  (x,\cdot)
+  :=
+  h_{1}(x,\cdot)
+  \qquad
+  \text{for }
+  x
+  \in
+  M_{12}
+  \\
+  &
+  h_{2}
+  \circ^{ii}
+  h_{1}
+  (x,\cdot)
+  :=
+  h_{2}(x,\cdot)
+  \qquad
+  \text{for }
+  x
+  \in
+  M_{23}
+\end{align*}
+
+\item[(iii)]
+given two $3$-morphisms $h_{12} \colon f_{1} \Rrightarrow f_{2}$ and $h_{23} \colon f_{2} \Rrightarrow f_{3}$ they can be patched together as usual for homotopies, that is, their composition is
+\begin{align*}
+  &
+  h_{23}
+  \circ^{iii}
+  h_{12}
+  \colon
+  f_{1}
+  \Rrightarrow
+  f_{3}
+  \\
+  &
+  h_{23}
+  \circ^{iii}
+  h_{12}(\cdot,t)
+  :=
+  h_{12}(\cdot,2t)
+  \qquad
+  \text{for }
+  t
+  \in
+  [0,0.5]
+  \\
+  &
+  h_{23}
+  \circ^{iii}
+  h_{12}(\cdot,t)
+  :=
+  h_{23}(\cdot,2t-1)
+  \qquad
+  \text{for }
+  t
+  \in
+  [0.5,1]
+\end{align*}
+\end{enumerate}
+
+\item[(...)]
+higher homotopies can be composed in the same way with the difference that there are successively further directions in which one can compose similar to the $iii$-composition of $3$-morphisms
+\end{enumerate}
+
+\item[(s)]
+using the disjoint union one can again endow ${_{(\infty,1)}}\mathbf{Cob}_{n}$ with a symmetric monoidal structure
+\end{enumerate}

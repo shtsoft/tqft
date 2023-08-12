@@ -1,0 +1,374 @@
+%\nocite{bf5195ee}
+%\nocite{0a816f4c}
+%\nocite{222239ff}
+%\nocite{d37d0fca}
+%\nocite{dfcdc48c}
+%\nocite{ee9a1449}
+%\nocite{00000001}
+%%%
+Now one may wonder whether there is an equally easy classification for TQFTs in higher dimensions, in particular whether one datum suffices to determine a TQFT. We thus continue with a short overview of the classification of 2-dimensional ordinary TQFTs, i.e. symmetric monoidal functors
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Cob}_{2}
+  &\to
+  \mathbf{Vec}_{K}
+\end{align*}
+We explore a generators-and-relations approach. The only connected closed smooth 1-manifold is, up to diffeomorphism, the circle $S^{1}$ and as there is an orientation-reversing diffeomorphism on $S^{1}$ the orientation does not really matter. Thus all objects of $\mathbf{Cob}_{2}$ are orientation-preserving diffeomorphic to a finite disjoint union of circles, so as a set of generators for $\mathbf{Cob}_{2}$ on the level of objects we can take $G_{1} = \lbrace S^{1} \rbrace$. On the level of morphisms one can show, e.g. using Morse theory (see appendix), that the following cobordisms suffice to build up all equivalence classes of smooth cobordisms by composition and disjoint union, which means that any surface can basically be chopped into these pieces
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw},scale=0.9,every node/.style={transform shape}]
+  %pants
+  \pic[tqft/pair of pants,name=pp,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(pp-incoming boundary 1),above=3pt,font=\small]{$S^{1}$};
+  \node[at=(pp-outgoing boundary 1),below=4pt,font=\small]{$S^{1}$};
+  \node[at=(pp-outgoing boundary 2),below=4pt,font=\small]{$S^{1}$};
+
+  %reverse pants
+  \pic[tqft/reverse pair of pants,name=rp,anchor={(-0.3,0)},at=(pp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(rp-incoming boundary 1),above=3pt,font=\small]{$S^{1}$};
+  \node[at=(rp-incoming boundary 2),above=3pt,font=\small]{$S^{1}$};
+  \node[at=(rp-outgoing boundary 1),below=4pt,font=\small]{$S^{1}$};
+
+  %cup
+  \pic[tqft/cup,name=cup,anchor={(-0.15,-0.4)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(cup-incoming boundary 1),above=3pt,font=\small]{$S^{1}$};
+
+  %cap
+  \pic[tqft/cap,name=cap,anchor={(-0.0,0.82)},at=(cup-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(cap-outgoing boundary 1),below=4pt,font=\small]{$S^{1}$};
+
+  %braiding
+  %left-right
+  \pic[tqft/cylinder to next,name=l,boundary separation=2.5cm,anchor={(-2.4,0)},at=(rp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(l-incoming boundary 1),above=3pt,font=\small]{$S^{1}$};
+  \node[at=(l-outgoing boundary 1),below=4pt,font=\small]{$S^{1}$};
+  %right-left
+  \pic[tqft/cylinder to prior,name=r,boundary separation=2.5cm,anchor={(0.5,0)},at=(l-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(r-incoming boundary 1),above=3pt,font=\small]{$S^{1}$};
+  \node[at=(r-outgoing boundary 1),below=4pt,font=\small]{$S^{1}$};
+  \node[at=(r-between first incoming and first outgoing),right=1.2cm,font=\small]{$\mathsf{B}(S^{1},S^{1})$};
+
+  %cylinder
+  \pic[tqft/cylinder,name=c,anchor={(-0.35,0)},at=(r-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(c-incoming boundary 1),above=3pt,font=\small]{$S^{1}$};
+  \node[at=(c-outgoing boundary 1),below=4pt,font=\small]{$S^{1}$};
+  \node[at=(c-between first incoming and first outgoing),right=0.7cm,font=\small]{$\mathrm{id}_{S^{1}}$};
+\end{tikzpicture}
+\caption{Illustration of generating morphisms for $\mathbf{Cob}_{2}$}
+\label{fig:generators}
+\end{figure}
+\\
+All boundary components are circles $S^{1}$, which is why we usually omit the label from now on. The first and second cobordism are often called pair of pants and reverse pair of pants, respectively. We denote the corresponding morphisms by $PP$ and $RP$. We call the third and fourth cobordism cup and cap and denote the corresponding morphisms accordingly by $CUP$ and $CAP$. The identity $\mathrm{id}_{S^{1}}$ and the braiding $\mathsf{B}(S^{1},S^{1})$ are not needed in the set $G_{1}$ of generators as they are automatically included in a freely generated symmetric monoidal category. Thus we take
+\begin{align*}
+  G_{1}
+  &=
+  \lbrace
+    PP
+    ,
+    RP
+    ,
+    CUP
+    ,
+    CAP
+  \rbrace
+\end{align*}
+for the morphism generators. There are several relations for these generators. We start with the relations involving {\glqq}sewing in a disc{\grqq} which means that we close one of the out-boundaries of the pair of pants, or one of the in-boundaries of the reverse pair of pants, with a disc. To do this in a smooth way we use the cup and the cap and obtain the follwing (illustrations of) relations
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw},scale=0.65,every node/.style={transform shape}]
+  %left
+  %reverse pants sewed right
+  \pic[tqft/reverse pair of pants,name=rp,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/cylinder,name=rc,anchor=outgoing boundary 1,at=(rp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cap,name=cap,anchor=outgoing boundary 1,at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(rp-incoming boundary 2),right=1.1cm]{$=$};
+  %cylinder
+  \pic[tqft/cylinder,name=rid,anchor={(-0.3,0.5)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(rid-between first incoming and first outgoing),right=1.3cm]{$=$};
+  %reverse pants sewed left
+  \pic[tqft/reverse pair of pants,name=rp2,anchor={(-1.6,0)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/cap,name=cap2,anchor=outgoing boundary 1,at=(rp2-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder,name=rc2,anchor=outgoing boundary 1,at=(rp2-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  
+  %right
+  %pants sewed right
+  \pic[tqft/pair of pants,name=pp,anchor={(-6.5,0)},at=(rc-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder,name=c,at=(pp-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/cup,name=cup,at=(pp-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(pp-outgoing boundary 2),right=1.1cm]{$=$};
+  %cylinder
+  \pic[tqft/cylinder,name=id,anchor={(-0.3,0.5)},at=(pp-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(id-between first incoming and first outgoing),right=1.3cm]{$=$};
+  %pants sewed left
+  \pic[tqft/pair of pants,name=pp2,anchor={(-2.6,0)},at=(pp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cup,name=cup2,at=(pp2-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder,name=c2,at=(pp2-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+\end{tikzpicture}
+\caption{Illustration of sewing in discs}
+\label{fig:sewing}
+\end{figure}
+\\
+The cylinders representing the identity are only used to give a correct composition in the category.
+\\
+Next, we have the following relations we call associativity and coassociativity
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw},scale=0.65,every node/.style={transform shape}]
+  %left
+  %right associative
+  \pic[tqft/reverse pair of pants,name=rp,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/cylinder to next,name=rcl,anchor=outgoing boundary 1,at=(rp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/reverse pair of pants,name=rpr,anchor=outgoing boundary 1,at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(rp-incoming boundary 2),right=2cm]{$=$};
+  %left associative
+  \pic[tqft/reverse pair of pants,name=rp2,anchor={(-1.3,0)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/reverse pair of pants,name=rpl,anchor=outgoing boundary 1,at=(rp2-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to prior,name=rcr,anchor=outgoing boundary 1,at=(rp2-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+
+  %right
+  %right coassociative
+  \pic[tqft/pair of pants,name=pp,anchor={(-7,0)},at=(rcl-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to prior,name=cl,at=(pp-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \pic[tqft/pair of pants,name=ppr,at=(pp-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(pp-outgoing boundary 2),right=2cm]{$=$};
+  %left coassociative
+  \pic[tqft/pair of pants,name=pp2,anchor={(-2.3,0)},at=(pp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/pair of pants,name=ppl,at=(pp2-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/cylinder to next,name=cr,at=(pp2-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+\end{tikzpicture}
+\caption{Illustration of associativity and coassociativity}
+\label{fig:assoc}
+\end{figure}
+\\
+Furthermore, the following relations are called commutativity and cocommutativity
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw},scale=0.7,every node/.style={transform shape}]
+  %left
+  %reverse pants
+  \pic[tqft/reverse pair of pants,name=rp,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  %braiding
+  \pic[tqft/cylinder to prior,name=rcl,boundary separation=4cm,anchor=outgoing boundary 1,at=(rp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to next,name=rcr,boundary separation=4cm,anchor=outgoing boundary 1,at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(rp-incoming boundary 2),right=1.5cm]{$=$};
+  %reverse pants
+  \pic[tqft/reverse pair of pants,name=rp2,anchor={(-0.95,0.5)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  
+  %right
+  %pants
+  \pic[tqft/pair of pants,name=pp,anchor={(-5.5,0)},at=(rcr-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  %braiding
+  \pic[tqft/cylinder to next,name=cl,boundary separation=4cm,at=(pp-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \pic[tqft/cylinder to prior,name=cr,boundary separation=4cm,at=(pp-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing lower boundary component/.style={draw}];
+  \node[at=(pp-outgoing boundary 2),right=1.5cm]{$=$};
+  %pants
+  \pic[tqft/pair of pants,name=pp2,anchor={(-1.8,-0.5)},at=(pp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+\end{tikzpicture}
+\caption{Illustration of commutativity and cocommutativity}
+\label{fig:comm}
+\end{figure}
+\\
+Finally, we have the so-called Frobenius relation
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism/.style={draw},scale=0.7,every node/.style={transform shape}]
+  %left
+  \pic[tqft/reverse pair of pants,name=rp,every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/pair of pants,name=rpp,anchor=outgoing boundary 1,at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to prior,name=lc,anchor=outgoing boundary 1,at=(rp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to prior,name=rc,at=(rpp-outgoing boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \node[at=(rp-incoming boundary 2),right=3.2cm]{$=$};
+  
+  %middle
+  \pic[tqft/pair of pants,name=pp,anchor={(-1.8,0)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/reverse pair of pants,name=rp3,anchor=outgoing boundary 1,at=(pp-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(pp-incoming boundary),right=1.9cm]{$=$};
+  
+  %right
+  \pic[tqft/reverse pair of pants,name=rp2,anchor={(-4.7,0)},at=(rp-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+  \pic[tqft/pair of pants,name=lpp,anchor=outgoing boundary 2,at=(rp2-incoming boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to next,name=rc2,anchor=outgoing boundary 1,at=(rp2-incoming boundary 2),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \pic[tqft/cylinder to next,name=lc2,at=(lpp-outgoing boundary 1),every incoming lower boundary component/.style={draw,ultra thin,dashed},every outgoing boundary component/.style={draw}];
+\end{tikzpicture}
+\caption{Illustration of the Frobenius relation}
+\label{fig:frobenius}
+\end{figure}
+\\
+Now the set $G_{2}$ of relations consists of all pairs of morphisms given by one of the above equalities. With the help of Morse theory one can show that this set of relations is sufficient, so that $\mathbf{Cob}_{2}$ is the symmetric monoidal category freely generated by $G_{0},G_{1},G_{2}$. In fact, some of these relations are superfluous and can be omitted. The associativity and coassociativity relations, for example, are both not really needed but also some of the other relations are not necessary. The choice of generators and relations is not unique and there even is no unique minimal choice. The relations here are chosen so because they nicely identify the algebraic structure that corresponds to 2-dimensional TQFTs which we are to explore now briefly.
+\\
+For a 2-dimensional TQFT $Z \in \mathrm{ob}_{\mathbf{TQFT}_{2}}$ we have a finite-dimensional vector space $V := Z(S^{1})$ associated to the generating object $S^{1}$. This is all we need on the level of objects. On the level of morphisms we start with the reverse pair of pants $RP \in G_{1}$ which has two circles as in-boundary and one circle as out-boundary. Hence, corresponding to $Z(RP)$ we have a linear map
+\begin{align*}
+  \mu
+  \colon
+  V
+  \otimes
+  V
+  &\to
+  V
+\end{align*}
+This can be conceived as a bilinear multiplication on $V$, i.e. it makes $V$ into an algebra. The associativity relation in $G_{2}$ shows that $\mu$ is associative. For the cap $CAP \in G_{1}$ which has no in-boundary and a circle as out-boundary we have a linear map corresponding to $Z(CAP)$ of the form
+\begin{align*}
+  e
+  \colon
+  K
+  &\to
+  V
+\end{align*}
+One of the relations we called sewing in a disc shows that this map is a unit for the multiplication in the sense that
+\begin{align*}
+  \mu
+  \left(
+    v
+    ,
+    e(1)
+  \right)
+  &=
+  v
+  =
+  \mu
+  \left(
+    e(1)
+    ,
+    v
+  \right)
+\end{align*}
+for $v \in V$. So we see that $V$ has the structure of a unital associative algebra. Furthermore, the commutativity relation in $G_{2}$ implies that the multiplication is commutative. In much the same way there is a cocommutative and coassociative comultiplication
+\begin{align*}
+  \Delta
+  \colon
+  V
+  &\to
+  V
+  \otimes
+  V
+\end{align*}
+corresponding to $Z(PP)$ and a counit
+\begin{align*}
+  \varepsilon
+  \colon
+  V
+  &\to
+  K
+\end{align*}
+corresponding to $Z(CUP)$. Finally, the Frobenius relation from $G_{2}$ gives a relation between the multiplication and the comultiplication, again called Frobenius relation, stating that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=2.7em,column sep=4.2em]
+  V \otimes (V \otimes V)
+  \ar{dd}[swap]{\mathsf{A}^{-1}(V,V,V)}
+  &
+  V \otimes V
+  \ar{r}{\Delta \otimes \mathrm{id}_{V}}
+  \ar{d}{\mu}
+  \ar{l}[swap]{\mathrm{id}_{V} \otimes \Delta}
+  &
+  (V \otimes V) \otimes V
+  \ar{dd}{\mathsf{A}(V,V,V)}
+  \\
+  &
+  V
+  \ar{d}{\Delta}
+  &
+  \\
+  (V \otimes V) \otimes V
+  \ar{r}{\mu \otimes \mathrm{id}_{V}}
+  &
+  V \otimes V
+  &
+  V \otimes (V \otimes V)
+  \ar{l}[swap]{\mathrm{id}_{V} \otimes \mu}
+\end{tikzcd}
+\end{equation*}
+where $\mathsf{A}$ is the associator in $\mathbf{Vec}_{K}$. Altogether we find that $V$ is a so called commutative Frobenius algebra. For a \textbf{Frobenius algebra} it is actually enough to demand an algebra structure and a coalgebra structure on a vector space that satisfy the Frobenius relation. This automatically ensures associativity and coassociativity. It also already implies that $V$ is finite-dimensional. Moreover, it is enough to demand either commutativity or cocommutativity as they mutually imply each other. There are other equivalent definitions for a Frobenius algebra which do not explicitly mention the coalgebra structure. The reason we chose to give this symmetric definition is that one is immediately led to the right notion of a morphism between Frobenius algebras as being an algebra morphism and a coalgebra morphism at the same time. This means that given two Frobenius algebras
+\begin{align*}
+  \left(
+    V
+    ,
+    \mu
+    ,
+    e
+    ,
+    \Delta
+    ,
+    \varepsilon
+  \right)
+  \qquad
+  \text{and}
+  \qquad
+  \left(
+    V^{\backprime}
+    ,
+    \mu^{\backprime}
+    ,
+    e^{\backprime}
+    ,
+    \Delta^{\backprime}
+    ,
+    \varepsilon^{\backprime}
+  \right)
+\end{align*}
+a morphism between them is a linear map $\phi \colon V \to V^{\backprime}$ such that the following diagrams commute
+\begin{equation*}
+\begin{tikzcd}[row sep=2.7em,column sep=3.6em]
+  V \otimes V
+  \ar{r}{\mu}
+  \ar{d}[swap]{\phi \otimes \phi}
+  &
+  V
+  \ar{d}{\phi}
+  \\
+  V^{\backprime} \otimes V^{\backprime}
+  \ar{r}{\mu^{\backprime}}
+  &
+  V^{\backprime}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=2.7em,column sep=3.6em]
+  K
+  \ar{r}{e}
+  \ar{rd}[swap]{e^{\backprime}}
+  &
+  V
+  \ar{d}{\phi}
+  \\
+  &
+  V^{\backprime}
+\end{tikzcd}
+\qquad
+\qquad
+\begin{tikzcd}[row sep=2.7em,column sep=3.6em]
+  V \otimes V
+  \ar{d}[swap]{\phi \otimes \phi}
+  &
+  V
+  \ar{d}{\phi}
+  \ar{l}[swap]{\Delta}
+  \\
+  V^{\backprime} \otimes V^{\backprime}
+  &
+  V^{\backprime}
+  \ar{l}[swap]{\Delta^{\backprime}}
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[row sep=2.7em,column sep=3.6em]
+  K
+  &
+  V
+  \ar{d}{\phi}
+  \ar{l}[swap]{\varepsilon}
+  \\
+  &
+  V^{\backprime}
+  \ar{ul}{\varepsilon^{\backprime}}
+\end{tikzcd}
+\end{equation*}
+The Frobenius algebras with these morphisms constitute a category $\mathbf{FA}_{K}$ and this category is in fact a groupoid. Furthermore, taking the commutative Frobenius algebras as objects we obtain a full subcategory called $\mathbf{cFA}_{K}$ which of course is again a groupoid. Now, exploring the correspondences above in more detail one can show that they induce an equivalence between $\mathbf{TQFT}_{2}$ and $\mathbf{cFA}_{K}$ so that we indeed have a classification of 2-dimensional TQFTs in terms of an algebraic structure.
+\\
+There is yet another reason to define a Frobenius algebra as we did above, namely that it can immediately be generalized to the definition of a Frobenius object internal to a monoidal category and similarly a commutative Frobenius object internal to a symmetric monoidal category. For the general setting of monoids internal to (symmetric) monoidal categories the curious reader may have a look at \cite{00000001}. A (commutative) Frobenius algebra is then a (commutative) Frobenius object internal to $\mathbf{Vec}_{K}$. In this more general setting one can form the category of Frobenius objects $\mathbf{cFrob}(\mathbf{C})$ internal to the symmetric monoidal category $\mathbf{C}$. Moreover one can show that $\mathbf{Cob}_{2}$ basically is the free symmetric monoidal category on one commutative Frobenius object and conclude that there is an equivalence of the categories of symmetric monoidal functors $\mathrm{func}^{\otimes,\mathrm{sym}}(\mathbf{Cob}_{2},\mathbf{C})$ and commutative Frobenius objects $\mathbf{cFrob}(\mathbf{C})$. The above classification for 2-dimensional TQFTs is then the special case for the vector space category, $\mathbf{C} = \mathbf{Vec}_{K}$.
+\\
+For an overview of this classification see e.g. \cite{0a816f4c} and for a fully detailed description the reader is referred to \cite{bf5195ee}. The method of proof there relies on the classification of surfaces (with boundary) so that this method cannot be generalized to higher dimensions. However, there is another proof that uses Cerf theory instead, which basically is a parametrized version of Morse theory. This approach was first suggested by Sawin \cite{222239ff} and full details can be found in the appendix of a work of Moore and Segal \cite{ee9a1449}. This method of proof is generalized to be applicable to extended 2-dimensional TQFTs in \cite{d37d0fca} by Schommer-Pries which treats extended 2-dimensional TQFTs in the language of bicategories (weak 2-categories) in detail. The work includes a systematic approach to the generators-and-relations description of free symmetric monoidal categories in this more general setting. The techniques therein have the potential to be generalized to higher dimensional extended TQFTs. Yet this is not what is done in the work of Lurie\footnote{which in fact pre-dates \cite{d37d0fca}} \cite{dfcdc48c} whose method of proof is quite different and whose formulation, which we want to give here, is cast in the somewhat more elaborate language of $(\infty,n)$-categories. Lurie's less elementary approach to the proof uses an induction and homotopy theoretic techniques, but Morse theory still plays an important role, too. In the next section we will explore what extended TQFTs are and how one arrives there.

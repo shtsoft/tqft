@@ -1,0 +1,738 @@
+%\nocite{e837ef86}
+%\nocite{5175de60}
+%\nocite{00000001}
+%%%
+As we will be concernded with symmetric monoidal categories and dual objects all the time here, we briefly want to recall the definitions as given, for example, in \cite{00000001}. A set $\mathcal{M}_{\mathbf{C}}$ is a \textbf{monoidal category} if it is a $6$-tuple
+\begin{align*}
+  \left(
+    \mathbf{C},
+    \otimes,
+    \mathsf{A},
+    1,
+    \mathsf{L},
+    \mathsf{R}
+  \right)
+\end{align*}
+consisting of
+\begin{enumerate}
+\item[(1)]
+a category $\mathbf{C}$
+\item[(2)]
+a functor
+\begin{align*}
+  \cdot
+  \otimes
+  \cdot
+  \doteq
+  \otimes
+  \colon
+  \mathbf{C}
+  \times
+  \mathbf{C}
+  &\rightarrow
+  \mathbf{C}
+\end{align*}
+\item[(3)]
+for the functors
+\begin{align*}
+  \left(
+    \cdot
+    \otimes
+    \cdot
+  \right)
+  \otimes
+  \cdot
+  \colon
+  \mathbf{C}
+  \times
+  \mathbf{C}
+  \times
+  \mathbf{C}
+  &\rightarrow
+  \mathbf{C}
+  \\
+  (X_{1},X_{2},X_{3})
+  &\mapsto
+  \otimes(\otimes(X_{1},X_{2}),X_{3})
+  \\
+  (f_{12},f_{34},f_{56})
+  &\mapsto
+  \otimes(\otimes(f_{12},f_{34}),f_{56})
+  \\\\
+  \cdot
+  \otimes
+  \left(
+    \cdot
+    \otimes
+    \cdot
+  \right)
+  \colon
+  \mathbf{C}
+  \times
+  \mathbf{C}
+  \times
+  \mathbf{C}
+  &\rightarrow
+  \mathbf{C}
+  \\
+  (X_{1},X_{2},X_{3})
+  &\mapsto
+  \otimes(X_{1},\otimes(X_{2},X_{3}))
+  \\
+  (f_{12},f_{34},f_{56})
+  &\mapsto
+  \otimes(f_{12},\otimes(f_{34},f_{56}))
+\end{align*}
+a natural isomorphism
+\begin{align*}
+  \mathsf{A}
+  \colon
+  \left(
+    \cdot
+    \otimes
+    \cdot
+  \right)
+  \otimes
+  \cdot
+  &\Rightarrow
+  \cdot
+  \otimes
+  \left(
+    \cdot
+    \otimes
+    \cdot
+  \right)
+\end{align*}
+\item[(4)]
+an object\footnote{this is not to be confused with terminal objects, though sometimes they coincide} $1$ of $\mathrm{ob}_{\mathbf{C}}$
+\item[(5)]
+for the functor
+\begin{align*}
+  \otimes(1,\cdot)
+  \colon
+  \mathbf{C}
+  &\rightarrow
+  \mathbf{C}
+  \\
+  X
+  &\mapsto
+  \otimes(1,X)
+  \\
+  f_{12}
+  &\mapsto
+  \otimes(\mathrm{id}_{1},f_{12})
+\end{align*}
+a natural isomorphism
+\begin{align*}
+  \mathsf{L}
+  \colon
+  \otimes(1,\cdot)
+  &\Rightarrow
+  \mathrm{id}_{\mathbf{C}}
+\end{align*}
+\item[(6)]
+for the functor
+\begin{align*}
+  \otimes(\cdot,1)
+  \colon
+  \mathbf{C}
+  &\rightarrow
+  \mathbf{C}
+  \\
+  X
+  &\mapsto
+  \otimes(X,1)
+  \\
+  f_{12}
+  &\mapsto
+  \otimes(f_{12},\mathrm{id}_{1})
+\end{align*}
+a natural isomorphism
+\begin{align*}
+  \mathsf{R}
+  \colon
+  \otimes(\cdot,1)
+  &\Rightarrow
+  \mathrm{id}_{\mathbf{C}}
+\end{align*}
+\end{enumerate}
+such that
+\begin{enumerate}
+\item[(MC1)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.5em,column sep=0.4em]
+  &
+  (X_{1} \otimes X_{2})
+  \otimes
+  (X_{3} \otimes X_{4})
+  \arrow{dr}{\mathsf{A}(X_{1},X_{2},X_{3} \otimes X_{4})}
+  &
+  \\
+  \left(
+    (X_{1} \otimes X_{2})
+    \otimes
+    X_{3}
+  \right)
+  \otimes
+  X_{4}
+  \arrow{ur}{\mathsf{A}(X_{1} \otimes X_{2},X_{3},X_{4})}
+  \arrow[swap]{d}{\mathsf{A}(X_{1},X_{2},X_{3}) \otimes \mathrm{id}_{X_{4}}}
+  &
+  &
+  X_{1}
+  \otimes
+  \left(
+    X_{2}
+    \otimes
+    (X_{3} \otimes X_{4})
+  \right)
+  \\
+  \left(
+    X_{1}
+    \otimes
+    (X_{2} \otimes X_{3})
+  \right)
+  \otimes
+  X_{4}
+  \arrow{rr}{\mathsf{A}(X_{1},X_{2} \otimes X_{3},X_{4})}
+  &
+  &
+  X_{1}
+  \otimes
+  \left(
+    (X_{2} \otimes X_{3})
+    \otimes
+    X_{4}
+  \right)
+  \arrow[swap]{u}{\mathrm{id}_{X_{1}} \otimes \mathsf{A}(X_{2},X_{3},X_{4})}
+\end{tikzcd}
+\end{equation*}
+commutes
+\item[(MC2)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[sep=large]
+  (X_{1} \otimes 1)
+  \otimes
+  X_{2}
+  \arrow{rr}{\mathsf{A}(X_{1},1,X_{2})}
+  \arrow[swap]{dr}{\mathsf{R}(X_{1}) \otimes \mathrm{id}_{X_{2}}}
+  &
+  &
+  X_{1}
+  \otimes
+  (1 \otimes X_{2})
+  \arrow{dl}{\mathrm{id}_{X_{1}} \otimes \mathsf{L}(X_{2})}
+  \\
+  &
+  X_{1}
+  \otimes
+  X_{2}
+  &
+\end{tikzcd}
+\end{equation*}
+commutes
+\end{enumerate}
+The sets given by the coordinates of a monoidal category
+\begin{align*}
+  \mathcal{M}_{\mathbf{C}}
+  &=
+  \left(
+    \mathbf{C},
+    \otimes,
+    \mathsf{A},
+    1,
+    \mathsf{L},
+    \mathsf{R}
+  \right)
+\end{align*}
+have names in their own right.
+\begin{enumerate}
+\item[(1)]
+$\mathbf{C}$ is called the \textbf{underlying category (in $\mathcal{M}_{\mathbf{C}}$)}
+\item[(2)]
+$\otimes$ is called the \textbf{tensor product (in $\mathcal{M}_{\mathbf{C}}$)}
+\item[(3)]
+$\mathsf{A}$ is called the \textbf{associator (in $\mathcal{M}_{\mathbf{C}}$)}
+\item[(4)]
+$1$ is called the \textbf{unit object (in $\mathcal{M}_{\mathbf{C}}$)}
+\item[(5)]
+$\mathsf{L}$ is called the \textbf{left unit law (in $\mathcal{M}_{\mathbf{C}}$)}
+\item[(6)]
+$\mathsf{R}$ is called the \textbf{right unit law (in $\mathcal{M}_{\mathbf{C}}$)}
+\end{enumerate}
+In a tensor product $X_{1} \otimes X_{2}$ we sometimes call $X_{1}$ and $X_{2}$ the tensor factors and sometimes call $X_{1} \otimes X_{2}$ the tensoring of $X_{1}$ and $X_{2}$. For the monoidal category property (MC1) we also say that the \textbf{pentagon equation (in $\mathcal{M}_{\mathbf{C}}$) holds} and for the monoidal category property (MC2) we say that the \textbf{triangle equation (in $\mathcal{M}_{\mathbf{C}}$) holds}. That these coherence conditions suffice in order to treat the associators and unit laws in the usual way, meaning that basically it does not matter how we reassociate an expression and where we apply the unit laws, is guaranteed by Mac Lane's coherence theorem which can be found in his category book \cite{e837ef86} or various other sources like \cite{5175de60}. This follows from, and sometimes is interchangably used with, Mac Lane's stricification theorem which states that every monoidal category is monoidally equivalent (see below) to a strict monoidal category, where strict means that the associator and unit laws all are identities. Due to these theorems it mostly suffices to consder strict monoidal categories.
+\\
+Next we consider monoidal functors. Let
+\begin{align*}
+  \mathcal{M}_{\mathbf{C}_{\alpha}}
+  &=
+  \left(
+    \mathbf{C}_{\alpha},
+    \otimes_{\alpha},
+    \mathsf{A}_{\alpha},
+    1_{\alpha},
+    \mathsf{L}_{\alpha},
+    \mathsf{R}_{\alpha}
+  \right)
+\end{align*}
+another monoidal category. A set $\mathcal{M}_{F}$ is a \textbf{lax monoidal functor (from $\mathcal{M}_{\mathbf{C}}$ to $\mathcal{M}_{\mathbf{C}_{\alpha}}$)} if it is a $3$-tuple
+\begin{align*}
+  F
+  \doteq
+  \left(
+    F,
+    \mathsf{H},
+    \Phi
+  \right)
+\end{align*}
+consisting of a functor $F$ from $\mathbf{C}$ to $\mathbf{C}_{\alpha}$, a natural transformation
+\begin{align*}
+  \mathsf{H}
+  \colon
+  \otimes_{\alpha}
+  \circ
+  \left(
+    F
+    \times
+    F
+  \right)
+  &\Rightarrow
+  F
+  \circ
+  \otimes
+\end{align*}
+and a morphism
+\begin{align*}
+  \Phi
+  &\in
+  \mathrm{mor}_{\mathbf{C}_{\alpha}}(1_{\alpha},F(1))
+\end{align*}
+such that
+\begin{enumerate}
+\item[(MF1)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3em, column sep=9em]
+  (F(X_{1}) \otimes_{\alpha} F(X_{2}))
+  \otimes_{\alpha}
+  F(X_{3})
+  \arrow{r}{\mathsf{A}_{\alpha}(F(X_{1}),F(X_{2}),F(X_{3}))}
+  \arrow[swap]{d}{\mathsf{H}(X_{1},X_{2})\otimes_{\alpha}\mathrm{id}_{F(X_{3})}}
+  &
+  F(X_{1})
+  \otimes_{\alpha}
+  (F(X_{2}) \otimes_{\alpha} F(X_{3}))
+  \arrow{d}{\mathrm{id}_{F(X_{1})} \otimes_{\alpha} \mathsf{H}(X_{2},X_{3})}
+  \\
+  F(X_{1} \otimes X_{2})
+  \otimes_{\alpha}
+  F(X_{3})
+  \arrow[swap]{d}{\mathsf{H}(X_{1} \otimes X_{2},X_{3})}
+  &
+  F(X_{1})
+  \otimes_{\alpha}
+  F(X_{2} \otimes X_{3})
+  \arrow{d}{\mathsf{H}(X_{1},X_{2} \otimes X_{3})}
+  \\
+  F
+  \left(
+    (X_{1} \otimes X_{2})
+    \otimes
+    X_{3}
+  \right)
+  \arrow{r}{F(\mathsf{A}(X_{1},X_{2},X_{3}))}
+  &
+  F
+  \left(
+    X_{1}
+    \otimes
+    (X_{2} \otimes X_{3})
+  \right)
+\end{tikzcd}
+\end{equation*}
+commutes
+\item[(MF2)]
+the diagrams
+\begin{equation*}
+\begin{tikzcd}[sep=large]
+  1_{\alpha}
+  \otimes_{\alpha}
+  F(X)
+  \arrow{r}{\mathsf{L}_{\alpha}(F(X))}
+  \arrow[swap]{d}{\Phi \otimes_{\alpha} \mathrm{id}_{F(X)}}
+  &
+  F(X)
+  \\
+  F(1)
+  \otimes_{\alpha}
+  F(X)
+  \arrow{r}{\mathsf{H}(1,X)}
+  &
+  F(1 \otimes X)
+  \arrow[swap]{u}{F(\mathsf{L}(X))}
+\end{tikzcd}
+\end{equation*}
+and
+\begin{equation*}
+\begin{tikzcd}[sep=large]
+  F(X)
+  \otimes_{\alpha}
+  1_{\alpha}
+  \arrow{r}{\mathsf{R}_{\alpha}(F(X))}
+  \arrow[swap]{d}{\mathrm{id}_{F(X)} \otimes_{\alpha} \Phi}
+  &
+  F(X)
+  \\
+  F(X)
+  \otimes_{\alpha}
+  F(1)
+  \arrow{r}{\mathsf{H}(X,1)}
+  &
+  F(X \otimes 1)
+  \arrow[swap]{u}{F(\mathsf{R}(X))}
+\end{tikzcd}
+\end{equation*}
+commute
+\end{enumerate}
+The monoidal functor properties (MF1) and (MF2) express that the functor $F$ is compatible with the corresponding monoidal structures. A lax monoidal functor $(F,\mathsf{H},\Phi)$ is called\footnote{some authors use strong monoidal functor here but we do not since this is our standard case} \textbf{monoidal functor} if both $\mathsf{H}$ and $\Phi$ are isomorphisms while it is called \textbf{strict monoidal functor} if both are identities.
+\\
+Now we come to monoidal natural transformations. Given monoidal functors
+\begin{align*}
+  \mathcal{M}_{F_{1}}
+  =
+  \left(
+    F_{1},
+    \mathsf{H}_{1},
+    \Phi_{1}
+  \right)
+  \qquad
+  &\text{and}
+  \qquad
+  \mathcal{M}_{F_{2}}
+  =
+  \left(
+    F_{2},
+    \mathsf{H}_{2},
+    \Phi_{2}
+  \right)
+\end{align*}
+a natural transformation $\mathsf{T}_{12}$ from $F_{1}$ to $F_{2}$ is \textbf{monoidal (w.r.t $\mathcal{M}_{F_{1}}$ and $\mathcal{M}_{F_{2}}$)} if
+\begin{enumerate}
+\item[(MT1)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=8em]
+  F_{1}(X_{1})
+  \otimes_{\alpha}
+  F_{1}(X_{2})
+  \arrow{r}{\mathsf{T}_{12}(X_{1}) \otimes_{\alpha} \mathsf{T}_{12}(X_{2})}
+  \arrow[swap]{d}{\mathsf{H}_{1}(X_{1},X_{2})}
+  &
+  F_{2}(X_{1})
+  \otimes_{\alpha}
+  F_{2}(X_{2})
+  \arrow{d}{\mathsf{H}_{2}(X_{1},X_{2})}
+  \\
+  F_{1}(X_{1} \otimes X_{2})
+  \arrow{r}{\mathsf{T}_{12}(X_{1} \otimes X_{2})}
+  &
+  F_{2}(X_{1} \otimes X_{2})
+\end{tikzcd}
+\end{equation*}
+commutes
+\item[(MT2)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[sep=large]
+  1_{\alpha}
+  \arrow{dr}{\Phi_{2}}
+  \arrow{d}[swap]{\Phi_{1}}
+  &
+  \\
+  F_{1}(1)
+  \arrow{r}{\mathsf{T}_{12}(1)}
+  &
+  F_{2}(1)
+\end{tikzcd}
+\end{equation*}
+commutes
+\end{enumerate}
+Again, the monoidal natural transformation properties (MT1) and (MT2) obviously express compatibility with the involved structures. To define equivalence of monoidal categories note that the identity functor and the composition of monoidal functors are monoidal. Hence $\mathcal{M}_{F_{\alpha\beta}}$ is a \textbf{monoidal equivalence (from $\mathcal{M}_{\mathbf{C}_{\alpha}}$ to $\mathcal{M}_{\mathbf{C}_{\beta}}$)} if there is $\mathcal{M}_{F_{\beta\alpha}}$ such that there exist monoidal natural isomorphisms from $F_{\beta\alpha} \circ F_{\alpha\beta}$ to $\mathrm{id}_{\mathbf{C_{\alpha}}}$ and from $F_{\alpha\beta} \circ F_{\beta\alpha} $ to $\mathrm{id}_{\mathbf{C_{\beta}}}$ respectively.
+\\\\
+The next step is to add a kind of commutativity for the tensor product of a monoidal category. A set $\mathcal{B}_{\mathbf{C}}$ is a \textbf{braided monoidal category} if it is a tuple $(\mathcal{M}_{\mathbf{C}},\mathsf{B})$ consisting of a monoidal category $\mathcal{M}_{\mathbf{C}}$ and for the functor
+\begin{align*}
+  \otimes_{\textrm{B}}
+  \colon
+  \mathbf{C}
+  \times
+  \mathbf{C}
+  &\rightarrow
+  \mathbf{C}
+  \\
+  (X_{1},X_{2})
+  &\mapsto
+  \otimes(X_{2},X_{1})
+  \\
+  (f_{12},f_{34})
+  &\mapsto
+  \otimes(f_{34},f_{12})
+\end{align*}
+a natural isomorphism
+\begin{align*}
+  \mathsf{B}
+  \colon
+  \otimes
+  &\Rightarrow
+  \otimes_{\textrm{B}}
+\end{align*}
+such that
+\begin{enumerate}
+\item[(BC1)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=huge,column sep=8em]
+  (X_{2} \otimes X_{1})
+  \otimes
+  X_{3}
+  \arrow{r}{\mathsf{A}(X_{2},X_{1},X_{3})}
+  &
+  X_{2}
+  \otimes
+  (X_{1} \otimes X_{3})
+  \arrow{d}{\mathrm{id}_{X_{2}} \otimes \mathsf{B}(X_{1},X_{3})}
+  \\
+  (X_{1} \otimes X_{2})
+  \otimes
+  X_{3}
+  \arrow{u}{\mathsf{B}(X_{2},X_{1}) \otimes \mathrm{id}_{X_{3}}}
+  &
+  X_{2}
+  \otimes
+  (X_{3} \otimes X_{1})
+  \arrow{d}{\mathsf{A}^{-1}(X_{2},X_{3},X_{1})}
+  \\
+  X_{1}
+  \otimes
+  (X_{2} \otimes X_{3})
+  \arrow{u}{\mathsf{A}^{-1}(X_{1},X_{2},X_{3})}
+  \arrow{r}{\mathsf{B}(X_{1},X_{2} \otimes X_{3})}
+  &
+  (X_{2} \otimes X_{3})
+  \otimes
+  X_{1}
+\end{tikzcd}
+\end{equation*}
+commutes
+\item[(BC2)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=huge,column sep=8em]
+  X_{1}
+  \otimes
+  (X_{3} \otimes X_{2})
+  \arrow{r}{\mathsf{A}^{-1}(X_{1},X_{3},X_{2})}
+  &
+  (X_{1} \otimes X_{3})
+  \otimes
+  X_{2}
+  \arrow{d}{\mathsf{B}(X_{1},X_{3}) \otimes \mathrm{id}_{X_{2}}}
+  \\
+  X_{1}
+  \otimes
+  (X_{2} \otimes X_{3})
+  \arrow{u}{\mathrm{id_{X_{1}}} \otimes \mathsf{B}(X_{2},X_{3})}
+  &
+  (X_{3} \otimes X_{1})
+  \otimes
+  X_{2}
+  \arrow{d}{\mathsf{A}(X_{3},X_{1},X_{2})}
+  \\
+  (X_{1} \otimes X_{2})
+  \otimes
+  X_{3}
+  \arrow{u}{\mathsf{A}(X_{1},X_{2},X_{3})}
+  \arrow{r}{\mathsf{B}(X_{1} \otimes X_{2},X_{3})}
+  &
+  X_{3}
+  \otimes
+  (X_{1} \otimes X_{2})
+\end{tikzcd}
+\end{equation*}
+commutes
+\end{enumerate}
+For the braided monoidal category properties (BC1) and (BC2) we also say that the \textbf{hexagon equations (in $\mathcal{B}_{\mathbf{C}}$) hold}. Note that these equations express that when given three tensor factors we can either interchange two of them with the other at once or we can do it one after the other. The coordinate $\mathsf{B}$ in $\mathcal{B}_{\mathbf{C}}$ is called \textbf{braiding} and there is a case of special interest. Namely, a braided monoidal category $\mathcal{B}_{\mathbf{C}}$ is \textbf{symmetric} if
+\begin{align*}
+  \mathsf{B}(X_{2},X_{1})
+  \circ
+  \mathsf{B}(X_{1},X_{2})
+  &=
+  \mathrm{id}_{\otimes}(X_{1},X_{2})
+\end{align*}
+holds for all $X_{1}$ and $X_{2}$. We usually say, a bit inaccurately, symmetric monoidal category instead of symmetric braided monoidal category.
+\\
+Of course, one can define functors respecting these extra pieces of structure. A set $\mathcal{B}_{F}$ is a \textbf{braided monoidal functor (from $\mathcal{B}_{\mathbf{C}}$ to $\mathcal{B}_{\mathbf{C}_{\alpha}}$)} if it is a monoidal functor $(F,\mathsf{H},\Phi)$ such that
+\begin{enumerate}
+\item[(BF)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=large,column sep=8em]
+  F(X_{1})
+  \otimes_{\alpha}
+  F(X_{2})
+  \arrow{r}{\mathsf{B}_{\alpha}(F(X_{1}),F(X_{2}))}
+  \arrow[swap]{d}{\mathsf{H}(X_{1},X_{2})}
+  &
+  F(X_{2})
+  \otimes_{\alpha}
+  F(X_{1})
+  \arrow{d}{\mathsf{H}(X_{2},X_{1})}
+  \\
+  F(X_{1} \otimes X_{2})
+  \arrow{r}{F(\mathsf{B}(X_{1},X_{2}))}
+  &
+  F(X_{2} \otimes X_{1})
+\end{tikzcd}
+\end{equation*}
+commutes
+\end{enumerate}
+As symmetry is just an extra property satisfied by a braiding there are clearly no extra conditions required for functors except for a restriction to symmetric monoidal categories. Therefore a braided monoidal functor $\mathcal{B}_{F}$ is \textbf{symmetric} if
+\begin{align*}
+  \mathsf{B}(X_{2},X_{1})
+  \circ
+  \mathsf{B}(X_{1},X_{2})
+  &=
+  \mathrm{id}_{\otimes}(X_{1},X_{2})
+  \\
+  \mathsf{B_{\alpha}}(X_{2},X_{1})
+  \circ
+  \mathsf{B_{\alpha}}(X_{1},X_{2})
+  &=
+  \mathrm{id}_{\otimes_{\alpha}}(X_{1},X_{2})
+\end{align*}
+hold. That is, the involved categories are symmetric. Again, one usually speaks of a symmetric monoidal functor instead of a symmetric braided monoidal functor. Moreover, the identity and the composition of (symmetric) monoidal functors are again (symmetric) monoidal functors.
+\\
+One may now wonder what we have to demand for naturality in case of braided monoidal functors. The answer is: actually nothing since the braided monoidal functors do not have extra structure compared to mere monoidal functors but only satisfy an additional property. So we are led to the definition that a natural transformation is \textbf{braided monoidal (w.r.t. $\mathcal{B}_{F_{1}}$ and $\mathcal{B}_{F_{2}}$)} if it is monoidal w.r.t. $\mathcal{B}_{F_{1}}$ and $\mathcal{B}_{F_{2}}$. Therefore the difference between braided monoidal and mere monoidal natural transformations is that the involved functors are braided monoidal and not just monoidal. The symmetric monoidal case is obtained from the braided monoidal case of natural transformations in the obvious way: a braided monoidal natural transformation w.r.t. $\mathcal{B}_{F_{1}}$ and $\mathcal{B}_{F_{2}}$ is \textbf{symmetric} if both $\mathcal{B}_{F_{1}}$ and $\mathcal{B}_{F_{2}}$ are symmetric. Finally  $\mathcal{B}_{F_{\alpha\beta}}$ is a \textbf{braided monoidal equivalence (from $\mathcal{B}_{\mathbf{C}_{\alpha}}$ to $\mathcal{B}_{\mathbf{C}_{\beta}}$)} if there is $\mathcal{B}_{F_{\beta\alpha}}$ such that there exist braided monoidal natural isomorphisms from $F_{\beta\alpha} \circ F_{\alpha\beta}$ to $\mathrm{id}_{\mathbf{C_{\alpha}}}$ and from $F_{\alpha\beta} \circ F_{\beta\alpha}$ to $\mathrm{id}_{\mathbf{C_{\beta}}}$, respectively. A braided monoidal equivalence $\mathcal{B}_{F_{\alpha\beta}}$ is \textbf{symmetric} if $\mathcal{B}_{F_{\alpha\beta}}$ is symmetric and if there is a symmetric $\mathcal{B}_{F_{\beta\alpha}}$ such that there exist symmetric braided monoidal natural isomorphisms from $F_{\beta\alpha} \circ F_{\alpha\beta}$ to $\mathrm{id}_{\mathbf{C_{\alpha}}}$ and from $F_{\alpha\beta} \circ F_{\beta\alpha}$ to $\mathrm{id}_{\mathbf{C_{\beta}}}$, respectively.
+\\
+There is a coherence theorem for symmetric monoidal categories involving the symmetric braiding, similar to the one for monoidal categories. We will come back to that later in chapter \ref{CHAP:ALTCHARPROPS}. If the braiding is not symmetric there is a  coherence theorem, too, but one has to be a bit more careful with the braidings in that case.
+\\
+In abuse of notation we will henceforth often simply denote a monoidal category or (symmetric) braided monoidal category by its underlying category
+\begin{align*}
+  \mathbf{C}
+  &\doteq
+  \mathcal{M}_{\mathbf{C}}
+  \qquad
+  \text{and}
+  \qquad
+  \mathbf{C}
+  \doteq
+  \mathcal{B}_{\mathbf{C}}
+\end{align*}
+leaving the other data implicit and similarly for the functors
+\begin{align*}
+  F
+  &\doteq
+  \mathcal{M}_{F}
+  \qquad
+  \text{and}
+  \qquad
+  F
+  \doteq
+  \mathcal{B}_{F}
+\end{align*}
+\\
+To conclude this section we define dual objects in a monoidal category. For $X$ an object in a monoidal category $\mathbf{C}$ an object $X^{\prime} \in \mathrm{ob}_{\mathbf{C}}$ is a \textbf{left dual (object) (of $X$)} if there are
+\begin{align*}
+  \mathrm{ev}_{X}
+  &\in
+  \mathrm{mor}_{\mathbf{C}}
+  \left(
+    X^{\prime}
+    \otimes
+    X,
+    1
+  \right)
+\end{align*}
+and
+\begin{align*}
+  \mathrm{coev}_{X}
+  \in
+  \mathrm{mor}_{\mathbf{C}}
+  \left(
+    1,
+    X
+    \otimes
+    X^{\prime}
+  \right)
+\end{align*}
+such that
+\begin{enumerate}
+\item[(LD1)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=7em]
+  1 \otimes X
+  \ar{r}{\mathsf{L}(X)}
+  \ar{d}[swap]{\mathrm{coev}_{X} \otimes \mathrm{id}_{X}}
+  &
+  X
+  &
+  X \otimes 1
+  \ar{l}[swap]{\mathsf{R}(X)}
+  \\
+  (X \otimes X^{\prime}) \otimes X
+  \ar{rr}{\mathsf{A}(X,X^{\prime},X)}
+  &
+  &
+  X \otimes (X^{\prime} \otimes X)
+  \ar{u}[swap]{\mathrm{id}_{X} \otimes \mathrm{ev}_{X}}
+\end{tikzcd}
+\end{equation*}
+commutes
+\item[(LD2)]
+the diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=3.3em,column sep=7em]
+  X^{\prime} \otimes 1
+  \ar{r}{\mathsf{R}(X^{\prime})}
+  \ar{d}[swap]{\mathrm{id}_{X^{\prime}} \otimes \mathrm{coev}_{X}}
+  &
+  X^{\prime}
+  &
+  1 \otimes X^{\prime}
+  \ar{l}[swap]{\mathsf{L}(X^{\prime})}
+  \\
+  X^{\prime} \otimes (X \otimes X^{\prime})
+  \ar{rr}{\mathsf{A}^{-1}(X^{\prime},X,X^{\prime})}
+  &
+  &
+  (X^{\prime} \otimes X) \otimes X^{\prime}
+  \ar{u}[swap]{\mathrm{ev}_{X} \otimes \mathrm{id}_{X^{\prime}}}
+\end{tikzcd}
+\end{equation*}
+commutes
+\end{enumerate}
+If the object $X$ of the monoidal category $\mathbf{C}$ has a left dual then $\mathrm{ev}_{X}$ is called \textbf{(left) evaluation (of $X$)} and $\mathrm{coev}_{X}$ is called \textbf{(left) coevaluation (of $X$)}. Now, a monoidal category is \textbf{left rigid} if every object has a left dual. The notion of right dual objects is defined by interchanging the roles of $X$ and $X^{\prime}$ so that $X^{\prime}$ is left dual to $X$ if and only if $X$ is right dual to $X^{\prime}$. If every object has a right dual then the category is called \textbf{right rigid}. If the category is braided monoidal then a left dual object is also a right dual object and vice versa because given an object $X$ then a left dual $X^{\prime}$ is also a right dual for $X$ with evaluation and coevaluation given by
+\begin{align*}
+  \mathrm{ev}_{X}
+  \circ
+  \mathsf{B}(X,X^{\prime})
+  &\colon
+  X
+  \otimes
+  X^{\prime}
+  \to
+  1
+  \\
+  \mathsf{B}(X,X^{\prime})
+  \circ
+  \mathrm{coev}_{X}
+  &\colon
+  1
+  \to
+  X^{\prime}
+  \otimes
+  X
+\end{align*}
+as can be checked with the help of the coherence theorem for braided monoidal categories. In this case we simply call it a \textbf{dual (object)} and if every object in a symmetric monoidal category has a dual then the category is called \textbf{rigid}.

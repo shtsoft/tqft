@@ -1,0 +1,134 @@
+%\nocite{29781dd2}
+%\nocite{d37d0fca}
+%%%
+We first extend the category $\mathbf{Cob}_{n}$ to incorporate also manifolds of dimension $n-2$. It seems natural to describe this extension as a $2$-category. We will, however, refrain from giving details (see e.g. \cite{d37d0fca} for them) as this is a little involved. Instead, we will give an informal description to explain the idea. In the following all manifolds are smooth unless stated otherwise.
+\\\\
+So, let $n \geq 2$ then we can describe the $2$-category ${_{2}}\mathbf{Cob}_{n}$ informally as follows
+\begin{enumerate}
+\item[(0)]
+the objects of ${_{2}}\mathbf{Cob}_{n}$ are closed oriented $(n-2)$-manifolds.
+
+\item[(1)]
+for a pair of objects $S_{1},S_{2}$ in ${_{2}}\mathbf{Cob}_{n}$ a $1$-morphism from $S_{1}$ to $S_{2}$ is an oriented $(n-1)$-dimensional $1$-cobordism $M$ with $0$-source $S_{1}$ and $0$-target $S_{2}$ for which we write $M \colon S_{1} \to S_{2}$.
+
+\item[(2)]
+for a pair of objects $S_{1},S_{2}$ in ${_{2}}\mathbf{Cob}_{n}$ and a parallel pair of $1$-morphisms $M_{1},M_{2} \colon S_{1} \to S_{2}$ a $2$-morphism from $M_{1}$ to $M_{2}$ is an equivalence class of oriented $n$-dimensional $2$-cobordisms with $1$-source $M_{1}$ and $1$-target $M_{2}$. Note that the $0$-source and $0$-target of these $2$-cobordisms are $S_{1}$ and $S_{2}$.
+
+\item[(c)]
+composition of morphisms at both levels is given by gluing cobordisms along the corresponding boundaries
+\begin{enumerate}
+\item[(1)]
+given objects $S_{1},S_{2},S_{3}$ and $1$-morphisms $M_{1}$ from $S_{1}$ to $S_{2}$ and $M_{2}$ from $S_{2}$ to $S_{3}$, their composition $M_{2} \circ M_{1}$ is given by gluing these two $1$-cobordisms along their common boundary $S_{2}$, similar to the $1$-categorical case. Note, however, that since we do not consider diffeomorphism classes at this level, things are a bit more difficult as there are several choices involved and in particular composition is not associative on the nose but only up to isomorphism. Thus ${_{2}}\mathbf{Cob}_{n}$ is a weak $2$-category, not a strict one.
+
+\item[(2)]
+for $2$-morphisms there are two kinds of composition
+\begin{enumerate}
+\item[(v)]
+given two objects $S_{1},S_{2}$, three parallel $1$-morphisms $M_{1},M_{2},M_{3}$ from $S_{1}$ to $S_{2}$ and $2$-morphisms $[B_{1}]$ from $M_{1}$ to $M_{2}$ and $[B_{2}]$ from $M_{2}$ to $M_{3}$, their vertical composition $[B_{2}] \circ^{\mathrm{v}} [B_{1}]$ - a $2$-morphism from $M_{1}$ to $M_{3}$ - is basically given by gluing the underlying manifolds with corners $B_{1}$ and $B_{2}$ together along their common boundary $M_{2}$.
+
+\item[(h)]
+given three objects $S_{1},S_{2},S_{3}$, two parallel $1$-morphisms $M_{1},M_{2}$ from $S_{1}$ to $S_{2}$, two parallel $1$-morphisms $M_{3},M_{4}$ from $S_{2}$ to $S_{3}$ and $2$-morphisms $[B_{1}]$ from $M_{1}$ to $M_{2}$ and $[B_{2}]$ from $M_{3}$ to $M_{4}$, their horizontal composition $[B_{2}] \circ^{\mathrm{h}} [B_{1}]$ - a $2$-morphism from $M_{3} \circ M_{1}$ to $M_{4} \circ M_{2}$ - is basically given by gluing the underlying $2$-cobordisms $B_{1}$ and $B_{2}$ together along their common boundary $S_{2}$, or more precisely $S_{2} \times [0,1]$.
+\end{enumerate}
+\end{enumerate}
+
+\item[(i)]
+identities for the compositions on both levels are given by taking the product of the source (or equivalently the target, of course) of the identity in question with the unit interval $[0,1]$.
+
+\item[(s)]
+there is a symmetric monoidal structure on ${_{2}}\mathbf{Cob}_{n}$ given on all levels by disjoint union.
+\end{enumerate}
+This extended cobordism $2$-category ${_{2}}\mathbf{Cob}_{n}$ contains the category $\mathbf{Cob}_{n}$ as the looping at $\emptyset$: fix the empty $(n-2)$-manifold $\emptyset$ as source and target object, then the $1$-morphisms with this source and target are actually oriented closed $(n-1)$-manifolds and $2$-morphisms between such $1$-morphisms are actually (equivalence classes of) $n$-dimensional $1$-cobordisms. Hence the category
+\begin{align*}
+  _{1}\mathbf{mor}_{{_{2}}\mathbf{Cob}_{n}}
+  \left(
+    \emptyset
+    ,
+    \emptyset
+  \right)
+  &=
+  \Omega_{\emptyset}
+  \left(
+    {_{2}}\mathbf{Cob}_{n}
+  \right)
+\end{align*}
+is equivalent to $\mathbf{Cob}_{n}$. Therefore, to define an extended version of TQFTs on ${_{2}}\mathbf{Cob}_{n}$ one might try to find a target $2$-category ${_{2}}\mathbf{Vec}_{K}$ that contains $\mathbf{Vec}_{K}$ in the same sense. There are many different possible such $2$-categories and different choices may be well-suited for different intended uses. One can also argue that any symmetric monoidal $2$-category describing algebraic structures or even more generally any symmetric monoidal $2$-category may serve as a target for an extended TQFT. We adopt the latter approach here. Thus let ${_{2}}\mathbf{C}$ be a symmetric monoidal $2$-category, then an \textbf{$n$-dimensional $2$-extended ${_{2}}\mathbf{C}$-valued (oriented) topological quantum field theory} is a symmetric monoidal functor
+\begin{align*}
+  Z
+  \colon
+  {_{2}}\mathbf{Cob}_{n}
+  &\to
+  {_{2}}\mathbf{C}
+\end{align*}
+of $2$-categories. We will usually use the abbreviation TQFT and will frequently supress the dimension $n$ and the category ${_{2}}\mathbf{C}$ if they are understood and hence simply speak of a $2$-extended TQFT.
+\\
+Note that if ${_{2}}\mathbf{C}$ is some appropriate version of ${_{2}}\mathbf{Vec}_{K}$ then such a $2$-extended TQFT induces an ordinary TQFT by restricting to the looping $\Omega_{\emptyset}({_{2}}\mathbf{Cob}_{n})$ of ${_{2}}\mathbf{Cob}_{n}$ at $\emptyset$.
+\\
+For a closed $n$-manifold $M$ we now have more flexibility to calculate the corresponding invariant given by a TQFT as we can cut it along $(n-1)$-submanifolds with boundary $N$ and we can cut the latter along closed $(n-2)$-submanifolds. However, if the dimension $n$ is large then $N$ may be fairly complicated and cutting along closed manifolds will still not simplify it very much in general. Therefore we also want to allow cutting $N$ along $(n-2)$-submanifolds with boundary, i.e. we push the idea of extending further by adding another layer to the cobordism category. More generally, let $n,k \in \mathbb{N}$ with $k \leq n$, then we can describe the $k$-category ${_{k}}\mathbf{Cob}_{n}$ informally as follows (we will be a bit briefer here than in the description of ${_{2}}\mathbf{Cob}_{n}$)
+\begin{enumerate}
+\item[(0)]
+the objects of ${_{k}}\mathbf{Cob}_{n}$ are closed oriented $(n-k)$-manifolds.
+
+\item[(1)]
+for a pair of objects $S_{1},S_{2}$ in ${_{k}}\mathbf{Cob}_{n}$ a $1$-morphism from $S_{1}$ to $S_{2}$ is an oriented $(n-k+1)$-dimensional $1$-cobordism $M$ with $0$-source $S_{1}$ and $0$-target $S_{2}$, written as $M \colon S_{1} \to S_{2}$.
+
+\item[(2)]
+for a pair of objects $S_{1},S_{2}$ in ${_{k}}\mathbf{Cob}_{n}$ and a pair of parallel $1$-morphisms $M_{1},M_{2} \colon S_{1} \to S_{2}$ a $2$-morphism from $M_{1}$ to $M_{2}$ is an oriented $(n-k+2)$-dimensional $2$-cobordism with $1$-source $M_{1}$ and $1$-target $M_{2}$.
+
+\item[]
+\begin{equation*}
+\vdots
+\end{equation*}
+\item[]
+
+\item[(k)]
+a $k$-morphism is an equivalence class of oriented $n$-dimensional $k$-cobordisms.
+
+\item[(c)]
+composition of morphisms at all levels is given by gluing cobordisms along the corresponding boundaries.
+
+\item[(s)]
+there is a symmetric monoidal structure on ${_{k}}\mathbf{Cob}_{n}$ given on all levels by disjoint union.
+\end{enumerate}
+This category is of course again not strict. In the case $k = 1$ the category ${_{k}}\mathbf{Cob}_{n}$ is just the ordinary cobordism category $\mathbf{Cob}_{n}$. In the case $k = 0$ the category ${_{k}}\mathbf{Cob}_{n}$ can be viewed as the set of diffeomorphism classes of oriented closed $n$-manifolds.
+\\
+We can now generalize the $2$-extended case of TQFTs. Let ${_{k}}\mathbf{C}$ be a symmetric monoidal $k$-category, then an \textbf{$n$-dimensional $k$-extended ${_{k}}\mathbf{C}$-valued (oriented) topological quantum field theory} is a symmetric monoidal functor
+\begin{align*}
+  Z
+  \colon
+  {_{k}}\mathbf{Cob}_{n}
+  &\to
+  {_{k}}\mathbf{C}
+\end{align*}
+of $k$-categories. Again, we will usually use the abbreviation TQFT and will frequently supress the dimension $n$ and the category ${_{k}}\mathbf{C}$ if they are understood and thus simply speak of a $k$-extended TQFT. Moreover, if $k = n$ we will usually omit it as well, and just say extended TQFT.
+\\
+Such an extended TQFT may generally seem to be more complicated than an ordinary TQFT since it is phrased in terms of higher categories and involves many more data because it can be evaluated on manifolds (with corners) of arbitrary dimension below $n+1$. Yet, since an extended TQFT is a functor of $n$-categories, we have much more flexibility in decomposing manifolds into simpler pieces. A closed $n$-manifold $M$ may look rather complicated globally, but locally it is, of course, very simple since for any point $x \in M$ there is a neighbourhod which is diffeomorphic to (an open subset of) $\mathbb{R}^{n}$. We therefore hope that we can decompose $M$ in only few different and very simple pieces, so that we only have to specify the TQFT on these data. In the case $n = 1$, where an extended $\mathbf{Vec}_{K}$-valued TQFT is nothing but an ordinary TQFT, we saw that one only needs to specify a finite vector space associated to the manifold consisting of a single point.
+\\
+In general it is not true that an extended oriented TQFT is determined by giving an appropriate object of the target category as value for the manifold consisting of a single point. Here are two reasons why:
+\begin{enumerate}
+\item
+For a closed manifold $M$ there is an open neighbourhood for each point $x \in M$ diffeomorphic to $\mathbb{R}^{n}$ but there is no unique or canonical choice. In a more canonical way one can choose an open neighbourhood $U$ of $x$ and a diffeomorphism $\varphi \colon U \to B$ to an open ball $B$ in the tangent space $T_{x}M$ at $x$. This is still not unique but leads to a contractible space of choices of such $\varphi$ if we require the differential $T_{x}\varphi \colon T_{x}U \to T_{\varphi(x)}B$ of the diffeomorphism $\varphi$ at $x$ - which reduces to an automorphism of $T_{x}M$ when identifying $T_{x}U$ with $T_{x}M$ and the tangent space $T_{\varphi(x)}T_{x}M \cong T_{\varphi(x)}B$ of $T_{x}M$ with $T_{x}M$ itself via the so-called vertical lift - to be the identity on $T_{x}M$. In the case $n = 1$ the orientation of the manifold yields a trivialization of the tangent bundle $TM$ so that we have a canonical way to identify $T_{x}M$ with $\mathbb{R}^{n}$. In higher dimensions, however, an orientation does not automatically imply that $TM$ can be trivialized.
+
+\item
+Even for $n = 1$ and ${_{1}}\mathbf{C} = \mathbf{Vec}_{K}$ one cannot choose any object to determine the TQFT. In fact, the vector space chosen must be finite dimensional. Thus we must expect that there is some (more general) finiteness condition to be imposed in the general case, too.
+\end{enumerate}
+To solve the first problem we use the stronger structure of framings instead of orientations for the manifolds in the cobordism category. A \textbf{framing} of a real $n$-dimensional vector bundle $\zeta$ is a trivialization, i.e. an isomorphism of vector bundles to the product vector bundle $\mathrm{pr}_{1} \colon B \times \mathbb{R}^{n} \to B$. For $k \leq n \in \mathbb{N}$ an \textbf{$n$-framing} of a $k$-dimensional manifold with corners $M$ is a framing of the vector bundle
+\begin{align*}
+  TM
+  \oplus
+  \left(
+    M
+    \times
+    \mathbb{R}^{n-k}
+  \right)
+\end{align*}
+sometimes called the \textbf{$n$-stabilized tangent bundle}. The framed version ${_{n}}\mathbf{Cob}_{n}^{\mathrm{fr}}$ of the cobordism $n$-category is now basically defined in the same way as ${_{n}}\mathbf{Cob}_{n}$ except that all manifolds are equipped with $n$-framings - where for $n$-morphisms this $n$-framing is taken up to homotopy - and the framings of all morphisms are compatible with the framings of their source and target just as in the oriented case. For a symmetric monoidal $n$-category ${_{n}}\mathbf{C}$ a \textbf{framed extended ${_{n}}\mathbf{C}$-valued TQFT} is then a symmetric monoidal functor
+\begin{align*}
+  Z
+  \colon
+  {_{n}}\mathbf{Cob}_{n}^{\mathrm{fr}}
+  &\to
+  {_{n}}\mathbf{C}
+\end{align*}
+of $n$-categories.
+\\
+For the second problem remember that the finiteness condition in the case $n = 1$ was due to the dualizability of objects in $\mathbf{Cob}_{n}$. We will thus introduce the concept of fully dualizable objects in symmetric monoidal $n$-categories which is a generalization of what it means for objects to be dualizable in ordinary symmetric monoidal categories. This is however postponed until chapter \ref{chap:formcobhyp} as we first carry on extending the cobordism category to the final version we use to state the cobordism hypothesis.

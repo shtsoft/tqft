@@ -1,0 +1,524 @@
+\nocite{0a816f4c}
+%%%
+The first property concerns the dimension of the state spaces $Z(S)$ associated to the smooth oriented closed $(n-1)$-manifolds $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ by a TQFT $Z$. As it turns out, these state spaces are finite-dimensional for a TQFT. This can be seen by an easy argument about dual objects using that $\mathbf{Cob}_{n}$ is rigid. We have the following
+\\
+\begin{cor}
+\label{cor:dimstsp}
+Let
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Vec}_{K}
+\end{align*}
+be a TQFT. Then the vector space $Z(S)$ is finite-dimensional for every $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ and $Z(\overline{S})$ is isomorphic to $Z(S)^{\prime}$, where $Z(S)^{\prime}$ is the dual vector space of $Z(S)$.
+\end{cor}
+\begin{prf}
+Lemma \ref{lem:mfduals} shows that $Z(\overline{S})$ is a dual object of $Z(S)$ since $\overline{S}$ is a dual object of $S$. Thus, $Z(S)$ is finite-dimensional since only these objects in $\mathbf{Vec}_{K}$ have duals according to lemma \ref{lem:dualvec}. Furthermore, since $Z(S)^{\prime}$ is another dual object for $Z(S)$, lemma \ref{lem:dualunique} gives the desired isomorphism between $Z(\overline{S})$ and $Z(S)^{\prime}$.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}
+From lemma \ref{lem:mfduals} we know that the evaluation and coevaluation for $Z(\overline{S})$ in $\mathbf{Vec}_{K}$ are given by
+\begin{align*}
+  \Braket{\cdot,\cdot}
+  &:=
+  \Phi^{-1}
+  \circ
+  Z(\mathrm{ev}_{S})
+  \circ
+  \mathsf{H}(\overline{S},S)
+  \colon
+  Z(\overline{S})
+  \otimes
+  Z(S)
+  \to
+  K
+  \\
+  \gamma
+  &:=
+  \mathsf{H}^{-1}(S,\overline{S})
+  \circ
+  Z(\mathrm{coev}_{S})
+  \circ
+  \Phi
+  \colon
+  K
+  \to
+  Z(S)
+  \otimes
+  Z(\overline{S})
+\end{align*}
+from the evaluation $\mathrm{ev}_{S}$ and coevaluation $\mathrm{coev}_{S}$ in $\mathbf{Cob}_{n}$. Fixing a $\bar{v} \in Z(\overline{S})$ we obtain a linear map 
+\begin{align*}
+  \Braket{\bar{v},\cdot}
+  \colon
+  Z(S)
+  &\to
+  K
+\end{align*}
+from the evaluation by
+\begin{align*}
+  v
+  \mapsto
+  \Braket{\cdot,\cdot}(\bar{v} \otimes v)
+  &=:
+  \Braket{\bar{v},v}
+\end{align*}
+The linearity of the map is clear from the linearity of $\Braket{\cdot,\cdot}$ and the universal property of the tensor product which yields a unique bilinear map corresponding to $\Braket{\cdot,\cdot}$. Analogously we obtain a linear map
+\begin{align*}
+  \Braket{\cdot,v}
+  \colon
+  Z(\overline{S})
+  &\to
+  K
+\end{align*}
+for any fixed $v \in Z(S)$. Now let
+\begin{align*}
+  f
+  \in
+  \mathrm{mor}_{\mathbf{Vec}_{K}}
+  \left(
+    Z(\overline{S})
+    ,
+    Z(S)^{\prime}
+  \right)
+\end{align*}
+denote the unique isomorphism of dual objects from lemma \ref{lem:dualunique}. For this we have
+\begin{align*}
+  f(\bar{v})
+  &=
+  \Braket{\bar{v},\cdot}
+\end{align*}
+which can be seen as follows: from lemma \ref{lem:dualunique} we know that
+\begin{align*}
+  f
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \circ
+  \left(
+    \Braket{\cdot,\cdot}
+    \otimes
+    \mathrm{id}_{Z(S)^{\prime}}
+  \right)
+  \circ
+  \mathsf{A}^{-1}(Z(\overline{S}),Z(S),Z(S)^{\prime})
+  \circ
+  \left(
+    \mathrm{id}_{Z(\overline{S})}
+    \otimes
+    \mathrm{coev}_{Z(S)}^{\prime}
+  \right)
+  \circ
+  \mathsf{R}^{-1}(Z(\overline{S}))
+\end{align*}
+Here we denoted the evaluation and coevaluation for $Z(S)^{\prime}$ by $\mathrm{ev}_{Z(S)}^{\prime}$ and $\mathrm{coev}_{Z(S)}^{\prime}$. Let $k$ be the dimension of\footnote{and thus that of $Z(S)^{\prime}$ and $Z(\overline{S})$} $Z(S)$ and let
+\begin{align*}
+  \lbrace
+    b_{1}
+    ,
+    \ldots
+    ,
+    b_{k}
+  \rbrace
+\end{align*}
+be a basis  for $Z(S)$ and
+\begin{align*}
+  \lbrace
+    b_{1}^{\prime}
+    ,
+    \ldots
+    ,
+    b_{k}^{\prime}
+  \rbrace
+\end{align*}
+the corresponding dual basis for $Z(S)^{\prime}$. Using the linearity of $\Braket{\cdot,\cdot}$ and the bilinearity of the tensor product we calculate
+\begin{align*}
+  &
+  f(\bar{v})
+  \\
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \circ
+  \left(
+    \Braket{\cdot,\cdot}
+    \otimes
+    \mathrm{id}_{Z(S)^{\prime}}
+  \right)
+  \circ
+  \mathsf{A}^{-1}(Z(\overline{S}),Z(S),Z(S)^{\prime})
+  \circ
+  \left(
+    \mathrm{id}_{Z(\overline{S})}
+    \otimes
+    \mathrm{coev}_{Z(S)}^{\prime}
+  \right)
+  \circ
+  \mathsf{R}^{-1}(Z(\overline{S}))
+  \left(
+    \bar{v}
+  \right)
+  \\
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \circ
+  \left(
+    \Braket{\cdot,\cdot}
+    \otimes
+    \mathrm{id}_{Z(S)^{\prime}}
+  \right)
+  \circ
+  \mathsf{A}^{-1}(Z(\overline{S}),Z(S),Z(S)^{\prime})
+  \circ
+  \left(
+    \mathrm{id}_{Z(\overline{S})}
+    \otimes
+    \mathrm{coev}_{Z(S)}^{\prime}
+  \right)
+  \left(
+    \bar{v}
+    \otimes
+    1
+  \right)
+  \\
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \circ
+  \left(
+    \Braket{\cdot,\cdot}
+    \otimes
+    \mathrm{id}_{Z(S)^{\prime}}
+  \right)
+  \circ
+  \mathsf{A}^{-1}(Z(\overline{S}),Z(S),Z(S)^{\prime})
+  \left(
+    \sum_{i=1}^{k}
+    \bar{v}
+    \otimes
+    \left(
+      b_{i}
+      \otimes
+      b_{i}^{\prime}
+    \right)
+  \right)
+  \\
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \circ
+  \left(
+    \Braket{\cdot,\cdot}
+    \otimes
+    \mathrm{id}_{Z(S)^{\prime}}
+  \right)
+  \left(
+    \sum_{i=1}^{k}
+    \left(
+      \bar{v}
+      \otimes
+      b_{i}
+    \right)
+    \otimes
+    b_{i}^{\prime}
+  \right)
+  \\
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \left(
+    \sum_{i=1}^{k}
+    \Braket{\bar{v},b_{i}}
+    \otimes
+    b_{i}^{\prime}
+  \right)
+  \\
+  &=
+  \mathsf{L}(Z(S)^{\prime})
+  \left(
+    \sum_{i=1}^{k}
+    1
+    \otimes
+    \Braket{\bar{v},b_{i}}
+    b_{i}^{\prime}
+  \right)
+  \\
+  &=
+  \sum_{i = 1}^{k}
+  \Braket{\bar{v},b_{i}}
+  b_{i}^{\prime}
+\end{align*}
+for $\bar{v} \in Z(\overline{S})$. We further know that
+\begin{align*}
+  f(\bar{v})
+  &=
+  \sum_{i = 1}^{k}
+  f(\bar{v})(b_{i})
+  b_{i}^{\prime}
+\end{align*}
+and the uniqueness of the basis representation in $Z(S)^{\prime}$ yields
+\begin{align*}
+  f(\bar{v})(b_{i})
+  &=
+  \Braket{\bar{v},b_{i}}
+  \qquad
+  \text{for}
+  \qquad
+  i
+  \in
+  \lbrace
+    1
+    ,
+    \ldots
+    ,
+    k
+  \rbrace
+\end{align*}
+This shows
+\begin{align*}
+  f(\bar{v})
+  &=
+  \Braket{\bar{v},\cdot}
+\end{align*}
+because it suffices to fix linear maps on a basis. We have a basis
+\begin{align*}
+  \lbrace
+    f^{-1}(b_{1}^{\prime})
+    ,
+    \ldots
+    ,
+    f^{-1}(b_{k}^{\prime})
+  \rbrace
+\end{align*}
+of $Z(\overline{S})$ and we know that
+\begin{align*}
+  \gamma(1)
+  &=
+  \left(
+    \mathrm{id}_{Z(S)}
+    \otimes
+    f^{-1}
+  \right)
+  \circ
+  \mathrm{coev}_{Z(S)}^{\prime}(1)
+  \\
+  &=
+  \left(
+    \mathrm{id}_{Z(S)}
+    \otimes
+    f^{-1}
+  \right)
+  \left(
+    \sum_{i = 1}^{k}
+    b_{i}
+    \otimes
+    b_{i}^{\prime}
+  \right)
+  \\
+  &=
+  \sum_{i = 1}^{k}
+  b_{i}
+  \otimes
+  f^{-1}(b_{i}^{\prime})
+\end{align*}
+We define
+\begin{align*}
+  \bar{b}_{i}
+  &:=
+  f^{-1}(b_{i}^{\prime})
+  \qquad
+  \text{for}
+  \qquad
+  i
+  \in
+  \lbrace
+    1
+    ,
+    \ldots
+    ,
+    k
+  \rbrace
+\end{align*}
+so that
+\begin{align*}
+  \Braket{\bar{b}_{i},b_{j}}
+  &=
+  f(\bar{b}_{i})(b_{j})
+  \\
+  &=
+  b_{i}^{\prime}(b_{j})
+  \\
+  &=
+  \delta_{ij}
+\end{align*}
+where $j \in \lbrace 1,\ldots,k\rbrace$.
+\\
+With this preparation we now prove a related property, namely how one can compute the dimension of the state space by taking the product with the circle $S^{1}$. It is the following
+\\
+\begin{cor}
+\label{cor:dimS1}
+Let
+\begin{align*}
+  Z
+  \colon
+  \mathbf{Cob}_{n}
+  &\to
+  \mathbf{Vec}_{K}
+\end{align*}
+be a TQFT and let $S \in \mathrm{ob}_{\mathbf{Cob}_{n}}$ then
+\begin{align*}
+  \Phi^{-1}
+  \left(
+    Z([S \times S^{1}])
+    \left(
+      \Phi(1)
+    \right)
+  \right)
+  &=
+  \dim(Z(S))
+  =:
+  k
+  \in
+  \mathbb{N}
+\end{align*}
+\end{cor}
+\begin{prf}
+The cobordism
+\begin{align*}
+  S
+  \times
+  S^{1}
+  \colon
+  \emptyset
+  &\to
+  \emptyset
+\end{align*}
+is a representative of the composition
+\begin{align*}
+  \mathrm{ev}_{S}
+  \circ
+  \mathsf{B}(S,\overline{S})
+  \circ
+  \mathrm{coev}_{S}
+\end{align*}
+for, as illustrated in figure \ref{fig:dimcirc}, we can simply untwist\footnote{remember that we are considering abstract manifolds} the braiding by turning around one of the bent cylinders representing $\mathrm{ev}_{S}$ or $\mathrm{coev}_{S}$.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism edge/.style={draw}]
+  %left
+  %coevaluation
+  \pic[tqft,name=co,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,every outgoing upper boundary component/.style={draw},every outgoing boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(co-outgoing boundary 1),font=\small]{$S$};
+  \node[at=(co-outgoing boundary 2),below=-7pt,font=\small]{$\overline{S}$};
+  \node[at=(co-between outgoing 1 and 2),above=3pt,font=\small]{$\mathrm{coev}_{S}$};
+  %braiding
+  \pic[tqft/cylinder to next,name=l,boundary separation=3.5cm,at=(co-outgoing boundary 1)];
+  \pic[tqft/cylinder to prior,name=r,boundary separation=3.5cm,at=(co-outgoing boundary 2)];
+  \node[at=(r-between first incoming and first outgoing),left=1cm,font=\small]{$\mathsf{B}(S,\overline{S})$};
+  %evaluation
+  \pic[tqft,name=ev,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor=incoming boundary 1,at=(r-outgoing boundary 1),every incoming upper boundary component/.style={draw},every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev-incoming boundary 1),below=-7pt,font=\small]{$\overline{S}$};
+  \node[at=(ev-incoming boundary 2),font=\small]{$S$};
+  \node[at=(ev-between incoming 1 and 2),below=4pt,font=\small]{$\mathrm{ev}_{S}$};
+
+  %right
+  \node[at=(r-between first incoming and first outgoing),right=2.8cm,font=\small]{$\cong$};
+  %top
+  \pic[tqft,name=co2,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,anchor={(-1,0.65)},at=(co-outgoing boundary 2),outgoing upper boundary component 1/.style={draw},outgoing lower boundary component 1/.style={draw,ultra thin,dashed}];
+  \node[at=(co2-outgoing boundary 1),font=\small]{$S$};
+  %bottom
+  \pic[tqft,name=ev2,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0,anchor=incoming boundary 1,at=(co2-outgoing boundary 1)];
+  \node[at=(co2-outgoing boundary 2),right=2em,font=\small]{$S \times S^{1}$};
+\end{tikzpicture}
+\caption{Illustration of the product manifold with the circle}
+\label{fig:dimcirc}
+\end{figure}
+\\
+Using the coherence condition for $\mathsf{B}$ and $\mathsf{H}$ we find by applying $Z$ that
+\begin{align*}
+  &
+  \Phi^{-1}
+  \circ
+  Z([S \times S^{1}])
+  \circ
+  \Phi
+  \\
+  &=
+  \Phi^{-1}
+  \circ
+  Z(\mathrm{ev}_{S})
+  \circ
+  Z(\mathsf{B}(S,\overline{S}))
+  \circ
+  Z(\mathrm{coev}_{S})
+  \circ
+  \Phi
+  \\
+  &=
+  \Phi^{-1}
+  \circ
+  Z(\mathrm{ev}_{S})
+  \circ
+  \mathsf{H}(\overline{S},S)
+  \circ
+  \mathsf{B}(Z(S),Z(\overline{S}))
+  \circ
+  \mathsf{H}^{-1}(S,\overline{S})
+  \circ
+  Z(\mathrm{coev}_{S})
+  \circ
+  \Phi
+  \\
+  &=
+  \Braket{\cdot,\cdot}
+  \circ
+  \mathsf{B}(Z(S),Z(\overline{S}))
+  \circ
+  \gamma
+\end{align*}
+Hence, choosing bases for $Z(S)$ and $Z(\overline{S})$ as above, we have
+\begin{align*}
+  \Phi^{-1}
+  \left(
+    Z([S \times S^{1}])
+    \left(
+      \Phi(1)
+    \right)
+  \right)
+  &=
+  \Braket{\cdot,\cdot}
+  \left(
+    \mathsf{B}(Z(S),Z(\overline{S}))
+    \left(
+      \gamma(1)
+    \right)
+  \right)
+  \\
+  &=
+  \Braket{\cdot,\cdot}
+  \left(
+    \mathsf{B}(Z(S),Z(\overline{S}))
+    \left(
+      \sum_{i = 1}^{k}
+      b_{i}
+      \otimes
+      \bar{b}_{i}
+    \right)
+  \right)
+  \\
+  &=
+  \sum_{i = 1}^{k}
+  \Braket{\bar{b}_{i},b_{i}}
+  \\
+  &=
+  k
+  \\
+  &=
+  \dim(Z(S))
+\end{align*}
+finishing the proof.
+\\
+\phantom{proven}
+\hfill
+$\square$
+\end{prf}

@@ -1,0 +1,120 @@
+%\nocite{904e5e6a}
+%%%
+So far we have seen classifications for ordinary TQFTs in dimensions $n = 1$ and $n = 2$. In both cases we were able to give a finite set of generating objects and morphisms subject to some relations for the respective cobordism category and only had to deal with this finite amount of data in order to describe TQFTs. In higher dimensions, however, when using this generators-and-relations approach one has to deal with an infinite amount of data. For $n = 3$, for example, one has to take into account all connected, oriented, closed surfaces of genus $g$, for all $g \in \mathbb{N}$, in order to generate the objects so that already the set of generating objects is infinite. This does not mean that it is impossible to give a generators-and-relations description of $\mathbf{Cob}_{n}$ in higher dimensions (see e.g. \cite{904e5e6a}) but it is arguably more cumbersome.
+\\
+One may also consider TQFTs from a slightly different perspective: we can regard every smooth oriented compact $n$-manifold with boundary $M$ as a cobordism from the empty set to $\partial M$. Then, given an $n$-dimensional TQFT $Z$ we obtain a linear map
+\begin{align*}
+  Z([M])
+  \colon
+  Z(\emptyset)
+  &\to
+  Z(\partial M)
+\end{align*}
+which can be viewed as a vector in the vector space $Z(\partial M)$ since $Z(\emptyset) \cong K$. Hence $Z([M])$ can be regarded as a diffeomorphism invariant for manifolds. Now as we have seen before in chapter \ref{CHAP:ALTCHARPROPS} we can cut $M$ along embedded closed oriented $(n-1)$-manifolds to calculate this invariant with the help of the evaluation map of the embedded manifold. In particular, suppose we are given a closed oriented $(n-1)$-dimensional submanifold $U \subset M$ which divides $M$ into two pieces $M_{1}$ and $M_{2}$ so that
+\begin{align*}
+  \partial M_{1}
+  \sqcup
+  \partial M_{2}
+  &\cong
+  \partial M
+  \sqcup
+  \left(
+    \overline{U}
+    \sqcup
+    U
+  \right)
+\end{align*}
+as illustrated exemplarily in figure \ref{fig:cutcob}.
+\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[tqft/cobordism edge/.style={draw}]
+  %left bottom
+  \pic[tqft,name=mb,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=2,outgoing boundary components=0];
+
+  %left top
+  \pic[tqft,name=mt,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=3,anchor=outgoing boundary 2,at=(mb-incoming boundary 1),outgoing boundary component 1/.style={draw}];
+  \node[at=(mt-outgoing boundary 2),above=1.7cm,font=\small]{$M_{1}$};
+  \node[at=(mt-outgoing boundary 3),above=1.7cm,font=\small]{$M_{2}$};
+  \node[at=(mt-outgoing boundary 1),below=4pt,font=\small]{$\partial M$};
+
+  %cutting line
+  \draw (0.9,2.3) -- (0.9,-2.1);
+  \node[at={(0.9,2.8)}]{\small $M$};
+
+  %arrow
+  \draw[->] (2.8,0) -- (3.2,0);
+
+  %right top 1
+  \pic[tqft,name=m1,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=3,anchor={(-2.5,1)},at=(mt-outgoing boundary 1),every outgoing boundary component/.style={draw}];
+  \node[at=(m1-outgoing boundary 2),above=8mm,font=\small]{$M_{1}$};
+  \node[at=(m1-outgoing boundary 1),below=4pt,font=\small]{$\partial M$};
+  \node[at=(m1-between outgoing 2 and 3),below=8mm,font=\small]{$\overline{U}$};
+
+  %right top 2
+  \pic[tqft,name=m2,cobordism height=3cm,boundary separation=1.75cm,incoming boundary components=0,outgoing boundary components=2,anchor={(-3.5,1)},at=(mt-outgoing boundary 3),every outgoing boundary component/.style={draw}];
+  \node[at=(m2-between outgoing 1 and 2),above=0.5mm,font=\small]{$M_{2}$};
+  \node[at=(m2-between outgoing 1 and 2),below=8.5mm,font=\small]{$U$};
+
+  %right bottom 1
+  \pic[tqft,name=ev1,cobordism height=3cm,boundary separation=3.5cm,incoming boundary components=2,outgoing boundary components=0,anchor={(1,-0.45)},at=(m1-outgoing boundary 2),every incoming upper boundary component/.style={draw},every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+  \node[at=(ev1-between incoming 1 and 2),below=10mm,right=5mm,font=\small]{$\mathrm{ev}_{U}$};
+  
+  %right bottom 2
+  \pic[tqft,name=ev2,cobordism height=3cm,boundary separation=3.5cm,incoming boundary components=2,outgoing boundary components=0,anchor={(1,-0.45)},at=(m1-outgoing boundary 3),every incoming upper boundary component/.style={draw},every incoming lower boundary component/.style={draw,ultra thin,dashed}];
+\end{tikzpicture}
+\caption{Cutting a cobordism in two along a closed submanifold}
+\label{fig:cutcob}
+\end{figure}
+\\
+Then we have
+\begin{align*}
+  Z(\partial M_{1})
+  \otimes
+  Z(\partial M_{2})
+  &\cong
+  Z(\partial M)
+  \otimes
+  \left(
+    Z(\overline{U})
+    \otimes
+    Z(U)
+  \right)
+\end{align*}
+and $Z([M])$ can be obtained from
+\begin{align*}
+  Z([M_{1}])
+  \otimes
+  Z([M_{2}])
+  \colon
+  Z(\emptyset)
+  &\to
+  Z(\partial M_{1})
+  \otimes
+  Z(\partial M_{2})
+\end{align*}
+by applying the pairing $\mathrm{ev}_{Z(U)} \colon Z(\overline{U}) \otimes Z(U) \to K$ induced by $Z(\mathrm{ev}_{U})$ to obtain the map
+\begin{equation*}
+\begin{tikzcd}[row sep=2.4em,column sep=6em]
+  Z(\partial M_{1})
+  \otimes
+  Z(\partial M_{2})
+  \ar{r}{\sim}
+  &
+  Z(\partial M)
+  \otimes
+  \left(
+    Z(\overline{U})
+    \otimes
+    Z(U)
+  \right)
+  \ar{r}{\mathrm{id}_{Z(\partial M)} \otimes \mathrm{ev}_{Z(U)}}
+  &
+  Z(\partial M)
+\end{tikzcd}
+\end{equation*}
+The question now is whether it is possible to decompose $M$ into {\glqq}simple{\grqq} pieces by cutting along closed submanifolds of codimension $1$, or the other way around, is there a (finite) list of of such {\glqq}simple{\grqq} $n$-manifolds with boundary from which any $n$-manifold can be built up by gluing along  components of the boundaries?
+\\
+In higher dimensions the pieces one can obtain by cutting along closed submanifolds of codimension 1 are generally not that much simpler than the original manifold and even the submanifolds one cuts along are rather complicated, so the above method becomes less appropriate with growing dimension. We therefore need a more elaborate way of cutting or gluing to obtain simple pieces. The idea is now to not only allow gluing along closed submanifolds but also along submanifolds which themselves have boundary. This means that we have to take care not only of manifolds of dimension $n$ and $n-1$ but also of manifolds of lower dimension. The classical definition of a TQFT does not include this possibility so that we need some elaborate version of this definition.
+\\
+In section \ref{sec:extdown} we extend the ordinary category $\mathbf{Cob}_{n}$ of cobordisms downwards to obtain an $n$-category which also includes manifolds of all dimensions below $n-1$. In section \ref{sec:extup} we extend the ordinary category $\mathbf{Cob}_{n}$ upwards to an $(\infty,1)$-category which includes also higher homotopical information. Finally, in section \ref{sec:bordn} we combine these two ways of extending $\mathbf{Cob}_{n}$ to obtain the $(\infty,n)$-category $\mathbf{Bord}_{n}$.

@@ -1,0 +1,27 @@
+%\nocite{53686c5f}
+%\nocite{ed7cdc89}
+%\nocite{9efde335}
+%\nocite{d86ac73d}
+%\nocite{2e88d460}
+%%%
+In this final (very short) chapter we briefly want to describe what TQFT may be used for and where it may lead to. This is only an incomplete impression and there is actually much more to say here but we will restrict to these few aspects. A good starting point with many further references is again the nLab, \cite{wiki-nlab0000}.
+\\\\
+As already mentioned at the beginning one of the most-studied examples of a TQFT is Chern-Simons theory, in particular $3$-dimensional Chern-Simons theory. We do not want to give an introduction to Chern-Simons theory here (see e.g. \cite{53686c5f}, \cite{2e88d460} and \cite{ed7cdc89} for this) but rather want to describe what has already been achieved in formalizing it and where it could be helpful. For every suitable gauge group Chern-Simons theory yields an ordinary TQFT. In the (simple) special case of a discrete group Chern-Simons theory reduces to Dijkgraph-Witten theory (see e.g. \cite{9efde335} for a review).
+\\
+Moreover, there has been quite some progress towards making Chern-Simons theory a fully extended TQFT at least for sufficiently nice groups. When $0$-dimensional manifolds are not included there is a construction due to Reshetikhin and Turaev which also seems to be related to a construction by geometric quantization. Yet, even though there are some suggestions (see e.g. \cite{d86ac73d} and \cite{bbecba23}), it does not really seem to be clear what should be assigned to the point. The latter is crucial, however, since this determines the theory as the cobordism hypothesis shows.
+\\
+Chern-Simons theory also exemplifies the connection between TQFT and knot invariants. In the special case of Chern-Simons theory with group $SU(2)$ the so called Wilson loop observable corresponds to the Jones polynomial as was already recognized by Witten in 1989. Other gauge groups give rise to other knot invariants in the same way.
+\\
+But Chern-Simons theory can also be used to describe actual physical systems, at least in some limit. The probably best known example in this regard is the quantum Hall effect which, among other possible applications, is proposed to offer a possibility for topological quantum computing. An advantage of such topological quantum computers over other constructions for quantum computers might be that they are less susceptible to perturbations.
+\\\\
+Another reason why TQFTs are interesting is the so called holographic principle. This basically states that the correlators or partition functions of some QFTs of dimension $n$ can be identified with states of TQFTs of dimension $n+1$. More specifically, given an $n+1$-dimensional TQFT $Z$ and a cobordism
+\begin{align*}
+  M
+  \colon
+  \emptyset
+  &\to
+  \partial M
+\end{align*}
+then $Z(M)$ can be viewed as an element of the space of states $Z(\partial M)$. Under the holographic principle this element is identified with the partition function of some $n$-dimensional QFT when evaluated on the closed manifold $\partial M$. The TQFT is then called the bulk field theory and the corresponding lower-dimensional QFT is called the boundary field theory. An example of this is again given by $3$-dimensional Chern-Simons theory which corresponds to the $2$-dimensional Wess-Zumino-Witten model under the holographic principle.
+\\\\
+Eventually, a proper understanding of TQFT may be an important step towards understanding FQFT, and thus QFT, in full generality. But there is still a lot of work to do and much remains to be figured out.
