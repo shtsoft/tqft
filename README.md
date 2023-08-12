@@ -1,6 +1,6 @@
 # tqft
 
-The idea of this project is to provide an accessible introduction to topological quantum theories from a category-theoretical perspective.
+The idea of this project is to provide an accessible introduction to topological quantum field theories from a category-theoretical perspective.
 Especially for physicists.
 So far the project consists of
 
